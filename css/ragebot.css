@@ -1,0 +1,64 @@
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0px auto;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    color: #000;
+    background-color: #FFF;
+    margin: 0px auto;
+    position: relative;
+    font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-weight: normal;
+}
+
+
+#waitwhat_intro {
+    background: url(../img/waitwhat/bg1.png);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%; 
+}
+
+section {
+    padding: 5%;
+}
+
+#user_journey {
+    background: url(../img/waitwhat/user_journey.png);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%; 
+}
+
+.ovals {
+    width: 60%;
+    display: block; 
+}
+
+.oval-right {
+    margin-left: 10%;
+}
+
+.oval_section {
+    background-color: #ffffff;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%; 
+
+}
