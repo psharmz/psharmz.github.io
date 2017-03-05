@@ -19,8 +19,8 @@ body {
 }
 
 
-#waitwhat_intro {
-    background: url(../img/waitwhat/bg1.png);
+#ragebot_intro {
+    background: url(../img/ragebot/bg1.png);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -33,8 +33,8 @@ section {
     padding: 5%;
 }
 
-#user_journey {
-    background: url(../img/waitwhat/user_journey.png);
+#hippo_pic {
+    background: url(../img/ragebot/bg2.png);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
