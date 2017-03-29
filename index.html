@@ -29,67 +29,69 @@
     </head>
 
     <body>
-
-
       <!-- nav_bar which is same for all pages -->
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Parul Sharma</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="work.html">work</a></li>
-              <li><a href="about.html">about</a></li>
-              <li><a href="sharma_parul.pdf">resume</a></li>
-              <li><a href="doodles.html">doodles</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-      <div class="container-fluid">
+      <header class="container-fluid">
         <div class="row">
-          <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <div class="row placeholders">
-              <div class="col-xs-6 col-sm-3 placeholder">
-                <a href="livcollege.html">
-                  <img src="img/lv.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-                </a>
-                <h4></h4>
-                <span class="text-muted">LivCollege</span>
-              </div>
-              <div class="col-xs-6 col-sm-3 placeholder">
-               <a href="ediwaste.html">
-                <img src="img/bins.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              </a>
-              <h4></h4>
-              <span class="text-muted">Edinburgh Waste Management</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <a href="waitwhat.html">
-                <img src="img/waitwhat.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              </a>
-              <h4></h4>
-              <span class="text-muted">WaitWhat</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <a href="ragebot.html">
-                <img src="img/hippo.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              </a>
-              <h4></h4>
-              <span class="text-muted">RageBot</span>
-            </div>
+          <a class="col-xs-6" href="index.html"> Parul Sharma </a>
+          <ul class="col-xs-6">
+            <li><a href="work.html">work</a></li>
+            <li><a href="about.html">about</a></li>
+            <li><a href="sharma_parul.pdf">resume</a></li>
+            <li><a href="doodles.html">doodles</a></li>
+          </ul>
+        </div>
+      </header>
+
+      <div class="intro">
+        <p> I want to live where the soul meets body </p>
+        <p> I am a UX </p> 
+        <p> researcher </p>
+        <p> designer </p>
+        <p> developer </p>
+      </div>
+
+<!-- display all the projects I have been working on -->
+      <div class="container-fluid">
+        <div class="row"> 
+          <!-- EDI WASTE -->
+          <div class="col-xs-12">
+            <a href="ediwaste.html">
+              <img src="img/bins.png" class="img-responsive" alt="livecollege">
+            </a>
+            <h4></h4>
+            <span class=""> Edinburgh Waste Management </span>
+            <h4></h4>
+          </div>
+          <!-- LIVECOLLEGE -->
+          <div class="col-xs-12">
+            <a href="livcollege.html">
+              <img src="img/lv.png" class="img-responsive" alt="livecollege">
+            </a>
+            <h4></h4>
+            <span class=""> LivCollege </span>
+            <h4></h4>
+          </div>
+          <!-- RAGEBOT -->
+          <div class="col-xs-12">
+            <a href="ragebot.html">
+              <img src="img/hippo.png" class="img-responsive" alt="livecollege">
+            </a>
+            <h4></h4>
+            <span class=""> Ragebot </span>
+            <h4></h4>
+          </div>
+          <!-- WAITWHAT -->
+          <div class="col-xs-12">
+            <a href="waitwhat.html">
+              <img src="img/waitwhat.png" class="img-responsive" alt="livecollege">
+            </a>
+            <h4></h4>
+            <span class=""> WaitWhat </span>
+            <h4></h4>
           </div>
         </div>
       </div>
-    </div>
+    
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
