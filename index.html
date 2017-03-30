@@ -8,7 +8,6 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="../../favicon.ico">
 
   <title>Parul's Portfolio Website</title>
 
@@ -17,52 +16,53 @@
 
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/work.css">
 
-  <!-- Custom styles for this template -->
-  <link href="css/work.css" rel="stylesheet">
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-    </head>
+</head>
 
     <body>
       <!-- nav_bar which is same for all pages -->
       <header class="container-fluid">
-        <div class="row">
-          <a class="col-xs-6" href="index.html"> Parul Sharma </a>
-          <ul class="col-xs-6">
-            <li><a href="work.html">work</a></li>
-            <li><a href="about.html">about</a></li>
-            <li><a href="sharma_parul.pdf">resume</a></li>
-            <li><a href="doodles.html">doodles</a></li>
-          </ul>
+        <div class="row header-row">
+          <!-- MOBILE: left column is name -->
+          <div class="col-xs-6 left-col">
+            <a id="fullname" href="index.html"> Parul Sharma </a>
+          </div>
+          <!-- MOBILE: right column is rest of nav -->
+          <div class="col-xs-6 right-col">
+            <ul class="the-nav">
+              <li><a href="work.html">work</a></li>
+              <li><a href="about.html">about</a></li>
+              <li><a href="sharma_parul.pdf">resume</a></li>
+              <li><a href="doodles.html">doodles</a></li>
+            </ul>
+          </div>
         </div>
       </header>
 
       <div class="intro">
-        <p> I want to live where the soul meets body </p>
-        <p> I am a UX </p> 
-        <p> researcher </p>
-        <p> designer </p>
-        <p> developer </p>
+        <p> Front End Engineer. </p>
+        <div id="uxbox">
+          <div id="uxkeys">
+            <p> I am a UX </p> 
+            <p> researcher </p> <span></span>
+            <p> designer </p> <span></span>
+            <p> developer </p> <span></span>
+          <div>
+        </div>
       </div>
 
 <!-- display all the projects I have been working on -->
-      <div class="container-fluid">
+<!--       <div class="container-fluid">
         <div class="row"> 
-          <!-- EDI WASTE -->
           <div class="col-xs-12">
             <a href="ediwaste.html">
-              <img src="img/bins.png" class="img-responsive" alt="livecollege">
+              <img src="img/bins.png" class="img-responsive" alt="edinburgh waste management">
             </a>
             <h4></h4>
             <span class=""> Edinburgh Waste Management </span>
             <h4></h4>
           </div>
-          <!-- LIVECOLLEGE -->
           <div class="col-xs-12">
             <a href="livcollege.html">
               <img src="img/lv.png" class="img-responsive" alt="livecollege">
@@ -71,26 +71,24 @@
             <span class=""> LivCollege </span>
             <h4></h4>
           </div>
-          <!-- RAGEBOT -->
           <div class="col-xs-12">
             <a href="ragebot.html">
-              <img src="img/hippo.png" class="img-responsive" alt="livecollege">
+              <img src="img/hippo.png" class="img-responsive" alt="ragebot">
             </a>
             <h4></h4>
             <span class=""> Ragebot </span>
             <h4></h4>
           </div>
-          <!-- WAITWHAT -->
           <div class="col-xs-12">
             <a href="waitwhat.html">
-              <img src="img/waitwhat.png" class="img-responsive" alt="livecollege">
+              <img src="img/waitwhat.png" class="img-responsive" alt="waitwhat">
             </a>
             <h4></h4>
             <span class=""> WaitWhat </span>
             <h4></h4>
           </div>
         </div>
-      </div>
+      </div> -->
     
 
     <!-- Bootstrap core JavaScript
@@ -100,6 +98,6 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
   </html>
