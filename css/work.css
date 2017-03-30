@@ -42,8 +42,8 @@ a {
 
 .intro {
   background-color: #D8D8D8;
-  padding-top: 10%;
-  padding-bottom: 10%;
+  padding-top: 5%;
+  padding-bottom: 5%;
   color: #9012FE;
   text-align: center;
 }
@@ -55,17 +55,38 @@ a {
 }
 
 #uxbox {
-  text-align: left;
-  margin-left: 15%;
+  padding: 10%;
+}
+
+#uxkeys {
+  margin-bottom: 0;
+  display: inline-block;
 }
 
 #uxkeys p {
+  text-align: left;
   margin-bottom: 0;
-  width: 45%;
 }
 
-span {
-  width: 30%;
-  height: 10%;
-  background-color: black; 
+#uxvalues {
+  margin-bottom: 0;
+  width: 50%;
+  display: inline-block;
+}
+
+.uxval {
+  height: 17px;
+  display: block; 
+  margin-left: 10%;
+  background-color: #9B9B9B;
+}
+
+.designer {
+  width: 45%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.developer {
+  width: 70%;
 }
