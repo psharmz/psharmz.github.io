@@ -90,3 +90,13 @@ a {
 .developer {
   width: 70%;
 }
+
+.work-icon {
+  padding: 10%;
+  text-align: center;
+}
+
+.work-icon img {
+   display: inline-block;
+   border-radius: 50%;
+}
