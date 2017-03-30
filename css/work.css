@@ -1,4 +1,5 @@
 
+/*  start with mobile css */
 
 /*  HEADER CSS  */
 
@@ -14,11 +15,11 @@ ul {
   list-style-type: none;
   text-align: right;
   padding-left: 0;
-  padding-right: 10px;
 }
 
 li {
   padding-bottom: 5px;
+  padding-right: 0px;
 }
 
 a {
@@ -36,8 +37,9 @@ a {
 }
 
 .right-col {
-
+  padding-right: 0;
 }
+
 /*  INTRO CSS  */
 
 .intro {
@@ -100,3 +102,35 @@ a {
    display: inline-block;
    border-radius: 50%;
 }
+
+/*  now do desktop css  */
+@media (min-width: 768px) {
+  .left-col {
+    margin-top: 0;
+  }
+
+  .header-row {
+    padding: 10px;
+  }
+
+  #uxbox {
+  padding: 0%;
+  }
+
+  .projects {
+    width: 70%;
+    margin-left: 15%;
+    margin-right: auto;
+    margin-top: 3%;
+  }
+
+  .work-icon {
+    padding: 3%;
+  }
+
+  .work-title {
+    font-size: 15px;
+  }
+
+}
+
