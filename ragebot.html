@@ -15,71 +15,62 @@
 
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/ragebot.css">
 
-  <!-- Custom styles for this template -->
-  <link href="css/ragebot.css" rel="stylesheet">
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-    </head>
+</head>
 
     <body>
-
       <!-- nav_bar which is same for all pages -->
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Parul Sharma</a>
+      <header class="container-fluid">
+        <div class="row header-row">
+          <!-- MOBILE: left column is name -->
+          <div class="col-xs-6 col-sm-6 left-col">
+            <a id="fullname" href="index.html"> Parul Sharma </a>
           </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="index.html">work</a></li>
-              <li><a href="about.html">about</a></li>
-              <li><a href="sharma_parul.pdf">resume</a></li>
-              <li><a href="doodles.html">doodles</a></li>
+          <!-- MOBILE: right column is rest of nav -->
+          <div class="col-xs-6 col-sm-6 row right-col">
+            <ul class="the-nav">
+              <li class="col-sm-3"><a href="work.html">work</a></li>
+              <li class="col-sm-3"><a href="about.html">about</a></li>
+              <li class="col-sm-3"><a href="sharma_parul.pdf">resume</a></li>
+              <li class="col-sm-3"><a href="doodles.html">doodles</a></li>
             </ul>
           </div>
         </div>
-      </nav>
-      <!-- Section: Introduction -->
-      <section id="ragebot_intro" class="">
-        <div class="col-sm-4">
-          <p>As part of a class project, we were asked create a probe that would gather data with the use of sensors hooked up to an arduino. We decided to use a plant to hide our sensors in plain sight, and keep it on a student’s desk to gather data. The sound, light, vibration, temperature and humidity, and motion sensor readings can be viewed in this raw data file.</p>
-        </div>
-      </section>
+      </header>
 
-      <section class="oval_section" class="container">
-        <div class="row"> 
-          <div class="col-sm-4">
-            <img class="ovals oval-right" src="img/ragebot/oval1.png" >
-            <img class="ovals" src="img/ragebot/oval2.png" >
-            <img class="ovals oval-right" src="img/ragebot/oval3.png" >
-          </div>
-          <div class="col-sm-8">
-            <p> Data Inspiration: </p>
-            <p>  Data analysis reveals strange spikes in sound. We presumed these could be things like swearing or rage, since studying can get aggravating at times. However, these occurred even the student was assumed to sleeping in their room. Another assumption could be that the sensors are not very accurate, and often result in misreadings.  Drawing inspiration from both our assumptions: the student might have had moments of rage, or data was being read and recorded inaccurately, we converted our probe into a ragebot. Rather than a plant, we decided to use a more familiar and friendly hippo as our desk object. We kept the product’s appeal light and fun as the intended use was to alleviate stress during studying.</p>
-          </div>
+<!-- display the project intro -->
+      <div class="container-fluid project-intro row">
+        <img src="img/ragebot/project_photo.png" class="img-responsive col-xs-12" alt="ragebot project photo">
+        <div class="project-description col-xs-12">
+          <h1 class="project-title"> RageBot </h1>
+          <p class="thin-font"> Real-Time Lecture Engagement Measurement</p>
+          <p class="thin-font title"> Role </p>
+          <p class="bold-font"> Developer </p>
+          <p class="thin-font title"> Duration </p>
+          <p class="bold-font"> 1 Semester, </p>
+          <p class="bold-font"> Fall 2016 </p>
+          <p class="thin-font title"> Final Deliverables </p>
+          <p class="bold-font"> IoT Ragebot </p>
+          <p class="bold-font"> Project Blog Post </p>
         </div>
-      </section>
-      <section id="hippo_pic">
-      </section>
-      <section class="oval_section" class="row">
-        <div class="col-sm-8">
-          <p> We programmed the arduino so that if lights are turned out and a high enough noise level is detected, it will swear along with the student. Embracing the inaccuracy of the sensors, the ragebot would also swear when it is recording data incorrectly to the data file. The Volkswagen emissions data inaccuracy scandal inspired us to speculate on how machines can communicate inaccurate data recordings effectively and persuasively, like politicians that are seen as more persuasive and credible when swearing. </p>
-        </div>
-        <div class="col-sm-4">
-          <img class="ovals oval-right" src="img/ragebot/oval4.png" >
-        </div>
-      </section>
+      </div>
+      <div class="container-fluid project-info row">
+        <h2 class="col-xs-12"> Project <br> Background </h2>
+        <p class="col-xs-12"> As part of a class project, we were asked create a probe that would gather data with the use of sensors hooked up to an arduino. We decided to use a plant to hide our sensors in plain sight, and keep it on a student’s desk to gather data. The sound, light, vibration, temperature and humidity, and motion sensor readings can be viewed in this raw data file </p>
+        <img src="img/ragebot/arduino_plant.png" class="img-responsive col-xs-12 plant" alt="arduino plant">
+        <img src="img/ragebot/arduino_desk.png" class="img-responsive col-xs-12" alt="experiment test">
+        <h2 class="col-xs-12"> Data Inspiration </h2>
+        <img src="img/ragebot/graph.png" class="img-responsive col-xs-12 plant" alt="arduino plant">
+        <p class="col-xs-12"> Data analysis reveals strange spikes in sound. We presumed these could be things like swearing or rage, since studying can get aggravating at times. However, these occurred even the student was assumed to sleeping in their room. Another assumption could be that the sensors are not very accurate, and often result in misreadings.  Drawing inspiration from both our assumptions: the student might have had moments of rage, or data was being read and recorded inaccurately, we converted our probe into a ragebot. Rather than a plant, we decided to use a more familiar and friendly hippo as our desk object. We kept the product’s appeal light and fun as the intended use was to alleviate stress during studying. </p>
+        <h2 class="col-xs-12"> Product Design </h2>
+        <img src="img/ragebot/process.png" class="img-responsive col-xs-12 plant" alt="arduino plant">
+        <img src="img/ragebot/robohippo.gif" class="img-responsive col-xs-12 plant" alt="arduino plant">
+        <img src="img/ragebot/top_view.png" class="img-responsive col-xs-12 plant" alt="arduino plant">
+
+      </div>
+    
+    
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -88,6 +79,6 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
   </html>
