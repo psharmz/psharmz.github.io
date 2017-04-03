@@ -1,0 +1,44 @@
+/*  PROJECT INTRO CSS  */
+
+.project-intro {
+  background-color: #D8D8D8; 
+  padding: 5% 10% 5% 10%;
+}
+
+.project-description p {
+  margin-bottom: 0px; 
+} 
+
+.project-description .title {
+  margin-top: 10%;
+}
+
+.thin-font {
+  font-weight: lighter; 
+}
+
+/*  PROJECT INFO CSS  */
+
+.project-info {
+  padding: 0% 10% 0% 10%;
+  font-size: 20px;
+  text-align: left;
+  font-weight: normal;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.project-info img {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+/*  now do desktop css  */
+@media (min-width: 768px) {
+
+  .product-pics {
+    height: 19em;
+    width: auto;
+  }
+
+}

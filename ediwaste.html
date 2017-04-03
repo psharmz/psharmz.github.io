@@ -15,7 +15,8 @@
 
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/waitwhat.css">
+  <link rel="stylesheet" type="text/css" href="css/header.css">
+  <link rel="stylesheet" type="text/css" href="css/project_intro.css">
 
 </head>
 
@@ -40,32 +41,39 @@
       </header>
 
 <!-- display the project intro -->
-      <div class="container-fluid project-intro row">
-        <img src="img/waste/project_photo.png" class="img-responsive col-xs-12" alt="ragebot project photo">
-        <div class="project-description col-xs-12">
-          <h1 class="project-title"> Trashy Business </h1>
-          <p class="thin-font"> Edinburgh Waste Management</p>
-          <p class="thin-font title"> Role </p>
-          <p class="bold-font"> Design Researcher </p>
-          <p class="thin-font title"> Duration </p>
-          <p class="bold-font"> 1 Semester, </p>
-          <p class="bold-font"> Fall 2016 </p>
-          <p class="thin-font title"> Final Deliverables </p>
-          <p class="bold-font"> Proposal to Edinburgh City Council </p>
+      <div class="container-fluid project-intro">
+        <div class="row">
+          <img src="img/waste/project_photo.png" class="img-responsive col-xs-12 col-sm-8 col-sm-push-4" alt="ragebot project photo">
+          <div class="project-description col-xs-12 col-sm-4 col-sm-pull-8">
+            <h1 class="project-title"> Trashy Business </h1>
+            <p class="thin-font"> Edinburgh Waste Management</p>
+            <p class="thin-font title"> Role </p>
+            <p class="bold-font"> Design Researcher </p>
+            <p class="thin-font title"> Duration </p>
+            <p class="bold-font"> 1 Semester, </p>
+            <p class="bold-font"> Fall 2016 </p>
+            <p class="thin-font title"> Final Deliverables </p>
+            <p class="bold-font"> Proposal to Edinburgh City Council </p>
+          </div>
         </div>
       </div>
-      <div class="container-fluid project-info row">
-        <h2 class="col-xs-12"> Project <br> Background </h2>
-        <p class="col-xs-12"> The Edinburgh City Council was concerned about the waste management and fly tipping problems in the city. Field research in the areas Gorgie Street and Leith Walk. We interviewed children and adults and filled out journey maps from when they eat food or throw something away up until they dispose of the trash in a bin,  conducted an online survey and reviewed the existing app and data sets the Edinburgh city council had. We then created personas and highlighted pain points. We then brainstormed initial ideas and began prototyping and conducting interviews to gain feedback on these ideas.</p>
-        <h2 class="col-xs-12"> Data Driven Design </h2>
-        <img src="img/waste/data_driven_design.png" class="img-responsive col-xs-12 plant" alt="research study">
-        <img src="img/waste/case_study.png" class="img-responsive col-xs-12 plant" alt="research study">
-        <p class="col-xs-12"> After the fast hackathon, we used data driven design for a household bin prototype based on existing city data. This was then placed in the home of a family of four. Sensors in the bins and interviews conducted with family members helped us gain further insights and improvements for the design. Such insights included adding covers to the landfill bins to reduce smell and increasing the size of the mixed recycling bin. We also found that there is a lot of confusion on the color scheme, and conducted more surveys and interviews with school children and adults to report to the council.</p>
-        <h2 class="col-xs-12"> Gamification Prototyping </h2>
-        <p class="col-xs-12"> The study and surveys revealed that free form feedback is preferred by students but multiple choice questions related to academic content is preferred by professors. However, professors did agree that free form feedback helps note video quality issues that multiple choice questions cannot address. Based on this feedback, user journeys were created to initialize the product creation. However, it can be argued more research needs to be done. </p>
-        <img src="img/waste/gamification.png" class="img-responsive col-xs-12 plant" alt="research study">
-        <h2 class="col-xs-12"> Insights for Iteration </h2>
-        <p class="col-xs-12"> While this was a paper prototype of a mobile app, we learned that the children actually liked the tactile element of the game and don’t generally carry around their phones in the house. They would rather play against family and friends, instead of neighbors. While the prize was a nice incentive for children, the biggest incentive for the parents to partake in the game was a behavioral change in their children. Based on these insights, we would modify the game for a second round of prototyping. </p>
+
+<!-- display the project INFO -->
+
+      <div class="container-fluid project-info">
+        <div class="row">
+          <h2 class="col-xs-12"> Project Background </h2>
+          <p class="col-xs-12"> The Edinburgh City Council was concerned about the waste management and fly tipping problems in the city. Field research in the areas Gorgie Street and Leith Walk. We interviewed children and adults and filled out journey maps from when they eat food or throw something away up until they dispose of the trash in a bin,  conducted an online survey and reviewed the existing app and data sets the Edinburgh city council had. We then created personas and highlighted pain points. We then brainstormed initial ideas and began prototyping and conducting interviews to gain feedback on these ideas.</p>
+          <h2 class="col-xs-12"> Data Driven Design </h2>
+          <img src="img/waste/data_driven_design.png" class="img-responsive col-xs-12 plant" alt="research study">
+          <img src="img/waste/case_study.png" class="img-responsive col-xs-12 plant" alt="research study">
+          <p class="col-xs-12"> After the fast hackathon, we used data driven design for a household bin prototype based on existing city data. This was then placed in the home of a family of four. Sensors in the bins and interviews conducted with family members helped us gain further insights and improvements for the design. Such insights included adding covers to the landfill bins to reduce smell and increasing the size of the mixed recycling bin. We also found that there is a lot of confusion on the color scheme, and conducted more surveys and interviews with school children and adults to report to the council.</p>
+          <h2 class="col-xs-12"> Gamification Prototyping </h2>
+          <p class="col-xs-12"> The study and surveys revealed that free form feedback is preferred by students but multiple choice questions related to academic content is preferred by professors. However, professors did agree that free form feedback helps note video quality issues that multiple choice questions cannot address. Based on this feedback, user journeys were created to initialize the product creation. However, it can be argued more research needs to be done. </p>
+          <img src="img/waste/gamification.png" class="img-responsive col-xs-12 plant" alt="research study">
+          <h2 class="col-xs-12"> Insights for Iteration </h2>
+          <p class="col-xs-12"> While this was a paper prototype of a mobile app, we learned that the children actually liked the tactile element of the game and don’t generally carry around their phones in the house. They would rather play against family and friends, instead of neighbors. While the prize was a nice incentive for children, the biggest incentive for the parents to partake in the game was a behavioral change in their children. Based on these insights, we would modify the game for a second round of prototyping. </p>
+        </div>
       </div>
     
     
