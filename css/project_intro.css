@@ -14,8 +14,13 @@
 }
 
 .thin-font {
-  font-weight: lighter; 
+  font-weight: 300; 
 }
+
+.bold-font {
+  font-weight: 700; 
+}
+
 
 /*  PROJECT INFO CSS  */
 
@@ -23,7 +28,7 @@
   padding: 0% 10% 0% 10%;
   font-size: 20px;
   text-align: left;
-  font-weight: normal;
+  font-weight: 300;
   margin-top: 5%;
   margin-bottom: 5%;
 }
