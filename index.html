@@ -14,26 +14,27 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+ <!-- -->
+
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
 
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
   
   <link rel="stylesheet" type="text/css" href="css/header.css">
-  <link rel="stylesheet" type="text/css" href="css/work.css">
+  <link rel="stylesheet" type="text/css" href="css/intro-section.css">
+  <link rel="stylesheet" type="text/css" href="css/work-section.css">
   <link rel="stylesheet" type="text/css" href="css/footer.css">
 
 </head>
 
     <body>
-      <!-- nav_bar which is same for all pages -->
-      <header class="container-fluid">
+      <!-- nav_bar which is same for all pages MIGHT REDO THISSSS-->
+<!--       <header class="container-fluid">
         <div class="row header-row">
-          <!-- MOBILE: left column is name -->
           <div class="col-xs-6 col-sm-6 left-col">
             <a id="fullname" href="index.html"> Parul Sharma </a>
           </div>
-          <!-- MOBILE: right column is rest of nav -->
           <div class="col-xs-6 col-sm-6 row right-col">
             <ul class="the-nav">
               <li class="col-sm-3"><a href="index.html">work</a></li>
@@ -43,71 +44,115 @@
             </ul>
           </div>
         </div>
-      </header>
+      </header> -->
 
-      <div class="intro">
-        <div id="uxbox">
-          <p> Front End Engineer.</p>
-          <p> I am a UX </p> 
-          <div id="uxkeys">
-            <p> researcher </p> 
-            <p> designer </p> 
-            <p> developer </p> 
+      <!-- Section: Introduction -->
+      <div id="intro-section" class="section">
+        <header class="container-fluid">
+          <div class="row header-row">
+            <div class="col-xs-6 col-sm-6 left-col">
+              <a id="fullname" href="index.html"> Parul Sharma </a>
+            </div>
+            <div class="col-xs-6 col-sm-6 row right-col">
+              <ul class="the-nav">
+                <li class="col-sm-3"><a href="index.html">work</a></li>
+                <li class="col-sm-3"><a href="about.html">about</a></li>
+                <li class="col-sm-3"><a href="sharma_parul.pdf">resume</a></li>
+                <li class="col-sm-3"><a href="sketches.html">sketches</a></li>
+              </ul>
+            </div>
           </div>
-          <div id="uxvalues">
-            <div class="uxval researcher"></div>
-            <div class="uxval designer"></div>
-            <div class="uxval developer"></div>
+        </header>
+        <div class="splash_wrapper">
+          <img id="splash" src="img/splash.svg">
+          <div class="line-separator"></div>
+          <div id="title_wrapper">
+            <p> UX Designer </p>
+          </div>
+          <div class="cta-wrapper text-center">
+            <button type="button"> Dive In </button>
           </div>
         </div>
       </div>
-
-<!-- display all the projects I have been working on -->
-      <div class="container-fluid projects">
+      <div id="work-section" class="section container-fluid projects">
         <div class="row"> 
-          <div class="col-xs-12 col-sm-6 work-icon">
-            <a href="ediwaste.html">
-              <img src="img/bins.png" class="img-responsive" alt="edinburgh waste management">
-            </a>
-            <h4></h4>
-            <span class="work-title"> Edinburgh Waste Management </span>
-            <h4></h4>
-          </div>
+
           <div class="col-xs-12 col-sm-6 work-icon">
             <a href="livcollege.html">
-              <img src="img/lv.png" class="img-responsive" alt="livcollege">
+              <img src="img/icons/projects/lv.png" class="img-responsive" alt="livcollege">
             </a>
-            <h4></h4>
-            <span class="work-title"> LivCollege </span>
-            <h4></h4>
+            <div class="details">
+              <p class="project-title"> LivCollege </p> 
+              <p class="project-type"> UX DESIGN / UI DESIGN </p>
+            </div>
           </div>
+
+
+          <div class="col-xs-12 col-sm-6 work-icon">
+            <a href="ediwaste.html">
+              <img src="img/icons/projects/bins.png" class="img-responsive" alt="edinburgh waste management">
+            </a>
+            <div class="details">
+              <p class="project-title"> Trashy Business </p> 
+              <p class="project-type"> DESIGN RESEARCH </p>
+            </div>
+          </div>
+
+
           <div class="col-xs-12 col-sm-6 work-icon">
             <a href="ragebot.html">
-              <img src="img/hippo.png" class="img-responsive" alt="ragebot">
+              <img src="img/icons/projects/hippo.png" class="img-responsive" alt="ragebot">
             </a>
-            <h4></h4>
-            <span class="work-title"> Ragebot </span>
-            <h4></h4>
+            <div class="details">
+              <p class="project-title"> RageBot </p> 
+              <p class="project-type"> PRODUCT DESIGN </p>
+            </div>
           </div>
+
+
           <div class="col-xs-12 col-sm-6 work-icon">
             <a href="waitwhat.html">
-              <img src="img/waitwhat.jpg" class="img-responsive" alt="waitwhat">
+              <img src="img/icons/projects/waitwhat.jpg" class="img-responsive" alt="waitwhat">
             </a>
-            <h4></h4>
-            <span class="work-title"> WaitWhat </span>
-            <h4></h4>
+            <div class="details">
+              <p class="project-title"> WaitWhat </p> 
+              <p class="project-type"> DESIGN RESEARCH </p>
+            </div>
           </div>
+
+
+          <div class="col-xs-12 col-sm-6 work-icon">
+            <a href="actorwho.html">
+              <img src="img/icons/projects/actor_who.jpg" class="img-responsive" alt="waitwhat">
+            </a>
+            <div class="details">
+              <p class="project-title"> Actor Who </p> 
+              <p class="project-type"> INTERACTION DESIGN </p>
+            </div>
+          </div>
+
+
+          <div class="col-xs-12 col-sm-6 work-icon">
+            <a href="safecomm.html">
+              <img src="img/icons/projects/SafeComm.jpg" class="img-responsive" alt="waitwhat">
+            </a>
+            <div class="details">
+              <p class="project-title"> SafeComm </p> 
+              <p class="project-type"> CISCO SWITCH UP CHALLENGE FINALS </p>
+            </div>
+          </div>
+
         </div>
       </div>
-
+ 
       <footer class="container-fluid">
-      <!-- footer nav -->
+
         <ul class="footer-nav">
           <li class="nav-el"><a href="index.html">work</a></li>
           <li class="nav-el"><a href="about.html">about</a></li>
           <li class="nav-el"><a href="sharma_parul.pdf">resume</a></li>
         </ul>
-      <!-- social icons -->
+
         <ul class="social">
           <li class="social-icon">
             <a href="" target="_blank" class="icon twitter" title="twitter">
@@ -129,7 +174,7 @@
           <p>©&nbsp;&nbsp;Parul Sharma 2017</p>
         </div>
         
-      </footer>
+      </footer> 
     
 
     <!-- Bootstrap core JavaScript

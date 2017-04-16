@@ -1,0 +1,44 @@
+
+#intro-section {
+    background: url(../img/background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh; 
+    text-align: right;
+}
+
+.splash_wrapper {
+    margin-top: 8vh;
+}
+
+#splash {
+    margin-right: 2vh;
+}
+
+
+#title_wrapper {
+    text-align: left;
+    padding-left: 10vh;
+    color: #FFF105;
+    font-weight: 400;
+}
+
+.line-separator{
+    height: 5px;
+    width: 90%;
+    background: #FFF105;
+}
+
+
+button {
+    background-color: transparent;
+    color: #FFF105;
+    border: #FFF105;
+    border-style: solid;
+    border-width: 2px; 
+    margin-top: 25vh; 
+ }
+

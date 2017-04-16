@@ -1,0 +1,47 @@
+/*  INTRO CSS  */
+
+a {
+  color: black;
+}
+
+
+#work-section {
+    width: 100%;
+    height: auto;
+}
+
+.work-icon {
+  padding: 10%;
+  text-align: left;
+}
+
+.details {
+  padding-top: 3%;
+  padding-left: 5%;
+}
+
+.details p {
+  margin-bottom: 0px;
+}
+
+.project-title {
+  color: #02528E;
+  font-size: 30px;
+}
+
+.project-type {
+  color: #9B9B9B;
+  font-weight: lighter; 
+  font-size: 15px;
+}
+
+.work-icon img {
+   display: inline-block;
+}
+
+/*  now do desktop css  */
+@media (min-width: 768px) {
+
+
+}
+
