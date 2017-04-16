@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
  <!-- -->
-
+  <link href="https://fonts.googleapis.com/css?family=Lovers+Quarrel" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
 
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -24,28 +24,12 @@
   <link rel="stylesheet" type="text/css" href="css/header.css">
   <link rel="stylesheet" type="text/css" href="css/intro-section.css">
   <link rel="stylesheet" type="text/css" href="css/work-section.css">
+  <link rel="stylesheet" type="text/css" href="css/about-section.css">
   <link rel="stylesheet" type="text/css" href="css/footer.css">
 
 </head>
 
     <body>
-      <!-- nav_bar which is same for all pages MIGHT REDO THISSSS-->
-<!--       <header class="container-fluid">
-        <div class="row header-row">
-          <div class="col-xs-6 col-sm-6 left-col">
-            <a id="fullname" href="index.html"> Parul Sharma </a>
-          </div>
-          <div class="col-xs-6 col-sm-6 row right-col">
-            <ul class="the-nav">
-              <li class="col-sm-3"><a href="index.html">work</a></li>
-              <li class="col-sm-3"><a href="about.html">about</a></li>
-              <li class="col-sm-3"><a href="sharma_parul.pdf">resume</a></li>
-              <li class="col-sm-3"><a href="sketches.html">sketches</a></li>
-            </ul>
-          </div>
-        </div>
-      </header> -->
-
       <!-- Section: Introduction -->
       <div id="intro-section" class="section">
         <header class="container-fluid">
@@ -55,25 +39,26 @@
             </div>
             <div class="col-xs-6 col-sm-6 row right-col">
               <ul class="the-nav">
-                <li class="col-sm-3"><a href="index.html">work</a></li>
-                <li class="col-sm-3"><a href="about.html">about</a></li>
-                <li class="col-sm-3"><a href="sharma_parul.pdf">resume</a></li>
-                <li class="col-sm-3"><a href="sketches.html">sketches</a></li>
+                <li class="col-sm-3"><a class="header-text" href="index.html">work</a></li>
+                <li class="col-sm-3"><a class="header-text" href="about.html">about</a></li>
+                <li class="col-sm-3"><a class="header-text" href="sharma_parul.pdf">resume</a></li>
+                <li class="col-sm-3"><a class="header-text" href="sketches.html">sketches</a></li>
               </ul>
             </div>
           </div>
         </header>
         <div class="splash_wrapper">
-          <img id="splash" src="img/splash.svg">
+          <p id="title_name"> Parul Sharma </p>
           <div class="line-separator"></div>
           <div id="title_wrapper">
             <p> UX Designer </p>
           </div>
           <div class="cta-wrapper text-center">
-            <button type="button"> Dive In </button>
+            <button class="dive_in" type="button"> Dive In </button>
           </div>
         </div>
       </div>
+
       <div id="work-section" class="section container-fluid projects">
         <div class="row"> 
 
@@ -142,6 +127,20 @@
             </div>
           </div>
 
+        </div>
+      </div>
+
+      <div id="aboutme-section" class="section">
+        <p id="hello_world"> > Hello World! </p>
+        <div id="about_pic_wrapper">
+          <div class="line-separator"></div>
+          <p id="about-text"> I am working towards a masters in Design Informatics in Scotland at the University of Edinburgh. I will be finishing my studies in August and currently seeking full-time opportunites. </p>
+          <div class="cta-wrapper">
+            <button class="grab_resume" type="button"> Grab Resume </button>
+          </div>
+          <div class="cta-wrapper">
+            <button class="in_touch" type="button"> Get in Touch </button>
+          </div>
         </div>
       </div>
  
