@@ -79,9 +79,8 @@ button.dive_in {
 }
 
 button.dive_in:hover {
-    background-color: #FFF105;
+    background-color: #FFF105 !important;
 }
-
 
 
 /*  now do desktop css  */
