@@ -18,6 +18,24 @@ ul {
   padding-left: 0;
 }
 
+a.header-text:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+a.header-text:hover:after { 
+  width: 80%; 
+  left: 0; 
+}
+
 li {
   padding-bottom: 5px;
   padding-right: 0px;
