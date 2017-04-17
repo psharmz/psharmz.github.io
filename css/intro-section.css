@@ -78,7 +78,7 @@ button.dive_in {
     border-width: 2px;  
 }
 
-button.dive_in:hover {
+button.btn:hover {
     background-color: #FFF105 !important;
 }
 
