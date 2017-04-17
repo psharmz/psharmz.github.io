@@ -47,6 +47,15 @@
   border-width: 2px; 
 }
 
+a.grab_resume:hover {
+  background-color: #FFFFFF;
+}
+
+a.in_touch:hover {
+  background-color: #FFF105;
+}
+
+
 /*  now do desktop css  */
 @media (min-width: 768px) {
 

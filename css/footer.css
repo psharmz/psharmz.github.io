@@ -36,9 +36,17 @@ footer {
 
 .social .social-icon {
     display: inline-block;
-    margin: 1rem 1rem;
+    margin: 2rem 2rem;
 }
 
 .copyright {
     text-align: center;
+}
+
+a.icon {
+    opacity: .70; 
+}
+
+a.icon:hover { 
+  opacity: 1; 
 }

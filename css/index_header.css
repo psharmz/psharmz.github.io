@@ -1,0 +1,103 @@
+/*  HEADER CSS  */
+
+body {
+  font-size: 225%;
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+}
+
+header {
+  padding-top: 5%;
+  margin-bottom: 2%;
+  font-weight: 300; 
+}
+
+ul {
+  list-style-type: none;
+  text-align: right;
+  padding-left: 0;
+}
+
+li {
+  padding-bottom: 5px;
+  padding-right: 0px;
+  color: white;
+  text-decoration: none; 
+}
+
+a.header-text {
+  color: white;
+  text-decoration: none; 
+}
+
+li.header-text {
+}
+
+a.header-text:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  color: white; 
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+a.header-text:hover:after { 
+  width: 80%; 
+  color: white;
+  left: 0; 
+}
+
+li.header-text:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  color: white; 
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+li.header-text:hover:after { 
+  width: 80%; 
+  color: white;
+  left: 0; 
+}
+
+#fullname {
+  color: white;
+  white-space: nowrap; 
+  text-align: left; 
+};
+
+
+.left-col {
+  margin-top: 111px;
+}
+
+.right-col {
+  padding-right: 0;
+}
+
+/*  now do desktop css  */
+@media (min-width: 768px) {
+
+/*  fix the header */
+  .left-col {
+    margin-top: 0;
+  }
+
+  .header-row {
+    padding: 10px;
+  }
+
+}

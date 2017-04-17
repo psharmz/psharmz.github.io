@@ -18,6 +18,11 @@
   padding-top: 3%;
   padding-left: 5%;
   padding-bottom: 3%;
+  -webkit-transition: background-color 2s;
+  transition: background-color 2s;
+}
+
+.details:hover {
   background-color: #FFFBB2;
 }
 

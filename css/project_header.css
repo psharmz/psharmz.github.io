@@ -23,18 +23,6 @@ li {
   padding-right: 0px;
 }
 
-.header-text {
-  color: white;
-}
-
-
-#fullname {
-  color: white;
-  white-space: nowrap; 
-  text-align: left; 
-};
-
-
 .left-col {
   margin-top: 111px;
 }
@@ -43,12 +31,22 @@ li {
   padding-right: 0;
 }
 
+.header-text {
+  color: white;
+}
+
+#fullname {
+  color: black;
+  white-space: nowrap; 
+  text-align: left; 
+}
+
 /*  now do desktop css  */
 @media (min-width: 768px) {
 
 /*  fix the header */
   .left-col {
-    margin-top: 0;
+    margin-top: 0px;
   }
 
   .header-row {

@@ -69,7 +69,7 @@
     background: #FFF105;
 }
 
-.dive_in {
+button.dive_in {
     background: transparent;
     margin-top: 25vh;
     color: #FFF105;
@@ -77,6 +77,11 @@
     border-style: solid;
     border-width: 2px;  
 }
+
+button.dive_in:hover {
+    background-color: #FFF105;
+}
+
 
 
 /*  now do desktop css  */
@@ -102,8 +107,9 @@
         font-weight: 400;
     }
 
-    button {
-        width: 10%;
+    button.dive_in {
+        width: 15%;
+        font-size: 20px;
     }
 
 
