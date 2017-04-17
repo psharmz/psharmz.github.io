@@ -1,5 +1,26 @@
 /*  INTRO CSS  */
 
+/* make keyframes that tell the start state and the end state of our object */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+
+.fade-in {
+  opacity:0;  /* make things invisible upon start */
+  -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:1.5s;
+  -moz-animation-duration:1.5s;
+  animation-duration:1.5s;
+}
+
 #intro-section {
     background: url(../img/background.jpg);
     background-size: cover;
@@ -34,23 +55,29 @@
     font-weight: 400;
 }
 
-.line-separator{
+.object {
+    position: absolute;
+    transition: all 2s ease-in-out;
+    -webkit-transition: all 2s ease-in-out; /** Chrome & Safari **/
+    -moz-transition: all 2s ease-in-out; /** Firefox **/
+    -o-transition: all 2s ease-in-out; /** Opera **/
+}
+
+.line-separator {
     height: 5px;
     width: 90%;
     background: #FFF105;
 }
 
 .dive_in {
-    margin-top: 25vh; 
- }
-
-button {
-    background-color: transparent;
+    background: transparent;
+    margin-top: 25vh;
     color: #FFF105;
     border: #FFF105;
     border-style: solid;
-    border-width: 2px; 
- }
+    border-width: 2px;  
+}
+
 
 /*  now do desktop css  */
 @media (min-width: 768px) {

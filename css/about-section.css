@@ -31,16 +31,20 @@
 }
 
 .grab_resume {
-    color: #FFFFFF;
-    border: #FFFFFF;
-    margin-left: 20%;
-    margin-bottom: 10%;
-    border-style: solid;
-    border-width: 2px; 
+  color: #FFFFFF;
+  border: #FFFFFF;
+  margin-bottom: 10%;
+  margin-left: 20%;
+  border-style: solid;
+  border-width: 2px; 
  }
 
 .in_touch {
+  color: #FFF105;
+  border: #FFF105;
   margin-left: 20%;
+  border-style: solid;
+  border-width: 2px; 
 }
 
 /*  now do desktop css  */

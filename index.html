@@ -19,6 +19,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
 
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
   <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
   
   <link rel="stylesheet" type="text/css" href="css/header.css">
@@ -39,25 +40,42 @@
             </div>
             <div class="col-xs-6 col-sm-6 row right-col">
               <ul class="the-nav">
-                <li class="col-sm-3"><a class="header-text" href="index.html">work</a></li>
-                <li class="col-sm-3"><a class="header-text" href="about.html">about</a></li>
-                <li class="col-sm-3"><a class="header-text" href="sharma_parul.pdf">resume</a></li>
+                <li class="col-sm-3 work-nav header-text"> work </li>
+                <li class="col-sm-3 about-nav header-text"> about </li>
+                <li class="col-sm-3"><a class="header-text" href="sharma_parul.pdf" target="_blank"> resume</a></li>
                 <li class="col-sm-3"><a class="header-text" href="sketches.html">sketches</a></li>
               </ul>
             </div>
           </div>
         </header>
         <div class="splash_wrapper">
-          <p id="title_name"> Parul Sharma </p>
-          <div class="line-separator"></div>
+          <p id="title_name" class="fade-in"> Parul Sharma </p>
+          <div class="object line-separator"></div>
           <div id="title_wrapper">
-            <p> UX Designer </p>
+            <p class="fade-in"> UX Designer </p>
           </div>
           <div class="cta-wrapper text-center">
-            <button class="dive_in" type="button"> Dive In </button>
+            <button class="work-nav dive_in btn fade-in"> Dive In </button>
           </div>
         </div>
       </div>
+
+      <script type="text/javascript">
+
+        $(".work-nav").click(function() {
+          $('html,body').animate({
+          scrollTop: $("#work-section").offset().top},
+          'slow');
+        });
+
+        $(".about-nav").click(function() {
+          $('html,body').animate({
+          scrollTop: $("#aboutme-section").offset().top},
+          'slow');
+        });
+
+      </script>
+
 
       <div id="work-section" class="section container-fluid projects">
           <div class="row"> 
@@ -132,10 +150,10 @@
           <div class="line-separator"></div>
           <p id="about-text"> I am working towards a masters in Design Informatics in Scotland at the University of Edinburgh. I will be finishing my studies in August and currently seeking full-time opportunities. </p>
           <div class="cta-wrapper">
-            <button class="grab_resume" type="button"> Grab Resume </button>
+            <a href="sharma_parul.pdf" target="_blank" class="btn grab_resume" role="button"> Grab Resume </a>
           </div>
           <div class="cta-wrapper">
-            <button class="in_touch" type="button"> Get in Touch </button>
+          <a href="mailto:p.sharma9793@gmail.com?Subject=Hello" target="_top" class="btn in_touch" role="button"> Get in Touch </a>
           </div>
         </div>
       </div>
@@ -143,8 +161,8 @@
       <footer class="container-fluid">
 
         <ul class="footer-nav">
-          <li class="nav-el"><a href="index.html">work</a></li>
-          <li class="nav-el"><a href="about.html">about</a></li>
+          <li class="nav-el"><a href="#work-section">work</a></li>
+          <li class="nav-el"><a href="#aboutme-section">about</a></li>
           <li class="nav-el"><a href="sharma_parul.pdf">resume</a></li>
         </ul>
 
