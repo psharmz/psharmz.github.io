@@ -30,7 +30,8 @@ li {
 
 #fullname {
   color: white;
-  white-space: nowrap
+  white-space: nowrap; 
+  text-align: left; 
 };
 
 

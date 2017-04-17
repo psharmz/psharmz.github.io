@@ -19,6 +19,7 @@
 
 #aboutme-section {
   width: 100%;
+  height: 100%;
   font-size: 20px;
   font-weight: lighter; 
 }
@@ -42,5 +43,35 @@
   margin-left: 20%;
 }
 
+/*  now do desktop css  */
+@media (min-width: 768px) {
+
+  #about_pic_wrapper {
+    background-size: contain;
+    height: 100vh;
+    padding-top: 5%;
+    width: auto;
+    height: auto; 
+  }
+
+  #about-text {
+    margin-left: 20%;
+    margin-top: 5%;
+    margin-right: 50%;
+    margin-bottom: 5%;
+  }
+
+  .grab_resume {
+    width: 15%;
+    margin-bottom: 5%; 
+  }
+
+  .in_touch {
+    width: 15%;
+    margin-bottom: 10%; 
+  }
+
+
+}
 
 
