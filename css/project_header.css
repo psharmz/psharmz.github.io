@@ -18,11 +18,45 @@ ul {
   padding-left: 0;
 }
 
+li {
+  padding-bottom: 5px;
+  padding-right: 0px;
+  color: #018EF9;
+  text-decoration: none; 
+}
+
+a.header-text {
+  color: #018EF9;
+  text-decoration: none; 
+}
+
 a.header-text:after {    
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
   content: "";
   display: block;
+  color: #018EF9; 
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #018EF9;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+a.header-text:hover:after { 
+  width: 80%; 
+  color: #018EF9;
+  left: 0; 
+}
+
+
+li.header-text:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  color: #018EF9; 
   height: 2px;
   left: 50%;
   position: absolute;
@@ -31,15 +65,18 @@ a.header-text:after {
   width: 0;
 }
 
-a.header-text:hover:after { 
+li.header-text:hover:after { 
   width: 80%; 
+  color: #018EF9;
   left: 0; 
 }
 
-li {
-  padding-bottom: 5px;
-  padding-right: 0px;
-}
+#fullname {
+  color: #018EF9;
+  white-space: nowrap; 
+  text-align: left; 
+};
+
 
 .left-col {
   margin-top: 111px;
@@ -49,22 +86,12 @@ li {
   padding-right: 0;
 }
 
-.header-text {
-  color: white;
-}
-
-#fullname {
-  color: black;
-  white-space: nowrap; 
-  text-align: left; 
-}
-
 /*  now do desktop css  */
 @media (min-width: 768px) {
 
 /*  fix the header */
   .left-col {
-    margin-top: 0px;
+    margin-top: 0;
   }
 
   .header-row {
