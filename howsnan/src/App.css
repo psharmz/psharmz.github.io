@@ -1,0 +1,175 @@
+/*Homepage*/
+
+.App {
+  background-image: url(img/homepage_background.png);
+  height: 100vh; 
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.hows { 
+  color: white;
+  font-size: 80px; 
+  padding-top: 66%;
+  padding-left: 10%;
+}
+
+.nan {
+  font-size: 80px; 
+  padding-left: 35%;
+  margin-top: -7%;
+  color: #06356D;
+}
+
+/*journeysplit*/
+
+.JourneySplit-wrapper {
+  padding: 5%;
+  text-align: center;
+}
+
+.journey-text {
+  margin-bottom: 5%;
+  font-size: 20px;
+}
+
+.journey-intro {
+  margin-top: 10%;
+  margin-bottom: 15%;
+  font-size: 30px; 
+}
+
+.Arrow {
+  margin-bottom: 25%;
+}
+
+/*RecordId Page*/
+
+.RecordId-wrapper {
+  padding: 50% 10% 70% 10%;
+  text-align: center;
+}
+
+.enter-id {
+  font-size: 20px;
+  margin-bottom: 5%;
+  color: #06356D;
+}
+
+input {
+  background-color: #4A4A4A;
+  color: white;
+  height: 40px;
+  width: 170px;
+
+}
+
+/*RecordSentiment*/
+
+.feelings {
+  color: #06356D;
+  text-align: center;
+  font-size: 30px;
+  padding: 10% 7% 10% 7%;
+
+}
+
+.sentimentArrow {
+  padding-bottom: 10%;
+}
+
+.sentiment-wrapper {
+  padding-bottom: 10%;
+}
+
+.angry {
+  color: red;
+}
+
+.happy {
+  color: green;
+}
+
+
+.sad {
+  color: blue;
+}
+
+
+.neutral {
+  color: brown;
+}
+
+.senti-text {
+  float: right;
+  padding-right: 10%;
+  margin: auto;
+  padding-top: 4%;
+  font-size: 17px;
+  visibility: hidden;
+}
+
+.senti-selected {
+  visibility: visible;
+}
+
+/*AnalyzeSentiment*/
+
+/* Sentiment Result */
+.sentiment-Result {
+  background-color: #4A4A4A;
+  height: 100vh; 
+}
+
+.result-text {
+  float: right;
+  padding: 10%; 
+  color: white;
+  font-size: 30px;
+}
+
+.tweets {
+  font-size: 25px;
+  padding-bottom: 5%;
+}
+
+
+.twitter { 
+  padding-bottom: 5%;
+}
+
+/* Confirmation Page */
+
+.confirmation-wrapper {
+  text-align: center; 
+  padding: 20% 10% 10% 10%;
+}
+
+.thanks {
+  margin-top: 10%;
+  margin-bottom: 30%;
+}
+
+/*resuseable componenets*/
+
+.App-page {
+  background-color: #B0D5FF;
+  height: 100vh; 
+}
+
+.nextArrow {
+  padding-top: -1%;
+  padding-left: 15%;
+}
+
+.backArrow {
+  padding-left: 7%;
+}
+
+.nextArrowReg {
+  float: right;
+  padding-right: 7%;
+}
