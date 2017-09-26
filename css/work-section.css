@@ -21,13 +21,15 @@
   padding-top: 3%;
   padding-left: 5%;
   padding-bottom: 3%;
-  -webkit-transition: background-color 2s;
-  transition: background-color 2s;
+  -webkit-transition: background-color .5s;
+  transition: background-color .5s;
 }
 
-.details:hover {
+
+.work-icon:hover .details {
   background-color: #FFFBB2;
 }
+
 
 .project-title {
   color: #02528E;
