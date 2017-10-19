@@ -1,0 +1,80 @@
+/*  ABOUT ME CSS  */
+
+  #about_pic_wrapper {
+    background-size: contain;
+    background-position: center;
+    background: url(../img/about_me_blue.jpg);
+    height: 50vh;
+    width: 40vh;
+  }
+
+#about-text {
+  color: black;
+  margin: 10%;
+}
+
+#aboutme-section {
+  width: 100%;
+  font-size: 20px;
+  font-weight: lighter; 
+  overflow-y: hidden; 
+  overflow-x: hidden; 
+}
+
+#hello_world {
+  color: #4A4A4A;
+  margin-left: 10%; 
+  font-size: 30px;
+}
+
+.grab_resume {
+  color: black;
+  border: black;
+  margin-left: 20%;
+  border-style: solid;
+  border-width: 2px; 
+ }
+
+.in_touch {
+  color: black;
+  border: black;
+  margin-left: 10%;
+  border-style: solid;
+  border-width: 2px; 
+}
+
+a.grab_resume:hover {
+  background-color: #FFFFFF;
+}
+
+a.in_touch:hover {
+  background-color: #FFF105;
+}
+
+
+/*  now do desktop css  */
+@media (min-width: 768px) {
+
+  #about_pic_wrapper {
+    background-size: contain;
+    background-position: center;
+    background: url(../img/about_me_blue.jpg);
+    height: 50vh;
+    width: 50vh;
+  }
+
+
+  .grab_resume {
+    width: 15%;
+    margin-bottom: 5%; 
+  }
+
+  .in_touch {
+    width: 15%;
+    margin-bottom: 10%; 
+  }
+
+
+}
+
+
