@@ -1,10 +1,8 @@
 /*  PROJECT INTRO CSS  */
 
 .project-intro {
-  background-color: #00ff9f; 
-  padding: 5% 10% 5% 10%;
+  padding: 0;
 }
-
 .project-description p {
   margin-bottom: 0px; 
 } 
