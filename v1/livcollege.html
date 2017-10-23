@@ -14,45 +14,56 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/index_header.css">
+  <link rel="stylesheet" type="text/css" href="css/project_header.css">
   <link rel="stylesheet" type="text/css" href="css/project_intro.css">
-  <link rel="stylesheet" type="text/css" href="css/livcollege.css">
   <link rel="stylesheet" type="text/css" href="css/footer.css">
 
 </head>
 
     <body>
-
-        <nav>
-
-          <ul>
-            <li class="active"><a href="index.html"> Work </a></li>
-            <li><a href="about.html"> About </a></li>
-          </ul>
-
-        </nav>
-
-
-        <div id="header-container" class="container-fluid">
-
-          <div class="row"> 
-
-              <figure class="proj-header-image">
-                <img src="img/headers/livcollege-header.png" alt="LivCollege Header Image"/>    
-              </figure>
-
-              <div class="proj-header-about">
-                <img src="img/headers/livcollege-logo.png" alt="LivCollege Header Image"/>
-                <p class="header-about-text"> For a more personalized campus visit experience, LivCollege is a web application that pairs prospective college students with current college students that have similar interests and profiles. The B2B service works with university admissions offices, high school students, and college students to schedule and arrange campus visits and provide feedback. </p> 
-
-              </div>
-
+      <!-- nav_bar which is same for all pages -->
+      <header class="container-fluid">
+        <div class="row header-row">
+          <!-- MOBILE: left column is name -->
+          <div class="col-xs-6 col-sm-6 left-col">
+            <a id="fullname" class="header-text" href="index.html"> Parul Sharma </a>
           </div>
-       </div>
+          <!-- MOBILE: right column is rest of nav -->
+          <div class="col-xs-6 col-sm-6 row right-col">
+            <ul class="the-nav">
+              <li class="col-sm-3"><a class="header-text" href="index.html#work-section">work</a></li>
+              <li class="col-sm-3"><a class="header-text" href="index.html#aboutme-section">about</a></li>
+              <li class="col-sm-3"><a class="header-text" href="sharma_parul.pdf" target="_blank">resume</a></li>
+              <li class="col-sm-3"><a class="header-text" href="sketches.html">sketches</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+
+<!-- display the project intro -->
+      <div class="container-fluid project-intro">
+        <div class="row">
+          <img src="img/livcollege/project_photo.svg" class="img-responsive col-xs-12 col-sm-8 col-sm-push-4" alt="ragebot project photo">
+          <div class="project-description col-xs-12 col-sm-4 col-sm-pull-8">
+            <h1 class="project-title"> LivCollege </h1>
+            <p class="thin-font"> Personalized Campus Tours <br> Web App</p>
+            <p class="thin-font title"> Role </p>
+            <p class="bold-font"> Project Lead </p>
+            <p class="thin-font title"> Duration </p>
+            <p class="bold-font"> 1 Semester, </p>
+            <p class="bold-font"> Spring 2016 </p>
+            <p class="thin-font title"> Final Deliverables (open in new tab) </p>
+            <p class="bold-font"> <a class="click-me-link" href="img/livcollege/requirements_package.pdf" target="_blank">Requirements Package </a></p>
+            <p class="bold-font"> <a class="click-me-link" href="img/livcollege/brandbook.pdf" target="_blank"> Branding Guidelines </a></p>
+            <p class="bold-font"> <a class="click-me-link" href="https://invis.io/WBB83N847" target="_blank"> UI Designs </a></p>
+          </div>
+        </div>
+      </div>
+
       <!-- display the project INFO -->
 
       <div class="container-fluid project-info">
@@ -76,26 +87,35 @@
         </div>
       </div>
 
-
-
-
       <footer class="container-fluid">
-      <div class="row">  
-        <ul class="col-xs-12 col-md-4 footer-content">
-          <li><a class="highlight-link"  href="index.html"> Work </a></li>
-          <li><a class="highlight-link"  href="about.html"> About </a></li>
+      <!-- footer nav -->
+        <ul class="footer-nav">
+          <li class="nav-el"><a href="index.html#work-section">work</a></li>
+          <li class="nav-el"><a href="index.html#aboutme-section">about</a></li>
+          <li class="nav-el"><a href="sharma_parul.pdf" target="_blank">resume</a></li>
         </ul>
-
-        <ul class="col-xs-12 col-md-8 nav-content">
-          <li class="active" ><a class="highlight-link" href="actorwho.html"> Actor Who </a></li>
-          <li> <a href="actorwho.html"> Next </a></li>
+      <!-- social icons -->
+        <ul class="social">
+          <li class="social-icon">
+            <a href="https://twitter.com/psiloveit" target="_blank" class="icon twitter" title="twitter">
+              <img src="img/icons/social/twitter.svg">
+            </a> 
+          </li>
+          <li class="social-icon">
+            <a href="https://github.com/psharmz" target="_blank" class="icon github" title="github">
+              <img src="img/icons/social/github.svg">
+            </a> 
+          </li>
+          <li class="social-icon">
+            <a href="http://linkedin.com/in/psharmz" target="_blank" class="icon linkedin" title="linkedin">
+              <img src="img/icons/social/linkedin.svg">
+            </a> 
+          </li>
         </ul>
-      </div>
-
         <div class="copyright row">
           <p>©&nbsp;&nbsp;Parul Sharma 2017</p>
         </div>
-
+        
       </footer>
     
     

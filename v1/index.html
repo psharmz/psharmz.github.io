@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Parul Sharma</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+ <!-- -->
+  <link href="https://fonts.googleapis.com/css?family=Lovers+Quarrel" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  
+  <link rel="stylesheet" type="text/css" href="css/index_header.css">
+  <link rel="stylesheet" type="text/css" href="css/intro-section.css">
+  <link rel="stylesheet" type="text/css" href="css/work-section.css">
+  <link rel="stylesheet" type="text/css" href="css/about-section.css">
+  <link rel="stylesheet" type="text/css" href="css/footer.css">
+
+</head>
+
+    <body>
+      <!-- Section: Introduction -->
+      <div id="intro-section" class="section fade-in">
+        <header class="container-fluid">
+          <div class="row header-row">
+            <div class="col-xs-6 col-sm-6 left-col">
+              <a id="fullname" class="header-text" href="index.html"> Parul Sharma </a>
+            </div>
+            <div class="col-xs-6 col-sm-6 row right-col">
+              <ul class="the-nav">
+                <li class="col-sm-3 work-nav header-text"> work </li>
+                <li class="col-sm-3 about-nav header-text"> about </li>
+                <li class="col-sm-3"><a class="header-text" href="sharma_parul.pdf" target="_blank"> resume</a></li>
+                <li class="col-sm-3"><a class="header-text" href="sketches.html">sketches</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+        <div class="splash_wrapper">
+          <p id="title_name" class="fade-in"> Parul Sharma </p>
+          <div class="object line-separator"></div>
+          <div id="title_wrapper">
+            <p class="fade-in"> UX Designer </p>
+          </div>
+          <div class="text-center">
+            <button class="work-nav dive_in btn fade-in"  > Dive In </button>
+          </div>
+        </div>
+      </div>
+
+      <script type="text/javascript">
+
+        $(".work-nav").click(function() {
+          $('html,body').animate({
+          scrollTop: $("#work-section").offset().top},
+          'slow');
+        });
+
+        $(".about-nav").click(function() {
+          $('html,body').animate({
+          scrollTop: $("#aboutme-section").offset().top},
+          'slow');
+        });
+
+      </script>
+
+
+      <div id="work-section" class="section container-fluid projects">
+          <div class="row"> 
+
+            <a href="livcollege.html">
+            <div class="col-xs-12 col-sm-6 col-md-4 work-icon">
+                <img src="img/icons/projects/lv.png" class="img-responsive" alt="livcollege">
+              <div class="details">
+                <p class="project-title"> LivCollege </p> 
+                <p class="project-type"> UX DESIGN / UI DESIGN </p>
+              </div>
+            </div>
+            </a>
+
+            <a href="ediwaste.html">
+            <div class="col-xs-12 col-sm-6 col-md-4 work-icon">
+                <img src="img/icons/projects/bins.png" class="img-responsive" alt="edinburgh waste management">
+              <div class="details">
+                <p class="project-title"> Trashy Business </p> 
+                <p class="project-type"> DESIGN RESEARCH </p>
+              </div>
+            </div>
+            </a>
+
+            <a href="ragebot.html">
+            <div class="col-xs-12 col-sm-6 col-md-4 work-icon">
+                <img src="img/icons/projects/hippo.png" class="img-responsive" alt="ragebot">
+              <div class="details">
+                <p class="project-title"> RageBot </p> 
+                <p class="project-type"> PRODUCT DESIGN </p>
+              </div>
+            </div>
+            </a>
+
+          </div>
+          
+
+          <div class="row">
+            <a href="waitwhat.html">
+            <div class="col-xs-12 col-sm-6 col-md-4 work-icon">
+                <img src="img/icons/projects/waitwhat.jpg" class="img-responsive" alt="waitwhat">
+              <div class="details">
+                <p class="project-title"> WaitWhat </p> 
+                <p class="project-type"> DESIGN RESEARCH </p>
+              </div>
+            </div>
+           </a>
+
+            <a href="actorwho.html">
+            <div class="col-xs-12 col-sm-6 col-md-4 work-icon">
+                <img src="img/icons/projects/actor_who.jpg" class="img-responsive" alt="waitwhat">
+              <div class="details">
+                <p class="project-title"> Actor Who </p> 
+                <p class="project-type"> INTERACTION DESIGN </p>
+              </div>
+            </div>
+            </a>
+
+            <a href="safecomm.html">
+            <div class="col-xs-12 col-sm-6 col-md-4 work-icon">
+                <img src="img/icons/projects/SafeComm.jpg" class="img-responsive" alt="waitwhat">
+              <div class="details">
+                <p class="project-title"> SafeComm </p> 
+                <p class="project-type"> CISCO SWITCH UP CHALLENGE FINALS </p>
+              </div>
+            </div>
+            </a>
+            
+          </div>
+      </div>
+
+      <div id="aboutme-section" class="section">
+        <p id="hello_world"> > Hello World! </p>
+        <div id="about_pic_wrapper">
+          <div class="line-separator"></div>
+          <p id="about-text"> Technical by trade and designer by passion, I enjoy creating intuitive interfaces and experiences. I recently returned to the Boston area after completing a Masters in Design Informatics at the University of Edinburgh. I'm currently seeking full-time opportunities. </p>
+          <div class="cta-wrapper">
+            <a href="sharma_parul.pdf" target="_blank" class="btn grab_resume" role="button"> Grab Resume </a>
+          </div>
+          <div class="cta-wrapper">
+          <a href="mailto:p.sharma9793@gmail.com?Subject=Hello" target="_top" class="btn in_touch" role="button"> Get in Touch </a>
+          </div>
+        </div>
+      </div>
+
+      <footer class="container-fluid">
+      <!-- footer nav -->
+        <ul class="footer-nav">
+          <li class="nav-el"><a href="index.html#work-section">work</a></li>
+          <li class="nav-el"><a href="index.html#aboutme-section">about</a></li>
+          <li class="nav-el"><a href="sharma_parul.pdf" target="_blank">resume</a></li>
+        </ul>
+      <!-- social icons -->
+        <ul class="social">
+          <li class="social-icon">
+            <a href="https://twitter.com/psiloveit" target="_blank" class="icon twitter" title="twitter">
+              <img src="img/icons/social/twitter.svg">
+            </a> 
+          </li>
+          <li class="social-icon">
+            <a href="https://github.com/psharmz" target="_blank" class="icon github" title="github">
+              <img src="img/icons/social/github.svg">
+            </a> 
+          </li>
+          <li class="social-icon">
+            <a href="http://linkedin.com/in/psharmz" target="_blank" class="icon linkedin" title="linkedin">
+              <img src="img/icons/social/linkedin.svg">
+            </a> 
+          </li>
+        </ul>
+        <div class="copyright row">
+          <p>©&nbsp;&nbsp;Parul Sharma 2017</p>
+        </div>
+        
+      </footer>
+    
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+  </html>

@@ -14,53 +14,47 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
   
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/project_header.css">
+  <link rel="stylesheet" type="text/css" href="css/index_header.css">
   <link rel="stylesheet" type="text/css" href="css/project_intro.css">
+  <link rel="stylesheet" type="text/css" href="css/livcollege.css">
   <link rel="stylesheet" type="text/css" href="css/footer.css">
 
 </head>
 
     <body>
       <!-- nav_bar which is same for all pages -->
-      <header class="container-fluid">
-        <div class="row header-row">
-          <!-- MOBILE: left column is name -->
-          <div class="col-xs-6 col-sm-6 left-col">
-            <a id="fullname" class="header-text" href="index.html"> Parul Sharma </a>
-          </div>
-          <!-- MOBILE: right column is rest of nav -->
-          <div class="col-xs-6 col-sm-6 row right-col">
-            <ul class="the-nav">
-              <li class="col-sm-3"><a class="header-text" href="index.html#work-section">work</a></li>
-              <li class="col-sm-3"><a class="header-text" href="index.html#aboutme-section">about</a></li>
-              <li class="col-sm-3"><a class="header-text" href="sharma_parul.pdf" target="_blank">resume</a></li>
-              <li class="col-sm-3"><a class="header-text" href="sketches.html">sketches</a></li>
-            </ul>
-          </div>
-        </div>
-      </header>
+        <nav>
 
-<!-- display the project INTRO -->
-      <div class="container-fluid project-intro">
-        <div class="row">
-          <img src="img/actorwho/project_photo.jpg" class="img-responsive col-xs-12 col-sm-8 col-sm-push-4" alt="wait what project photo">
-          <div class="project-description col-xs-12 col-sm-4 col-sm-pull-8">
-            <h1 class="project-title"> Actor Who </h1>
-            <p class="thin-font"> Transmedia Storytelling Using IoT Phone Booths and Twitter Polls</p>
-            <p class="thin-font title"> Role </p>
-            <p class="bold-font"> Interaction Designer </p>
-            <p class="thin-font title"> Duration </p>
-            <p class="bold-font"> 1 Semester, </p>
-            <p class="bold-font"> Spring 2017 </p>
-            <p class="thin-font title"> Final Deliverables </p>
-            <p class="bold-font"> Phone Booth Prototype </p>
+          <ul>
+            <li class="active"><a href="index.html"> Work </a></li>
+            <li><a href="about.html"> About </a></li>
+          </ul>
+
+        </nav>
+
+
+        <div id="header-container" class="container-fluid">
+
+          <div class="row"> 
+
+              <figure class="proj-header-image">
+                <img src="img/headers/actorwho-header.png" alt="LivCollege Header Image"/>    
+              </figure>
+
+              <div class="proj-header-about">
+                <img src="img/icons/bbclogo.png" width='150px' alt="Actor Who Header Image"/>
+                <img src="img/icons/dandadlogo.png" width='100px' alt="Actor Who Header Image"/>
+                <p class="header-about-text"> Actor Who captures the serendipitous spirit of the Edinburgh Festivals by repurposing the iconic yet outdated red UK telephone booths as audition booths. By posting the auditions on Twitter for voting, Act Who allows anyone to participate in the Edinburgh Festivals, regardless of where they are. Actor Who recieved a Yellow Pencil by the D&AD for the BBC brief at the New Blood Awards.</p> 
+
+              </div>
+
           </div>
-        </div>
-      </div>
+       </div>
 
       <!-- display the project INFO -->
 
@@ -81,35 +75,24 @@
         </div>
       </div>
 
+
       <footer class="container-fluid">
-      <!-- footer nav -->
-        <ul class="footer-nav">
-          <li class="nav-el"><a href="index.html#work-section">work</a></li>
-          <li class="nav-el"><a href="index.html#aboutme-section">about</a></li>
-          <li class="nav-el"><a href="sharma_parul.pdf" target="_blank">resume</a></li>
+      <div class="row">  
+        <ul class="col-xs-12 col-md-4 footer-content">
+          <li><a class="highlight-link"  href="index.html"> Work </a></li>
+          <li><a class="highlight-link"  href="about.html"> About </a></li>
         </ul>
-      <!-- social icons -->
-        <ul class="social">
-          <li class="social-icon">
-            <a href="https://twitter.com/psiloveit" target="_blank" class="icon twitter" title="twitter">
-              <img src="img/icons/social/twitter.svg">
-            </a> 
-          </li>
-          <li class="social-icon">
-            <a href="https://github.com/psharmz" target="_blank" class="icon github" title="github">
-              <img src="img/icons/social/github.svg">
-            </a> 
-          </li>
-          <li class="social-icon">
-            <a href="http://linkedin.com/in/psharmz" target="_blank" class="icon linkedin" title="linkedin">
-              <img src="img/icons/social/linkedin.svg">
-            </a> 
-          </li>
+
+        <ul class="col-xs-12 col-md-8 nav-content">
+          <li class="active"> <a class="highlight-link" href="ediwaste.html"> Trashy Business </a></li>
+          <li> <a href="livcollege.html"> LivCollege </a></li>
         </ul>
+      </div>
+
         <div class="copyright row">
           <p>©&nbsp;&nbsp;Parul Sharma 2017</p>
         </div>
-        
+
       </footer>
 
     <!-- Bootstrap core JavaScript
