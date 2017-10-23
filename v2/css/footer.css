@@ -1,52 +1,106 @@
 
 footer {
-    background-color: #003761;
-    color: #D8D8D8;
-    padding: 5%;
-
-
-}
-
-.social {
-    display: block;
-    font-size: 0;
-    list-style: none;
-    margin: 0 auto;
-    padding: 2%;
-    text-align: center;
-}
-
-.footer-nav {
-    display: block;
-    list-style: none;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.footer-nav a {
-    color: #D8D8D8;
-    text-align: center;
-}
-
-.footer-nav .nav-el {
-    display: inline-block;
-    margin: 1rem 1rem;
+    background-color: white;
+    color: #ccc;
+    padding: 2% 5%;
+    margin-top: 5%;
+    border-top: 1px solid black; 
 
 }
 
-.social .social-icon {
-    display: inline-block;
-    margin: 2rem 2rem;
-}
 
 .copyright {
     text-align: center;
+    margin-top: 5%;
 }
 
-a.icon {
-    opacity: .70; 
+
+
+ .highlight-link {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  padding: 0px 7px;
+  transition: all .2s ease-in-out;
+  box-sizing: border-box;
+  text-decoration: none;
+  box-shadow: inset 0 -5px 0 #00ff9f;
+}
+ .highlight-link:hover {
+  box-shadow: inset 0 -55px 0 0 #00ff9f;
+  text-decoration: none;
+  color: black;
 }
 
-a.icon:hover { 
-  opacity: 1; 
+
+.footer-content ul {
+  overflow: hidden;
+  list-style-type: none;
+}
+ 
+.about-content li {
+  height: 25px;
+  float: left;
+  margin-right: 0px;
+  border-right: 1px solid #aaa;
+  padding: 0 20px;
+}
+
+.nav-content li {
+  height: 25px;
+  float: left;
+  margin-right: 0px;
+  border-right: 1px solid #aaa;
+  padding: 0 20px;
+}
+
+.nav-content li:first-child {
+  border-right: none;
+}
+ 
+.footer-content li:last-child {
+  border-right: none;
+}
+ 
+.footer-content li a {
+  text-decoration: none;
+  color: #ccc;
+  font: 25px/1 Helvetica, Verdana, sans-serif;
+  text-transform: uppercase;
+ 
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+ 
+.footer-content li a:hover {
+  color: #666;
+}
+ 
+.footer-content li.active a {
+  font-weight: medium;
+  color: #333;
+}
+
+
+
+
+/*  now do desktop css  */
+@media (min-width: 768px) {
+
+    .nav-content li {
+  height: 25px;
+  float: right;
+  margin-right: 0px;
+  border-right: 1px solid #aaa;
+  padding: 0 20px;
+}
+
+.nav-content li:first-child {
+  border-right: none;
+}
+
+
 }

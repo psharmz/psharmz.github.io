@@ -16,7 +16,7 @@
 }
 
 .proj-header-about {
-  text-align: left;
+  text-align: center;
   display: block; 
   float: left;
   width: 100%;
@@ -24,6 +24,20 @@
 
 figure img {
   width: 100%;
+}
+
+
+.header-about-text {
+  font-size: 90%; 
+  font-family: 'Raleway', sans-serif;
+  padding: 5% 10%;
+  text-align: middle; 
+  color: black;
+}
+
+
+div.proj-header-about img {
+  max-width: 90%;
 }
 
 /*  now do desktop css  */
@@ -63,7 +77,7 @@ div.proj-header-about img {
 .header-about-text {
   font-size: 22px; 
   font-family: 'Raleway', sans-serif;
-  padding-top: 15%;
+  padding: 10% 5% 0% 5%;
   text-align: middle; 
   color: black;
 }
