@@ -3,27 +3,20 @@
 
 #header-container {
     width: 100%;
-    background: #e5fcf4;
-    padding-top: 0%;
-    padding-bottom: 0%;
+    height: auto; 
+    margin: 0;
+    padding: 0;
 }
 
-.proj-header-image {
-  text-align: left;
-  display: block; 
-  float: left;
-  width: 100%;
+.proj-header-image img {
+  width: 100vw;
 }
+
 
 .proj-header-about {
-  text-align: center;
-  display: block; 
-  float: left;
-  width: 100%;
-}
-
-figure img {
-  width: 100%;
+  background: #e5fcf4;
+  text-align: center; 
+  padding-top: 5%;
 }
 
 
@@ -31,56 +24,47 @@ figure img {
   font-size: 90%; 
   font-family: 'Raleway', sans-serif;
   padding: 5% 10%;
-  text-align: middle; 
   color: black;
 }
 
 
 div.proj-header-about img {
-  max-width: 90%;
+  max-width: 70%;
 }
 
 /*  now do desktop css  */
 @media (min-width: 768px) {
 
-  #work-section {
-    padding-top: 5%;
-    padding-bottom: 0%;
-  }
-
-  .work-icon {
-  text-align: left;
-  display: block; 
-  float: left;
-  width: 50%;
+.proj-header-image img {
+  width: auto;
+  height: 100%;
 }
 
-figure.proj-header-image {
-  position: relative;
-  float: left;
-  overflow: hidden;
-  width: 60%;
-  text-align: left;
+#header-container {
+    display: flex; 
 }
 
-div.proj-header-about {
-  width: 40%;
-  text-align: center;
-  padding: 3% 5%;
+
+
+/*.proj-header-image {
+  height: 81vh;
 }
 
-div.proj-header-about img {
-  margin: 0% 5%;
 
+.proj-header-image img {
+  height: 81vh;
 }
+
+
+.proj-header-about {
+  height: 81vh; 
+}
+
 
 .header-about-text {
-  font-size: 22px; 
-  font-family: 'Raleway', sans-serif;
-  padding: 10% 5% 0% 5%;
-  text-align: middle; 
+  padding: 8% 12%;
   color: black;
-}
+}*/
 
 
 

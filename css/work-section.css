@@ -82,10 +82,10 @@ figure.work-icon figcaption::before {
   content: '';
   opacity: 0;
   background-color: rgba(255, 255, 255, 0.5);
-  -webkit-transition: all 0.5s;
+  -webkit-transition: all 0.1s;
   transition: all 0.5s;
-  -webkit-transition-delay: 0.6s;
-  transition-delay: 0.6s;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
 }
 figure.work-icon h2,
 figure.work-icon p {
@@ -128,15 +128,15 @@ figure.work-icon:hover figcaption h2 {
   opacity: 1;
   -webkit-transform: translate3d(0%, 0%, 0);
   transform: translate3d(0%, 0%, 0);
-  -webkit-transition-delay: 0.4s;
-  transition-delay: 0.4s;
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
 }
 figure.work-icon:hover figcaption p {
   opacity: 0.9;
   -webkit-transform: translate3d(0%, 0%, 0);
   transform: translate3d(0%, 0%, 0);
-  -webkit-transition-delay: 0.6s;
-  transition-delay: 0.6s;
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
 }
 figure.work-icon:hover figcaption::before {
   background: rgba(255, 255, 255, 0);
