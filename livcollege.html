@@ -15,12 +15,18 @@
 
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  
+
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <link rel="stylesheet" type="text/css" href="css/index_header.css">
   <link rel="stylesheet" type="text/css" href="css/project_intro.css">
   <link rel="stylesheet" type="text/css" href="css/livcollege.css">
   <link rel="stylesheet" type="text/css" href="css/footer.css">
+
+  <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  <script type='text/javascript' src='unitegallery/themes/tiles/ug-theme-tiles.js'></script>
+  <link rel='stylesheet' href='unitegallery/themes/default/ug-theme-default.css' type='text/css' /> 
+  <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
+  <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
 
 </head>
 
@@ -68,32 +74,97 @@
         </div>
 
         <div class="row">
-          <div class="proj-section-left col-xs-12 col-md-6">
-            <h2> Personas to Portals </h2>
-            <p> While the core functionality was outlined, we also needed to think about who would use the web app. LivCollege is designed for three very different users: A prospective college student, a college student for hosting visits, and university administration. Personas were created to understand and empathasize at a deeper level. This revealed how different the motives and challenges for each type of LivCollege user would be- leading to the decision to make separate user portals for each. The interactions between the difference users made for interesting user flow challenges. </p>
+          <div class="proj-section-right col-xs-12 col-md-12">
+            <h2> Interviews and Personas </h2>
+            <p> While the core functionality was outlined, we also needed to think about who would use the web app. LivCollege is designed for three very different users: A prospective college student, a college student for hosting visits, and university administration. Interviews with Northeastern University Admissions, Northeastern students, and high school students were conducted to understand and empathize at a deeper level. Personas were created to synthesize our findings. This revealed how different the motives and challenges for each type of LivCollege user was. 
+            </p>
           </div>
-          <img src="img/livcollege/thewho.png" class="img-responsive col-xs-12 col-md-6" alt="research study">
+          <img src="img/livcollege/thewho.png" class="img-responsive col-xs-12 col-md-12" alt="research study">
+        </div>
+
+        <div class="row">
+          <div class="proj-section-left col-xs-12 col-md-12">
+            <h2> Defining the "How" </h2>
+          </div>
+          <img src="img/livcollege/thehow.png" class="img-responsive col-xs-12 col-md-12" alt="research study">
         </div>
 
 
         <div class="row">
-          <div class="proj-section-right col-xs-12 col-md-6">
-            <img src="img/livcollege/paper_prototyping.jpg" class="img-responsive" alt="research study">
-            <img src="img/livcollege/wireframing.svg" class="img-responsive" alt="research study">
+          <div class="proj-section-left col-xs-12 col-md-8">
+            <h2> Rinse and Repeat </h2>
+            <p> We went through many rounds of paper prototyping and wireframing before we finalized the UI and user flows. The biggest challenge in this phase was not designing different portals for the prospective student, host student, and University Administration, but the interactions between the user types. We gathered feedback from Northeastern University admissions and current college students on our initial wireframes and addressed their critiques in later iterations. </p>
           </div>
-          <div class="proj-section-right col-xs-12 col-md-6">
-            <h2> Paper Prototyping and Wireframing </h2>
-            <p> We went through many rounds of paper prototyping and wireframing before we finalized the UI. Once we had solidified the use cases our client wanted in the MVP, the process was a lot smoother. The biggest challenge in this phase was designing different portals for the prospective student, host student, and University Administration. Each of these portals needed a UI design that not only reflected the use cases for that user, but also tied seamlessly for interactions with other user types. We also met with Northeastern University admissions and showed them our initial wireframes to gather feedback. By brainstorming all possible requirements and narrowing it down to the essential ones for our MVP, we were able to solidify a set of business requirements and use cases.</p>
+          <img src="img/livcollege/paper_2.png" class="img-responsive col-xs-12 col-md-4" alt="research study">
+        </div>
+
+        <div class="row img-only">
+          <img src="img/livcollege/paper_prototyping.jpg" class="img-responsive col-xs-12 col-md-4" alt="research study">
+          <img src="img/livcollege/cycle.png" class="img-responsive col-xs-12 col-md-4" alt="research study">
+          <img src="img/livcollege/wireframing.svg" class="img-responsive col-xs-12 col-md-4" alt="research study">
+        </div>
+
+        <div class="row">
+          <h2 class="col-xs-12"> Hi-Fidelity Mockups </h2>
+                <!-- main content  -->
+          <div id="gallery" style="display:none;">
+
+            <img alt="" class="img-responsive col-xs-12 col-md-4" src="img/livcollege/hifi/chat.png"
+            data-description="">
+            <img alt="" class="img-responsive col-xs-12 col-md-4" src="img/livcollege/hifi/Availability.png"
+            data-description="">
+            <img alt="" class="img-responsive col-xs-12 col-md-4" src="img/livcollege/hifi/buildvisit.png"
+            data-description="">
+            <img alt="" class="img-responsive col-xs-12 col-md-4" src="img/livcollege/hifi/Hosts-View.png"
+            data-description="">
+            <img alt="" class="img-responsive col-xs-12 col-md-4" src="img/livcollege/hifi/notif.png"
+            data-description="">
+            <img alt="" class="img-responsive col-xs-12 col-md-4" src="img/livcollege/hifi/Schools.png"
+            data-description="">
+          </div>
+
+          <script type="text/javascript">
+
+            jQuery(document).ready(function($){
+              $("#gallery").unitegallery(
+                {
+                  gallery_theme: "tiles",
+                  tiles_max_columns: 3, 
+                  tiles_space_between_cols: 3
+                });
+
+            });
+
+          </script>
+
+        </div>
+      
+
+
+        <div class="row">
+          <img src="img/livcollege/use_case.svg" class="img-responsive col-xs-12 col-md-8 product-pics" alt="use cases">
+          <div class="proj-section-right col-xs-12 col-md-4">
+            <h2 class="col-xs-12"> Deliverables </h2>
+            <p class="col-xs-12"> The <a class="highlight-link" href="img/livcollege/requirements_package.pdf" target="_blank"> requirements book </a> documents all 64 use cases. The aim was to effectively communicate designs to product and web development teams. Each use case outlines preconditions, basic path, postconditions, variations of the basic path, and references to correlating hi-fidelity mockups and can be easily converted to agile sprint stories. </p>
           </div>
         </div>
 
         <div class="row">
-          <h2 class="col-xs-12"> Final Requirements Package </h2>
-          <p class="col-xs-12"> Our final deliverables to the client included a branding guidelines book and a requirements book. The requirements book includes a site map, data dictionary, and detailed outlines of all use cases along with correlating UI pages. The aim of the requirements book is that designs can be clearly and effectively communicated to product and web development teams. Each use case includes preconditions and postconditions to mitigate confusion and miscommunication and can be easily converted to engineering agile sprint stories. <a class="click-me-link" href="img/livcollege/requirements_package.pdf" target="_blank"> View the full requirements package.</a></p>
-            <img src="img/livcollege/use_case.svg" class="img-responsive col-xs-12 product-pics" alt="use cases">
-            <img src="img/livcollege/state_diagrams.svg" class="img-responsive col-xs-12 product-pics" alt="state diagrams">
-
+          <div class="proj-section-left col-xs-12 col-md-12">
+            <h2> Site Map </h2>
+          </div>
+          <img src="img/livcollege/sitemap.png" class="img-responsive col-xs-12 col-md-12" alt="research study">
         </div>
+
+        <div class="row">
+          <div class="proj-section-left col-xs-12 col-md-4">
+            <h2> State Diagrams </h2>
+            <p class="col-xs-12"> From a web development perspective, creating pixel perfect is challenging, but the real complexity arises in keeping track of object states. The 'visit' object, for example, has a lifecycle made up of 7 states. State diagrams can help convey the states clearly and mitigate confusion. </p>
+          </div>
+          <img src="img/livcollege/state_diagrams.svg" class="img-responsive col-xs-12 col-md-8 product-pics" alt="state diagrams">
+        </div>
+      
+
       </div>
 
       <footer class="container-fluid">
@@ -120,11 +191,13 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+    <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
+    <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
     <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+
   </body>
   </html>
 
