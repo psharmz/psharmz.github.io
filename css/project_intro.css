@@ -44,6 +44,10 @@ div.proj-header-about img {
   padding: 5%;
 }
 
+.video-wrapper {
+  padding: 10% 5%;
+}
+
 .img-only {
   vertical-align: middle; 
 }
