@@ -24,6 +24,12 @@
   <link rel="stylesheet" type="text/css" href="css/livcollege.css">
   <link rel="stylesheet" type="text/css" href="css/footer.css">
 
+  <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  <script type='text/javascript' src='unitegallery/themes/tiles/ug-theme-tiles.js'></script>
+  <link rel='stylesheet' href='unitegallery/themes/default/ug-theme-default.css' type='text/css' /> 
+  <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
+  <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
+
 </head>
 
     <body>
@@ -54,8 +60,6 @@
 
       <!-- display the project INFO -->
 
-      <!-- display the project INFO -->
-
       <div class="container-fluid project-info">
         <div class="row">
           <div class="proj-section-right col-xs-12 col-md-12">
@@ -71,6 +75,63 @@
           <div class="proj-section-left col-xs-12 col-md-12">
             <h2> Technical Details </h2>
             <img src="img/actorwho/prototype.jpg" class="img-responsive col-xs-12 product-pics" alt="prototype details">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="proj-section-right col-xs-12 col-md-12">
+            <h2> Product Design and Development </h2>
+
+            <p> From sketching out the end-to-end user journey to building the UI and telephone booth... </p>
+
+          <div id="gallery1" style="display:none;">
+
+            <img alt="" class="img-responsive col-xs-12 col-md-4" src="img/actorwho/actorwho_process/journeynotes.jpg"
+            data-description="end-to-end journey flow of the actor who experience">
+            <img alt="" class="img-responsive col-xs-12 col-md-4" src="img/actorwho/actorwho_process/uitest.jpg"
+            data-description="UI development: making sure the processing slides work witht the keypad">
+          </div>
+
+          <script type="text/javascript">
+
+            jQuery(document).ready(function($){
+              $("#gallery1").unitegallery(
+                {
+                  gallery_theme: "tiles",
+                  tiles_max_columns: 2, 
+                  tiles_space_between_cols: 2
+                });
+
+            });
+
+          </script>
+
+          <div id="gallery" style="display:none;">
+
+            <img alt="" class="img-responsive col-xs-12 col-md-3" src="img/actorwho/actorwho_process/blueprint.jpg"
+            data-description="measurements for telephone booth building">
+            <img alt="" class="img-responsive col-xs-12 col-md-3" src="img/actorwho/actorwho_process/buildingbooth.jpg"
+            data-description="building the booth">
+            <img alt="" class="img-responsive col-xs-12 col-md-3" src="img/actorwho/actorwho_process/ring_sound.jpg"
+            data-description="sensor that triggers the phone ring when a person walks into the booth">
+            <img alt="" class="img-responsive col-xs-12 col-md-3" src="img/actorwho/actorwho_process/keypad.jpg"
+            data-description="keypad used to control the UI">
+          </div>
+
+          <script type="text/javascript">
+
+            jQuery(document).ready(function($){
+              $("#gallery").unitegallery(
+                {
+                  gallery_theme: "tiles",
+                  tiles_max_columns: 4, 
+                  tiles_space_between_cols: 4
+                });
+
+            });
+
+          </script>
+
           </div>
         </div>
 
@@ -110,6 +171,47 @@
           </div>
         </div>
 
+        <div class="row">
+          <div class="proj-section-right col-xs-12 col-md-6">
+            <h2> UI/UX iteration </h2>
+            <p> Just like for Actor Who, Recall went through many rounds of design iterations before getting the UI just right. Below is an example of how the 'Recall a Memory' screen was reworked. On the left, an early iteration allowed for users to enter in a year using the keypad. Through feedback and proof of concept, we realized this lead to a lot of edge cases. What if the year didn't exist? It also required visitors to interact longer with the keypad. In order to improve usability and reduce cognitive load, we changed to a toggle model to select a year. </p>
+          </div>
+
+          <img class="img-responsive col-xs-12 col-md-6" src="img/actorwho/recall_process/journeynotes.jpg">
+        </div>
+
+
+        <div class="row">
+          <div class="proj-section-right col-xs-12 col-md-12">
+            
+          <h2> 'Recall a Memory' Design Iterations and Prototyping </h2>
+
+          <div class="col-md-12" id="gallery3" style="display:none;">
+            <img alt="" class="img-responsive col-xs-12 col-md-6" src="img/actorwho/recall_process/selectyearv1.png"
+            data-description="">
+            <img alt="" class="img-responsive col-xs-12 col-md-6" src="img/actorwho/recall_process/selectayearv2.png"
+            data-description="">
+            <img alt="" class="img-responsive col-xs-12 col-md-6" src="img/actorwho/recall_process/selectmemory.gif"
+            data-description="">
+          </div>
+
+          <script type="text/javascript">
+
+            jQuery(document).ready(function($){
+              $("#gallery3").unitegallery(
+                {
+                  gallery_theme: "tiles",
+                  tiles_max_columns: 2, 
+                  tiles_space_between_cols: 2
+                });
+
+            });
+
+          </script>
+      
+        </div>
+      </div>
+
 
         <div class="row">
           <div class="proj-section-right col-xs-12 col-md-12">
@@ -143,8 +245,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+    <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
+    <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
     <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
