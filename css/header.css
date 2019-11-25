@@ -1,19 +1,11 @@
-/*  HEADER CSS  */
-
-body {
-  font-size: 225%;
-  font-family: "Avenir", sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #ececec;
-  top: 0;
+.fixed-header {
+  position: fixed;
+  height: 15vh;
+  z-index: 10;
+  background: inherit;
   width: 100%;
-}
-
-nav {
-  height: 5vh;
-  margin: 12vh 5vh 10vh 5vh;
-  position: sticky;
+  background-color: black;
+  padding-top: 5vh;
 }
 
 ul {
@@ -53,7 +45,7 @@ li a:hover {
 
 li.active a {
   font-weight: medium;
-  color: #333;
+  color: white;
 }
 
 /*  now do desktop css  */

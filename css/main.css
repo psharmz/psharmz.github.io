@@ -1,0 +1,10 @@
+body {
+    font-size: 225%;
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.page-content {
+    padding-top: 15vh;
+}
