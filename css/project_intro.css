@@ -1,5 +1,15 @@
 /*  PROJECT INTRO CSS  */
 
+.prj-header {
+  padding: 5% 10%;
+  background-color: #ebf9f9;
+  text-align: center;
+}
+
+.prj-header img {
+  padding-bottom: 5%;
+}
+
 #header-container {
   width: 100%;
   height: auto;

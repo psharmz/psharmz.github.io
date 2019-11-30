@@ -24,6 +24,7 @@
   <link rel="stylesheet" type="text/css" href="css/footer.css">
 
   <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  <script type='text/javascript' src='fadein.js'></script>
   <script type='text/javascript' src='unitegallery/themes/tiles/ug-theme-tiles.js'></script>
   <link rel='stylesheet' href='unitegallery/themes/default/ug-theme-default.css' type='text/css' /> 
   <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
@@ -46,9 +47,15 @@
 
         </div>
 
-        <div class="page-content">
+        <div class="page-content hideme">
 
+        <div class="prj-header hideme">
+          <img src="img/headers/livcollege-logo.png" alt="LivCollege Header Image"/>
+          <p> For a more personalized campus visit experience, LivCollege is a web application that pairs prospective college students with current college students that have similar interests and profiles. The B2B service works with university admissions offices, high school students, and college students to schedule and arrange campus visits and provide feedback. </p> 
 
+        </div>
+
+<!-- 
         <div id="header-container">
 
               <div class="proj-header-image">
@@ -60,11 +67,11 @@
                 <p class="header-about-text"> For a more personalized campus visit experience, LivCollege is a web application that pairs prospective college students with current college students that have similar interests and profiles. The B2B service works with university admissions offices, high school students, and college students to schedule and arrange campus visits and provide feedback. </p> 
 
               </div>
-       </div>
+       </div> -->
       <!-- display the project INFO -->
 
       <div class="container-fluid project-info">
-        <div class="row">
+        <div class="row hideme">
           <div class="proj-section-left col-xs-12 col-md-6">
             <h2> The Challenge </h2>
             <p> As project lead, I managed the product by communicating directly with the client to elicit and solidify product requirements. Very early in the process, it was clear that the business requirements and business rules had not been solidified. How are hosts paid after a visit? How long are visits? What is the cancellation policy for a visit? On what criteria are prospective and current college students matched? These were some of the many questions that needed to be answered before we even started wireframing. </p>
@@ -72,24 +79,24 @@
           <img src="img/livcollege/whiteboard2.jpg" class="img-responsive col-xs-12 col-md-6" alt="research study">
         </div>
 
-        <div class="row">
+        <div class="row hideme">
           <img src="img/livcollege/thewhat.png" class="img-responsive col-xs-12 col-md-7" alt="research study">
           <div class="proj-section-right col-xs-12 col-md-5">
             <h2> The "What" </h2>
-            <p>  Because these ambiguities would result in gaping holes in the UX, the first major step was to sit down with the client and ask: "What does LivCollege do?" By using a simple requirement elictation exercise with a whiteboard and lots of sticky notes, we worked with the client to understand his vision, then strip down the full list of requirements only those that were needed for a minimum viable product. </p>
+            <p>  Because these ambguities would result in gaping holes in the UX, the first major step was to sit down with the client and ask: "What does LivCollege do?" By using a simple requirement elictation exercise with a whiteboard and lots of sticky notes, we worked with the client to understand his vision, then strip down the full list of requirements only those that were needed for a minimum viable product. </p>
           </div>
         </div>
 
-        <div class="row">
+        <div class="row hideme">
           <div class="proj-section-right col-xs-12 col-md-12">
             <h2> Interviews and Personas </h2>
-            <p> While the core functionality was outlined, we also needed to think about who would use the web app. LivCollege is designed for three very different users: A prospective college student, a college student for hosting visits, and university administration. Interviews with Northeastern University Admissions, Northeastern students, and high school students were contacted to understand and empathize at a deeper level. Personas were created to synthesize our findings. This revealed how different the motives and challenges for each type of LivCollege user was. 
+            <p> While the core functionality was outlined, we also needed to think about who would use the web app. LivCollege is designed for three very different users: A prospective college student, a college student for hosting visits, and university administration. Interviews with Northeastern University Admissions, Northeastern students, and high school students were conducted to understand and empathize at a deeper level. Personas were created to synthesize our findings. This revealed how different the motives and challenges for each type of LivCollege user was. 
             </p>
           </div>
           <img src="img/livcollege/thewho.png" class="img-responsive col-xs-12 col-md-12" alt="research study">
         </div>
 
-        <div class="row">
+        <div class="row hideme">
           <div class="proj-section-left col-xs-12 col-md-12">
             <h2> Defining the "How" </h2>
           </div>
@@ -97,7 +104,7 @@
         </div>
 
 
-        <div class="row">
+        <div class="row hideme">
           <div class="proj-section-left col-xs-12 col-md-8">
             <h2> Rinse and Repeat </h2>
             <p> We went through many rounds of paper prototyping and wireframing before we finalized the UI and user flows. The biggest challenge in this phase was not designing different portals for the prospective student, host student, and University Administration, but the interactions between the user types. We gathered feedback from Northeastern University admissions and current college students on our initial wireframes and addressed their critiques in later iterations. </p>
@@ -105,13 +112,13 @@
           <img src="img/livcollege/paper_2.png" class="img-responsive col-xs-12 col-md-4" alt="research study">
         </div>
 
-        <div class="row img-only">
+        <div class="row img-only hideme">
           <img src="img/livcollege/paper_prototyping.jpg" class="img-responsive col-xs-12 col-md-4" alt="research study">
           <img src="img/livcollege/cycle.png" class="img-responsive col-xs-12 col-md-4" alt="research study">
           <img src="img/livcollege/wireframing.svg" class="img-responsive col-xs-12 col-md-4" alt="research study">
         </div>
 
-        <div class="row">
+        <div class="row hideme">
           <h2 class="col-xs-12"> Hi-Fidelity Mockups </h2>
                 <!-- main content  -->
           <div id="gallery" style="display:none;">
@@ -171,6 +178,7 @@
           <img src="img/livcollege/state_diagrams.svg" class="img-responsive col-xs-12 col-md-8 product-pics" alt="state diagrams">
         </div>
       
+
       </div>
 
     </div>
@@ -181,6 +189,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+     <script type='text/javascript' src='fadein.js'></script>
     <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
     <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
     <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
