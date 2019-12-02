@@ -2,7 +2,6 @@
 
 #contact {
   color: black;
-  padding-left: 10%;
   vertical-align: middle;
 }
 
@@ -16,6 +15,7 @@
   padding: 0% 10%;
   font-weight: lighter;
   text-align: left;
+  background-color: #ececec;
 }
 
 .highlight-link {
