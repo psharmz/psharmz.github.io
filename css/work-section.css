@@ -19,17 +19,6 @@ body {
   transition: background-color 0.5s;
 }
 
-.project-title {
-  color: #02528e;
-  font-size: 25px;
-}
-
-.project-type {
-  color: #9b9b9b;
-  font-weight: lighter;
-  font-size: 5px;
-}
-
 .polaroid-images a {
   background: white;
   display: inline;
