@@ -12,6 +12,11 @@ p {
     font-family: "Open Sans", sans-serif;
 }
 
+h2 {
+
+	font-family: "Permanent Marker", cursive;
+}
+
 .page-content {
     padding-top: 15vh;
 }
