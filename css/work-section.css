@@ -1,7 +1,11 @@
 /*  WORK CSS  */
 
+:root {
+  --bg-grey: #ececec;
+}
+
 body {
-  background-image: url("img/grungy-bg.jpg");
+  background-color: var(--bg-grey);
 }
 
 #work-section {
