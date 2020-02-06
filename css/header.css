@@ -36,10 +36,6 @@ li a {
   transition: all 0.5s ease;
 }
 
-li a:hover {
-  color: #666;
-  border: solid 10px #00ff9f;
-}
 
 li.active a {
   font-weight: medium;
@@ -53,3 +49,39 @@ li.active a {
     padding: 0 20px;
   }*/
 }
+
+.about-content li {
+  height: 25px;
+  float: left;
+  margin-right: 0px;
+  border-right: 1px solid #aaa;
+  padding: 0 20px;
+}
+
+.nav-content li {
+  height: 25px;
+  float: left;
+  margin-right: 0px;
+  border-right: 1px solid #aaa;
+  padding: 0 20px;
+}
+
+.nav-content li:first-child {
+  border-right: none;
+}
+
+/*  now do desktop css  */
+@media (min-width: 768px) {
+  .nav-content li {
+    height: 25px;
+    float: right;
+    margin-right: 0px;
+    border-right: 1px solid #aaa;
+    padding: 0 20px;
+  }
+
+  .nav-content li:first-child {
+    border-right: none;
+  }
+}
+
