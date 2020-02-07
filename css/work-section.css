@@ -22,6 +22,19 @@ body {
   transition: background-color 0.5s;
 }
 
+.card-footer {
+  border-top: none !important;
+}
+
+.card {
+  border: none !important;
+}
+
+
+.card a:hover {
+  text-decoration: none;
+}
+
 
 
 /*  now do desktop css  */
