@@ -1,5 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
-@import url('https://fonts.googleapis.com/css?family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Karla&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+
 
 body {
     font-size: 225%;
@@ -8,13 +9,16 @@ body {
 }
 
 p {
-    font-family: "Open Sans", sans-serif;
-    font-color: #7c8186;
+    font-family: 'Karla', sans-serif !important;
+    color: #7c8186 !important;
 }
+
 
 h2 {
 
-	font-family: 'Special Elite', cursive;
+	font-family: 'Rubik', sans-serif;
+	color: black;
+    font-size: 30px;
 }
 
 .page-content {

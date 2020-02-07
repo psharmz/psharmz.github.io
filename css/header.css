@@ -43,12 +43,6 @@ li.active a {
   border: solid 10px #00ff9f;
 }
 
-/*  now do desktop css  */
-@media (min-width: 768px) {
-  /*  li {
-    padding: 0 20px;
-  }*/
-}
 
 .about-content li {
   height: 25px;
@@ -70,7 +64,7 @@ li.active a {
   border-right: none;
 }
 
-/*  now do desktop css  */
+
 @media (min-width: 768px) {
   .nav-content li {
     height: 25px;

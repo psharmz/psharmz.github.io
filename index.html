@@ -15,70 +15,107 @@
   <link rel="stylesheet" type="text/css" href="css/header.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="css/work-section.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
- <!-- -->
+  <!-- -->
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
 </head>
 
 <body style="background-color: #ececec" >
 
 
-        <div class="fixed-header">
+          <div class="fixed-header">
 
-          <ul class="col-xs-12 col-md-6">
+          <ul class="col-xs-6">
             <li> <a href="index.html"> <img alt="icon" src="img/ps.svg" width="50px"> </a></li>
           </ul>
 
-        <ul class="col-xs-12 col-md-6 nav-content">
-          <li> <a href="about.html"> <img alt=prev src="img/about.jpg" width="150px"> </a></li>
+        <ul class="col-xs-6 nav-content">
+          <li> <a href="about.html"> <img alt="about" src="img/about.jpg" width="150px"> </a></li>
         </ul>
 
-         
         </div>
 
 
-      <div class="page-content">
 
-<!-- 
-      <div class="wrapper section container-fluid projects"> 
-
-          <div class="col-xs-12 writing">
-            <h3> UI Designer and Engineer </h3>
-            <p>  Hi. I'm Parul, a digital creator who excels at translating subjective and abstract ideas into technical concepts. I'm an interaction designer at Accenture. </p>
-          </div>
-      </div> -->
+  <div class="page-content">
 
 
-      <div id="work-section" class="section container-fluid projects">
+        <div id="work-section" class="section container-fluid projects">
 
-          <div class="polaroid-images">
-            <a href="enterprise.html" title="Enterprise Web App"><img height="250" src="img/icons/projects/g.jpg" alt="Enterprise Web App" /></a>
-            <a href="livcollege.html" title="LivCollege"><img height="250" src="img/icons/projects/lv2.png" alt="Island" title="Island" /></a>
-            <a href="healthcare.html" title="Haley"><img height="250" src="img/icons/projects/haley.png" alt="Haley"/></a>
-            <a href="rasa.html" title="Chatbot UX"><img height="250" src="img/icons/projects/rasa.png" alt="Conversational UI"/></a>
+        <div class="card-deck">
 
-          </div>
-          
-      </div>
+          <div class="card">
+            <img src="img/icons/projects/g.jpg" class="card-img-top" alt="enterprise">
+            <div class="card-body">
+              <h2 class="card-title"> Google </h2>
+              <p class="card-text"> Designed an enterprise web application used across 4 timezones and 10+ workstreams. As a solo designer covered research, visual design, interaction design, strategy, and design QA </p>
+              <a href="enterprise.html" class="stretched-link"></a>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted"> Lead Prdouct Designer </small>
+            </div>
+         </div>
 
-      <div class="space"></div>
+          <div class="card">
+            <img src="img/icons/projects/lv2.png" class="card-img-top" alt="enterprise">
+            <div class="card-body">
+              <h2 class="card-title"> LivCollege </h2>
+              <p class="card-text"> Designed a B2C platform used by universities and prospective college students to schedule overnight college visits.  </p>
+              <a href="livcollege.html" class="stretched-link"></a>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted"> Team Lead </small>
+            </div>
+         </div>
+
+
+          <div class="card" >
+            <img src="img/icons/projects/haley.png" class="card-img-top" alt="enterprise">
+            <div class="card-body">
+              <h2 class="card-title"> Haley </h2>
+              <p class="card-text"> Mobile healthcare application to track patients' symptoms and recovery  </p>
+              <a href="healthcare.html" class="stretched-link"></a>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted"> Product Designer </small>
+            </div>
+         </div>
+  
+
+          <div class="card">
+            <img src="img/icons/projects/rasa.png" class="card-img-top" alt="enterprise">
+            <div class="card-body">
+              <h2 class="card-title"> Rasa  </h2>
+              <p class="card-text"> Led design and development of a chatbot creation tool. Developed using ReactJS </p>
+              <a href="rasa.html" class="stretched-link"></a>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted"> UI Developer </small>
+            </div>
+         </div>
+
 
     </div>
-    </body>
-    
+
+    <div class="space"></div>
+
+  </div>
+</body>
+
 
     <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
-  </html>
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    </body>
+    </html>
