@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Karla&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+
+
+
+
+body {
+    font-size: 225%;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-family: 'Karla', sans-serif !important;
+    color: #7c8186 !important;
+}
+
+
+h2 {
+
+	font-family: 'Rubik', sans-serif;
+	color: black;
+    font-size: 30px;
+}
+
+.one-pager {
+}
+
+.blurb {
+	margin-top: 20%;
+}
+
+.about {
+
+	font-family: 'Karla', sans-serif;
+	font-size: 25px; 
+	padding-left: 10%;
+	padding-top: 5%;
+
+}
+
+.links {
+	padding-top: 10%;
+}
+
+.link {
+	padding-right: 5%;
+	margin-bottom: 5%;
+}
+
+
+
+@media (min-width: 768px) {
+
+
+	.about {
+
+	padding-top: 0%;
+
+}
+
+.linkedin img {
+	transform: rotate(-7deg);
+}
+
+.link:hover a {
+
+	text-decoration: none; 
+}
+
+.link:hover img {
+	transform: rotate(0deg);
+}
+
+.email img {
+	transform: rotate(1deg);
+}
+
+.resume img {
+	transform: rotate(3deg);
+}
+
+
+	}
+

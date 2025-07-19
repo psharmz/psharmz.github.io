@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="918px" height="360px" viewBox="0 0 918 360" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#FFFFFF" x="0" y="0" width="918" height="360"></rect>
+        <g id="Group-3" transform="translate(23.000000, 28.000000)">
+            <g id="centered-block/label" transform="translate(12.500000, 47.000000) rotate(-90.000000) translate(-12.500000, -47.000000) translate(-34.000000, 35.000000)">
+                <g id="Group">
+                    <rect id="Rectangle" fill="#403C3C" x="0" y="0" width="93" height="24" rx="3"></rect>
+                    <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#FFFFFF">
+                        <tspan x="21.1582031" y="15">Project Owner</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="centered-block/label" transform="translate(12.500000, 150.000000) rotate(-90.000000) translate(-12.500000, -150.000000) translate(-33.000000, 138.000000)">
+                <g id="Group">
+                    <rect id="Rectangle" fill="#403C3C" x="0" y="0" width="91" height="24" rx="3"></rect>
+                    <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#FFFFFF">
+                        <tspan x="27.2675781" y="15">Developer</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="centered-block/label" transform="translate(12.500000, 253.000000) rotate(-90.000000) translate(-12.500000, -253.000000) translate(-34.000000, 241.000000)">
+                <g id="Group">
+                    <rect id="Rectangle" fill="#403C3C" x="0" y="0" width="93" height="24" rx="3"></rect>
+                    <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#FFFFFF">
+                        <tspan x="31.3808594" y="15">Feelings</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="centered-block" transform="translate(30.000000, 0.000000)">
+                <g id="Group">
+                    <rect id="Rectangle" fill="#D8D8D8" x="0" y="0" width="74" height="93" rx="3"></rect>
+                    <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                        <tspan x="21.8769531" y="35.125">design a </tspan>
+                        <tspan x="14.3203125" y="45.125">conversation </tspan>
+                        <tspan x="12.3164063" y="55.125">flow based on </tspan>
+                        <tspan x="11.875" y="65.125">business logic</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="centered-block" transform="translate(112.000000, 0.000000)">
+                <g id="Group">
+                    <rect id="Rectangle" fill="#D8D8D8" x="0" y="0" width="74" height="93" rx="3"></rect>
+                    <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                        <tspan x="20.9882813" y="35.125">allocated </tspan>
+                        <tspan x="16.5410156" y="45.125">entities and </tspan>
+                        <tspan x="19.4355469" y="55.125">intents for </tspan>
+                        <tspan x="17.2128906" y="65.125">RASA NLU</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="box/sad" transform="translate(194.000000, 206.000000)">
+                <g id="Group">
+                    <rect id="Rectangle" fill-opacity="0.254370629" fill="#FF0000" x="0" y="0" width="74" height="93" rx="3"></rect>
+                    <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                        <tspan x="11.6542969" y="35.125">usually realize </tspan>
+                        <tspan x="12.984375" y="45.125">that the entity </tspan>
+                        <tspan x="19.4296875" y="55.125">and intent </tspan>
+                        <tspan x="13.4277344" y="65.125">design is bad</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="box/sad" transform="translate(277.000000, 206.000000)">
+                <g id="Group">
+                    <rect id="Rectangle" fill-opacity="0.254370629" fill="#FF0000" x="0" y="0" width="74" height="93" rx="3"></rect>
+                    <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                        <tspan x="20.7636719" y="35.125">changing </tspan>
+                        <tspan x="10.7558594" y="45.125">annotations on </tspan>
+                        <tspan x="18.5507812" y="55.125">platform is </tspan>
+                        <tspan x="10.9902344" y="65.125">frustrating with </tspan>
+                        <tspan x="9.65820312" y="75.125">too many clicks</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="box/sad" transform="translate(359.000000, 206.000000)">
+                <g id="Group">
+                    <rect id="Rectangle" fill-opacity="0.254370629" fill="#FF0000" x="0" y="0" width="74" height="93" rx="3"></rect>
+                    <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                        <tspan x="15.6542969" y="35.125">a consistent </tspan>
+                        <tspan x="7.77929687" y="45.125">format isn't used </tspan>
+                        <tspan x="21.8769531" y="55.125">between </tspan>
+                        <tspan x="15.8730469" y="65.125">product and </tspan>
+                        <tspan x="16.09375" y="75.125">engineering</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="box/sad" transform="translate(799.000000, 207.000000)">
+                <g id="Group">
+                    <rect id="Rectangle" fill-opacity="0.254370629" fill="#FF0000" x="0" y="0" width="74" height="93" rx="3"></rect>
+                    <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                        <tspan x="10.0996094" y="35.125">communicating </tspan>
+                        <tspan x="11.4335937" y="45.125">issues is hard: </tspan>
+                        <tspan x="14.3222656" y="55.125">screenshots, </tspan>
+                        <tspan x="23.8808594" y="65.125">desired </tspan>
+                        <tspan x="14.3164062" y="75.125">behavior, etc</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="Group" transform="translate(607.000000, 206.000000)">
+                <rect id="Rectangle" fill-opacity="0.254370629" fill="#FF0000" x="0" y="0" width="183" height="93" rx="3"></rect>
+                <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                    <tspan x="25.4785156" y="28.125">very cumbersome process with many </tspan>
+                    <tspan x="20.5800781" y="38.125">issues: training data from the platform is </tspan>
+                    <tspan x="19.1425781" y="48.125">not used in training via CLI, stories aren't </tspan>
+                    <tspan x="24.8691406" y="58.125">trained properly, testing is automated, </tspan>
+                    <tspan x="22.4648438" y="68.125">and there aren't separate prod and dev </tspan>
+                    <tspan x="67.4882812" y="78.125">environments</tspan>
+                </text>
+            </g>
+            <g id="centered-block" transform="translate(194.000000, 0.000000)">
+                <g id="Group">
+                    <rect id="Rectangle" fill="#D8D8D8" x="0" y="0" width="74" height="193" rx="3"></rect>
+                    <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                        <tspan x="12.5449219" y="64.2916667">Project owner </tspan>
+                        <tspan x="15.6523438" y="74.2916667">explains the </tspan>
+                        <tspan x="14.3203125" y="84.2916667">conversation </tspan>
+                        <tspan x="9.20507813" y="94.2916667">flow and intents </tspan>
+                        <tspan x="8.3125" y="104.291667">to the developer</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="centered-block" transform="translate(442.000000, 149.000000)">
+                <g id="Group">
+                    <rect id="Rectangle" fill="#D8D8D8" x="0" y="0" width="156" height="20" rx="3"></rect>
+                    <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                        <tspan x="39.5429688" y="13.8333333">convert NLU to JSON</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="Group" transform="translate(607.000000, 102.000000)">
+                <g id="centered-block">
+                    <g id="Group">
+                        <rect id="Rectangle" fill="#D8D8D8" x="0" y="0" width="183" height="20" rx="3"></rect>
+                        <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                            <tspan x="25.0234375" y="13.8333333">train Core and NLU models using CLI</tspan>
+                        </text>
+                    </g>
+                </g>
+                <g id="centered-block" transform="translate(0.000000, 24.000000)">
+                    <g id="Group">
+                        <rect id="Rectangle" fill="#D8D8D8" x="0" y="0" width="183" height="20" rx="3"></rect>
+                        <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                            <tspan x="59.0410156" y="13.8333333">test locallly on CLI</tspan>
+                        </text>
+                    </g>
+                </g>
+                <g id="centered-block" transform="translate(0.000000, 47.000000)">
+                    <g id="Group">
+                        <rect id="Rectangle" fill="#D8D8D8" x="0" y="0" width="183" height="20" rx="3"></rect>
+                        <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                            <tspan x="59.7070312" y="13.8333333">Initial Deployment</tspan>
+                        </text>
+                    </g>
+                </g>
+                <g id="centered-block" transform="translate(0.000000, 71.000000)">
+                    <g id="Group">
+                        <rect id="Rectangle" fill="#D8D8D8" x="0" y="0" width="183" height="20" rx="3"></rect>
+                        <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                            <tspan x="54.140625" y="13.8333333">hook up to Facebook</tspan>
+                        </text>
+                    </g>
+                </g>
+            </g>
+            <g id="centered-block" transform="translate(442.000000, 102.000000)">
+                <g id="Group">
+                    <rect id="Rectangle" fill="#D8D8D8" x="0" y="0" width="156" height="20" rx="3"></rect>
+                    <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                        <tspan x="17.7519531" y="13.8333333">flow chart is translated into stories</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="centered-block" transform="translate(442.000000, 126.000000)">
+                <g id="Group">
+                    <rect id="Rectangle" fill="#D8D8D8" x="0" y="0" width="156" height="20" rx="3"></rect>
+                    <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                        <tspan x="21.515625" y="13.8333333">define domain and code actions </tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="centered-block" transform="translate(277.000000, 0.000000)">
+                <g id="Group">
+                    <rect id="Rectangle" fill="#D8D8D8" x="0" y="0" width="74" height="83" rx="3"></rect>
+                    <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                        <tspan x="16.7695313" y="32.2083333">create NLU </tspan>
+                        <tspan x="14.984375" y="42.2083333">training data</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="Group-2" transform="translate(359.000000, 0.000000)">
+                <g id="centered-block" transform="translate(-0.000000, 0.000000)">
+                    <g id="Group">
+                        <rect id="Rectangle" fill="#D8D8D8" x="0" y="0" width="74" height="193" rx="3"></rect>
+                        <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                            <tspan x="12.5449219" y="64.2916667">Project owner </tspan>
+                            <tspan x="20.6132813" y="74.2916667">hands off </tspan>
+                            <tspan x="10.7597656" y="84.2916667">training data in </tspan>
+                            <tspan x="16.5429688" y="94.2916667">excel to the </tspan>
+                            <tspan x="19.4316406" y="104.291667">developer </tspan>
+                        </text>
+                    </g>
+                </g>
+                <rect id="Rectangle" fill-opacity="0.254370629" fill="#FF0000" x="0" y="0" width="74" height="193" rx="3"></rect>
+            </g>
+            <g id="centered-block" transform="translate(799.000000, 1.000000)">
+                <g id="Group">
+                    <rect id="Rectangle" fill="#D8D8D8" x="0" y="0" width="74" height="193" rx="3"></rect>
+                    <text id="Project-Owner" font-family="Helvetica" font-size="8" font-weight="normal" fill="#000000">
+                        <tspan x="11.4316406" y="64.2916667">Developer lets </tspan>
+                        <tspan x="14.0996094" y="74.2916667">the PO know </tspan>
+                        <tspan x="9.42382813" y="84.2916667">that the chatbot </tspan>
+                        <tspan x="12.9863281" y="94.2916667">is ready to be </tspan>
+                        <tspan x="17.0585938" y="104.291667">tested. The </tspan>
+                        <tspan x="11.6582031" y="114.291667">Project Owner </tspan>
+                        <tspan x="15.2089844" y="124.291667">tests the bot </tspan>
+                        <tspan x="14.5410156" y="134.291667">and files any </tspan>
+                        <tspan x="14.5410156" y="144.291667">issues found</tspan>
+                    </text>
+                </g>
+            </g>
+            <rect id="Rectangle" fill-opacity="0.254370629" fill="#FF0000" x="442" y="102" width="156" height="20" rx="3"></rect>
+            <rect id="Rectangle" fill-opacity="0.254370629" fill="#FF0000" x="607" y="102" width="183" height="20" rx="3"></rect>
+            <rect id="Rectangle" fill-opacity="0.254370629" fill="#FF0000" x="442" y="149" width="156" height="20" rx="3"></rect>
+        </g>
+    </g>
+</svg>

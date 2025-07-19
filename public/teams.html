@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Parul Sharma</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+  
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/header.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/project.css">
+  
+  <!-- Add the same nav styles from React app -->
+  <style>
+    .top-nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 2rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .link {
+        transition: all 0.3s ease;
+    }
+
+    .work-link:hover {
+        transform: translateY(-5px) scale(1.3) rotate(-5deg);
+    }
+
+    .link.email-link {
+        transition: transform 0.3s ease;
+    }
+
+    .link.email-link:hover {
+        transform: translateY(-5px) rotate(3deg);
+    }
+
+    .resume:hover {
+        transform: translateY(-5px) rotate(-2deg);
+    }
+    
+    /* Add margin to body content to account for fixed nav */
+    body {
+        margin-top: 80px;
+    }
+    
+    /* Profile image in top left */
+    .work-header {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+
+    .back-to-top {
+        background: white;
+        border: none;
+        border-radius: 50%;
+        padding: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .back-to-top:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .back-to-top img {
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        transition: all 0.3s ease;
+    }
+
+    .profile-logo {
+        animation: profileAppear 0.6s ease-out;
+    }
+
+    @keyframes profileAppear {
+        0% {
+            opacity: 0;
+            transform: scale(0.5) rotate(-10deg);
+        }
+        50% {
+            transform: scale(1.1) rotate(5deg);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+    }
+  </style>
+
+  <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  <script type='text/javascript' src='unitegallery/themes/tiles/ug-theme-tiles.js'></script>
+  <link rel='stylesheet' href='unitegallery/themes/default/ug-theme-default.css' type='text/css' /> 
+  <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
+  <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
+
+
+</head>
+
+    <body>
+        <!-- Navigation Bar -->
+        <nav class="top-nav">
+            <div class="nav-links">
+                <span class="link work-link">
+                    <a href="/">
+                        <img alt="work" src="img/work.jpg" width="140px" />
+                    </a>
+                </span>
+                <span class="link email-link">
+                    <a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top">  
+                        <img alt="email" src="img/email.jpg" width="105px" /> 
+                    </a>     
+                </span>
+                <span class="link resume">
+                    <a href="parul_resume.pdf" target="_blank">
+                        <img alt="resume" src="img/resume.jpg" width="150px" />
+                    </a>
+                </span>
+            </div>
+        </nav>
+
+        <!-- Profile image in top left -->
+        <div class="work-header">
+            <button onclick="window.location.href='/'" class="back-to-top">
+                <img alt="profile" src="img/p.svg" width="60px" class="profile-logo" />
+            </button>
+        </div>
+
+        <div class="page-content">
+
+          <div class="prj-header">
+ 
+            <img src="img/msoft/microsoft.png" width="20%" height="20%" alt="microsoft header Image"/>
+             <br> </br>
+
+            <h2> Product Designer </h2>
+            <p> From education products like Speaker Coach and Career Coach, to Windows products like Expressive Input Panel and Copilot, I had the opportunity to explore various consumer and enterprise design challenges through both a deep vertical and across horizonal ecosystem lens. I collaborated directly with talented researchers, product managers, and engineers on 0 to 1 products as well as new features for existing products. </p> 
+
+        </div>
+
+
+      <!-- display the project INFO -->
+
+      <div class="container-fluid project-info">
+
+        <div class="row">
+
+        <div class="row hideme">
+              <video width="100%" autoplay controls class="img-responsive col-xs-12 col-md-7" alt="product 1" >
+              <source src="img/msoft/intro1.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          <div class="proj-section-right col-xs-12 col-md-5">
+            <h2> Career Coach </h2>
+            <p> Career Coach empowers higher education students to discover their career path, grow real-world skills, and build their network. The objective was to deliver guidance that was personalized to a students' education, skills, and interests. You can learn more about the product and browse snippets of the UI <a target="_blank" href="https://support.microsoft.com/en-us/topic/career-coach-quick-start-guide-for-students-c419db47-9290-4961-9684-c3f86a9b3708">here</a>. 
+          </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+         <img src="img/msoft/cc_mobile.png" class="img-responsive col-xs-12 col-md-12">
+      </div>
+
+      
+         
+      
+          
+          <h2 class="col-xs-12"> Speaker Progress </h2>
+
+          <p class="col-xs-12"> Part of the Microsoft Education's suite of <a target="_blank" href="https://www.microsoft.com/en-us/education/learning-tools/learning-accelerators"> Learning Accelerators </a>, Speaker Progress helps students overcome their fear of public speaking and become more confident, captivating, and competent speakers. It can also help educators enhance their teaching methods and outcomes by using a fun and effective tool that supports their students' learning and growth. I was responsible for the educator experience of the product, which included personalization of the student report and seamlessly plugging in the new feature into the existing Assignment and Grades product experiences in Microsoft Teams.
+
+ </p>
+
+          <img src="img/msoft/speaker.gif" class="img-responsive col-xs-12" >
+
+          <img src="img/msoft/speakerstudent.gif" class="img-responsive col-xs-12" >
+
+          <h2 class="col-xs-12"> Horizontal Efforts for EDU Insights </h2>
+
+          <p class="col-xs-12"> At a company as large as Microsoft, a critical systems design challenge emerges: how does a design pattern scale across multiple products within a cohesive design system? One notable design prompt that I was given that encapsulated this was "Create a progressive disclosure system that guides an educator from a single data card in a learning product to the full history in the Insights app." While we started with Reading Coach first, the goal was to develop a scalable framework that could then be applied to all Learning Accelerators—Speaker, Reading, Math, Search—in a consistent manner through systematic design patterns.  </p>
+
+          <img src="img/msoft/insights.jpg" class="img-responsive col-xs-12" >
+
+        
+
+          
+        </div>
+      </div>
+
+    </div>
+    
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
+    <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+  </html>

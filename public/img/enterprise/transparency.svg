@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="783px" height="764px" viewBox="0 0 783 764" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>Group 6</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M107,0.333333333 C48.12,0.333333333 0.333333333,48.12 0.333333333,107 C0.333333333,165.88 48.12,213.666667 107,213.666667 C165.88,213.666667 213.666667,165.88 213.666667,107 C213.666667,48.12 165.88,0.333333333 107,0.333333333 L107,0.333333333 Z M107,32.3333333 C124.706667,32.3333333 139,46.6266667 139,64.3333333 C139,82.04 124.706667,96.3333333 107,96.3333333 C89.2933333,96.3333333 75,82.04 75,64.3333333 C75,46.6266667 89.2933333,32.3333333 107,32.3333333 L107,32.3333333 Z M107,183.8 C80.3333333,183.8 56.76,170.146667 43,149.453333 C43.32,128.226667 85.6666667,116.6 107,116.6 C128.226667,116.6 170.68,128.226667 171,149.453333 C157.24,170.146667 133.666667,183.8 107,183.8 L107,183.8 Z" id="path-1"></path>
+        <rect id="path-3" x="0" y="0" width="533" height="533"></rect>
+        <path d="M107,0.333333333 C48.12,0.333333333 0.333333333,48.12 0.333333333,107 C0.333333333,165.88 48.12,213.666667 107,213.666667 C165.88,213.666667 213.666667,165.88 213.666667,107 C213.666667,48.12 165.88,0.333333333 107,0.333333333 L107,0.333333333 Z M107,32.3333333 C124.706667,32.3333333 139,46.6266667 139,64.3333333 C139,82.04 124.706667,96.3333333 107,96.3333333 C89.2933333,96.3333333 75,82.04 75,64.3333333 C75,46.6266667 89.2933333,32.3333333 107,32.3333333 L107,32.3333333 Z M107,183.8 C80.3333333,183.8 56.76,170.146667 43,149.453333 C43.32,128.226667 85.6666667,116.6 107,116.6 C128.226667,116.6 170.68,128.226667 171,149.453333 C157.24,170.146667 133.666667,183.8 107,183.8 L107,183.8 Z" id="path-5"></path>
+        <rect id="path-7" x="0" y="0" width="533" height="533"></rect>
+        <path d="M107,0.333333333 C48.12,0.333333333 0.333333333,48.12 0.333333333,107 C0.333333333,165.88 48.12,213.666667 107,213.666667 C165.88,213.666667 213.666667,165.88 213.666667,107 C213.666667,48.12 165.88,0.333333333 107,0.333333333 L107,0.333333333 Z M107,32.3333333 C124.706667,32.3333333 139,46.6266667 139,64.3333333 C139,82.04 124.706667,96.3333333 107,96.3333333 C89.2933333,96.3333333 75,82.04 75,64.3333333 C75,46.6266667 89.2933333,32.3333333 107,32.3333333 L107,32.3333333 Z M107,183.8 C80.3333333,183.8 56.76,170.146667 43,149.453333 C43.32,128.226667 85.6666667,116.6 107,116.6 C128.226667,116.6 170.68,128.226667 171,149.453333 C157.24,170.146667 133.666667,183.8 107,183.8 L107,183.8 Z" id="path-9"></path>
+        <rect id="path-11" x="0" y="0" width="533" height="533"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-6">
+            <g id="ic_account_circle" transform="translate(236.000000, 0.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Mask"></g>
+                <g id="🎨-Color" mask="url(#mask-2)">
+                    <g transform="translate(-160.000000, -160.000000)">
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <use id="Black" stroke="none" fill="#FBBC05" fill-rule="evenodd" xlink:href="#path-3"></use>
+                    </g>
+                </g>
+            </g>
+            <g id="ic_account_circle" transform="translate(0.000000, 550.000000)">
+                <mask id="mask-6" fill="white">
+                    <use xlink:href="#path-5"></use>
+                </mask>
+                <g id="Mask"></g>
+                <g id="🎨-Color" mask="url(#mask-6)">
+                    <g transform="translate(-160.000000, -160.000000)">
+                        <mask id="mask-8" fill="white">
+                            <use xlink:href="#path-7"></use>
+                        </mask>
+                        <use id="Black" stroke="none" fill="#4285F4" fill-rule="evenodd" xlink:href="#path-7"></use>
+                    </g>
+                </g>
+            </g>
+            <g id="ic_account_circle" transform="translate(569.000000, 415.000000)">
+                <mask id="mask-10" fill="white">
+                    <use xlink:href="#path-9"></use>
+                </mask>
+                <g id="Mask"></g>
+                <g id="🎨-Color" mask="url(#mask-10)">
+                    <g transform="translate(-160.000000, -160.000000)">
+                        <mask id="mask-12" fill="white">
+                            <use xlink:href="#path-11"></use>
+                        </mask>
+                        <use id="Black" stroke="none" fill="#EA4335" fill-rule="evenodd" xlink:href="#path-11"></use>
+                    </g>
+                </g>
+            </g>
+            <path d="M201,476 L299.909795,288.5" id="Line-2" stroke="#C9C7C7" stroke-width="20" opacity="0.560872396" stroke-linecap="round"></path>
+            <path d="M236,549.6 L492,495" id="Line-2" stroke="#C9C7C7" stroke-width="20" opacity="0.560872396" stroke-linecap="round"></path>
+            <path d="M409,251 L556,403" id="Line-2" stroke="#C9C7C7" stroke-width="20" opacity="0.560872396" stroke-linecap="round"></path>
+        </g>
+    </g>
+</svg>

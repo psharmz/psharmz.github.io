@@ -1,0 +1,149 @@
+/*  WORK CSS  */
+
+:root {
+  --bg-grey: #ececec;
+}
+
+body {
+  background-color: var(--bg-grey);
+}
+
+#work-section {
+  width: 100%;
+  padding: 2vw;
+  height: auto;
+  min-height: auto;
+}
+
+.details {
+  margin-top: -25%;
+  margin-left: 5%;
+  padding-bottom: 3%;
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+
+.card-footer {
+  border-top: none !important;
+}
+
+.card {
+  border: none !important;
+  height: auto;
+  overflow: visible;
+  margin-bottom: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-0.5vw) scale(1.02);
+  box-shadow: 0 1vw 2.5vw rgba(0, 0, 0, 0.15);
+}
+
+.card-deck {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding: 1.5vw;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  overflow: visible;
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+}
+
+.card-title {
+  margin-bottom: 0.8vw;
+  flex-shrink: 0;
+  color: #000000;
+  font-size: clamp(1rem, 4vw, 2rem);
+  line-height: 1.2;
+}
+
+.card-text {
+  margin-bottom: 0.8vw;
+  flex: 1;
+  font-size: clamp(0.8rem, 2.5vw, 1.1rem);
+  line-height: 1.4;
+}
+
+.card-footer {
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0.8vw 1.5vw;
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+}
+
+.card a:hover {
+  text-decoration: none;
+}
+
+/*  tablet css  */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .card-deck {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .card {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .card-body {
+    padding: 2vw;
+  }
+}
+
+/*  desktop css  */
+@media (min-width: 1025px) {
+  #work-section {
+    padding: 3vw;
+  }
+
+  .card-deck {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .card {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+
+  .card-body {
+    padding: 1.5vw;
+  }
+
+  .work-icon {
+    text-align: left;
+    display: block;
+    float: left;
+    width: 25%;
+  }
+
+  figure.work-icon {
+    font-family: "Raleway", Arial, sans-serif;
+    color: #fff;
+    position: relative;
+    float: left;
+    overflow: hidden;
+    width: 25%;
+    background: #000000;
+    text-align: left;
+  }
+}

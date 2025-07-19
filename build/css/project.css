@@ -1,0 +1,86 @@
+/*  PROJECT INTRO CSS  */
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Courier+Prime&display=swap");
+
+body {
+  background-color: white;
+}
+
+.project-info {
+  padding: 0% 10% 10% 10%;
+  font-size: 20px;
+  text-align: left;
+  font-weight: normal;
+}
+
+.project-info img {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.project-page-content {
+  padding-top: 10%;
+}
+
+.prj-header {
+  padding: 5% 10%;
+  background-color: #ececec;
+  text-align: center;
+  display: block;
+}
+
+#header-container {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  background: #e5fcf4;
+}
+
+.header-about-text {
+  font-size: 90%;
+  padding: 5% 10%;
+  color: black;
+}
+
+/*div.proj-header-about img {
+  max-width: 70%;
+}*/
+
+.proj-section-left {
+  text-align: right;
+  vertical-align: middle;
+  padding: 5%;
+}
+
+.proj-section-right {
+  text-align: left;
+  vertical-align: middle;
+  padding: 5%;
+}
+
+.img-only {
+  vertical-align: middle;
+}
+
+
+#gallery {
+  padding: 10% 0%;
+}
+/*  now do desktop css  */
+@media (min-width: 768px) {
+  .proj-header-image img {
+    width: auto;
+    height: 100%;
+  }
+
+  #header-container {
+    display: flex;
+  }
+
+  .project-info {
+    margin-top: 5vh;
+  }
+}
