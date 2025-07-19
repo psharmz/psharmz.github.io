@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 
 function MainPortfolio() {
   const [scrollY, setScrollY] = useState(0);
@@ -214,6 +214,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<MainPortfolio />} />
+        <Route path="/index.html" element={<Navigate to="/" replace />} />
         <Route path="/teams" element={<TeamsPage />} />
         <Route path="/enterprise" element={<EnterprisePage />} />
       </Routes>

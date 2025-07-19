@@ -48,12 +48,11 @@ h2 {
 
 /* Hero Section */
 .hero-section {
-    min-height: 35vh;
+    min-height: 55vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
-    overflow: hidden;
-    margin-top: 120px;
+    overflow: visible;
 }
 
 .parallax-bg {
@@ -61,13 +60,26 @@ h2 {
     top: 0;
     left: 0;
     width: 100%;
-    height: 120%;
+    height: 100%;
     z-index: -1;
 }
 
 .profile-image {
     transition: transform 0.3s ease;
-    margin-top: -20px;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.profile-image img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 50%;
 }
 
 .profile-image:hover {
@@ -271,12 +283,12 @@ h2 {
         width: 80px !important;
     }
     
-    .hero-section {
-        padding: 1rem;
+    .profile-image {
+        margin-bottom: 2rem;
     }
     
     .blurb {
-        margin-top: 10%;
+        margin-top: 5%;
     }
 }
 
@@ -297,6 +309,10 @@ h2 {
     
     .link.email-link img {
         width: 60px !important;
+    }
+    
+    .profile-image {
+        margin-bottom: 1.5rem;
     }
 }
 
