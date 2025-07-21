@@ -166,7 +166,7 @@ function MainPortfolio() {
 function TeamsPage() {
   React.useEffect(() => {
     // Redirect to teams.html in the public directory
-    window.location.href = '/teams.html';
+    window.location.href = './teams.html';
   }, []);
   
   return null;
@@ -176,7 +176,7 @@ function TeamsPage() {
 function EnterprisePage() {
   React.useEffect(() => {
     // Redirect to enterprise.html in the public directory
-    window.location.href = '/enterprise.html';
+    window.location.href = './enterprise.html';
   }, []);
   
   return null;

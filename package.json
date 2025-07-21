@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Personal portfolio website for Parul Sharma",
   "main": "src/index.js",
+  "homepage": "https://psharmz.github.io",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
