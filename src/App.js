@@ -62,7 +62,9 @@ function MainPortfolio() {
                   opacity: Math.max(0.2, 1 - scrollY * 0.0015)
                 }}> 
                   <div className="text-content">
-                    ⚠️ ENTERING CONSTRUCTION SITE: Portfolio subject to being a playground for endless AI-assisted experiments, designer whims, and late-night coding sessions. Please don't mind the construction debris. Explore with caution and a hard hat.
+                    "I'm happy to recommend Parul for any product design role! She brings a rare combination of courage, creativity, and user-centered thinking to every project she touches. Her instinct for inclusive design, proactive collaboration, and thoughtful questioning consistently elevates team outcomes, as seen in her impactful work on Career Coach, Speaker Progress, and Learning Accelerators. She demonstrates maturity and conviction, while her positive, curious attitude fosters a supportive and innovative team environment. Parul is exactly the kind of designer who not only delivers strong solutions but also helps shape a stronger design culture."
+                    <br /><br />
+                    -Paul Ray, Director of Product Design - Education, Microsoft
                   </div>
                 </div>
               </div>
@@ -75,11 +77,11 @@ function MainPortfolio() {
       <section id="work" className="work-section">
         <div className="work-header">
           {scrollY > 300 && (
-            <button onClick={() => scrollToSection('home')} className="back-to-top">
-              <img 
-                alt="profile" 
-                src="img/p.svg" 
-                width="60px" 
+            <button onClick={() => navigate('/')} className="back-to-top">
+              <img
+                alt="profile"
+                src="img/p.svg"
+                width="60px"
                 className="profile-logo"
               />
             </button>

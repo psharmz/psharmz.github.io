@@ -26,13 +26,135 @@
   <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
   <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
 
-  <!-- Reusable Navigation Component -->
-  <script src="js/nav-component.js"></script>
+  <style>
+    .top-nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 2rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .link {
+        transition: all 0.3s ease;
+    }
+
+    .work-link:hover {
+        transform: translateY(-5px) scale(1.3) rotate(-5deg);
+    }
+
+    .email-link:hover {
+        transform: translateY(-5px) rotate(3deg);
+    }
+
+    .resume:hover {
+        transform: translateY(-5px) rotate(-2deg);
+    }
+
+    .work-header {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+
+    .back-to-top {
+        background: white;
+        border: none;
+        border-radius: 50%;
+        padding: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .back-to-top:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .back-to-top img {
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+    }
+
+    /* Mobile Footer Navigation */
+    @media (max-width: 768px) {
+        .top-nav {
+            position: fixed;
+            top: auto;
+            bottom: 0;
+            padding: 1rem 5%;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            gap: 0.5rem;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .nav-links .link img {
+            max-width: 25vw;
+            height: auto;
+        }
+
+        .nav-links .work-link img {
+            max-width: 20vw;
+        }
+
+        .nav-links .email-link img {
+            max-width: 18vw;
+        }
+
+        .nav-links .resume img {
+            max-width: 22vw;
+        }
+    }
+  </style>
 
 </head>
 
     <body>
+        <!-- Navigation Bar -->
+        <nav class="top-nav">
+            <div class="nav-links">
+                <span class="link work-link">
+                    <a href="/">
+                        <img alt="work" src="img/work.jpg" width="140px" />
+                    </a>
+                </span>
+                <span class="link email-link">
+                    <a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top">
+                        <img alt="email" src="img/email.jpg" width="105px" />
+                    </a>
+                </span>
+                <span class="link resume">
+                    <a href="parul_resume.pdf" target="_blank">
+                        <img alt="resume" src="img/resume.jpg" width="150px" />
+                    </a>
+                </span>
+            </div>
+        </nav>
 
+        <!-- Profile image in top left -->
+        <div class="work-header">
+            <button onclick="window.location.href='/'" class="back-to-top">
+                <img alt="profile" src="img/p.svg" width="60px" />
+            </button>
+        </div>
 
         <div class="page-content" style="padding-top: 100px;">
 
