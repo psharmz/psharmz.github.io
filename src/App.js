@@ -1,15 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import Typewriter from 'typewriter-effect';
 
 function MainPortfolio() {
   const [scrollY, setScrollY] = useState(0);
   const navigate = useNavigate();
+
+  const quotes = [
+    {
+      text: "I'm happy to recommend Parul for any product design role! She brings a rare combination of courage, creativity, and user-centered thinking to every project she touches. Her instinct for inclusive design, proactive collaboration, and thoughtful questioning consistently elevates team outcomes, as seen in her impactful work on Career Coach, Speaker Progress, and Learning Accelerators. She demonstrates maturity and conviction, while her positive, curious attitude fosters a supportive and innovative team environment. Parul is exactly the kind of designer who not only delivers strong solutions but also helps shape a stronger design culture.",
+      author: "Paul Ray, Director of Product Design - Education, Microsoft"
+    },
+    {
+      text: "I worked with Parul at Microsoft in Education product design. Parul has been a great teammate and contributed to a variety new feature and product areas. These include working in a space to define Ai and Copilot scenarios and use for educational purpose inside the classroom. She has great capabilities to look across horizontal spaces and make logical connections that reduce and simplify the user experience. She is highly flexible and willing to pick up small things and help make the team be better.",
+      author: "Jon Esterly, Principal Product Designer for Education at Microsoft"
+    },
+    {
+      text: "I worked with Parul during her project in Google NetOps. Parul has a passion for UI development in application design, and has proposed creative solutions to improve the user interface to support complex processes. We worked together across multiple workstreams (10+) for various circuit deliveries and field operations. She has received strong feedback from my partner teams during her time on the project.",
+      author: "Eddie Dinh, Google Cloud"
+    },
+    {
+      text: "Her concern for the customer and overall experience was truly evident in every design decision. Parul was also a driving force in fostering team culture by creating spaces for collaboration. She started a Teams channel for our team that encouraged quick, constructive design feedback. She also organized a coworking opportunity that she hosted each week offering a flexible, low-pressure way for teammates to connect while working. Her efforts to build engagement and community made a real difference in strengthening the team as a whole.",
+      author: "Joshua McGlinn, Principal Design Lead at Microsoft"
+    }
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+
+
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -62,9 +85,16 @@ function MainPortfolio() {
                   opacity: Math.max(0.2, 1 - scrollY * 0.0015)
                 }}> 
                   <div className="text-content">
-                    "I'm happy to recommend Parul for any product design role! She brings a rare combination of courage, creativity, and user-centered thinking to every project she touches. Her instinct for inclusive design, proactive collaboration, and thoughtful questioning consistently elevates team outcomes, as seen in her impactful work on Career Coach, Speaker Progress, and Learning Accelerators. She demonstrates maturity and conviction, while her positive, curious attitude fosters a supportive and innovative team environment. Parul is exactly the kind of designer who not only delivers strong solutions but also helps shape a stronger design culture."
-                    <br /><br />
-                    -Paul Ray, Director of Product Design - Education, Microsoft
+                    <Typewriter
+                      options={{
+                        strings: quotes.map(quote => `"${quote.text}"<br><br>-${quote.author}`),
+                        autoStart: true,
+                        loop: true,
+                        delay: 15,
+                        deleteSpeed: 10,
+                        pauseFor: 0
+                      }}
+                    />
                   </div>
                 </div>
               </div>
