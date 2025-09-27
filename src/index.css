@@ -327,7 +327,7 @@ h2 {
         font-size: 0.85rem;
     }
 
-    .blurb {
+    .row.blurb {
         margin-top: 5%;
     }
 }
@@ -362,10 +362,6 @@ h2 {
         font-size: 0.75rem;
         line-height: 1.4;
     }
-}
-
-.blurb {
-	margin-top: 20%;
 }
 
 .about {
@@ -443,4 +439,8 @@ h2 {
 
 .space {
     height: 100px;
+}
+
+.blurb {
+	margin-top: 20%;
 }

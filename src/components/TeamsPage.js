@@ -1,30 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function TeamsPage() {
-  return (
-    <body>
-      <div className="fixed-header">
-        <ul className="col-xs-12 col-md-6">
-          <li> 
-            <Link to="/"> 
-              <img alt="icon" src="img/ps.svg" width="50px" /> 
-            </Link>
-          </li>
-        </ul>
+  const navigate = useNavigate();
 
-        <ul className="col-xs-12 col-md-6 nav-content">
-          <li> 
-            <Link to="/enterprise"> 
-              <img alt="next" src="img/next.jpg" width="150px" /> 
-            </Link>
-          </li>
-          <li> 
-            <Link to="/rasa"> 
-              <img alt="prev" src="img/prev.jpg" width="150px" /> 
-            </Link>
-          </li>
-        </ul>
+  return (
+    <div>
+      {/* Profile image in top left */}
+      <div className="work-header">
+        <button onClick={() => navigate('/')} className="back-to-top">
+          <img alt="profile" src="img/p.svg" width="60px" className="profile-logo" />
+        </button>
       </div>
 
       <div className="page-content">
@@ -70,7 +56,7 @@ function TeamsPage() {
           <img src="img/msoft/insights.jpg" className="img-responsive col-xs-12" alt="insights" />
         </div>
       </div>
-    </body>
+    </div>
   );
 }
 

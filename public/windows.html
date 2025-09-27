@@ -32,11 +32,48 @@
   <!-- Reusable Navigation Component -->
   <script src="js/nav-component.js"></script>
 
+  <script>
+    // Check if user is authenticated
+    function checkAuthentication() {
+        const isAuthenticated = sessionStorage.getItem('authenticated');
+        const authTime = sessionStorage.getItem('authTime');
+
+        // Check if not authenticated or session expired (30 minutes)
+        if (!isAuthenticated || !authTime) {
+            window.location.href = 'password_protected_page.html';
+            return;
+        }
+
+        // Check if session expired (30 minutes = 1800000 ms)
+        const currentTime = Date.now();
+        const sessionAge = currentTime - parseInt(authTime);
+        if (sessionAge > 1800000) {
+            sessionStorage.removeItem('authenticated');
+            sessionStorage.removeItem('authTime');
+            window.location.href = 'password_protected_page.html';
+            return;
+        }
+    }
+
+    // Run authentication check immediately when script loads
+    checkAuthentication();
+
+    // Also check when page becomes visible (prevents bypassing via browser back button)
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+            checkAuthentication();
+        }
+    });
+
+    // Additional check when page loads
+    window.addEventListener('load', checkAuthentication);
+  </script>
+
 </head>
 
     <body>
 
-        <div class="page-content" style="padding-top: 100px;">
+        <div class="page-content" style="padding-bottom: 100px;">
 
           <div class="prj-header">
  

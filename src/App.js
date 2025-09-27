@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import Typewriter from 'typewriter-effect';
+import MobileFooter from './components/MobileFooter';
 
 function MainPortfolio() {
   const [scrollY, setScrollY] = useState(0);
@@ -92,7 +93,7 @@ function MainPortfolio() {
                         loop: true,
                         delay: 15,
                         deleteSpeed: 10,
-                        pauseFor: 0
+                        pauseFor: 3000
                       }}
                     />
                   </div>
@@ -194,13 +195,14 @@ function MainPortfolio() {
   );
 }
 
+
 // Teams Page Component
 function TeamsPage() {
   React.useEffect(() => {
     // Redirect to teams.html in the public directory
     window.location.href = './teams.html';
   }, []);
-  
+
   return null;
 }
 
@@ -225,9 +227,9 @@ function Navigation() {
           </a>
         </span>
         <span className="link email-link">
-          <a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top">  
-            <img alt="email" src="img/email.jpg" width="105px" /> 
-          </a>     
+          <a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top">
+            <img alt="email" src="img/email.jpg" width="105px" />
+          </a>
         </span>
         <span className="link resume">
           <a href="parul_resume.pdf" target="_blank">
@@ -250,6 +252,7 @@ function App() {
         <Route path="/teams" element={<TeamsPage />} />
         <Route path="/enterprise" element={<EnterprisePage />} />
       </Routes>
+      <MobileFooter />
     </Router>
   );
 }
