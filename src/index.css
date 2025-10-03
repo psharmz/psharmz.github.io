@@ -48,7 +48,7 @@ h2 {
 
 /* Hero Section */
 .hero-section {
-    min-height: 55vh;
+    min-height: 100vh;
     display: flex;
     align-items: flex-start;
     position: relative;
@@ -73,6 +73,7 @@ h2 {
     width: 100%;
     height: auto;
     overflow: visible;
+    position: relative;
 }
 
 .profile-image img {
@@ -85,6 +86,7 @@ h2 {
 .profile-image:hover {
     transform: scale(1.05) rotate(2deg) !important;
 }
+
 
 .about-content {
     animation: fadeInUp 1s ease-out;
@@ -99,6 +101,232 @@ h2 {
     max-width: 90%;
     font-weight: 400;
 }
+
+/* Review Cards - Interactive Stacked Design */
+.review-card-container {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    perspective: 1200px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.review-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    border-radius: 15px;
+    transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform-origin: center center;
+    will-change: transform, opacity, z-index;
+    /* Performance optimizations */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    contain: layout style paint;
+    /* Enhanced visual depth */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.review-card.stacked-card {
+    opacity: 1;
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.review-card.active-stack {
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1) !important;
+    z-index: 1000 !important;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    filter: brightness(1) saturate(1.05);
+}
+
+/* Enhanced stacking visual effect with more pronounced depth */
+.review-card:not(.active-stack) {
+    filter: brightness(0.92) saturate(0.9);
+}
+
+.review-card-container:hover .review-card:not(.active-stack) {
+    filter: brightness(0.98) saturate(0.95);
+    transition: all 0.4s ease;
+}
+
+.review-card-container:hover .review-card.active-stack {
+    transform: translateY(-3px) translateX(0px) rotate(0deg) scale(1.02) !important;
+    box-shadow: 0 20px 56px rgba(0, 0, 0, 0.45);
+    transition: all 0.4s ease;
+}
+
+
+.review-card.light-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.review-text {
+    font-size: inherit;
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+    flex: 1;
+}
+
+.review-author {
+    font-size: 0.9em;
+    font-weight: 600;
+    text-align: right;
+    margin: 0;
+    opacity: 0.9;
+    flex-shrink: 0;
+}
+
+
+.light-card .review-text,
+.light-card .review-author {
+    color: #000;
+}
+
+.highlight {
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+}
+
+.highlight::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(
+        100deg,
+        rgba(255, 255, 0, 0.8) 0%,
+        rgba(255, 255, 0, 0.6) 50%,
+        rgba(255, 255, 0, 0.4) 100%
+    );
+    z-index: -1;
+    animation: highlightSweep 1.5s ease-in-out forwards;
+    animation-delay: calc(var(--highlight-index, 0) * 1.5s);
+    transform: skewX(-12deg);
+    border-radius: 3px;
+}
+
+@keyframes highlightSweep {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+/* Enhanced stacking animations with more dynamic movement */
+@keyframes cardShuffle {
+    0% {
+        transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    25% {
+        transform: translateY(-8px) translateX(-4px) rotate(-1.5deg) scale(1.02);
+        opacity: 0.95;
+    }
+    50% {
+        transform: translateY(-15px) translateX(-8px) rotate(-2deg) scale(1.05);
+        opacity: 0.9;
+    }
+    75% {
+        transform: translateY(-5px) translateX(2px) rotate(0.5deg) scale(1.01);
+        opacity: 0.95;
+    }
+    100% {
+        transform: var(--target-transform);
+        opacity: 1;
+    }
+}
+
+/* Smooth deck reorganization with enhanced easing */
+.review-card.transitioning {
+    animation: cardShuffle 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+/* Subtle pulsing animation for visual feedback */
+@keyframes cardPulse {
+    0%, 100% {
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    }
+    50% {
+        box-shadow: 0 18px 52px rgba(0, 0, 0, 0.45);
+    }
+}
+
+.review-card.active-stack:not(.transitioning) {
+    animation: cardPulse 4s ease-in-out infinite;
+}
+
+/* Interactive visual feedback */
+.review-card-container:active {
+    transform: scale(0.995);
+    transition: transform 0.1s ease;
+}
+
+/* Smooth cursor interaction */
+.review-card-container:hover {
+    transition: all 0.3s ease;
+}
+
+/* Clickable area indication */
+.review-card-container::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 20px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: -2;
+}
+
+.review-card-container:hover::after {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Enhanced 3D shadow effect for better depth perception */
+.review-card-container::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 85%;
+    height: 30px;
+    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.25), transparent 70%);
+    transform: translateX(-50%);
+    z-index: -1;
+    filter: blur(12px);
+    transition: all 0.4s ease;
+}
+
+.review-card-container:hover::before {
+    height: 35px;
+    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.3), transparent 70%);
+    filter: blur(15px);
+}
+
 
 /* Work Section */
 .work-section {
@@ -327,6 +555,54 @@ h2 {
         font-size: 0.85rem;
     }
 
+    .review-card-container {
+        min-height: 400px;
+        perspective: 800px; /* Reduced perspective for mobile */
+        cursor: pointer;
+    }
+
+    .review-card {
+        padding: 1.5rem;
+        min-height: 320px;
+    }
+
+    /* Enhanced mobile stacking with better visual hierarchy */
+    .review-card.stacked-card {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(1) !important;
+        transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .review-card:not(.active-stack) {
+        transform: translateY(5px) translateX(3px) rotate(0.8deg) scale(0.97) !important;
+        filter: brightness(0.94) saturate(0.92);
+    }
+
+    .review-card:nth-child(3):not(.active-stack) {
+        transform: translateY(10px) translateX(6px) rotate(1.2deg) scale(0.94) !important;
+        filter: brightness(0.90) saturate(0.88);
+    }
+
+    .review-card:nth-child(4):not(.active-stack) {
+        transform: translateY(15px) translateX(9px) rotate(1.8deg) scale(0.91) !important;
+        filter: brightness(0.86) saturate(0.84);
+    }
+
+    /* Mobile hover effects */
+    .review-card-container:active .review-card.active-stack {
+        transform: translateY(-2px) translateX(0px) rotate(0deg) scale(1.01) !important;
+        transition: all 0.2s ease;
+    }
+
+    .review-text {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .review-author {
+        font-size: 0.8em;
+    }
+
+
     .row.blurb {
         margin-top: 5%;
     }
@@ -362,6 +638,54 @@ h2 {
         font-size: 0.75rem;
         line-height: 1.4;
     }
+
+    .review-card-container {
+        min-height: 350px;
+        perspective: 600px; /* Further reduced for small screens */
+    }
+
+    .review-card {
+        padding: 1rem;
+        min-height: 280px;
+    }
+
+    /* Optimized stacking for very small screens */
+    .review-card.stacked-card {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(1) !important;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .review-card:not(.active-stack) {
+        transform: translateY(4px) translateX(2px) rotate(0.5deg) scale(0.98) !important;
+        filter: brightness(0.92) saturate(0.90);
+    }
+
+    .review-card:nth-child(3):not(.active-stack) {
+        transform: translateY(8px) translateX(4px) rotate(0.8deg) scale(0.96) !important;
+        filter: brightness(0.88) saturate(0.86);
+    }
+
+    .review-card:nth-child(4):not(.active-stack) {
+        transform: translateY(12px) translateX(6px) rotate(1.2deg) scale(0.94) !important;
+        filter: brightness(0.84) saturate(0.82);
+    }
+
+    /* Small screen active feedback */
+    .review-card-container:active .review-card.active-stack {
+        transform: translateY(-1px) translateX(0px) rotate(0deg) scale(1.005) !important;
+        transition: all 0.15s ease;
+    }
+
+    .review-text {
+        font-size: 0.75rem;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+    }
+
+    .review-author {
+        font-size: 0.7em;
+    }
+
 }
 
 .about {
