@@ -9,6 +9,19 @@ function MainPortfolio() {
   const [intervalId, setIntervalId] = useState(null);
   const navigate = useNavigate();
 
+  // Handle hash navigation on component mount
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash === '#work') {
+      setTimeout(() => {
+        const element = document.getElementById('work');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  }, []);
+
   const quotes = [
     {
       text: "I'm happy to recommend Parul for any product design role! She brings a rare combination of courage, creativity, and user-centered thinking to every project she touches.",
@@ -196,7 +209,7 @@ function MainPortfolio() {
       <section id="work" className="work-section">
         <div className="work-header">
           {scrollY > 300 && (
-            <button onClick={() => navigate('/')} className="back-to-top">
+            <button onClick={() => navigate('/#work')} className="back-to-top">
               <img
                 alt="profile"
                 src="img/p.svg"
@@ -306,35 +319,24 @@ function EnterprisePage() {
 
 // Navigation Component
 function Navigation() {
-  const scrollToWork = () => {
-    console.log('Work button clicked!'); // Debug log
-
-    // Try multiple ways to find and scroll to the work section
-    const element = document.getElementById('work') || document.querySelector('#work') || document.querySelector('.work-section');
-
-    console.log('Found element:', element); // Debug log
-
+  const handleWorkClick = () => {
+    const element = document.getElementById('work');
     if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    } else {
-      // Fallback: scroll to a specific position where work section typically is
-      window.scrollTo({
-        top: window.innerHeight * 0.8, // Scroll down about 80% of viewport height
-        behavior: 'smooth'
-      });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
   return (
-    <nav className="top-nav">
+    <nav className="top-nav desktop-nav">
       <div className="nav-links">
         <span className="link work-link">
-          <button onClick={scrollToWork} style={{ background: 'none', border: 'none', padding: 0 }}>
-            <img alt="work" src="img/work.jpg" width="140px" />
-          </button>
+          <img
+            alt="work"
+            src="img/work.jpg"
+            width="140px"
+            onClick={handleWorkClick}
+            style={{ cursor: 'pointer' }}
+          />
         </span>
         <span className="link email-link">
           <a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top">
@@ -354,7 +356,7 @@ function Navigation() {
 // Main App Component with Routing
 function App() {
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Navigation />
       <Routes>
         <Route path="/" element={<MainPortfolio />} />

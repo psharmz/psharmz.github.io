@@ -39,6 +39,14 @@ h2 {
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
+.desktop-nav {
+    display: block;
+}
+
+.mobile-nav {
+    display: none;
+}
+
 .nav-links {
     display: flex;
     justify-content: center;
@@ -490,6 +498,14 @@ h2 {
 
 /* Responsive */
 @media (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+    }
+
+    .mobile-nav {
+        display: block;
+    }
+
     .top-nav {
         position: fixed;
         top: auto;

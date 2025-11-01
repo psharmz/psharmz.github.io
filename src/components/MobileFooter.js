@@ -2,7 +2,7 @@ import React from 'react';
 
 function MobileFooter() {
   return (
-    <nav className="top-nav">
+    <nav className="top-nav mobile-nav">
       <div className="nav-links">
         <span className="link work-link">
           <a href="/">

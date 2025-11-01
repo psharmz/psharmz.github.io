@@ -5,7 +5,7 @@ function createNavigation() {
         <nav class="top-nav">
             <div class="nav-links">
                 <span class="link work-link">
-                    <a href="/">
+                    <a href="/#work">
                         <img alt="work" src="img/work.jpg" width="140px" />
                     </a>
                 </span>
