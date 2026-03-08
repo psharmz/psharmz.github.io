@@ -4,9 +4,6 @@ import MobileFooter from './components/MobileFooter';
 
 function MainPortfolio() {
   const [scrollY, setScrollY] = useState(0);
-  const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [intervalId, setIntervalId] = useState(null);
   const navigate = useNavigate();
 
   // Handle hash navigation on component mount
@@ -30,7 +27,7 @@ function MainPortfolio() {
     },
     {
       text: "I worked with Parul at Microsoft in Education product design. Parul has been a great teammate and contributed to a variety new feature and product areas. These include working in a space to define AI and Copilot scenarios and use for educational purpose inside the classroom. She has great capabilities to look across horizontal spaces and make logical connections that reduce and simplify the user experience. She is highly flexible and willing to pick up small things and help make the team be better.",
-      highlights: ["Microsoft in Education", "define AI and Copilot scenarios", "capabilities to look across horizontal spaces"],
+      highlights: [],
       author: "Jon Esterly, Principal Product Designer for Education at Microsoft"
     },
     {
@@ -50,46 +47,14 @@ function MainPortfolio() {
     }
   ];
 
+  const heroQuote = quotes[0];
+  const otherQuotes = quotes.slice(1);
+
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const triggerCardTransition = () => {
-    setIsTransitioning(true);
-
-    // Brief delay to start transition animation
-    setTimeout(() => {
-      setCurrentQuoteIndex((prevIndex) =>
-        prevIndex === quotes.length - 1 ? 0 : prevIndex + 1
-      );
-
-      // Reset transition state after animation completes
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 800);
-    }, 100);
-  };
-
-  const resetInterval = () => {
-    if (intervalId) {
-      clearInterval(intervalId);
-    }
-    const newInterval = setInterval(triggerCardTransition, 7000);
-    setIntervalId(newInterval);
-    return newInterval;
-  };
-
-  useEffect(() => {
-    const interval = resetInterval();
-    return () => clearInterval(interval);
-  }, [quotes.length]);
-
-  const handleCardClick = () => {
-    triggerCardTransition();
-    resetInterval();
-  };
 
   const renderHighlightedText = (text, highlights = []) => {
     if (!highlights || highlights.length === 0) {
@@ -97,11 +62,11 @@ function MainPortfolio() {
     }
 
     let result = text;
-    highlights.forEach((highlight, index) => {
+    highlights.forEach((highlight) => {
       const escapedHighlight = highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       result = result.replace(
         new RegExp(escapedHighlight, 'g'),
-        `<span class="highlight" style="--highlight-index: ${index}">${highlight}</span>`
+        `<strong style="font-weight: 700; color: #000;">${highlight}</strong>`
       );
     });
 
@@ -163,39 +128,14 @@ function MainPortfolio() {
                   opacity: Math.max(0.2, 1 - scrollY * 0.0015)
                 }}> 
                   <div className="text-content">
-                    <div className="review-card-container" onClick={handleCardClick}>
-                      {quotes.map((quote, index) => {
-                        // Calculate stacking position relative to current active card
-                        const relativeIndex = (index - currentQuoteIndex + quotes.length) % quotes.length;
-                        const isActive = index === currentQuoteIndex;
-
-                        // Enhanced stacking calculations for better visual effect
-                        const stackOffset = relativeIndex * 6; // Reduced for tighter stack
-                        const rotationAngle = relativeIndex * 1.2; // Slightly more rotation
-                        const scaleValue = Math.max(0.95, 1 - relativeIndex * 0.02); // Subtle scale decrease
-                        const horizontalOffset = relativeIndex * 3;
-
-                        // Determine visibility and opacity
-                        const isVisible = relativeIndex < 4;
-                        const cardOpacity = isVisible ? Math.max(0.4, 1 - relativeIndex * 0.15) : 0;
-
-                        return (
-                          <div
-                            key={index}
-                            className={`review-card stacked-card light-card ${isActive ? 'active-stack' : ''} ${isTransitioning ? 'transitioning' : ''}`}
-                            style={{
-                              zIndex: quotes.length - relativeIndex,
-                              transform: `translateY(${stackOffset}px) translateX(${horizontalOffset}px) rotate(${rotationAngle}deg) scale(${scaleValue})`,
-                              opacity: cardOpacity,
-                              visibility: isVisible ? 'visible' : 'hidden',
-                              '--target-transform': `translateY(${stackOffset}px) translateX(${horizontalOffset}px) rotate(${rotationAngle}deg) scale(${scaleValue})`
-                            }}
-                          >
-                            <p className="review-text" dangerouslySetInnerHTML={{__html: `"${renderHighlightedText(quote.text, quote.highlights)}"`}}></p>
-                            <p className="review-author">- {quote.author}</p>
-                          </div>
-                        );
-                      })}
+                    <div className="review-card-container">
+                      <div className="review-card light-card active-stack">
+                        <p
+                          className="review-text"
+                          dangerouslySetInnerHTML={{ __html: `"${renderHighlightedText(heroQuote.text, heroQuote.highlights)}"` }}
+                        ></p>
+                        <p className="review-author">- {heroQuote.author}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -288,6 +228,21 @@ function MainPortfolio() {
                   <small className="text-muted"> UI Developer </small>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div className="testimonials-section">
+            <h2 className="testimonials-heading">What people say</h2>
+            <div className="testimonials-grid">
+              {otherQuotes.map((quote, index) => (
+                <div key={index} className="testimonial-card">
+                  <p
+                    className="testimonial-text"
+                    dangerouslySetInnerHTML={{ __html: `"${renderHighlightedText(quote.text, quote.highlights)}"` }}
+                  ></p>
+                  <p className="testimonial-author">- {quote.author}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
