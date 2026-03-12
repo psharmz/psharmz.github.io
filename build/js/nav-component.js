@@ -5,7 +5,7 @@ function createNavigation() {
         <nav class="top-nav">
             <div class="nav-links">
                 <span class="link work-link">
-                    <a href="/">
+                    <a href="/#work">
                         <img alt="work" src="img/work.jpg" width="140px" />
                     </a>
                 </span>
@@ -107,6 +107,40 @@ function getNavigationCSS() {
             }
 
             .page-content {
+            }
+
+            /* Mobile Footer Navigation */
+            @media (max-width: 768px) {
+                .top-nav {
+                    position: fixed;
+                    top: auto;
+                    bottom: 0;
+                    padding: 1rem 5%;
+                    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+                }
+
+                .nav-links {
+                    gap: 0.5rem;
+                    width: 100%;
+                    justify-content: space-between;
+                }
+
+                .nav-links .link img {
+                    max-width: 25vw;
+                    height: auto;
+                }
+
+                .nav-links .work-link img {
+                    max-width: 20vw;
+                }
+
+                .nav-links .email-link img {
+                    max-width: 18vw;
+                }
+
+                .nav-links .resume img {
+                    max-width: 22vw;
+                }
             }
         </style>
     `;

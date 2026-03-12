@@ -56,6 +56,22 @@ function MainPortfolio() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   const renderHighlightedText = (text, highlights = []) => {
     if (!highlights || highlights.length === 0) {
       return text;
@@ -163,7 +179,7 @@ function MainPortfolio() {
         <div className="page-content">
           <div className="section container-fluid projects">
             <div className="projects-grid">
-              <div className="card project-card" style={{ animationDelay: '0.1s' }} onClick={(e) => {
+              <div className="card project-card" style={{ animationDelay: '0.2s' }} onClick={(e) => {
                 e.currentTarget.style.transform = 'scale(0.95)';
                 e.currentTarget.style.opacity = '0.8';
                 setTimeout(() => navigate('/teams'), 150);
@@ -171,61 +187,46 @@ function MainPortfolio() {
                 <img src="img/icons/projects/teams.png" className="card-img-top" alt="teams" />
                 <div className="card-body">
                   <h2 className="card-title"> Microsoft Teams </h2>
-                  <p className="card-text"> Designed for Teams, specifically a suite of globally shipped Learning Accelerators which included products like Career Coach and Speaker Progress for millions of teachers and students. </p>
-                </div>
-                <div className="card-footer">
-                  <small className="text-muted"> Product Designer </small>
+                  <p className="card-text"> Shipped to millions · Ed-tech AI · K-12 globally </p>
                 </div>
               </div>
 
-              <div className="card project-card" style={{ animationDelay: '0.2s' }} onClick={(e) => {
+              <div className="card project-card" style={{ animationDelay: '0.6s' }}>
+                <img src="img/icons/projects/rasa.png" className="card-img-top" alt="rasa" />
+                <div className="card-body">
+                  <h2 className="card-title"> Rasa </h2>
+                  <p className="card-text"> Designer + engineer · Conversational AI platform · ML dev ops </p>
+                  <a href="rasa.html" className="stretched-link"></a>
+                </div>
+              </div>
+
+              <div className="card project-card" style={{ animationDelay: '1.0s' }}>
+                <img src="img/icons/projects/copilot.png" className="card-img-top" alt="copilot" />
+                <div className="card-body">
+                  <h2 className="card-title"> Windows Copilot </h2>
+                  <p className="card-text"> AI at Windows scale · Student & educator experiences </p>
+                  <a href="password_protected_page.html" className="stretched-link"></a>
+                </div>
+              </div>
+
+              <div className="card project-card scroll-reveal">
+                <img src="img/icons/projects/haley.png" className="card-img-top" alt="accenture" />
+                <div className="card-body">
+                  <h2 className="card-title"> Accenture </h2>
+                  <p className="card-text"> 0→1 mobile health · Patient-centered · Research to delivery </p>
+                  <a href="healthcare.html" className="stretched-link"></a>
+                </div>
+              </div>
+
+              <div className="card project-card scroll-reveal" onClick={(e) => {
                 e.currentTarget.style.transform = 'scale(0.95)';
                 e.currentTarget.style.opacity = '0.8';
                 setTimeout(() => navigate('/enterprise'), 150);
               }}>
-                <img src="img/icons/projects/g.jpg" className="card-img-top" alt="enterprise" />
+                <img src="img/icons/projects/g.jpg" className="card-img-top" alt="google" />
                 <div className="card-body">
                   <h2 className="card-title"> Google </h2>
-                  <p className="card-text"> Designed an enterprise web application used across 4 timezones and 10+ workstreams. As a solo designer I covered research, visual design, interaction design, strategy, and design QA </p>
-                </div>
-                <div className="card-footer">
-                  <small className="text-muted"> Lead Product Designer </small>
-                </div>
-              </div>
-
-              <div className="card project-card" style={{ animationDelay: '0.3s' }}>
-                <img src="img/icons/projects/copilot.png" className="card-img-top" alt="enterprise" />
-                <div className="card-body">
-                  <h2 className="card-title"> Windows Copilot </h2>
-                  <p className="card-text"> AI features in Windows and tailored experiences for student and teachers in Copilot. </p>
-                  <a href="password_protected_page.html" className="stretched-link"></a>
-                </div>
-                <div className="card-footer">
-                  <small className="text-muted"> Designer </small>
-                </div>
-              </div>
-
-              <div className="card project-card" style={{ animationDelay: '0.4s' }}>
-                <img src="img/icons/projects/haley.png" className="card-img-top" alt="enterprise" />
-                <div className="card-body">
-                  <h2 className="card-title"> Accenture </h2>
-                  <p className="card-text"> Mobile healthcare application to track patients' symptoms and recovery </p>
-                  <a href="healthcare.html" className="stretched-link"></a>
-                </div>
-                <div className="card-footer">
-                  <small className="text-muted"> Product Designer </small>
-                </div>
-              </div>
-
-              <div className="card project-card" style={{ animationDelay: '0.5s' }}>
-                <img src="img/icons/projects/rasa.png" className="card-img-top" alt="enterprise" />
-                <div className="card-body">
-                  <h2 className="card-title"> Rasa </h2>
-                  <p className="card-text"> Led design and development of a chatbot creation tool. Developed using ReactJS and Redux </p>
-                  <a href="rasa.html" className="stretched-link"></a>
-                </div>
-                <div className="card-footer">
-                  <small className="text-muted"> UI Developer </small>
+                  <p className="card-text"> Solo end-to-end · Enterprise · 10+ workstreams across 4 timezones </p>
                 </div>
               </div>
             </div>
@@ -235,7 +236,7 @@ function MainPortfolio() {
             <h2 className="testimonials-heading">What people say</h2>
             <div className="testimonials-grid">
               {otherQuotes.map((quote, index) => (
-                <div key={index} className="testimonial-card">
+                <div key={index} className="testimonial-card scroll-reveal" style={{ '--delay': `${index * 0.15}s` }}>
                   <p
                     className="testimonial-text"
                     dangerouslySetInnerHTML={{ __html: `"${renderHighlightedText(quote.text, quote.highlights)}"` }}
