@@ -1,6 +1,63 @@
 @import url('https://fonts.googleapis.com/css?family=Karla&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
 
+/* ============================================================
+   DESIGN SYSTEM TOKENS
+   MD3-aligned type scale + spacing + color + font
+   ============================================================ */
+:root {
+    /* --- Typography: Font Families --- */
+    --font-heading: 'Rubik', sans-serif;
+    --font-body:    'Karla', sans-serif;
+
+    /* --- Typography: Type Scale (MD3-aligned, px reference in comments) --- */
+    --type-hero:         clamp(1rem, 2.5vw, 1.25rem); /* fluid — hero blurb */
+    --type-title-large:  1.125rem;  /* 18px — card titles        [MD: Title Large]   */
+    --type-body-large:   1.25rem;   /* 20px — quote/testimonial  [MD: Title Large]   */
+    --type-body-small:   0.8125rem; /* 13px — card subtitles     [MD: Body Small]    */
+    --type-label-medium: 0.75rem;   /* 12px — author attribution [MD: Label Medium]  */
+
+    /* --- Typography: Weights --- */
+    --weight-regular:   400;
+    --weight-medium:    500;
+    --weight-semibold:  600;
+
+    /* --- Typography: Line Heights --- */
+    --leading-tight:  1.3;
+    --leading-body:   1.65;
+    --leading-label:  1.45;
+
+    /* --- Typography: Letter Spacing --- */
+    --tracking-title: 0.0125em;
+    --tracking-body:  0.025em;
+    --tracking-label: 0.02em;
+
+    /* --- Color: Accent --- */
+    --color-accent: #00BFA5;
+
+    /* --- Color: Text --- */
+    --color-text-primary:   #1a1a1a;
+    --color-text-secondary: #4a4f54;
+    --color-text-muted:     #888;
+
+    /* --- Color: Surfaces --- */
+    --color-bg:                 #000;
+    --color-surface-card:       rgba(255, 255, 255, 0.96);
+    --color-surface-testimonial: #fff;
+
+    /* --- Spacing --- */
+    --space-xs:  0.35rem;   /*  ~6px */
+    --space-sm:  0.875rem;  /* ~14px */
+    --space-md:  1.25rem;   /* ~20px */
+    --space-lg:  1.5rem;    /* ~24px */
+    --space-xl:  2rem;      /* ~32px */
+    --space-2xl: 2.25rem;   /* ~36px */
+
+    /* --- Grid --- */
+    --grid-gap:   20px;
+    --page-rail:  40px;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -10,6 +67,8 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    background-color: #000;
+    color: #fff;
 }
 
 html {
@@ -29,14 +88,8 @@ h2 {
 
 /* Top Navigation */
 .top-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    /* Temporarily hidden navigation */
+    display: none !important;
 }
 
 .desktop-nav {
@@ -62,12 +115,14 @@ h2 {
     position: relative;
     overflow: visible;
     padding-top: 70px;
+    pointer-events: none; /* parallax transform bleeds into card area */
 }
 
 .parallax-bg {
     position: relative;
     width: 100%;
     height: 100%;
+    pointer-events: none;
 }
 
 .profile-image {
@@ -92,6 +147,8 @@ h2 {
 .profile-image:hover {
     transform: scale(1.05) rotate(2deg) !important;
 }
+
+/* Hand-drawn rays around profile image */
 
 
 .about-content {
@@ -202,6 +259,20 @@ h2 {
     color: #000;
 }
 
+.hero-blurb {
+    font-family: var(--font-body);
+    font-size: var(--type-hero);
+    line-height: var(--leading-body);
+    color: var(--color-text-primary);
+    font-weight: var(--weight-regular);
+    margin: 0;
+}
+
+.hero-blurb .accent {
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
 /* Enhanced stacking animations with more dynamic movement */
 @keyframes cardShuffle {
     0% {
@@ -300,7 +371,7 @@ h2 {
 /* Work Section */
 .work-section {
     min-height: unset;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: transparent;
     padding: 2rem 0;
     position: relative;
 }
@@ -354,17 +425,18 @@ h2 {
 }
 
 .page-content {
+    padding: 0;
 }
 
 /* Projects Grid */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 350px);
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    justify-content: center;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-auto-rows: 44px;
+    gap: var(--grid-gap);
+    width: 100%;
+    padding: 0 var(--page-rail);
+    margin: 0;
 }
 
 @media (min-width: 1025px) {
@@ -382,19 +454,6 @@ h2 {
     .about-content {
         width: 100%;
     }
-
-    .projects-grid {
-        grid-template-columns: repeat(6, 1fr);
-        max-width: 100%;
-        gap: 1.2rem;
-        padding: 0 2rem;
-    }
-
-    .projects-grid .project-card:nth-child(1) { grid-column: 1 / span 2; }
-    .projects-grid .project-card:nth-child(2) { grid-column: 3 / span 2; }
-    .projects-grid .project-card:nth-child(3) { grid-column: 5 / span 2; }
-    .projects-grid .project-card:nth-child(4) { grid-column: 2 / span 2; }
-    .projects-grid .project-card:nth-child(5) { grid-column: 4 / span 2; }
 }
 
 .testimonials-section {
@@ -449,33 +508,154 @@ h2 {
     opacity: 0;
     animation: slideInUp 0.6s ease-out forwards;
     animation-fill-mode: both;
-    transition: all 0.3s ease;
+    position: relative;
+    padding: 0;
+    background: transparent;
+    transition: transform 0.3s ease, z-index 0s;
     border: none;
-    border-radius: 15px;
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     cursor: pointer;
+    min-height: 0;
 }
 
 .project-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    z-index: 2;
+    transform: scale(1.015);
 }
 
 .project-card:active {
-    transform: translateY(-4px) scale(0.98);
-    transition: all 0.1s ease;
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
 }
 
 .project-card .card-img-top {
+    display: block;
     width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: transform 0.3s ease;
+    transition: transform 0.35s ease;
 }
 
 .project-card:hover .card-img-top {
-    transform: scale(1.05);
+    transform: scale(1.03);
+}
+
+.project-card .card-body {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    background: var(--color-surface-card);
+    padding: var(--space-md) var(--space-lg);
+    z-index: 2;
+    font-size: 1rem; /* reset from body's inherited 225% */
+}
+
+.project-card:hover .card-body,
+.project-card.is-hovered .card-body {
+    transform: translateY(0);
+}
+
+/* Card typography — tokens */
+.projects .project-card .card-title {
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-xs) 0;
+    font-size: var(--type-title-large);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-title);
+    font-family: var(--font-heading);
+}
+
+.projects .project-card .card-text {
+    color: var(--color-text-secondary) !important;
+    margin: 0 !important;
+    font-size: var(--type-body-small);
+    line-height: var(--leading-label);
+    letter-spacing: var(--tracking-body);
+    font-family: var(--font-body);
+}
+
+/* Mosaic testimonial cards */
+.mosaic-testimonial {
+    background: var(--color-surface-testimonial);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--space-xl) var(--space-2xl);
+    overflow: hidden;
+    position: relative;
+    font-size: 1rem; /* reset from body's inherited 225% */
+}
+
+.quote-text-wrapper {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Full-width quote card — constrain line length for readability */
+.mosaic-testimonial--wide {
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+    padding: var(--space-xl) calc(var(--page-rail) * 2);
+}
+
+.mosaic-testimonial--wide .quote-text-wrapper {
+    flex: 1;
+    max-width: 72ch;
+}
+
+.mosaic-testimonial--wide .quote-author {
+    flex-shrink: 0;
+    text-align: right;
+    max-width: 200px;
+    margin: 0 !important;
+}
+
+.quote-text-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    background: linear-gradient(transparent, #fff);
+    pointer-events: none;
+}
+
+.mosaic-testimonial--wide .quote-text-wrapper::after {
+    display: none;
+}
+
+.quote-text {
+    font-family: var(--font-body) !important;
+    font-size: var(--type-body-large) !important;
+    line-height: var(--leading-body) !important;
+    color: var(--color-text-primary) !important;
+    margin: 0 !important;
+    font-weight: var(--weight-regular) !important;
+}
+
+.quote-text strong {
+    font-weight: 700 !important;
+    color: var(--color-accent) !important;
+}
+
+.quote-author {
+    font-family: var(--font-body) !important;
+    font-size: var(--type-label-medium) !important;
+    font-weight: var(--weight-semibold) !important;
+    color: var(--color-text-muted) !important;
+    margin: var(--space-sm) 0 0 0 !important;
+    letter-spacing: var(--tracking-label) !important;
+    flex-shrink: 0;
 }
 
 /* Image hover effect removed for smooth navigation */
@@ -581,8 +761,26 @@ h2 {
     }
 
     .projects-grid {
-        grid-template-columns: 1fr;
-        padding: 0 1rem;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .project-card {
+        width: 100%;
+        height: 260px;
+    }
+
+    .mosaic-testimonial {
+        width: 100%;
+        min-height: 180px;
+        padding: 1.5rem;
+    }
+
+    .project-card .card-img-top {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
     }
     
     .links {

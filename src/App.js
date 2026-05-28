@@ -22,7 +22,7 @@ function MainPortfolio() {
   const quotes = [
     {
       text: "I'm happy to recommend Parul for any product design role! She brings a rare combination of courage, creativity, and user-centered thinking to every project she touches.",
-      highlights: ["user-centered thinking", "courage", "creativity"],
+      highlights: ["rare combination", "courage", "creativity", "user-centered thinking"],
       author: "Paul Ray, Director of Product Design - Education, Microsoft"
     },
     {
@@ -32,23 +32,21 @@ function MainPortfolio() {
     },
     {
       text: "I worked with Parul during her project in Google NetOps. Parul has a passion for UI development in application design, and has proposed creative solutions to improve the user interface to support complex processes. We worked together across multiple workstreams (10+) for various circuit deliveries and field operations. She has received strong feedback from my partner teams during her time on the project.",
-      highlights: ["Google NetOps", "complex processes", "field operations", "multiple workstreams (10+)"],
+      highlights: ["UI development", "creative solutions", "complex processes", "multiple workstreams (10+)"],
       author: "Eddie Dinh, Google Cloud"
     },
     {
       text: "Her concern for the customer and overall experience was truly evident in every design decision. Parul was also a driving force in fostering team culture by creating spaces for collaboration. She started a Teams channel for our team that encouraged quick, constructive design feedback. She also organized a coworking opportunity that she hosted each week offering a flexible, low-pressure way for teammates to connect while working. Her efforts to build engagement and community made a real difference in strengthening the team as a whole.",
-      highlights: ["concern for the customer", "driving force", "fostering team culture", "build engagement", "community", "strengthening the team"],
+      highlights: ["concern for the customer", "driving force", "team culture", "constructive design feedback", "engagement", "community"],
       author: "Joshua McGlinn, Principal Design Lead at Microsoft"
     },
     {
       text: "Her instinct for inclusive design, proactive collaboration, and thoughtful questioning consistently elevates team outcomes, as seen in her impactful work on Career Coach, Speaker Progress, and Learning Accelerators. She demonstrates maturity and conviction, while her positive, curious attitude fosters a supportive and innovative team environment. Parul is exactly the kind of designer who not only delivers strong solutions but also helps shape a stronger design culture.",
-      highlights: ["Career Coach", "Speaker Progress", "Learning Accelerators", "fosters a supportive and innovative team environment", "shape a stronger design culture"],
+      highlights: ["inclusive design", "proactive collaboration", "elevates team outcomes"],
       author: "Paul Ray, Director of Product Design - Education, Microsoft"
     }
   ];
 
-  const heroQuote = quotes[0];
-  const otherQuotes = quotes.slice(1);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -82,7 +80,7 @@ function MainPortfolio() {
       const escapedHighlight = highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       result = result.replace(
         new RegExp(escapedHighlight, 'g'),
-        `<strong style="font-weight: 700; color: #000;">${highlight}</strong>`
+        `<strong style="font-weight: 700; color: var(--color-accent);">${highlight}</strong>`
       );
     });
 
@@ -92,6 +90,11 @@ function MainPortfolio() {
 
 
 
+
+  const cardHover = {
+    onMouseEnter: (e) => e.currentTarget.classList.add('is-hovered'),
+    onMouseLeave: (e) => e.currentTarget.classList.remove('is-hovered'),
+  };
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -139,20 +142,12 @@ function MainPortfolio() {
                 </div>
               </div>
               <div className="col-sm-8 about">
-                <div className="about-content" style={{ 
+                <div className="about-content" style={{
                   transform: `translateY(${scrollY * 0.2}px)`,
                   opacity: Math.max(0.2, 1 - scrollY * 0.0015)
-                }}> 
+                }}>
                   <div className="text-content">
-                    <div className="review-card-container">
-                      <div className="review-card light-card active-stack">
-                        <p
-                          className="review-text"
-                          dangerouslySetInnerHTML={{ __html: `"${renderHighlightedText(heroQuote.text, heroQuote.highlights)}"` }}
-                        ></p>
-                        <p className="review-author">- {heroQuote.author}</p>
-                      </div>
-                    </div>
+                    <p className="hero-blurb"><strong className="accent">I design AI-native products and build them.</strong> Staff-level designer with 5 years at Microsoft shipping to <strong className="accent">300M+ users</strong> across AI, EdTech, and Windows — and <strong className="accent">I write the code too.</strong> Currently a Fellow at Rooted Futures Lab and Regenerative Intelligence, two highly selective programs at the intersection of technology and regenerative systems. Open to the right full-time role and freelance projects.</p>
                   </div>
                 </div>
               </div>
@@ -177,74 +172,141 @@ function MainPortfolio() {
         </div>
         
         <div className="page-content">
-          <div className="section container-fluid projects">
-            <div className="projects-grid">
-              <div className="card project-card" style={{ animationDelay: '0.2s' }} onClick={(e) => {
-                e.currentTarget.style.transform = 'scale(0.95)';
-                e.currentTarget.style.opacity = '0.8';
+          <div className="projects-grid">
+
+            {/* TEAMS — largest card */}
+            <div
+              className="project-card"
+              style={{ gridColumn: '1 / 9', gridRow: '1 / 14', animationDelay: '0.1s' }}
+              {...cardHover}
+              onClick={(e) => {
+                e.currentTarget.style.transform = 'scale(0.98)';
+                e.currentTarget.style.opacity = '0.9';
                 setTimeout(() => navigate('/teams'), 150);
-              }}>
-                <img src="img/icons/projects/teams.png" className="card-img-top" alt="teams" />
-                <div className="card-body">
-                  <h2 className="card-title"> Microsoft Teams </h2>
-                  <p className="card-text"> Shipped to millions · Ed-tech AI · K-12 globally </p>
-                </div>
+              }}
+            >
+              <video className="card-img-top" autoPlay muted loop playsInline src="img/msoft/intro1.mp4" />
+              <div className="card-body">
+                <h2 className="card-title">Microsoft Teams</h2>
+                <p className="card-text">Shipped to millions · Ed-tech AI · K-12 globally</p>
               </div>
+            </div>
 
-              <div className="card project-card" style={{ animationDelay: '0.6s' }}>
-                <img src="img/icons/projects/rasa.png" className="card-img-top" alt="rasa" />
-                <div className="card-body">
-                  <h2 className="card-title"> Rasa </h2>
-                  <p className="card-text"> Designer + engineer · Conversational AI platform · ML dev ops </p>
-                  <a href="rasa.html" className="stretched-link"></a>
-                </div>
+            {/* RASA — small upper right */}
+            <div
+              className="project-card"
+              style={{ gridColumn: '9 / 13', gridRow: '1 / 8', animationDelay: '0.25s' }}
+              {...cardHover}
+            >
+              <img src="img/icons/projects/rasa.png" className="card-img-top" alt="rasa" />
+              <div className="card-body">
+                <h2 className="card-title">Rasa</h2>
+                <p className="card-text">Designer + engineer · Conversational AI · ML dev ops</p>
+                <a href="rasa.html" className="stretched-link"></a>
               </div>
+            </div>
 
-              <div className="card project-card" style={{ animationDelay: '1.0s' }}>
-                <img src="img/icons/projects/copilot.png" className="card-img-top" alt="copilot" />
-                <div className="card-body">
-                  <h2 className="card-title"> Windows Copilot </h2>
-                  <p className="card-text"> AI at Windows scale · Student & educator experiences </p>
-                  <a href="password_protected_page.html" className="stretched-link"></a>
-                </div>
+            {/* TESTIMONIAL — Paul Ray #1, lower right of Teams */}
+            <div
+              className="mosaic-testimonial scroll-reveal"
+              style={{ gridColumn: '9 / 13', gridRow: '8 / 14' }}
+            >
+              <div className="quote-text-wrapper">
+                <p className="quote-text" dangerouslySetInnerHTML={{ __html: `"${renderHighlightedText(quotes[0].text, quotes[0].highlights)}"` }} />
               </div>
+              <p className="quote-author">— {quotes[0].author}</p>
+            </div>
 
-              <div className="card project-card scroll-reveal">
-                <img src="img/icons/projects/haley.png" className="card-img-top" alt="accenture" />
-                <div className="card-body">
-                  <h2 className="card-title"> Accenture </h2>
-                  <p className="card-text"> 0→1 mobile health · Patient-centered · Research to delivery </p>
-                  <a href="healthcare.html" className="stretched-link"></a>
-                </div>
+            {/* TESTIMONIAL — Paul Ray #2, narrow + tall */}
+            <div
+              className="mosaic-testimonial scroll-reveal"
+              style={{ gridColumn: '1 / 5', gridRow: '14 / 24' }}
+            >
+              <div className="quote-text-wrapper">
+                <p className="quote-text" dangerouslySetInnerHTML={{ __html: `"${renderHighlightedText(quotes[4].text, quotes[4].highlights)}"` }} />
               </div>
+              <p className="quote-author">— {quotes[4].author}</p>
+            </div>
 
-              <div className="card project-card scroll-reveal" onClick={(e) => {
+            {/* GOOGLE — right top */}
+            <div
+              className="project-card scroll-reveal"
+              style={{ gridColumn: '5 / 13', gridRow: '14 / 20' }}
+              {...cardHover}
+              onClick={(e) => {
                 e.currentTarget.style.transform = 'scale(0.95)';
                 e.currentTarget.style.opacity = '0.8';
                 setTimeout(() => navigate('/enterprise'), 150);
-              }}>
-                <img src="img/icons/projects/g.jpg" className="card-img-top" alt="google" />
-                <div className="card-body">
-                  <h2 className="card-title"> Google </h2>
-                  <p className="card-text"> Solo end-to-end · Enterprise · 10+ workstreams across 4 timezones </p>
-                </div>
+              }}
+            >
+              <img src="https://i.pinimg.com/originals/b7/41/21/b741215d216b11b8ff17f27f4bff2a9d.gif" className="card-img-top" alt="google" />
+              <div className="card-body">
+                <h2 className="card-title">Google</h2>
+                <p className="card-text">Solo end-to-end · Enterprise · 10+ workstreams across 4 timezones</p>
               </div>
             </div>
-          </div>
 
-          <div className="testimonials-section">
-            <h2 className="testimonials-heading">What people say</h2>
-            <div className="testimonials-grid">
-              {otherQuotes.map((quote, index) => (
-                <div key={index} className="testimonial-card scroll-reveal" style={{ '--delay': `${index * 0.15}s` }}>
-                  <p
-                    className="testimonial-text"
-                    dangerouslySetInnerHTML={{ __html: `"${renderHighlightedText(quote.text, quote.highlights)}"` }}
-                  ></p>
-                  <p className="testimonial-author">- {quote.author}</p>
-                </div>
-              ))}
+            {/* COPILOT — right middle */}
+            <div
+              className="project-card scroll-reveal"
+              style={{ gridColumn: '5 / 13', gridRow: '20 / 26' }}
+              {...cardHover}
+            >
+              <img src="img/icons/projects/copilot.png?v=2" className="card-img-top" alt="copilot" />
+              <div className="card-body">
+                <h2 className="card-title">Windows Copilot</h2>
+                <p className="card-text">AI at Windows scale · Student & educator experiences</p>
+                <a href="password_protected_page.html" className="stretched-link"></a>
+              </div>
             </div>
+
+            {/* ACCENTURE — left, below Paul Ray, same width */}
+            <div
+              className="project-card scroll-reveal"
+              style={{ gridColumn: '1 / 5', gridRow: '24 / 32' }}
+              {...cardHover}
+            >
+              <img src="img/icons/projects/haley.png?v=2" className="card-img-top" alt="accenture" />
+              <div className="card-body">
+                <h2 className="card-title">Accenture</h2>
+                <p className="card-text">0→1 mobile health · Patient-centered · Research to delivery</p>
+                <a href="healthcare.html" className="stretched-link"></a>
+              </div>
+            </div>
+
+            {/* TESTIMONIAL — Eddie Dinh */}
+            <div
+              className="mosaic-testimonial scroll-reveal"
+              style={{ gridColumn: '5 / 13', gridRow: '26 / 32' }}
+            >
+              <div className="quote-text-wrapper">
+                <p className="quote-text" dangerouslySetInnerHTML={{ __html: `"${renderHighlightedText(quotes[2].text, quotes[2].highlights)}"` }} />
+              </div>
+              <p className="quote-author">— {quotes[2].author}</p>
+            </div>
+
+            {/* TESTIMONIAL — Joshua McGlinn */}
+            <div
+              className="mosaic-testimonial scroll-reveal"
+              style={{ gridColumn: '1 / 13', gridRow: '32 / 37' }}
+            >
+              <div className="quote-text-wrapper">
+                <p className="quote-text" dangerouslySetInnerHTML={{ __html: `"${renderHighlightedText(quotes[3].text, quotes[3].highlights)}"` }} />
+              </div>
+              <p className="quote-author">— {quotes[3].author}</p>
+            </div>
+
+            {/* TESTIMONIAL — Jon Esterly (hidden) */}
+            <div
+              className="mosaic-testimonial scroll-reveal"
+              style={{ gridColumn: '9 / 13', gridRow: '37 / 45', display: 'none' }}
+            >
+              <div className="quote-text-wrapper">
+                <p className="quote-text" dangerouslySetInnerHTML={{ __html: `"${renderHighlightedText(quotes[1].text, quotes[1].highlights)}"` }} />
+              </div>
+              <p className="quote-author">— {quotes[1].author}</p>
+            </div>
+
           </div>
         </div>
       </section>
