@@ -80,7 +80,7 @@ function MainPortfolio() {
       const escapedHighlight = highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       result = result.replace(
         new RegExp(escapedHighlight, 'g'),
-        `<strong style="font-weight: 700; color: var(--color-accent);">${highlight}</strong>`
+        `<strong style="font-weight: 700; color: var(--color-text-teal);">${highlight}</strong>`
       );
     });
 
@@ -147,6 +147,7 @@ function MainPortfolio() {
                   opacity: Math.max(0.2, 1 - scrollY * 0.0015)
                 }}>
                   <div className="text-content">
+                    <h2 className="hero-greeting">hi, i'm parul</h2>
                     <p className="hero-blurb"><strong className="accent">I design AI-native products and build them.</strong> Staff-level designer with 5 years at Microsoft shipping to <strong className="accent">300M+ users</strong> across AI, EdTech, and Windows — and <strong className="accent">I write the code too.</strong> Currently a Fellow at Rooted Futures Lab and Regenerative Intelligence, two highly selective programs at the intersection of technology and regenerative systems. Open to the right full-time role and freelance projects.</p>
                   </div>
                 </div>
@@ -197,12 +198,16 @@ function MainPortfolio() {
               className="project-card"
               style={{ gridColumn: '9 / 13', gridRow: '1 / 8', animationDelay: '0.25s' }}
               {...cardHover}
+              onClick={(e) => {
+                e.currentTarget.style.transform = 'scale(0.98)';
+                e.currentTarget.style.opacity = '0.9';
+                setTimeout(() => { window.location.href = 'rasa.html'; }, 150);
+              }}
             >
               <img src="img/icons/projects/rasa.png" className="card-img-top" alt="rasa" />
               <div className="card-body">
                 <h2 className="card-title">Rasa</h2>
                 <p className="card-text">Designer + engineer · Conversational AI · ML dev ops</p>
-                <a href="rasa.html" className="stretched-link"></a>
               </div>
             </div>
 
@@ -265,12 +270,16 @@ function MainPortfolio() {
               className="project-card scroll-reveal"
               style={{ gridColumn: '1 / 5', gridRow: '24 / 32' }}
               {...cardHover}
+              onClick={(e) => {
+                e.currentTarget.style.transform = 'scale(0.98)';
+                e.currentTarget.style.opacity = '0.9';
+                setTimeout(() => { window.location.href = 'healthcare.html'; }, 150);
+              }}
             >
               <img src="img/icons/projects/haley.png?v=2" className="card-img-top" alt="accenture" />
               <div className="card-body">
                 <h2 className="card-title">Accenture</h2>
                 <p className="card-text">0→1 mobile health · Patient-centered · Research to delivery</p>
-                <a href="healthcare.html" className="stretched-link"></a>
               </div>
             </div>
 

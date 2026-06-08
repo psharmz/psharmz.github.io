@@ -11,8 +11,7 @@ body {
 }
 
 p {
-    font-family: 'Karla', sans-serif !important;
-    color: #7c8186 !important;
+    font-family: 'Karla', sans-serif;
 }
 
 
@@ -22,11 +21,6 @@ h2 {
 	color: black;
     font-size: 30px;
 }
-
-.page-content {
-}
-
-
 
 .one-pager {
 }
