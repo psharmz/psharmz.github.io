@@ -13,7 +13,7 @@
     --type-display:      2.25rem;   /* 36px — page-level headings [MD: Headline Large] */
     --type-hero:         clamp(1rem, 2.5vw, 1.25rem); /* fluid — hero blurb */
     --type-title-large:  1.5rem;    /* 24px — card titles        [MD: Title Large]   */
-    --type-body-large:   1.25rem;   /* 20px — quote/testimonial  [MD: Title Large]   */
+    --type-body-large:   clamp(0.9rem, 1.4vw, 1.25rem); /* fluid 14–20px — quote/testimonial */
     --type-body-small:   0.8125rem; /* 13px — card subtitles     [MD: Body Small]    */
     --type-label-medium: 0.75rem;   /* 12px — author attribution [MD: Label Medium]  */
 
@@ -45,7 +45,7 @@
     /* --- Color: Surfaces --- */
     --color-bg:                 #000;
     --color-surface-card:       rgba(255, 255, 255, 0.96);
-    --color-surface-testimonial: #fff;
+    --color-surface-testimonial: rgba(180, 180, 180, 0.08);
 
     /* --- Spacing --- */
     --space-xs:  0.35rem;   /*  ~6px */
@@ -184,6 +184,77 @@ h2 {
 .hero-blurb .accent {
     font-weight: 700;
     color: var(--color-text-teal);
+}
+
+/* Clients Section */
+.clients-section {
+    background: var(--color-bg);
+    padding: var(--space-xl) var(--page-rail);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.clients-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.clients-dash {
+    display: block;
+    height: 2px;
+    background: var(--color-text-teal);
+    transform-origin: left;
+    animation: dashIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
+    width: 2.5rem;
+}
+
+@keyframes dashIn {
+    from { transform: scaleX(0); opacity: 0; }
+    to   { transform: scaleX(1); opacity: 1; }
+}
+
+.clients-heading {
+    font-family: var(--font-heading);
+    font-size: var(--type-title-large);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-light);
+    margin: 0;
+    letter-spacing: var(--tracking-title);
+    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.4s both;
+}
+
+.clients-logos {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: var(--space-xl);
+    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.6s both;
+}
+
+.client-logo {
+    flex: 1;
+    max-width: 100%;
+    height: 48px;
+    object-fit: contain;
+    object-position: center;
+    filter: grayscale(1) brightness(0.55) invert(1) opacity(0.65);
+    transition: filter 0.4s ease;
+}
+
+
+@media (max-width: 600px) {
+    .clients-logos {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-lg);
+    }
+
+    .client-logo {
+        height: 40px;
+        flex: unset;
+    }
 }
 
 /* Work Section */
@@ -364,6 +435,7 @@ h2 {
 /* Mosaic testimonial cards */
 .mosaic-testimonial {
     background: var(--color-surface-testimonial);
+    border: 1.5px solid var(--color-text-teal);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -386,7 +458,7 @@ h2 {
     left: 0;
     right: 0;
     height: 36px;
-    background: linear-gradient(transparent, #fff);
+    background: linear-gradient(transparent, var(--color-bg));
     pointer-events: none;
 }
 
@@ -394,7 +466,7 @@ h2 {
     font-family: var(--font-body) !important;
     font-size: var(--type-body-large) !important;
     line-height: var(--leading-body) !important;
-    color: var(--color-text-primary) !important;
+    color: var(--color-text-light) !important;
     margin: 0 !important;
     font-weight: var(--weight-regular) !important;
 }
@@ -408,7 +480,7 @@ h2 {
     font-family: var(--font-body) !important;
     font-size: var(--type-label-medium) !important;
     font-weight: var(--weight-semibold) !important;
-    color: var(--color-text-muted) !important;
+    color: var(--color-text-light) !important;
     margin: var(--space-sm) 0 0 0 !important;
     letter-spacing: var(--tracking-label) !important;
     flex-shrink: 0;
@@ -607,7 +679,7 @@ h2 {
 
 .blurb {
 	margin-top: 0;
-	align-items: flex-end;
+	align-items: center;
 	display: flex;
 	padding: 1rem 0;
 }

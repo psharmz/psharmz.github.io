@@ -157,6 +157,19 @@ function MainPortfolio() {
         </div>
       </section>
 
+      {/* Clients Section */}
+      <section className="clients-section">
+        <div className="clients-header">
+          <span className="clients-dash" />
+          <h3 className="clients-heading">I've Worked With</h3>
+        </div>
+        <div className="clients-logos">
+          <img src="img/logos/microsoft.png" alt="Microsoft" className="client-logo" />
+          <img src="img/logos/google.png" alt="Google" className="client-logo" />
+          <img src="img/logos/accenture.png" alt="Accenture" className="client-logo" />
+        </div>
+      </section>
+
       {/* Work Section */}
       <section id="work" className="work-section">
         <div className="work-header">
