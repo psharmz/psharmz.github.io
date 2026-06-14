@@ -339,3 +339,93 @@ p .accent {
     margin-top: 0;
   }
 }
+
+
+/* ── Mobile hamburger menu (project pages) ──────────────────────
+   On phones the work/email/resume nav collapses into a hamburger
+   in the top-right that opens a full-page white takeover with the
+   links stacked. Toggle + overlay are built by js/project.js. */
+.mobile-nav-toggle { display: none; }
+.mobile-nav-overlay { display: none; }
+
+@media (max-width: 767px) {
+  /* Remove the bottom-pinned nav bar in favour of the hamburger */
+  .top-nav { display: none; }
+
+  .mobile-nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    position: fixed;
+    top: var(--space-md);
+    right: var(--space-md);
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 10001;
+  }
+
+  .mobile-nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--color-text-primary);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .mobile-nav-toggle.is-active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .mobile-nav-toggle.is-active span:nth-child(2) { opacity: 0; }
+  .mobile-nav-toggle.is-active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Full-page white takeover */
+  .mobile-nav-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .mobile-nav-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Links stacked on top of each other with even spacing */
+  .mobile-nav-overlay .nav-links {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    width: auto;
+  }
+
+  /* Higher specificity than .nav-links .work-link img so the overlay
+     sizing always wins, even on rasa where nav-component.js may inject
+     its own per-link sizing. */
+  .mobile-nav-overlay .nav-links .link img {
+    width: 60vw;
+    max-width: 240px;
+    height: auto;
+  }
+
+  /* Stop the page behind the menu from scrolling while it's open */
+  body.mobile-nav-open { overflow: hidden; }
+}
