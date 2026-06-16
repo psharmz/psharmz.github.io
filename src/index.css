@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Karla:wght@400;600&display=swap');
 
+/* The "Impact Label" @font-face is declared in public/index.html (CRA serves
+   the font from public/, so it can't be referenced from this bundled CSS). */
+
 /* ============================================================
    DESIGN SYSTEM TOKENS
    MD3-aligned type scale + spacing + color + font
@@ -8,6 +11,7 @@
     /* --- Typography: Font Families --- */
     --font-heading: 'Rubik', sans-serif;
     --font-body:    'Karla', sans-serif;
+    --font-label:   'Impact Label', var(--font-heading); /* embossed label-maker */
 
     /* --- Typography: Type Scale (MD3-aligned, px reference in comments) --- */
     --type-display:      2.25rem;   /* 36px — page-level headings [MD: Headline Large] */
@@ -186,13 +190,38 @@ h2 {
     color: var(--color-text-teal);
 }
 
+/* Murals / email / resume buttons below the hero blurb.
+   The hero section sets pointer-events:none, so re-enable it here. */
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+    pointer-events: auto;
+}
+
+.hero-actions .link img {
+    height: 26px;
+    width: auto;
+    display: block;
+}
+
+/* The murals icon is dark lettering on a transparent background, so it
+   disappears on the dark hero — a white background lets it read. */
+.hero-actions .murals-link img {
+    background: #fff;
+    height: 28.6px; /* 1.10× the 26px base */
+    padding-top: 1px;
+}
+
 /* Clients Section */
 .clients-section {
     background: var(--color-bg);
     padding: var(--space-xl) var(--page-rail);
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
+    /* Extra breathing room between the heading and the logos. */
+    gap: calc(var(--space-xl) + var(--space-md));
 }
 
 .clients-header {
@@ -490,6 +519,16 @@ h2 {
 
 /* Button styles removed - clean slate */
 
+/* Embossed label-maker text links (murals / email / resume) */
+.nav-label {
+    font-family: var(--font-label);
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--color-text-teal);
+    text-decoration: none;
+}
+
 /* Link Animations */
 .link {
     transition: all 0.3s ease;
@@ -502,6 +541,14 @@ h2 {
 
 .work-link:hover {
     transform: translateY(-5px) scale(1.3) rotate(-5deg);
+}
+
+.link.murals-link {
+    transition: transform 0.3s ease;
+}
+
+.murals-link:hover {
+    transform: translateY(-5px) scale(1.3) rotate(2deg);
 }
 
 .link.email-link {

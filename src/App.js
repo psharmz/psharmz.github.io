@@ -149,6 +149,17 @@ function MainPortfolio() {
                   <div className="text-content">
                     <h2 className="hero-greeting">hi, i'm parul</h2>
                     <p className="hero-blurb"><strong className="accent">I design AI-native products and build them.</strong> Staff-level designer with 5 years at Microsoft shipping to <strong className="accent">300M+ users</strong> across AI, EdTech, and Windows — and <strong className="accent">I write the code too.</strong> Currently a Fellow at Rooted Futures Lab and Regenerative Intelligence, two highly selective programs at the intersection of technology and regenerative systems. Open to the right full-time role and freelance projects.</p>
+                    <div className="hero-actions">
+                      <span className="link murals-link">
+                        <a href="murals.html" className="nav-label">Murals</a>
+                      </span>
+                      <span className="link email-link">
+                        <a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top" className="nav-label">Email</a>
+                      </span>
+                      <span className="link resume">
+                        <a href="parul_resume.pdf" target="_blank" className="nav-label">Resume</a>
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -378,15 +389,14 @@ function Navigation() {
             style={{ cursor: 'pointer' }}
           />
         </span>
+        <span className="link murals-link">
+          <a href="murals.html" className="nav-label">Murals</a>
+        </span>
         <span className="link email-link">
-          <a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top">
-            <img alt="email" src="img/email.jpg" width="105px" />
-          </a>
+          <a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top" className="nav-label">Email</a>
         </span>
         <span className="link resume">
-          <a href="parul_resume.pdf" target="_blank">
-            <img alt="resume" src="img/resume.jpg" width="150px" />
-          </a>
+          <a href="parul_resume.pdf" target="_blank" className="nav-label">Resume</a>
         </span>
       </div>
     </nav>

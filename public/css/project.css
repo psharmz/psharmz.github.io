@@ -7,6 +7,24 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Karla:wght@400;600&display=swap");
 
+/* Embossed label-maker face (Impact Label by Tension Type — freeware, web
+   embedding permitted; license ships in /fonts/misc/). */
+@font-face {
+  font-family: "Impact Label";
+  src: url("/fonts/ImpactLabel-lVYZ.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Impact Label Reversed";
+  src: url("/fonts/ImpactLabelReversed-nDMR.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ── Design system tokens (mirrored from src/index.css) ─────── */
 :root {
   /* Color */
@@ -21,6 +39,21 @@
   /* Typography */
   --font-heading:          'Rubik', sans-serif;
   --font-body:             'Karla', sans-serif;
+  --font-label:            'Impact Label', var(--font-heading); /* embossed label-maker */
+  --font-label-reversed:   'Impact Label Reversed', var(--font-heading); /* reversed label-maker */
+
+  /* Motion — Material Design 3 standard easing */
+  --ease-standard:         cubic-bezier(0.2, 0, 0, 1);
+  --motion-fast:           180ms;
+
+  /* Embossed desktop nav (murals + teams) — frosted surface, teal links */
+  --murals-nav-h:          52px; /* fixed bar height */
+  --murals-nav-surface:    rgba(255, 255, 255, 0.14); /* super translucent so content shows through */
+  --murals-nav-blur:       16px;
+  --murals-nav-link-size:  1.5rem;
+  --murals-brand-size:     1.875rem;
+  --murals-nav-hover-scale: 1.09;
+  --murals-emboss-shadow:  0 1px 0 rgba(255, 255, 255, 0.55), 0 -1px 1px rgba(0, 0, 0, 0.12);
 
   /* Type scale — px anchored so Bootstrap's 14px body never shrinks them */
   --type-display:          36px;   /* MD3 Headline Large  — page header titles  */
@@ -130,9 +163,10 @@ body {
   transition: transform 0.3s ease;
 }
 
-.nav-links .work-link:hover  { transform: translateY(-4px) scale(1.08) rotate(-3deg); }
-.nav-links .email-link:hover { transform: translateY(-4px) rotate(3deg); }
-.nav-links .resume:hover     { transform: translateY(-4px) rotate(-2deg); }
+.nav-links .work-link:hover   { transform: translateY(-4px) scale(1.08) rotate(-3deg); }
+.nav-links .murals-link:hover { transform: translateY(-4px) scale(1.08) rotate(2deg); }
+.nav-links .email-link:hover  { transform: translateY(-4px) rotate(3deg); }
+.nav-links .resume:hover      { transform: translateY(-4px) rotate(-2deg); }
 
 
 /* ── Accent highlight — teal + bold, works on any background ── */
@@ -312,9 +346,10 @@ p .accent {
   }
 
   .nav-links .link img    { max-width: 25vw; height: auto; }
-  .nav-links .work-link img  { max-width: 20vw; }
-  .nav-links .email-link img { max-width: 18vw; }
-  .nav-links .resume img     { max-width: 22vw; }
+  .nav-links .work-link img   { max-width: 19vw; }
+  .nav-links .murals-link img { max-width: 17vw; }
+  .nav-links .email-link img  { max-width: 17vw; }
+  .nav-links .resume img      { max-width: 20vw; }
 }
 
 @media (min-width: 768px) {
@@ -428,4 +463,564 @@ p .accent {
 
   /* Stop the page behind the menu from scrolling while it's open */
   body.mobile-nav-open { overflow: hidden; }
+}
+
+
+/* ============================================================
+   MURALS PAGE — gallery wall-text, masonry grid, social feed
+   Scoped under .murals-page so nothing leaks to other project
+   pages. Mirrored verbatim into the root css/project.css.
+   ============================================================ */
+
+.murals-page {
+  background: #faf7f2; /* warm gallery wall */
+}
+
+/* Page content sits on a black canvas. */
+.murals-page .page-content {
+  background: var(--color-bg);
+  padding-top: 4%;
+}
+
+/* ============================================================
+   EMBOSSED NAV — shared desktop nav (murals + teams via .embossed-nav)
+   Frosted translucent bar, brand mark left, embossed teal label links
+   right; mobile collapses to the hamburger with the brand as item one.
+   ============================================================ */
+
+/* ── Brand mark (logo + name) top-left ──────────────────────── */
+.embossed-nav .work-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.murals-brand {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-regular);
+  font-size: var(--murals-brand-size);
+  letter-spacing: 0.01em;
+  line-height: 1;
+  color: var(--color-text-teal);
+}
+
+/* Mobile hamburger overlay: the cloned links are text, so give them the
+   reversed-label teal treatment at a larger, tappable size. */
+.embossed-nav .mobile-nav-overlay .nav-links .link a {
+  font-family: var(--font-label-reversed);
+  font-size: var(--type-display);
+  letter-spacing: 0.04em;
+  color: var(--color-text-teal);
+  text-decoration: none;
+}
+
+/* The brand item (photo + "Parul") only lives in the hamburger overlay — it's
+   hidden in the actual nav bar, and the top-left mark is hidden on mobile. */
+.embossed-nav .top-nav .nav-links .brand-link {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .embossed-nav .work-header {
+    display: none;
+  }
+}
+
+/* In the overlay it's the first line item: round photo beside the name. */
+.embossed-nav .mobile-nav-overlay .nav-links .brand-link a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.embossed-nav .mobile-nav-overlay .nav-links .brand-link img {
+  width: 72px;
+  height: 72px;
+  max-width: none;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.embossed-nav .mobile-nav-overlay .nav-links .brand-link-name {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-regular);
+  font-size: var(--type-headline);
+  letter-spacing: 0.01em;
+  color: var(--color-text-primary); /* black */
+}
+
+/* ── Desktop embossed nav ─────────────────────────────────────
+   Desktop-only: on mobile the bar is hidden in favour of the hamburger. */
+@media (min-width: 768px) {
+  /* The base layout uses body margin-top (80px) to clear the fixed nav;
+     drop it — page-content padding clears the (shorter) frosted bar instead. */
+  body.embossed-nav {
+    margin-top: 0;
+  }
+
+  /* Shrink the pinned logo so the brand mark sits inside the nav bar
+     (instead of overhanging it). Centred within the bar height. */
+  .embossed-nav .work-header {
+    top: var(--space-xs);
+  }
+
+  .embossed-nav .back-to-top {
+    padding: var(--space-xs);
+  }
+
+  .embossed-nav .back-to-top img {
+    width: 34px;
+    height: 34px;
+  }
+
+  /* Frosted, translucent bar so blurred page content shows through on scroll.
+     Brand mark sits left (in .work-header); the links are pushed right. */
+  .embossed-nav .top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: var(--murals-nav-h);
+    padding-top: 0;
+    padding-bottom: 0;
+    background: var(--murals-nav-surface);
+    -webkit-backdrop-filter: blur(var(--murals-nav-blur));
+            backdrop-filter: blur(var(--murals-nav-blur));
+  }
+
+  .embossed-nav .top-nav .nav-links {
+    margin: 0;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-xl);
+  }
+
+  /* .link carries a margin-bottom from main.css that padded out the bar */
+  .embossed-nav .top-nav .nav-links .link {
+    margin: 0;
+    padding: 0;
+    transition: transform var(--motion-fast) var(--ease-standard);
+  }
+
+  /* Teal text links in the reversed label-maker face */
+  .embossed-nav .top-nav .nav-links .link a {
+    display: inline-block;
+    font-family: var(--font-label-reversed);
+    font-size: var(--murals-nav-link-size);
+    letter-spacing: 0.04em;
+    color: var(--color-text-teal);
+    text-decoration: none;
+  }
+
+  /* Hover / keyboard focus: grow slightly (MD3 standard easing) */
+  .embossed-nav .top-nav .nav-links .link:hover,
+  .embossed-nav .top-nav .nav-links .link:focus-within {
+    transform: scale(var(--murals-nav-hover-scale));
+  }
+
+  /* Content runs up under the translucent bar (no top offset). */
+  .embossed-nav .page-content {
+    margin-top: 0;
+  }
+}
+
+/* ── A. Hero / artist statement (gallery wall-text) ─────────── */
+.murals-hero {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(5rem, 12vw, 9rem) var(--space-xl) clamp(2.5rem, 6vw, 4rem);
+  text-align: center;
+}
+
+.murals-hero .murals-eyebrow {
+  font-family: var(--font-heading);
+  font-size: var(--type-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-text-teal);
+  margin: 0 0 var(--space-md);
+}
+
+.murals-hero h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-weight: var(--weight-semibold);
+  line-height: 1.05;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-lg);
+}
+
+/* Match the home-page hero blurb: same font (Karla), regular weight, and
+   teal accent on the emphasised phrases. */
+.murals-hero .murals-statement {
+  font-family: var(--font-body);
+  font-size: var(--type-hero);
+  line-height: var(--leading-body);
+  font-weight: var(--weight-regular);
+  color: var(--color-text-secondary);
+  max-width: 64ch;
+  margin: 0 auto;
+}
+
+.murals-hero .murals-statement strong {
+  font-weight: 700;
+  color: var(--color-text-teal);
+}
+
+/* ── Section label shared by gallery + feed ─────────────────── */
+.murals-section-label {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: var(--type-headline);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-primary);
+  margin: clamp(2rem, 5vw, 3.5rem) 0 var(--space-xs);
+}
+
+.murals-section-sub {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: var(--type-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-xl);
+}
+
+/* ── B. Gallery (CSS columns masonry) ───────────────────────── */
+.murals-gallery {
+  column-count: 3;
+  column-gap: var(--space-md);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-xl) clamp(3rem, 8vw, 5rem);
+}
+
+.murals-gallery .murals-item {
+  break-inside: avoid;
+  margin: 0 0 var(--space-md);
+  display: block;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease;
+  cursor: zoom-in;
+}
+
+.murals-gallery .murals-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* override .project-info img margins which would otherwise apply */
+  margin: 0;
+}
+
+.murals-gallery .murals-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
+}
+
+.murals-gallery .murals-caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: var(--space-lg) var(--space-md) var(--space-sm);
+  font-family: var(--font-body);
+  font-size: var(--type-label);
+  color: #fff;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.murals-gallery .murals-item:hover .murals-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── C. "Out in the world" — dark, slow auto-scrolling feed ─── */
+.murals-feed {
+  background: var(--color-bg);
+  padding: clamp(2.5rem, 6vw, 4rem) var(--space-xl) clamp(4rem, 10vw, 6rem);
+}
+
+.murals-feed-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-xl);
+}
+
+/* Heading sits on the left; the feed column sits to the right (desktop). */
+.murals-feed-intro {
+  flex: 1 1 0;
+  position: sticky;
+  top: var(--space-xl);
+}
+
+/* Intro copy mirrors the home-page hero: heading font + white title,
+   Karla body in the on-dark light token, teal accents. All from tokens
+   (#fff matches the home hero-greeting — the palette has no white token). */
+.murals-feed-title {
+  font-family: var(--font-heading);
+  font-size: var(--type-display);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  color: #fff;
+  margin: 0 0 var(--space-lg);
+}
+
+.murals-feed-blurb {
+  font-family: var(--font-body);
+  font-size: var(--type-hero);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-body);
+  color: var(--color-text-light);
+  max-width: 52ch;
+  margin: 0 0 var(--space-md);
+}
+
+.murals-feed-blurb:last-child {
+  margin-bottom: 0;
+}
+
+.murals-feed-blurb strong {
+  font-weight: 700;
+  color: var(--color-text-teal);
+}
+
+/* Action shots cropped to circles, sitting inside the intro column — a clean
+   wrapping flex row, gently floating, with a soft teal bloom and soft shadow.
+   Fully in-flow (no absolute positioning) so it's responsive at every size. */
+.murals-feed-portraits {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.murals-portrait {
+  position: relative;
+  margin: 0;
+}
+
+.murals-portrait__inner {
+  position: relative;
+  display: block;
+  line-height: 0;
+  animation: muralsFloatA 13s ease-in-out infinite;
+  will-change: transform;
+}
+
+.murals-portrait--sub .murals-portrait__inner {
+  animation-name: muralsFloatB;
+  animation-duration: 16s;
+}
+
+.murals-portrait--alt .murals-portrait__inner {
+  animation-name: muralsFloatA;
+  animation-duration: 14.5s;
+}
+
+/* Soft, diffuse ambient bloom — a teal whisper of light, no hard ring. */
+.murals-portrait__inner::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    color-mix(in srgb, var(--color-text-teal) 22%, transparent),
+    transparent 70%);
+  filter: blur(15px);
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.murals-portrait img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: clamp(104px, 13vw, 158px);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-text-light) 12%, transparent),
+    0 2px 10px color-mix(in srgb, var(--color-bg) 20%, transparent),
+    0 18px 44px color-mix(in srgb, var(--color-bg) 24%, transparent);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Gentle size hierarchy — the lead shot reads a touch larger. */
+.murals-portrait--lead img { width: clamp(120px, 15vw, 184px); }
+
+.murals-portrait:hover .murals-portrait__inner { animation-play-state: paused; }
+.murals-portrait:hover img { transform: scale(1.03); }
+
+/* Teal cue drifting down beneath the action shot — no text. Only on wide
+   screens, where the three circles sit on one row, so it can't land on a
+   wrapped circle below. */
+.murals-portrait-cue { display: none; }
+
+@media (min-width: 992px) {
+  /* Feed paints above the cream section so the bleeding circle sits on top. */
+  .murals-feed { position: relative; z-index: 1; }
+  .murals-hero { position: relative; z-index: 0; }
+
+  /* Stretch the intro to the feed's full height and pin the cluster to the
+     bottom of it — copy stays up top with lots of breathing room, circles
+     drop to the bottom edge where the middle one can bleed into the section
+     below the fold. */
+  .murals-feed-layout { align-items: stretch; }
+  .murals-feed-intro { display: flex; flex-direction: column; }
+
+  /* Organic cluster: a touch of overlap + a gentle vertical stagger so the
+     three circles feel hand-placed. Stagger lives on the figure; the float
+     animation on __inner composes on top. */
+  .murals-feed-portraits {
+    gap: 0;
+    flex-wrap: nowrap;
+    margin-top: auto;
+  }
+
+  .murals-portrait--lead { transform: translateY(calc(-1 * var(--space-md))); z-index: 3; }
+  .murals-portrait--sub  {
+    margin-left: calc(-1 * var(--space-md));
+    /* dips lowest and bleeds across the boundary into the cream below */
+    transform: translateY(9.5rem);
+    z-index: 2;
+  }
+  .murals-portrait--alt  {
+    margin-left: calc(-1 * var(--space-md));
+    transform: translateY(calc(-1 * var(--space-xs)));
+    z-index: 1;
+  }
+
+  .murals-portrait--sub .murals-portrait-cue {
+    display: block;
+    position: absolute;
+    top: calc(100% + var(--space-sm));
+    left: 50%;
+    width: 1px;
+    height: 32px;
+    transform: translateX(-50%);
+    overflow: hidden;
+    background: color-mix(in srgb, var(--color-text-light) 14%, transparent);
+    pointer-events: none;
+  }
+
+  .murals-portrait--sub .murals-portrait-cue::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to bottom,
+      transparent,
+      color-mix(in srgb, var(--color-text-teal) 85%, transparent));
+    animation: muralsCueDrift 2.6s ease-in-out infinite;
+  }
+}
+
+@keyframes muralsCueDrift {
+  0%   { transform: translateY(-110%); opacity: 0; }
+  30%  { opacity: 1; }
+  100% { transform: translateY(245%);  opacity: 0; }
+}
+
+/* Quiet vertical drift only — no rotation, so the circles read as gently
+   suspended rather than bobbing. */
+@keyframes muralsFloatA {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+@keyframes muralsFloatB {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-7px); }
+}
+
+/* Masked viewport the track scrolls through — soft fade top & bottom. */
+.murals-feed-viewport {
+  flex: 0 0 380px;
+  max-width: 380px;
+  height: 80vh;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+}
+
+.murals-feed-track {
+  animation: muralsFeedScroll 120s linear infinite;
+}
+
+.murals-social {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* margin (not flex gap) keeps the loop seam at exactly -50% */
+  margin: 0 0 var(--space-lg);
+  border-radius: 14px;
+}
+
+/* Track holds two identical image sets; -50% lands on the seam cleanly. */
+@keyframes muralsFeedScroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .murals-feed-track,
+  .murals-portrait__inner,
+  .murals-portrait-cue::before { animation: none; }
+  .embossed-nav .top-nav .nav-links .link { transition: none; }
+}
+
+/* ── Murals responsive ──────────────────────────────────────── */
+@media (max-width: 991px) {
+  .murals-gallery { column-count: 2; }
+}
+
+@media (max-width: 767px) {
+  /* Feed stacks: heading on top, single full-width scrolling column. */
+  .murals-feed-layout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .murals-feed-intro { position: static; }
+
+  .murals-feed .murals-section-label,
+  .murals-feed .murals-section-sub { text-align: center; }
+
+  .murals-feed-viewport {
+    flex-basis: auto;
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    height: 70vh;
+  }
+}
+
+@media (max-width: 575px) {
+  .murals-gallery {
+    column-count: 1;
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+
+  /* captions are tap-unfriendly on mobile — keep them always visible */
+  .murals-gallery .murals-caption {
+    opacity: 1;
+    transform: none;
+  }
 }

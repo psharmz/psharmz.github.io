@@ -9,15 +9,14 @@ function MobileFooter() {
             <img alt="work" src="img/work.jpg" width="140px" />
           </a>
         </span>
+        <span className="link murals-link">
+          <a href="murals.html" className="nav-label">Murals</a>
+        </span>
         <span className="link email-link">
-          <a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top">
-            <img alt="email" src="img/email.jpg" width="105px" />
-          </a>
+          <a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top" className="nav-label">Email</a>
         </span>
         <span className="link resume">
-          <a href="parul_resume.pdf" target="_blank">
-            <img alt="resume" src="img/resume.jpg" width="150px" />
-          </a>
+          <a href="parul_resume.pdf" target="_blank" className="nav-label">Resume</a>
         </span>
       </div>
     </nav>

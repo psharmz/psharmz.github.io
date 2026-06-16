@@ -22,7 +22,9 @@
   <link rel="stylesheet" type="text/css" href="css/header.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="css/project.css">
-  
+
+  <!-- Reusable Navigation Component -->
+  <script src="js/nav-component.js"></script>
 
   <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
   <script type='text/javascript' src='unitegallery/themes/tiles/ug-theme-tiles.js'></script>
@@ -33,34 +35,8 @@
 
 </head>
 
-    <body>
-        <!-- Navigation Bar -->
-        <nav class="top-nav">
-            <div class="nav-links">
-                <span class="link work-link">
-                    <a href="/#work">
-                        <img alt="work" src="img/work.jpg" width="140px" />
-                    </a>
-                </span>
-                <span class="link email-link">
-                    <a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top">
-                        <img alt="email" src="img/email.jpg" width="105px" />
-                    </a>
-                </span>
-                <span class="link resume">
-                    <a href="parul_resume.pdf" target="_blank">
-                        <img alt="resume" src="img/resume.jpg" width="150px" />
-                    </a>
-                </span>
-            </div>
-        </nav>
-
-        <!-- Profile image in top left -->
-        <div class="work-header">
-            <button onclick="window.location.href='/'" class="back-to-top">
-                <img alt="profile" src="img/p.svg" width="60px" class="profile-logo" />
-            </button>
-        </div>
+    <body class="embossed-nav">
+        <!-- Nav + brand mark are injected by js/nav-component.js -->
 
         <div class="page-content">
 

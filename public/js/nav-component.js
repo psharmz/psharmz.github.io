@@ -1,129 +1,47 @@
-// Reusable Navigation Component
+// Reusable embossed navigation — the single source of truth for the nav
+// markup across every static project page. All styling lives in
+// css/project.css under `.embossed-nav`; the mobile hamburger is built by
+// js/project.js (which clones .nav-links after this injects it).
 function createNavigation() {
+    // Omit the link that points at the page we're already on (e.g. no
+    // "Murals" link while viewing murals.html).
+    var path = window.location.pathname;
+    var onMurals = /(^|\/)murals\.html$/.test(path);
+    var muralsLink = onMurals
+        ? ''
+        : '<span class="link murals-link"><a href="murals.html">Murals</a></span>';
+
     return `
-        <!-- Navigation Bar -->
         <nav class="top-nav">
             <div class="nav-links">
-                <span class="link work-link">
-                    <a href="/#work">
-                        <img alt="work" src="img/work.jpg" width="140px" />
+                <span class="link brand-link">
+                    <a href="/">
+                        <img src="img/p.svg" alt="Parul" />
+                        <span class="brand-link-name">Parul</span>
                     </a>
                 </span>
-                <span class="link email-link">
-                    <a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top">  
-                        <img alt="email" src="img/email.jpg" width="105px" /> 
-                    </a>     
-                </span>
-                <span class="link resume">
-                    <a href="parul_resume.pdf" target="_blank">
-                        <img alt="resume" src="img/resume.jpg" width="150px" />
-                    </a>
-                </span>
+                <span class="link work-link"><a href="/#work">Work</a></span>
+                ${muralsLink}
+                <span class="link email-link"><a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top">Email</a></span>
+                <span class="link resume"><a href="parul_resume.pdf" target="_blank">Resume</a></span>
             </div>
         </nav>
 
-        <!-- Profile image in top left -->
         <div class="work-header">
             <button onclick="window.location.href='/'" class="back-to-top">
                 <img alt="profile" src="img/p.svg" width="60px" class="profile-logo" />
             </button>
+            <span class="murals-brand">Parul</span>
         </div>
     `;
 }
 
-function getNavigationCSS() {
-    return `
-        <style>
-            .top-nav {
-                position: fixed;
-                top: 0;
-                width: 100%;
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(10px);
-                z-index: 1000;
-                padding: 1rem 2rem;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            }
-
-            .nav-links {
-                display: flex;
-                justify-content: center;
-                gap: 2rem;
-                align-items: center;
-            }
-
-            .link {
-                transition: all 0.3s ease;
-            }
-
-            .work-link:hover {
-                transform: translateY(-5px) scale(1.3) rotate(-5deg);
-            }
-
-            .link.email-link {
-                transition: transform 0.3s ease;
-            }
-
-            .email-link:hover {
-                transform: translateY(-5px) scale(1.3) rotate(5deg);
-            }
-
-            .link.resume {
-                transition: transform 0.3s ease;
-            }
-
-            .resume:hover {
-                transform: translateY(-5px) scale(1.3) rotate(-3deg);
-            }
-
-            .work-header {
-                position: fixed;
-                top: 1rem;
-                left: 1rem;
-                z-index: 1001;
-            }
-
-            .back-to-top {
-                background: none;
-                border: none;
-                cursor: pointer;
-                transition: transform 0.3s ease;
-                border-radius: 50%;
-                padding: 0.5rem;
-                background: rgba(255, 255, 255, 0.9);
-                backdrop-filter: blur(10px);
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            }
-
-            .back-to-top:hover {
-                transform: scale(1.1);
-            }
-
-            .profile-logo {
-                border-radius: 50%;
-                width: 60px !important;
-                height: 60px;
-                object-fit: cover;
-            }
-
-            .page-content {
-            }
-
-            /* Mobile nav (hamburger + full-page overlay) is handled by
-               css/project.css and js/project.js, same as every other
-               project page. No mobile overrides here. */
-        </style>
-    `;
-}
-
-// Function to inject navigation into a page
+// Inject the nav and flag the page so the `.embossed-nav` styles apply.
 function injectNavigation() {
-    // Add CSS to head
-    document.head.insertAdjacentHTML('beforeend', getNavigationCSS());
-    
-    // Add navigation HTML to body (after opening body tag)
+    document.body.classList.add('embossed-nav');
     document.body.insertAdjacentHTML('afterbegin', createNavigation());
 }
 
-// Auto-inject when script loads
+// Runs before js/project.js (loaded at body end) so the hamburger has a
+// .nav-links to clone.
 document.addEventListener('DOMContentLoaded', injectNavigation);
