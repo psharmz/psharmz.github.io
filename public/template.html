@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="Case study — Parul Sharma.">
+  <meta name="author" content="Parul Sharma">
+
+  <title>Parul Sharma — Case Study</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="css/header.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/project.css">
+  <link rel="stylesheet" type="text/css" href="css/template.css">
+
+  <!-- Reusable Navigation Component (injects the embossed nav + brand mark) -->
+  <script src="js/nav-component.js"></script>
+</head>
+
+  <body class="template-page embossed-nav">
+
+    <!-- Nav + brand mark are injected by js/nav-component.js -->
+
+    <div class="page-content">
+
+      <!-- ════════════════════════════════════════════════════════
+           HERO  — logo slot · eyebrow · title · summary · meta
+           Dark canvas so the white body panel can overlap it.
+           ════════════════════════════════════════════════════════ -->
+      <header class="cs-hero">
+        <div class="cs-container">
+
+          <!-- PER-CASE-STUDY LOGO / CLIENT MARK — swap src per project -->
+          <img class="cs-hero__logo"
+               src="https://picsum.photos/seed/cs-logo/144/144"
+               alt="Project logo">
+
+          <p class="cs-eyebrow">Case Study · 2024</p>
+
+          <h1 class="cs-hero__title">A short, confident project title</h1>
+
+          <p class="cs-hero__summary">
+            One or two sentences that frame the work — the product, the
+            audience, and the <span class="accent">outcome</span> that
+            mattered. Keep it tight and human.
+          </p>
+
+          <!-- META ROW — Role / Timeline / Team / Platform -->
+          <div class="cs-hero__meta">
+            <div class="cs-meta">
+              <span class="cs-meta__label">Role</span>
+              <span class="cs-meta__value">Lead Product Designer</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Timeline</span>
+              <span class="cs-meta__value">Jan – Jun 2024</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Team</span>
+              <span class="cs-meta__value">2 Designers · 4 Engineers</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Platform</span>
+              <span class="cs-meta__value">Web · iOS</span>
+            </div>
+          </div>
+
+          <span class="cs-hero__cue" aria-hidden="true"></span>
+        </div>
+      </header>
+
+
+      <!-- ════════════════════════════════════════════════════════
+           BODY  — white panel that lifts over the hero
+           ════════════════════════════════════════════════════════ -->
+      <main class="cs-body">
+
+        <!-- ── 1 · OVERVIEW — sticky heading left, copy + image right ── -->
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Overview</p>
+              <h2 class="cs-heading">What this project set out to do</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                Open with the context. What's the product, who uses it, and
+                what was happening that made this work worth doing? Keep the
+                reading column narrow so it stays comfortable on a wide screen.
+              </p>
+              <p class="cs-text">
+                A second paragraph can add the business framing or the
+                constraints the team was working within. Highlight a
+                <span class="accent">key phrase</span> sparingly with the
+                teal accent.
+              </p>
+              <figure class="cs-figure">
+                <!-- INSET IMAGE — sits within the reading column -->
+                <img src="https://picsum.photos/seed/cs-overview/1280/860"
+                     alt="Overview screenshot" loading="lazy">
+              </figure>
+              <figcaption class="cs-caption">A caption describing the screen above.</figcaption>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── FULL-BLEED PARALLAX BAND ── -->
+        <figure class="cs-figure cs-fullbleed">
+          <!-- FULL-BLEED IMAGE — edge to edge, gentle parallax on scroll -->
+          <img class="cs-parallax__img"
+               src="https://picsum.photos/seed/cs-band1/2000/1200"
+               alt="A wide showcase image" loading="lazy">
+        </figure>
+
+
+        <!-- ── 2 · THE PROBLEM — center-stacked breath ── -->
+        <section class="cs-section cs-center">
+          <div class="cs-container">
+            <p class="cs-eyebrow">The Problem</p>
+            <h2 class="cs-heading">Frame the core tension in one line</h2>
+            <p class="cs-lead">
+              A pulled-out statement that captures the problem with weight —
+              the kind of sentence you'd put on a slide.
+            </p>
+            <p class="cs-text">
+              Then a short paragraph of supporting detail. Center-stacked
+              sections give the eye a rest between the denser split sections.
+            </p>
+          </div>
+        </section>
+
+
+        <!-- ── 3 · PROCESS — sticky heading + a pair of images ── -->
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Process</p>
+              <h2 class="cs-heading">How the team explored the space</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                Walk through research, sketches, or the key decisions. Use the
+                side-by-side pair below for before/after or two explorations.
+              </p>
+              <!-- SIDE-BY-SIDE PAIR — stacks on mobile -->
+              <div class="cs-pair">
+                <figure class="cs-figure">
+                  <img src="https://picsum.photos/seed/cs-process-a/900/1100"
+                       alt="Exploration A" loading="lazy">
+                </figure>
+                <figure class="cs-figure">
+                  <img src="https://picsum.photos/seed/cs-process-b/900/1100"
+                       alt="Exploration B" loading="lazy">
+                </figure>
+              </div>
+              <p class="cs-text">
+                A closing thought on what the exploration revealed and the
+                direction it pointed to.
+              </p>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── FULL-BLEED PARALLAX BAND ── -->
+        <figure class="cs-figure cs-fullbleed">
+          <img class="cs-parallax__img"
+               src="https://picsum.photos/seed/cs-band2/2000/1200"
+               alt="A second wide showcase image" loading="lazy">
+        </figure>
+
+
+        <!-- ── 4 · THE SOLUTION — sticky heading + stacked figures ── -->
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">The Solution</p>
+              <h2 class="cs-heading">What we shipped, and why it works</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                Describe the final design. Lead with the most important screen,
+                then layer in the supporting flows underneath it.
+              </p>
+              <figure class="cs-figure">
+                <img src="https://picsum.photos/seed/cs-solution-1/1280/860"
+                     alt="Final design — primary screen" loading="lazy">
+              </figure>
+              <figure class="cs-figure">
+                <img src="https://picsum.photos/seed/cs-solution-2/1280/860"
+                     alt="Final design — secondary screen" loading="lazy">
+              </figure>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── 5 · OUTCOME / IMPACT — center-stacked metrics ── -->
+        <section class="cs-section cs-center">
+          <div class="cs-container">
+            <p class="cs-eyebrow">Outcome</p>
+            <h2 class="cs-heading">The impact, in numbers</h2>
+            <p class="cs-text">
+              A sentence of context for the metrics — the timeframe and how
+              they were measured.
+            </p>
+            <div class="cs-metrics">
+              <div class="cs-metric">
+                <span class="cs-metric__num">+38%</span>
+                <span class="cs-metric__label">Task completion</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric__num">2.1×</span>
+                <span class="cs-metric__label">Weekly active use</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric__num">4.7★</span>
+                <span class="cs-metric__label">App store rating</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── CLOSING / NEXT PROJECT ── -->
+        <section class="cs-closing">
+          <div class="cs-container">
+            <span class="cs-next__kicker">Next project</span>
+            <a class="cs-next" href="/#work">See more work →</a>
+          </div>
+        </section>
+
+      </main>
+
+    </div><!-- /.page-content -->
+
+
+    <!-- ScrollReveal for section reveals -->
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+    <!-- Shared nav hamburger + back-to-top -->
+    <script src="js/project.js"></script>
+
+    <script>
+      var allowsMotion = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+
+      // ── Scroll reveal — same easing/feel as the project pages ──
+      if (typeof ScrollReveal !== 'undefined' && allowsMotion) {
+        var sr = ScrollReveal({
+          distance: '28px', duration: 1000,
+          easing: 'cubic-bezier(0.16, 1, 0.3, 1)', opacity: 0, reset: false,
+        });
+        sr.reveal('.cs-eyebrow',  { origin: 'bottom', distance: '16px' });
+        sr.reveal('.cs-heading',  { origin: 'bottom', distance: '24px', interval: 80 });
+        sr.reveal('.cs-lead, .cs-text', { origin: 'bottom', distance: '16px', delay: 80, interval: 60 });
+        sr.reveal('.cs-figure, .cs-pair > .cs-figure', { origin: 'bottom', distance: '40px', delay: 120, interval: 120 });
+        sr.reveal('.cs-metric', { origin: 'bottom', interval: 100 });
+      }
+
+      // ── Subtle parallax on full-bleed bands (Apple-restrained) ──
+      if (allowsMotion) {
+        var bands = Array.prototype.slice.call(document.querySelectorAll('.cs-parallax__img'));
+        var ticking = false;
+        function updateParallax() {
+          var vh = window.innerHeight;
+          bands.forEach(function (img) {
+            var rect = img.parentElement.getBoundingClientRect();
+            if (rect.bottom < 0 || rect.top > vh) return;          // off-screen — skip
+            var progress = (rect.top + rect.height / 2 - vh / 2) / vh; // ~ -1 … 1
+            img.style.transform = 'translateY(' + (progress * 14) + '%)';
+          });
+          ticking = false;
+        }
+        function onScroll() {
+          if (!ticking) { window.requestAnimationFrame(updateParallax); ticking = true; }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', updateParallax);
+        updateParallax();
+      }
+    </script>
+  </body>
+</html>

@@ -5,152 +5,575 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Rasa Platform case study — designing and building a React web app that let non-engineers train enterprise chatbots, cutting handoff and training time by 40%.">
+  <meta name="author" content="Parul Sharma">
 
-  <title>Parul Sharma</title>
+  <title>Parul Sharma — Rasa Platform Case Study</title>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,600&display=swap" rel="stylesheet">
 
-  
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/header.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="css/project.css">
+  <link rel="stylesheet" type="text/css" href="css/template.css">
 
-  <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-  <script type='text/javascript' src='unitegallery/themes/tiles/ug-theme-tiles.js'></script>
-  <link rel='stylesheet' href='unitegallery/themes/default/ug-theme-default.css' type='text/css' /> 
-  <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
-  <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
+  <!-- Page-scoped tweaks: brand logo treatment, the "How Might We" list,
+       and the small concept tag-row. All colours pull from the tokens. -->
+  <style>
+    /* Rasa wordmark sits on a white rounded tile so the purple reads on black. */
+    .rasa-page .cs-hero__logo {
+      width: auto;
+      height: 60px;
+      padding: 12px 18px;
+      background: #fff;
+      border-radius: 16px;
+      object-fit: contain;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+    }
 
-  <!-- Reusable Navigation Component -->
+    /* How-Might-We — five teal circles, the full question inside each. They
+       sit in a row on desktop, 3-over-2 on tablets, and stack one-per-row
+       (alternating left / right) on phones. Each circle gently pulses, with a
+       soft teal-tinted drop shadow echoing the murals-page circles. */
+    /* Grid sets how many circles per row; the circle itself is sized with an
+       explicit diameter (--cq-d) so width AND height are real lengths — no
+       aspect-ratio / percentage tricks (which refuse to set height inside grid
+       or flex items), so the circles are true squares and never overlap. */
+    .rasa-page .cs-questions {
+      --cq-d: clamp(190px, 64vw, 260px);     /* phones */
+      list-style: none;
+      margin: 0 auto;
+      padding: calc(var(--space-xl) * 2) clamp(20px, 6vw, 60px) 0;
+      max-width: 1180px;
+      display: grid;
+      grid-template-columns: 1fr;            /* phones: one per row */
+      gap: clamp(1.75rem, 6vw, 2.25rem);
+      justify-items: center;
+    }
+    .rasa-page .cs-questions li {
+      width: var(--cq-d);
+      height: var(--cq-d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.4em;
+      border-radius: 50%;
+      background: var(--color-accent);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: clamp(14px, 1.15vw, 18px);
+      line-height: 1.32;
+      box-shadow:
+        0 2px 10px color-mix(in srgb, var(--color-text-primary) 14%, transparent),
+        0 16px 34px color-mix(in srgb, var(--color-accent) 38%, transparent);
+      animation: csQPulse 6s ease-in-out infinite;
+      will-change: transform;
+    }
+    /* Phones: alternate left / right so the column zig-zags. */
+    .rasa-page .cs-questions li:nth-child(odd)  { justify-self: start; }
+    .rasa-page .cs-questions li:nth-child(even) { justify-self: end; }
+    /* Stagger so the circles don't pulse in unison. */
+    .rasa-page .cs-questions li:nth-child(2) { animation-duration: 7s;   animation-delay: -1.5s; }
+    .rasa-page .cs-questions li:nth-child(3) { animation-duration: 6.5s; animation-delay: -3s; }
+    .rasa-page .cs-questions li:nth-child(4) { animation-duration: 7.5s; animation-delay: -2s; }
+    .rasa-page .cs-questions li:nth-child(5) { animation-duration: 6.2s; animation-delay: -4s; }
+
+    /* Tablet / iPad: six tracks so each circle spans two — three on top, then
+       the last two centered below (cols 2–3 and 4–5). */
+    @media (min-width: 600px) {
+      .rasa-page .cs-questions {
+        --cq-d: clamp(150px, 24vw, 220px);
+        grid-template-columns: repeat(6, 1fr);
+        gap: clamp(1.25rem, 3vw, 1.75rem);
+      }
+      .rasa-page .cs-questions li {
+        justify-self: center;
+        grid-column: span 2;
+      }
+      .rasa-page .cs-questions li:nth-child(4) { grid-column: 2 / span 2; }
+      .rasa-page .cs-questions li:nth-child(5) { grid-column: 4 / span 2; }
+    }
+    /* Desktop: all five side by side. */
+    @media (min-width: 1025px) {
+      .rasa-page .cs-questions {
+        --cq-d: clamp(150px, 15vw, 200px);
+        grid-template-columns: repeat(5, 1fr);
+      }
+      .rasa-page .cs-questions li,
+      .rasa-page .cs-questions li:nth-child(4),
+      .rasa-page .cs-questions li:nth-child(5) { grid-column: auto; }
+    }
+
+    @keyframes csQPulse {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%      { transform: translateY(-5px) scale(1.035); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .rasa-page .cs-questions li { animation: none; }
+    }
+
+    /* A subtle black border on the low-fi wireframe so it reads as a frame. */
+    .rasa-page .cs-figure--framed { border: 1px solid var(--color-text-primary); }
+
+    /* ── Full-width auto-toggling workflow block ── */
+    .rasa-page .cs-flow {
+      padding-block: clamp(2.5rem, 6vw, 4.5rem);
+    }
+    .rasa-page .cs-flow__head {
+      display: flex;
+      justify-content: center;
+      margin-bottom: var(--space-lg);
+    }
+    .rasa-page .cs-flow__fig {
+      position: relative;
+      width: 100%;        /* .cs-body is full viewport width — true full-bleed */
+      margin: 0;
+    }
+    .rasa-page .cs-flow__cap {
+      text-align: center;
+      max-width: 64ch;
+      margin: var(--space-md) auto 0;
+    }
+
+    /* ── Before/after segmented toggle ── */
+    .rasa-page .cs-toggle {
+      display: inline-flex;
+      gap: 0.25rem;
+      margin: clamp(2rem, 5vw, 3rem) 0 var(--space-md);
+      padding: 0.3rem;
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 999px;
+    }
+    .rasa-page .cs-toggle__btn {
+      font-family: var(--font-heading);
+      font-size: var(--type-label);
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.04em;
+      color: var(--color-text-secondary);
+      background: transparent;
+      border: 0;
+      border-radius: 999px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: background var(--motion-fast) var(--ease-standard),
+                  color var(--motion-fast) var(--ease-standard);
+    }
+    .rasa-page .cs-toggle__btn.is-active {
+      background: var(--color-accent);
+      color: #fff;
+    }
+    .rasa-page .cs-toggle__btn:not(.is-active):hover { color: var(--color-text-primary); }
+
+    /* Stacked toggle images — full width, fully visible (no crop), cross-fade. */
+    .rasa-page .cs-flow__fig .cs-toggle__img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: opacity 0.5s var(--ease-standard);
+    }
+    .rasa-page .cs-flow__fig .cs-toggle__img:not(.is-active) {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .rasa-page .cs-flow__fig .cs-toggle__img { transition: none; }
+    }
+
+    /* Small role/concept tags shown under the overview. */
+    .rasa-page .cs-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .rasa-page .cs-tag {
+      font-family: var(--font-heading);
+      font-size: var(--type-label);
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-teal);
+      border: 1px solid rgba(0, 191, 165, 0.4);
+      border-radius: 999px;
+      padding: 0.4rem 0.85rem;
+    }
+  </style>
+
+  <!-- Reusable Navigation Component (injects the embossed nav + brand mark) -->
   <script src="js/nav-component.js"></script>
-
 </head>
 
-    <body class="embossed-nav">
+  <body class="template-page rasa-page embossed-nav">
 
-        <div class="page-content">
+    <!-- Nav + brand mark are injected by js/nav-component.js -->
 
-          <div class="prj-header">
- 
-            <img src="img/headers/rasa_logo.png" width="20%" alt="rasa header Image"/>
-            <p> Rasa aims to empower non-engineers to <span class=”accent”>train chatbots</span> by correcting their mistakes and reviewing their accuracy. As a <span class=”accent”>solo</span> “ux minded” <span class=”accent”>front-end engineer</span>, I built a react web app to do this. Working on the UX in this project cemented my interest and inspired me to make the career pivot from engineer to designer. </p> 
+    <div class="page-content">
 
-        </div>
+      <!-- ════════════════════════════════════════════════════════
+           HERO
+           ════════════════════════════════════════════════════════ -->
+      <header class="cs-hero">
+        <div class="cs-container">
 
+          <img class="cs-hero__logo" src="img/headers/rasa_logo.png" alt="Rasa logo">
 
-      <!-- display the project INFO -->
+          <p class="cs-eyebrow">Case Study · Rasa · 2017–2018, Berlin</p>
 
-      <div class="container-fluid project-info">
+          <h1 class="cs-hero__title">Letting non-engineers train chatbots</h1>
 
+          <p class="cs-hero__summary">
+            Rasa Platform is an ML-Ops tool for building and training enterprise
+            chatbots — pre-ChatGPT. As the <span class="accent">solo front-end
+            engineer</span>, I researched, designed, and shipped the React web app
+            that <span class="accent">cut handoff and training time by 40%</span>
+            and helped Rasa pivot from services to a product company.
+          </p>
 
-        <div class="row">
-
-          <h2 class="col-xs-12"> Impact </h2>
-
-          <p class="col-xs-12"> My work was pivotal for Rasa in making the switch from a professional services company to a product company. The product proved to cut down chatbot training time and increase collobaration between product managers and engineers. Since the first version of the application, Rasa now has enterprise subscriptions for the product and customers from indsutry verticals like insurances, banking, telecom and healthcare.  </p>
-
-
-        </div>
-
-        <div class="row">
-
-        <div class="row hideme">
-          <img src="img/rasa/rasa.gif" class="img-responsive col-xs-12 col-md-7" alt="research study">
-          <div class="proj-section-right col-xs-12 col-md-5">
-            <h2> Background </h2>
-            <p>  The final product vision was to build a tool that allows ease of collobaration between machine learning engineers and product owners or project managers while building a chatbot. While machine learning engineers build the technicial back-end of a chatbot, a non-technical person such as a project manager would be tasked with gathering the business requirements and then testing the bot to make sure the acceptance criteria is met. </p>
-          </div>
-        </div>
-
-        <div class="row">
-
-          <h2 class="col-xs-12"> Workshops </h2>
-
-          <p class="col-xs-12"> I flew to Berlin and led design workshops with engineers, product managers, and end users to gain a familiarity of who we were building for. Another key outcome of these workshops was having people of different backgrounds and roles talk to one another and gain understanding for how they view this new and green field of machine learning, chatbots, and AI. </p>
-          <img src="img/rasa/workshop.png" class="img-responsive col-xs-12 col-md-6">
-          <img src="img/rasa/workshop2.png" class="img-responsive col-xs-12 col-md-6">
-          <div class="col-md-12" id="gallery3" style="display:none;">
-            <img alt="" class="img-responsive col-xs-12 col-md-2" src="img/rasa/workshop3.png"
-            data-description="">
-            <img alt="" class="img-responsive col-xs-12 col-md-2" src="img/rasa/workshop4.png"
-            data-description="">
-            <img alt="" class="img-responsive col-xs-12 col-md-2" src="img/rasa/workshop5.png"
-            data-description="">
-            <img alt="" class="img-responsive col-xs-12 col-md-2" src="img/rasa/workshop6.png"
-            data-description="">
-            <img alt="" class="img-responsive col-xs-12 col-md-2" src="img/rasa/workshop7.png"
-            data-description="">
+          <!-- META ROW -->
+          <div class="cs-hero__meta">
+            <div class="cs-meta">
+              <span class="cs-meta__label">Role</span>
+              <span class="cs-meta__value">Solo Front-End Engineer (UX-minded)</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Timeline</span>
+              <span class="cs-meta__value">2017–2018 · Berlin</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Team</span>
+              <span class="cs-meta__value">Solo · with ML engineers &amp; PMs</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Platform</span>
+              <span class="cs-meta__value">React web app</span>
+            </div>
           </div>
 
-          <script type="text/javascript">
-
-            jQuery(document).ready(function($){
-              $("#gallery3").unitegallery(
-                {
-                  gallery_theme: "tiles",
-                  tiles_max_columns: 5, 
-                  tiles_space_between_cols: 5
-                });
-
-            });
-
-          </script>
-          
-          <h2 class="col-xs-12"> Identifying Pain Points </h2>
-
-          <p class="col-xs-12"> Everyone was excited and had a lot of feelings and ideas to share during the workshop, so much so that we ran out of time. We did a follow up where we identitied the current user journey of making a chatbot, from the perspective of an engineer as well as a product manager. </p>
-
-          <img src="img/painpoints.svg" class="img-responsive col-xs-12" >
-
-          <h2 class="col-xs-12"> Reccomended User Journey </h2>
-
-          <p class="col-xs-12"> I then converted these painpoints into opportunites of where the web application Rasa X could fill the gaps. I presented my reccomendations to key stakeholders and included engineers to understand feasibility of the new approach.  </p>
-
-          <img src="img/rasa/user_journey.png" class="img-responsive col-xs-12" >
-
-          <h2 class="col-xs-12"> Wireframes </h2>
-
-          <p class="col-xs-12"> Once we decided on a user journey and process flow, it was rounds and round of low fidelity wireframing. Design reviews were conducted with head of engineering, business, and end users. </p>
-
-          <img src="img/rasa/art_board.png" class="img-responsive col-xs-12" >
-          <img src="img/rasa/wireframe.png" class="img-responsive col-xs-12" >
-
-          <h2 class="col-xs-12"> Screenshots of the App </h2>
-
-          <p class="col-xs-12"> Due to my innumerable design and development responsibilities and pressure to meet tight deadlines, I did not create any hi-fidelity mockups at Rasa. I did the discovery phase of understanding the user, low fidelity wireframing, and then went straight to coding. Here are some screenshots of the final build. </p>
-
-          <img src="img/rasa/rasa_platform2.png" class="img-responsive col-xs-12 col-md-6" >
-          <img src="img/rasa/rasa_platform3.png" class="img-responsive col-xs-12 col-md-6" >
-
-
-
-          
+          <span class="cs-hero__cue" aria-hidden="true"></span>
         </div>
-      </div>
+      </header>
 
-    </div>
-    
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
-    <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
+      <!-- ════════════════════════════════════════════════════════
+           BODY
+           ════════════════════════════════════════════════════════ -->
+      <main class="cs-body">
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-  <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
-  <script src="js/project.js"></script>
-</body>
-  </html>
+        <!-- ── 1 · OVERVIEW ── -->
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Overview</p>
+              <h2 class="cs-heading">What is Rasa Platform?</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                An ML-Ops platform for enterprise chatbots, built in 2017 — years
+                before ChatGPT. Teams used it to design conversation flows,
+                annotate and train NLU data, test the bot, and ship it. The
+                closest tool today is <span class="accent">Weights &amp; Biases'
+                Weave</span> for LLMs.
+              </p>
+              <p class="cs-text">
+                The vision: let machine-learning engineers and non-technical
+                project owners build a chatbot <span class="accent">together</span>,
+                in one shared tool — instead of lobbing files back and forth.
+              </p>
+              <figure class="cs-figure">
+                <img src="img/rasa/rasa.gif"
+                     alt="Rasa Platform reviewing and correcting a bot's predictions" loading="lazy">
+              </figure>
+              <figcaption class="cs-caption">Rasa Platform — reviewing and correcting the bot's predictions, with confidence scores.</figcaption>
+
+              <div class="cs-tags" aria-label="Core concepts">
+                <span class="cs-tag">Stories</span>
+                <span class="cs-tag">Traces</span>
+                <span class="cs-tag">Confidence Scores</span>
+                <span class="cs-tag">NLU Training</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── FULL-BLEED BAND ── -->
+        <figure class="cs-figure cs-fullbleed">
+          <img class="cs-parallax__img"
+               src="img/rasa/rasa_platform3.png"
+               alt="The Rasa Platform web app" loading="lazy">
+        </figure>
+
+
+        <!-- ── 2 · THE PROBLEM ── -->
+        <section class="cs-section cs-center">
+          <div class="cs-container">
+            <p class="cs-eyebrow">The Problem</p>
+            <h2 class="cs-heading">Two very different users, one bot</h2>
+            <p class="cs-text">
+              Building a chatbot split the work between a machine-learning
+              developer and a non-technical project owner — two people who barely
+              shared a workflow. The handoff was slow, and no one could see how
+              well the bot was performing. I framed the work as five questions:
+            </p>
+          </div>
+
+          <ul class="cs-questions">
+            <li><span>Make debugging training data easier?</span></li>
+            <li><span>Make annotating data less tedious?</span></li>
+            <li><span>Show how good the bot really is?</span></li>
+            <li><span>Smooth dev–PM collaboration?</span></li>
+            <li><span>Make deploying changes easier?</span></li>
+          </ul>
+        </section>
+
+
+        <!-- ── 3 · PROCESS ── -->
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Process</p>
+              <h2 class="cs-heading">Workshops → personas → a shared journey</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                I led design workshops with developers, project owners, and end
+                users to learn how each saw chatbot creation. Getting different
+                roles in one room to hear each other was itself a win — it sparked
+                a real <span class="accent">culture shift</span>.
+              </p>
+              <!-- SIDE-BY-SIDE PAIR — workshop photos -->
+              <div class="cs-pair">
+                <figure class="cs-figure">
+                  <img src="img/rasa/workshop.png" alt="Design workshop in Berlin" loading="lazy">
+                </figure>
+                <figure class="cs-figure">
+                  <img src="img/rasa/workshop2.png" alt="Workshop participants mapping workflows" loading="lazy">
+                </figure>
+              </div>
+              <p class="cs-text">
+                We mapped the current journey from both the engineer's and the
+                project owner's point of view, then turned each pain point into an
+                opportunity for the platform — sketching the end-to-end structure
+                and pressure-testing feasibility with engineers before designing.
+              </p>
+              <figure class="cs-figure">
+                <img src="img/rasa/art_board.png"
+                     alt="Early structural sketches mapping the end-to-end flow" loading="lazy">
+              </figure>
+              <figcaption class="cs-caption">Early structural sketches mapping the end-to-end flow.</figcaption>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── FULL-WIDTH AUTO-TOGGLE — current analog flow ⇄ where Rasa fits in ── -->
+        <section class="cs-flow" aria-label="Workflow: current flow vs. where Rasa fits in">
+          <div class="cs-container cs-flow__head">
+            <div class="cs-toggle" role="group" aria-label="Workflow view">
+              <button type="button" class="cs-toggle__btn is-active" aria-pressed="true" data-view="current">Current flow</button>
+              <button type="button" class="cs-toggle__btn" aria-pressed="false" data-view="rasa">Where Rasa fits in</button>
+            </div>
+          </div>
+          <figure class="cs-flow__fig">
+            <img class="cs-toggle__img is-active" data-view="current"
+                 src="img/rasa/Rasa.009.jpeg"
+                 alt="The current, analog chatbot-training workflow across developer and project owner">
+            <img class="cs-toggle__img" data-view="rasa"
+                 src="img/rasa/Rasa.010.jpeg"
+                 alt="The same workflow with opportunities for Rasa Platform highlighted in purple">
+          </figure>
+          <div class="cs-container">
+            <figcaption class="cs-caption cs-flow__cap">
+              The boxes in <span class="accent">purple</span> mark where we saw
+              opportunities in the current analog flow for Rasa Platform to step in
+              as an enterprise tooling product.
+            </figcaption>
+          </div>
+        </section>
+
+
+        <!-- ── 4 · THE SOLUTION ── -->
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">The Solution</p>
+              <h2 class="cs-heading">One streamlined, collaborative training loop</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                The redesign gave both users a single shared loop. The developer
+                builds and trains the bot, then shares it with a link. The project
+                owner chats to test it, flags a bad reply with an
+                <span class="accent">&ldquo;x&rdquo;</span>, and sends the full
+                conversation plus debug info back. The developer fixes it in
+                interactive learning and retrains — no more lossy handoffs.
+              </p>
+              <p class="cs-text">
+                I designed the NLU training queue (with confidence scores so
+                non-engineers can see exactly what to fix), the chat + debug
+                playground, and the train/share flow — then built it in React,
+                going straight from low-fi wireframes to production under tight
+                deadlines.
+              </p>
+              <figure class="cs-figure cs-figure--framed">
+                <img src="img/rasa/wireframe.png" alt="Low-fidelity wireframes for the platform" loading="lazy">
+              </figure>
+              <figcaption class="cs-caption">Low-fi wireframes, reviewed with engineering, business, and end users.</figcaption>
+              <figure class="cs-figure">
+                <img src="img/rasa/rasa_platform2.png" alt="NLU training queue with confidence scores" loading="lazy">
+              </figure>
+              <figcaption class="cs-caption">The NLU training queue — confidence scores guide non-technical PMs to the data that needs fixing.</figcaption>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── 5 · OUTCOME ── -->
+        <section class="cs-section cs-center">
+          <div class="cs-container">
+            <p class="cs-eyebrow">Outcome</p>
+            <h2 class="cs-heading">Impact &amp; outcomes</h2>
+            <p class="cs-text">
+              The work helped Rasa shift from a professional-services company —
+              designing bespoke bots per customer — to a repeatable,
+              <span class="accent">product-led</span> business with happy
+              customers.
+            </p>
+            <div class="cs-metrics">
+              <div class="cs-metric">
+                <span class="cs-metric__num">40%</span>
+                <span class="cs-metric__label">Less handoff &amp; training time</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric__num">Happy customers</span>
+                <span class="cs-metric__label">such as banking and insurance companies use it internally</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric__num">Culture shift</span>
+                <span class="cs-metric__label">The Berlin workshops moved Rasa from services to a product-led culture</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── 6 · REFLECTION / LEARNINGS ── -->
+        <section class="cs-section cs-center">
+          <div class="cs-container">
+            <p class="cs-eyebrow">Reflection</p>
+            <h2 class="cs-heading">What I'd build next</h2>
+            <p class="cs-text">
+              The biggest learning: <span class="accent">communicating how the ML
+              model performs is crucial to the business.</span> My next step would
+              be richer performance analytics — comparing confidence across intents,
+              surfacing best- and worst-performing intents, and tracking quality by
+              model version — so both customers and engineers always know how good
+              the bot is and how to make it better.
+            </p>
+            <p class="cs-text">
+              Working on the experience here is what cemented my interest in design
+              and sparked my pivot from engineer to designer.
+            </p>
+          </div>
+        </section>
+
+
+        <!-- ── CLOSING ── -->
+        <section class="cs-closing">
+          <div class="cs-container">
+            <span class="cs-next__kicker">Up next</span>
+            <a class="cs-next" href="teams.html">Microsoft →</a>
+          </div>
+        </section>
+
+      </main>
+
+    </div><!-- /.page-content -->
+
+
+    <!-- ScrollReveal for section reveals -->
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+    <!-- Shared nav hamburger + back-to-top -->
+    <script src="js/project.js"></script>
+
+    <script>
+      var allowsMotion = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+
+      // ── Scroll reveal — same easing/feel as the project pages ──
+      if (typeof ScrollReveal !== 'undefined' && allowsMotion) {
+        var sr = ScrollReveal({
+          distance: '28px', duration: 1000,
+          easing: 'cubic-bezier(0.16, 1, 0.3, 1)', opacity: 0, reset: false,
+        });
+        sr.reveal('.cs-eyebrow',  { origin: 'bottom', distance: '16px' });
+        sr.reveal('.cs-heading',  { origin: 'bottom', distance: '24px', interval: 80 });
+        sr.reveal('.cs-text, .cs-questions', { origin: 'bottom', distance: '16px', delay: 80, interval: 60 });
+        sr.reveal('.cs-figure, .cs-pair > .cs-figure', { origin: 'bottom', distance: '40px', delay: 120, interval: 120 });
+        sr.reveal('.cs-metric', { origin: 'bottom', interval: 100 });
+      }
+
+      // ── Workflow toggle — auto-cycles continuously between the two views so
+      //    the user never has to click. The buttons stay in sync as a legend
+      //    (and still work as manual jumps), but nothing pauses the cycle. ──
+      (function () {
+        var flow = document.querySelector('.cs-flow');
+        if (!flow) return;
+        var btns = flow.querySelectorAll('.cs-toggle__btn');
+        var imgs = flow.querySelectorAll('.cs-toggle__img');
+        var views = ['current', 'rasa'];
+        var i = 0;
+
+        function show(view) {
+          i = views.indexOf(view);
+          btns.forEach(function (b) {
+            var on = b.getAttribute('data-view') === view;
+            b.classList.toggle('is-active', on);
+            b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+          imgs.forEach(function (img) {
+            img.classList.toggle('is-active', img.getAttribute('data-view') === view);
+          });
+        }
+
+        btns.forEach(function (btn) {
+          btn.addEventListener('click', function () { show(btn.getAttribute('data-view')); });
+        });
+
+        // Always cycling — every 1.75s, regardless of hover or focus.
+        setInterval(function () {
+          show(views[(i + 1) % views.length]);
+        }, 1750);
+      })();
+
+      // ── Subtle parallax on full-bleed bands (Apple-restrained) ──
+      if (allowsMotion) {
+        var bands = Array.prototype.slice.call(document.querySelectorAll('.cs-parallax__img'));
+        var ticking = false;
+        function updateParallax() {
+          var vh = window.innerHeight;
+          bands.forEach(function (img) {
+            var rect = img.parentElement.getBoundingClientRect();
+            if (rect.bottom < 0 || rect.top > vh) return;          // off-screen — skip
+            var progress = (rect.top + rect.height / 2 - vh / 2) / vh; // ~ -1 … 1
+            img.style.transform = 'translateY(' + (progress * 14) + '%)';
+          });
+          ticking = false;
+        }
+        function onScroll() {
+          if (!ticking) { window.requestAnimationFrame(updateParallax); ticking = true; }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', updateParallax);
+        updateParallax();
+      }
+    </script>
+  </body>
+</html>

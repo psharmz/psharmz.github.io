@@ -60,7 +60,8 @@
   --type-headline:         28px;   /* MD3 Headline Medium — large section labels */
   --type-title-large:      24px;   /* 1.5rem equivalent   — matches homepage card titles */
   --type-hero:             clamp(20px, 2.5vw, 1.75rem); /* fluid — header blurb, 20px–28px */
-  --type-label:            13px;   /* MD3 Label Medium    — captions / meta      */
+  --type-label:            13px;   /* MD3 Label Medium    — eyebrows / overlines  */
+  --type-caption:          1.125rem; /* supporting text — image captions, metric labels */
 
   /* Rhythm */
   /* Weights */

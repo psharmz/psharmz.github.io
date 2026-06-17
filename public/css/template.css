@@ -1,0 +1,403 @@
+/* ============================================================
+   CASE-STUDY TEMPLATE — /template
+   A reusable case-study shell. All colour, type, spacing and
+   motion values come from the design tokens defined in
+   css/project.css (:root). Type sizes are tuned to match the
+   homepage (~25px body) and the murals intro (--type-hero).
+   Everything is scoped under .template-page so it can't leak
+   into the other project pages.
+   ============================================================ */
+
+.template-page {
+  background: #fff;
+  color: var(--color-text-primary);
+}
+
+/* Shared narrow container — body text never spans the full width. */
+.cs-container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-inline: clamp(var(--space-xl), 7vw, 7rem);
+}
+
+/* Small uppercase teal kicker that opens every section.
+   NB: Bootstrap 3 sets html{font-size:10px}, so type is sized in px
+   (matching the px-based --type-* tokens) — never rem — or it renders
+   half-size. */
+.cs-eyebrow {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-text-teal);
+  margin: 0 0 var(--space-lg);
+}
+
+/* Teal + bold highlight inside copy — same as .hero-blurb .accent
+   and .murals-statement strong on the homepage/murals page. */
+.template-page .accent {
+  color: var(--color-text-teal);
+  font-weight: 700;
+}
+
+
+/* ── HERO ─────────────────────────────────────────────────────
+   Full black header (matches .prj-header / the murals canvas) so
+   the white body panel can lift over it. */
+.cs-hero {
+  background: var(--color-bg);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(9rem, 20vh, 14rem) 0 clamp(5rem, 12vh, 8rem);
+  text-align: center;
+}
+
+.cs-hero .cs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Per-case-study logo / client mark. Swap the <img> src per project. */
+.cs-hero__logo {
+  width: 84px;
+  height: 84px;
+  border-radius: 18px;
+  object-fit: cover;
+  margin-bottom: var(--space-xl);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+/* Exactly the homepage "hi, i'm parul" treatment (.hero-greeting). */
+.cs-hero__title {
+  font-family: var(--font-heading);
+  font-size: var(--type-display);          /* 36px — same as "hi, i'm parul" */
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  color: #fff;
+  margin: 0 0 var(--space-md);
+  max-width: 24ch;
+}
+
+/* Exactly the homepage / murals body-paragraph treatment (.hero-blurb,
+   .murals-statement): Karla, --type-hero, regular weight, light on black. */
+.cs-hero__summary {
+  font-family: var(--font-body);
+  font-size: var(--type-hero);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-body);
+  color: var(--color-text-light);
+  max-width: 52ch;
+  margin: 0 auto;
+}
+
+/* Meta row: Role / Timeline / Team / Platform. */
+.cs-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(var(--space-xl), 5vw, 4rem);
+  margin-top: clamp(3rem, 7vh, 5rem);
+  padding-top: clamp(2rem, 4vh, 3rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.cs-meta__label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-teal);
+  margin-bottom: var(--space-sm);
+}
+
+.cs-meta__value {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 19px;
+  color: var(--color-text-light);
+}
+
+/* Quiet scroll cue at the foot of the hero. */
+.cs-hero__cue {
+  margin-top: clamp(3rem, 8vh, 5rem);
+  width: 28px;
+  height: 46px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  position: relative;
+}
+.cs-hero__cue::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 9px;
+  width: 3px;
+  height: 9px;
+  margin-left: -1.5px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.7);
+  animation: cs-cue 1.8s var(--ease-standard) infinite;
+}
+@keyframes cs-cue {
+  0%   { opacity: 0; transform: translateY(0); }
+  40%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(13px); }
+}
+
+
+/* ── BODY PANEL ───────────────────────────────────────────────
+   White panel that pulls up over the dark hero with the same
+   lifted-edge shadow used by .project-info, plus rounded top
+   corners for an Apple-ish soft edge. */
+.cs-body {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  margin-top: -32px;
+  border-radius: 32px 32px 0 0;
+  box-shadow: 0 -16px 48px rgba(0, 0, 0, 0.25);
+  padding-top: clamp(5rem, 11vw, 9rem);
+}
+
+/* Generous, even vertical rhythm between sections. */
+.cs-section {
+  padding-block: clamp(5rem, 11vw, 9rem);
+}
+
+
+/* ── SPLIT LAYOUT — sticky heading left, content right ───────── */
+.cs-split .cs-container {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  gap: clamp(var(--space-xl), 8vw, 7rem);
+  align-items: start;
+}
+
+.cs-split__aside {
+  position: sticky;
+  top: calc(var(--murals-nav-h) + var(--space-xl));
+}
+
+.cs-split__aside .cs-heading {
+  margin-top: 0;
+}
+
+/* Right column keeps a comfortable measure. */
+.cs-split__body {
+  max-width: 60ch;
+}
+
+
+/* ── CENTER-STACKED LAYOUT — narrow column, lots of air ──────── */
+.cs-center .cs-container {
+  max-width: 820px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cs-center .cs-text {
+  max-width: 56ch;
+}
+
+
+/* ── HEADINGS & COPY ─────────────────────────────────────────── */
+/* Section heading — MD3 Headline Medium, like .murals-section-label. */
+.cs-heading {
+  font-family: var(--font-heading);
+  font-size: var(--type-headline);         /* 28px */
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-title);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-lg);
+}
+
+/* Body copy — IDENTICAL to the murals intro / homepage about copy:
+   Karla, --type-hero, regular weight, secondary grey, 1.65 leading. */
+.cs-text {
+  font-family: var(--font-body);
+  font-size: var(--type-hero);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-body);
+  color: var(--color-text-secondary);
+  margin: var(--space-md) 0 var(--space-lg);
+}
+.cs-text:last-child { margin-bottom: 0; }
+
+/* A pulled-out statement line for emphasis. */
+.cs-lead {
+  font-family: var(--font-heading);
+  font-size: var(--type-headline);         /* 28px */
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-lg);
+}
+
+
+/* ── IMAGES — rounded corners like the murals gallery ────────── */
+.cs-figure {
+  margin: clamp(2.5rem, 6vw, 4rem) 0 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transition: transform 0.4s var(--ease-standard),
+              box-shadow 0.4s ease;
+}
+
+.cs-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+/* Subtle lift on hover for inset (non-full-bleed) images. */
+.cs-figure:not(.cs-fullbleed):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.2);
+}
+
+/* Supporting text — image captions and metric labels share one readable
+   token-based style so they stay consistent across pages. */
+.cs-caption,
+.cs-metric__label {
+  font-family: var(--font-body);
+  font-size: var(--type-caption);
+  line-height: var(--leading-body);
+  letter-spacing: 0.01em;
+  color: var(--color-text-secondary);
+}
+
+.cs-caption {
+  margin: var(--space-md) 0 0;
+}
+
+/* Side-by-side pair (stacks on mobile). */
+.cs-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(var(--space-md), 3vw, var(--space-xl));
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+}
+.cs-pair .cs-figure { margin-top: 0; }
+
+
+/* ── FULL-BLEED PARALLAX BANDS ───────────────────────────────── */
+.cs-fullbleed {
+  position: relative;
+  /* .cs-body is already full viewport width, so 100% bleeds edge to edge
+     without the 100vw scrollbar-overflow trap. */
+  width: 100%;
+  margin: clamp(5rem, 11vw, 9rem) 0;
+  height: clamp(360px, 66vh, 720px);
+  border-radius: 0;          /* true edge-to-edge — touches both sides */
+  box-shadow: none;
+}
+
+.cs-fullbleed .cs-parallax__img {
+  position: absolute;
+  top: -16%;
+  left: 0;
+  width: 100%;
+  height: 132%;              /* taller than the band so parallax never reveals edges */
+  object-fit: cover;
+  will-change: transform;
+}
+
+
+/* ── METRICS / IMPACT ────────────────────────────────────────── */
+.cs-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(var(--space-xl), 5vw, 4rem);
+  margin-top: clamp(3rem, 7vw, 5rem);
+  width: 100%;
+}
+
+.cs-metric {
+  text-align: center;
+}
+
+.cs-metric__num {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(36px, 4vw, 48px);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+  color: var(--color-text-teal);
+  margin-bottom: var(--space-sm);
+}
+
+/* .cs-metric__label styling is shared with .cs-caption above. */
+
+
+/* ── CLOSING / NEXT PROJECT ──────────────────────────────────── */
+.cs-closing {
+  text-align: center;
+  padding-bottom: clamp(7rem, 14vw, 11rem);
+}
+
+.cs-next {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: var(--type-display);          /* 36px */
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-title);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+.cs-next:hover,
+.cs-next:focus { color: var(--color-text-teal); }
+
+.cs-next__kicker {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .cs-split .cs-container {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+  /* The heading shouldn't stick once it's stacked above the copy. */
+  .cs-split__aside {
+    position: static;
+  }
+  .cs-pair {
+    grid-template-columns: 1fr;
+  }
+  .cs-metrics {
+    grid-template-columns: 1fr;
+    gap: clamp(var(--space-xl), 9vw, 3rem);
+  }
+}
+
+/* Honour reduced-motion: kill the cue + parallax transition feel. */
+@media (prefers-reduced-motion: reduce) {
+  .cs-hero__cue::after { animation: none; }
+  .cs-figure { transition: none; }
+  .cs-fullbleed .cs-parallax__img {
+    top: 0;
+    height: 100%;
+  }
+}
