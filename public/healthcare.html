@@ -5,186 +5,418 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Haley — a mobile app bringing continuous care to discharged patients. Case study by Parul Sharma.">
+  <meta name="author" content="Parul Sharma">
 
-  <title> Parul Sharma </title>
+  <title>Parul Sharma — Haley</title>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="css/header.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="css/project.css">
+  <link rel="stylesheet" type="text/css" href="css/template.css">
 
-  <!-- Reusable Navigation Component -->
+  <!-- Page-scoped: the sticker dot-voting legend, rebuilt in CSS (no image).
+       All type + spacing pull from the design tokens; only the three sticker
+       colours are literal (they represent the real coloured dots). -->
+  <style>
+    .healthcare-page .cs-dotvote {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(var(--space-xl), 6vw, 4rem);
+      margin: clamp(2.5rem, 6vw, 4rem) 0 0;
+      text-align: center;
+    }
+    .healthcare-page .cs-dotvote__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .healthcare-page .cs-dotvote__dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+      min-height: 72px;
+      margin-bottom: var(--space-lg);
+    }
+    /* CSS sticker dots — glossy highlight + soft drop shadow. */
+    .healthcare-page .cs-dot {
+      width: clamp(48px, 7vw, 66px);
+      height: clamp(48px, 7vw, 66px);
+      border-radius: 50%;
+      box-shadow: inset 0 4px 9px rgba(255, 255, 255, 0.4),
+                  0 6px 18px rgba(0, 0, 0, 0.18);
+    }
+    .healthcare-page .cs-dot--pink   { background: #E5388A; }
+    .healthcare-page .cs-dot--green  { background: #8DC63F; }
+    .healthcare-page .cs-dot--orange { background: #F5A623; }
+
+    /* "1 pink dot" — same as .cs-heading. */
+    .healthcare-page .cs-dotvote__label {
+      font-family: var(--font-heading);
+      font-weight: var(--weight-semibold);
+      font-size: var(--type-headline);
+      line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-title);
+      color: var(--color-text-primary);
+      margin: 0 0 var(--space-sm);
+    }
+    /* "overall look and feel" — same as .cs-caption. */
+    .healthcare-page .cs-dotvote__desc {
+      font-family: var(--font-body);
+      font-size: var(--type-caption);
+      line-height: var(--leading-body);
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
+    @media (max-width: 767px) {
+      .healthcare-page .cs-dotvote {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+    }
+  </style>
+
+  <!-- Reusable Navigation Component (injects the embossed nav + brand mark) -->
   <script src="js/nav-component.js"></script>
-
-  <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-  <script type='text/javascript' src='unitegallery/themes/tiles/ug-theme-tiles.js'></script>
-  <link rel='stylesheet' href='unitegallery/themes/default/ug-theme-default.css' type='text/css' /> 
-  <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
-  <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' />
-
-
 </head>
 
-    <body class="embossed-nav">
-        <!-- Nav + brand mark are injected by js/nav-component.js -->
+  <body class="template-page healthcare-page embossed-nav">
 
-        <div class="page-content" style="padding-bottom: 100px;">
+    <!-- Nav + brand mark are injected by js/nav-component.js -->
 
-        <div class="prj-header">
- 
-            <img src="img/headers/haley_logo.png" width="15%" height="15%" alt="haley Header Image"/>
-<p> Haley is a mobile application that aims to bring continuous care to patients who have been discharged from the hospital. Patients enter their symptoms and moods on a regular basis on the app, and Haley in return provides suggestions and advice to the patients. The data collected from monitoring symptoms and moods is also relayed back to the patient’s doctor. </p> 
+    <div class="page-content">
 
+      <!-- ════════════════════════════════════════════════════════
+           HERO  — logo slot · eyebrow · title · summary · meta
+           ════════════════════════════════════════════════════════ -->
+      <header class="cs-hero">
+        <div class="cs-container">
+
+          <!-- PER-CASE-STUDY LOGO / CLIENT MARK -->
+          <img class="cs-hero__logo"
+               src="img/headers/haley_logo.png"
+               alt="Haley logo">
+
+          <p class="cs-eyebrow">Case Study · Accenture · 2019, Boston</p>
+
+          <h1 class="cs-hero__title">Haley</h1>
+
+          <p class="cs-hero__summary">
+            Haley is a mobile application that aims to bring
+            <span class="accent">continuous care</span> to patients who have
+            been discharged from the hospital. Patients enter their symptoms
+            and moods on a regular basis on the app, and Haley in return
+            provides suggestions and advice to the patients. The data
+            collected from monitoring symptoms and moods is also relayed back
+            to the patient’s doctor.
+          </p>
+
+          <!-- META ROW — Role / Team / Platform -->
+          <div class="cs-hero__meta">
+            <div class="cs-meta">
+              <span class="cs-meta__label">Role</span>
+              <span class="cs-meta__value">Lead Designer</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Timeline</span>
+              <span class="cs-meta__value">2019 · Boston</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Team</span>
+              <span class="cs-meta__value">Pega engineering and marketing</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Platform</span>
+              <span class="cs-meta__value">Mobile app</span>
+            </div>
+          </div>
+
+          <span class="cs-hero__cue" aria-hidden="true"></span>
         </div>
+      </header>
 
 
-<!-- 
-        <div id="header-container">
+      <!-- ════════════════════════════════════════════════════════
+           BODY  — white panel that lifts over the hero
+           ════════════════════════════════════════════════════════ -->
+      <main class="cs-body">
 
-          <div class="proj-header-image">
-            <img src="img/headers/healthcare-header.png" alt="haley image"/>    
+        <!-- ── 1 · BACKGROUND — sticky heading left, copy + image right ── -->
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Background</p>
+              <h2 class="cs-heading">A demo to bring Pega CRM into healthcare</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                Haley was built as a demo app for Pega World. The overall
+                purpose was to showcase Pega CRM capabilities within the
+                healthcare industry to potential customers at their largest
+                conference of the year in Las Vegas.
+              </p>
+              <p class="cs-text">
+                I led the design phase and led daily standups with our
+                engineering team to ensure the demo app was built on time for
+                the conference.
+              </p>
+              <figure class="cs-figure">
+                <img src="img/healthcare/image.png"
+                     alt="Haley app overview" loading="lazy">
+              </figure>
+            </div>
           </div>
+        </section>
 
-          <div class="proj-header-about">
-            <p class="header-about-text"> Haley is a mobile application that aims to bring continuous care to patients who have been discharged from the hospital. Patients enter their symptoms and moods on a regular basis on the app, and Haley in return provides suggestions and advice to the patients. The data collected from monitoring symptoms and moods is also relayed back to the patient’s doctor. </p> 
 
+        <!-- ── FULL-BLEED PARALLAX BAND ── -->
+        <figure class="cs-figure cs-fullbleed">
+          <img class="cs-parallax__img"
+               src="img/healthcare/whiteboard1.png"
+               alt="Whiteboarding the Haley concept" loading="lazy">
+        </figure>
+
+
+        <!-- ── 2 · THE PROBLEM — center-stacked breath ── -->
+        <section class="cs-section cs-center">
+          <div class="cs-container">
+            <p class="cs-eyebrow">The Problem</p>
+            <h2 class="cs-heading">Care shouldn’t stop at discharge</h2>
+            <p class="cs-text">
+              <span class="accent">When patients leave the hospital, the
+              day-to-day signal their doctors rely on disappears.</span> Haley
+              set out to close that gap — giving patients a simple daily way to
+              log how they feel, and giving their care team a continuous view of
+              symptoms and moods once they’re home.
+            </p>
           </div>
-        </div> -->
+        </section>
 
 
-<!-- display the project INFO -->
+        <!-- ── 3 · PROCESS — sticky heading + ideation imagery ── -->
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Process</p>
+              <h2 class="cs-heading">Ideating directions with the team</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                For the ideation phase, I created different visual styles of
+                the app. After pushing pixels, I held a drop-in style design
+                crit at the Accenture office. A sticker dot voting system was
+                used for individuals to vote on their favorite features.
+              </p>
+              <!-- Sticker dot-voting legend — built in CSS, pops in on scroll -->
+              <div class="cs-dotvote" aria-label="Sticker dot voting key">
+                <div class="cs-dotvote__item">
+                  <div class="cs-dotvote__dots">
+                    <span class="cs-dot cs-dot--pink"></span>
+                  </div>
+                  <p class="cs-dotvote__label">1 pink dot</p>
+                  <p class="cs-dotvote__desc">Overall look and feel</p>
+                </div>
+                <div class="cs-dotvote__item">
+                  <div class="cs-dotvote__dots">
+                    <span class="cs-dot cs-dot--green"></span>
+                    <span class="cs-dot cs-dot--orange"></span>
+                  </div>
+                  <p class="cs-dotvote__label">2 dots — green or orange</p>
+                  <p class="cs-dotvote__desc">Favorite features</p>
+                </div>
+              </div>
 
-      <div class="container-fluid project-info">
-
-        <div class="row">
-          <div class="proj-section-left col-xs-12 col-md-6">
-            <h2> Background </h2>
-            <p> Haley was built as a demo app for Pega World. The overall purpose was to showcase Pega CRM capabilities within the healthcare industry to potential customers at their largest conference of the year in Las Vegas. I led the design phase and led daily standups with our engineering team to ensure the demo app was built on time for the conference. </p>
-
+              <!-- WHITEBOARDING — exploration captured in the crit -->
+              <div class="cs-pair">
+                <figure class="cs-figure">
+                  <img src="img/healthcare/whiteboard2.png" alt="Whiteboard exploration" loading="lazy">
+                </figure>
+                <figure class="cs-figure">
+                  <img src="img/healthcare/whiteboard3.png" alt="Whiteboard exploration" loading="lazy">
+                </figure>
+              </div>
+              <div class="cs-pair">
+                <figure class="cs-figure">
+                  <img src="img/healthcare/whiteboard4.png" alt="Whiteboard exploration" loading="lazy">
+                </figure>
+                <figure class="cs-figure">
+                  <img src="img/healthcare/whiteboard5.png" alt="Whiteboard exploration" loading="lazy">
+                </figure>
+              </div>
+              <div class="cs-pair">
+                <figure class="cs-figure">
+                  <img src="img/healthcare/whiteboard6.png" alt="Whiteboard exploration" loading="lazy">
+                </figure>
+                <figure class="cs-figure">
+                  <img src="img/healthcare/whiteboard7.png" alt="Whiteboard exploration" loading="lazy">
+                </figure>
+              </div>
+              <div class="cs-pair">
+                <figure class="cs-figure">
+                  <img src="img/healthcare/whiteboard8.png" alt="Whiteboard exploration" loading="lazy">
+                </figure>
+                <figure class="cs-figure">
+                  <img src="img/healthcare/whiteboard9.png" alt="Whiteboard exploration" loading="lazy">
+                </figure>
+              </div>
+              <div class="cs-pair">
+                <figure class="cs-figure">
+                  <img src="img/healthcare/whiteboard10.png" alt="Whiteboard exploration" loading="lazy">
+                </figure>
+                <figure class="cs-figure">
+                  <img src="img/healthcare/whiteboard11.png" alt="Whiteboard exploration" loading="lazy">
+                </figure>
+              </div>
+              <figcaption class="cs-caption">Sticker dot voting and think aloud feedback at the drop-in design crit.</figcaption>
+            </div>
           </div>
-
-          <img src="img/healthcare/image.png" >
-         <!--  <img src="img/healthcare/pcm.png" class="img-responsive col-xs-12 col-md-6" alt="dots"> -->
-
-        </div>
+        </section>
 
 
-        <div class="row">
-          <div class="proj-section-right col-xs-12 col-md-6">
-            <h2> Dot Voting </h2>
-            <p> For the ideation phase, I created different visual styles of the app. After pushing pixels, a held a drop-in style design crit at the Accenture office. A sticker dot voting system was used for individuals to vote on their favorite features. </p>
+        <!-- ── FULL-BLEED PARALLAX BAND ── -->
+        <figure class="cs-figure cs-fullbleed">
+          <img class="cs-parallax__img"
+               src="img/healthcare/pegaworld.png"
+               alt="Haley presented at Pega World" loading="lazy">
+        </figure>
 
+
+        <!-- ── 4 · KEY INSIGHTS — sticky heading + insight screens ── -->
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Key Insights</p>
+              <h2 class="cs-heading">Designing around what people responded to</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                Recording of symptoms got the most feedback. People preferred
+                the random layout versus stacked as the stacked was viewed as
+                a hierarchical.
+              </p>
+              <figure class="cs-figure">
+                <img src="img/healthcare/symptoms.png"
+                     alt="Symptom recording layouts" loading="lazy">
+              </figure>
+
+              <p class="cs-text">
+                Severity scaling was viewed positively with the colors
+                indicating severity rather than circle size.
+              </p>
+              <figure class="cs-figure">
+                <img src="img/healthcare/symptoms2.png"
+                     alt="Severity scaling with color" loading="lazy">
+              </figure>
+
+              <p class="cs-text">
+                Filling out health surveys is perceived as stressful and
+                tedious paperwork. The guided onboarding process of one
+                question per screen, with indication of progress at the top
+                helped users feel a sense of completion.
+              </p>
+              <figure class="cs-figure">
+                <img src="img/healthcare/health_qs.png"
+                     alt="Guided health survey onboarding" loading="lazy">
+              </figure>
+            </div>
           </div>
-          <img src="img/healthcare/dots.png" class="img-responsive col-xs-12 col-md-6" alt="dots">
-
-        </div>
+        </section>
 
 
-        <div class="row">
-
-          <img alt="" class="img-responsive col-xs-12 col-md-12" src="img/healthcare/whiteboard1.png"
-            data-description="">
-
-          <div class="col-md-12" id="gallery3" style="display:none;">
-            <img alt="" class="img-responsive col-xs-12 col-md-3" src="img/healthcare/whiteboard2.png"
-            data-description="">
-            <img alt="" class="img-responsive col-xs-12 col-md-3" src="img/healthcare/whiteboard3.png"
-            data-description="">
-            <img alt="" class="img-responsive col-xs-12 col-md-3" src="img/healthcare/whiteboard4.png"
-            data-description="">
-            <img alt="" class="img-responsive col-xs-12 col-md-3" src="img/healthcare/whiteboard5.png"
-            data-description="">
-            <img alt="" class="img-responsive col-xs-12 col-md-3" src="img/healthcare/whiteboard6.png"
-            data-description="">
-            <img alt="" class="img-responsive col-xs-12 col-md-3" src="img/healthcare/whiteboard7.png"
-            data-description="">
-            <img alt="" class="img-responsive col-xs-12 col-md-3" src="img/healthcare/whiteboard8.png"
-            data-description="">
-            <img alt="" class="img-responsive col-xs-12 col-md-3" src="img/healthcare/whiteboard9.png"
-            data-description="">
+        <!-- ── 5 · FINAL OUTCOME — center-stacked breath ── -->
+        <section class="cs-section cs-center">
+          <div class="cs-container">
+            <p class="cs-eyebrow">Final Outcome</p>
+            <h2 class="cs-heading">Presented at Pega World</h2>
+            <p class="cs-text">
+              A demo app was built and preloaded with sample patients, then
+              presented at Pega World — and considered a success, measured in
+              new relationships, signed contracts, and a demo that sold the
+              vision.
+            </p>
+            <div class="cs-metrics">
+              <div class="cs-metric">
+                <span class="cs-metric__num">Sales</span>
+                <span class="cs-metric__label">New client relationships and sales won at Pega World</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric__num">Contracts</span>
+                <span class="cs-metric__label">Healthcare companies signed on, inspired by the demo — kept anonymous under NDA</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric__num">Demo App</span>
+                <span class="cs-metric__label">Built and preloaded with sample patients for the conference floor</span>
+              </div>
+            </div>
           </div>
+        </section>
 
-            <img alt="" class="img-responsive col-xs-12 col-md-6" src="img/healthcare/whiteboard10.png"
-            data-description="">
-            <img alt="" class="img-responsive col-xs-12 col-md-6" src="img/healthcare/whiteboard11.png"
-            data-description="">
 
-          <script type="text/javascript">
-
-            jQuery(document).ready(function($){
-              $("#gallery3").unitegallery(
-                {
-                  gallery_theme: "tiles",
-                  tiles_max_columns: 4, 
-                  tiles_space_between_cols: 4
-                });
-
-            });
-
-          </script>
-      
+        <!-- ── CLOSING / NEXT PROJECT ── -->
+        <section class="cs-closing">
+          <div class="cs-container">
+            <span class="cs-next__kicker">Next project</span>
+            <a class="cs-next" href="/#work">See more work →</a>
           </div>
+        </section>
+
+      </main>
+
+    </div><!-- /.page-content -->
 
 
-        <div class="row">
+    <!-- ScrollReveal for section reveals -->
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+    <!-- Shared nav hamburger + back-to-top -->
+    <script src="js/project.js"></script>
 
-          <h2 class="col-xs-12"> Key Insights </h2>
-          <div class="proj-section-right col-xs-12">
-            <p> Recording of symptoms got the most feedback. People preferred the random layout versus stacked as the stacked was viewed as a hierarchical. </p> 
+    <script>
+      var allowsMotion = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
 
-            <img src="img/healthcare/symptoms.png" class="img-responsive col-xs-12" alt="symptoms">
+      // ── Scroll reveal — same easing/feel as the project pages ──
+      if (typeof ScrollReveal !== 'undefined' && allowsMotion) {
+        var sr = ScrollReveal({
+          distance: '28px', duration: 1000,
+          easing: 'cubic-bezier(0.16, 1, 0.3, 1)', opacity: 0, reset: false,
+        });
+        sr.reveal('.cs-eyebrow',  { origin: 'bottom', distance: '16px' });
+        sr.reveal('.cs-heading',  { origin: 'bottom', distance: '24px', interval: 80 });
+        sr.reveal('.cs-lead, .cs-text', { origin: 'bottom', distance: '16px', delay: 80, interval: 60 });
+        sr.reveal('.cs-figure, .cs-pair > .cs-figure', { origin: 'bottom', distance: '40px', delay: 120, interval: 120 });
+        sr.reveal('.cs-metric', { origin: 'bottom', interval: 100 });
+        // Sticker dots pop in (scale up with a soft overshoot) when scrolled into view.
+        sr.reveal('.cs-dot', { scale: 0.3, distance: '0px', duration: 700, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)', interval: 110 });
+      }
 
-            <p> Severity scaling was viewed positively with the colors indicating severity rather than circle size.  </p> 
-
-            <img src="img/healthcare/symptoms2.png" class="img-responsive col-xs-12" alt="symptoms2">
-
-            <p>  Filling out health surveys is percieved as stressful and tedious paperwork. The guided onboarding process of one question per screen, with indication of progress at the top helped users feel a sense of completion. </p> 
-
-            <img src="img/healthcare/health_qs.png" class="img-responsive col-xs-12" alt="healthqs">
-
-          </div>
-
-        </div>
-
-
-
-        <div class="row">
-          <div class="proj-section-right col-xs-12 col-md-6">
-            <h2> Final Outcome </h2>
-            <p> A demo app was built and preloaded with sample patients. The app was presented at Pega World and was considered a success- key metric of "success" being new client relationships and sales. A few healthcare companies, who must kept anonymous due to NDA, signed on project contracts, inspired by the demo that was presented. </p>
-
-          </div>
-          <img src="img/healthcare/pegaworld.png" class="img-responsive col-xs-12 col-md-6" alt="dots">
-
-        </div>
-
-
-    </div>
-    
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
-    <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-
-  <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
-  <script src="js/project.js"></script>
-</body>
-  </html>
-
-
-
-     
+      // ── Subtle parallax on full-bleed bands (Apple-restrained) ──
+      if (allowsMotion) {
+        var bands = Array.prototype.slice.call(document.querySelectorAll('.cs-parallax__img'));
+        var ticking = false;
+        function updateParallax() {
+          var vh = window.innerHeight;
+          bands.forEach(function (img) {
+            var rect = img.parentElement.getBoundingClientRect();
+            if (rect.bottom < 0 || rect.top > vh) return;          // off-screen — skip
+            var progress = (rect.top + rect.height / 2 - vh / 2) / vh; // ~ -1 … 1
+            img.style.transform = 'translateY(' + (progress * 14) + '%)';
+          });
+          ticking = false;
+        }
+        function onScroll() {
+          if (!ticking) { window.requestAnimationFrame(updateParallax); ticking = true; }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', updateParallax);
+        updateParallax();
+      }
+    </script>
+  </body>
+</html>
