@@ -5,120 +5,405 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Automating field dispatch at scale — an enterprise case study by Parul Sharma.">
+  <meta name="author" content="Parul Sharma">
 
-  <title>Parul Sharma </title>
+  <title>Parul Sharma — Enterprise Field Dispatch</title>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,600&display=swap" rel="stylesheet">
 
-  
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/header.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="css/project.css">
+  <link rel="stylesheet" type="text/css" href="css/template.css">
 
-  <!-- Reusable Navigation Component -->
+  <!-- The Google Cloud mark is a wide, light-grey logo — sit it in a white
+       chip so it reads cleanly on the dark hero rather than being cropped
+       into the default square logo slot. -->
+  <style>
+    .cs-hero__logo--wide {
+      width: auto;
+      height: auto;
+      max-width: 260px;
+      padding: 16px 24px;
+      background: #fff;
+      border-radius: 16px;
+      object-fit: contain;
+    }
+    /* Pull-quote from a real user — high-signal evidence of design impact. */
+    .cs-quote {
+      font-family: var(--font-heading);
+      font-size: var(--type-title-large);
+      font-weight: var(--weight-regular);
+      line-height: var(--leading-tight);
+      color: var(--color-text-primary);
+      border-left: 3px solid var(--color-accent);
+      padding-left: var(--space-lg);
+      margin: var(--space-xl) 0;
+    }
+    .cs-quote cite {
+      display: block;
+      margin-top: var(--space-md);
+      font-family: var(--font-body);
+      font-size: var(--type-caption);
+      font-style: normal;
+      color: var(--color-text-secondary);
+    }
+
+    /* Live HTML/CSS prototype embeds (iframes) — the real originals of the
+       app screenshots, scaled responsively to fit the reading column. The
+       iframe isolates the prototype's own CSS from the case-study page. */
+    .cs-figure.cs-embed { background: #fff; }
+    .cs-figure.cs-embed:hover {           /* keep interactive embeds stable */
+      transform: none;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+    .cs-embed__fit {
+      position: relative;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .cs-embed__fit iframe {
+      border: 0;
+      display: block;
+      transform-origin: top left;
+    }
+
+    /* Flat image — sits directly on the page with no card treatment. */
+    .cs-figure.cs-flat {
+      border-radius: 0;
+      box-shadow: none;
+      overflow: visible;
+      background: transparent;
+    }
+    .cs-figure.cs-flat:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  </style>
+
+  <!-- Reusable Navigation Component (injects the embossed nav + brand mark) -->
   <script src="js/nav-component.js"></script>
-
-  <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-  <script type='text/javascript' src='unitegallery/themes/tiles/ug-theme-tiles.js'></script>
-  <link rel='stylesheet' href='unitegallery/themes/default/ug-theme-default.css' type='text/css' /> 
-  <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
-  <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
-
-
 </head>
 
-    <body class="embossed-nav">
-        <!-- Nav + brand mark are injected by js/nav-component.js -->
+  <body class="template-page embossed-nav">
 
+    <!-- Nav + brand mark are injected by js/nav-component.js -->
 
-        <div class="page-content">
+    <div class="page-content">
 
-        <div class="prj-header prj-header--left">
-          <img src="img/headers/cloud_logo.png" width="100%" alt="Enterprise Header Image"/>
-          <p>Internal collaboration tool for Google NetOps</p>
-          <br>
-          <p>Designed the first-ever product for a global network operations process Google's NetOps teams had been running entirely by hand — 0 to 1, concept to launch.</p>
-          <br>
-          <p><strong>Research:</strong> Led user research across 3 teams, 7 PMs, and 10 workstreams in 4 timezones — stakeholder interviews, discovery workshops, and usability testing.</p>
-          <br>
-          <p><strong>Design:</strong> Built low- and high-fidelity prototypes; designed the full UI in Material Design on top of a Pega backend.</p>
-          <br>
-          <p><strong>Collaboration:</strong> Aligned design, engineering, and business stakeholders across the full product lifecycle.</p>
-          <br>
-          <p><strong>Impact:</strong> Drove a 30% productivity increase and a 20% improvement in task completion rate.</p> 
+      <!-- ════════════════════════════════════════════════════════
+           HERO  — logo · eyebrow · title · summary · meta
+           ════════════════════════════════════════════════════════ -->
+      <header class="cs-hero">
+        <div class="cs-container">
 
-        </div>
+          <img class="cs-hero__logo cs-hero__logo--wide"
+               src="img/headers/cloud_logo.png"
+               alt="Google Cloud">
 
-      <!-- display the project INFO -->
+          <p class="cs-eyebrow">Case Study · Enterprise</p>
 
-      <div class="container-fluid project-info">
-        <div class="row hideme">
-          <div class="proj-section-left col-xs-12 col-md-6">
-            <h2> The Challenge </h2>
-            <p> As a solo designer, it was vital to the project's success that I remained organized and decisive. End users of the application were scattered throughout the world. Planning and conducting a he evaluation, for example, is a lot more difficult when you have to schedule with folks from Manila, Frankfurt, London, and Sunnyvale. Scheduling meetings across 4 timezones, communicating design research findings and executing remote design workshops were all challenges I faced and overcame during this project. </p>
+          <h1 class="cs-hero__title">Automating field dispatch at scale</h1>
+
+          <p class="cs-hero__summary">
+            A regional-management platform and field-worker mobile app that made
+            automation possible across <span class="accent">10 workstreams, 4
+            timezones, and 3 user groups</span> — a 30% productivity gain.
+          </p>
+
+          <!-- META ROW -->
+          <div class="cs-hero__meta">
+            <div class="cs-meta">
+              <span class="cs-meta__label">Role</span>
+              <span class="cs-meta__value">Lead Product Designer · Solo</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Client</span>
+              <span class="cs-meta__value">Google Cloud</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Platform</span>
+              <span class="cs-meta__value">Web · Mobile</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Timeline</span>
+              <span class="cs-meta__value">1+ year</span>
+            </div>
           </div>
-          <img src="img/enterprise/world.svg" class="img-responsive col-xs-12 col-md-6" alt="research study">
-        </div>
 
-        <div class="row hideme">
-          <img src="img/enterprise/card-sorting.svg" class="img-responsive col-xs-12 col-md-7" alt="research study">
-          <div class="proj-section-right col-xs-12 col-md-5">
-            <h2> Remote Workshops </h2>
-            <p>  Because of the global nature of our project and budget constraints, I adapted our design workshops so that they could be done virtually. While this is the standard now, this was pre-COVID before remote collaboration was the defacto. We didn't have budget in the project to fly people around the world but needed everyone get together to build a single platform across geographic locations. By organizing remote design workshops across 4 different timezones, 3 different teams, and 7 program managers- I was able to drive stategy alignment and gain valuable insights with minimal business travel costs. Card sorting exercises were done in google slides or MURAL. Heuristic evalutions were done over screenshare, and think alouds were conducted Google Hangouts. </p>
+          <span class="cs-hero__cue" aria-hidden="true"></span>
+        </div>
+      </header>
+
+
+      <!-- ════════════════════════════════════════════════════════
+           BODY  — white panel that lifts over the hero
+           ════════════════════════════════════════════════════════ -->
+      <main class="cs-body">
+
+        <!-- ── OVERVIEW ── -->
+        <section class="cs-section cs-center">
+          <div class="cs-container">
+            <p class="cs-eyebrow">Overview</p>
+            <p class="cs-lead">
+              A dispatch console that routes field work across global metros — paired
+              with the mobile app field workers carry on site. I owned the design
+              end to end, from the underlying workflow logic to the final UI.
+            </p>
           </div>
-        </div>
+        </section>
 
 
-        <div class="row hideme">
-          <div class="proj-section-left col-xs-12 col-md-8">
-            <h2> Less Flashy More Functional </h2>
-            <p> I learned a lot about how enterprise application design is different than consumer design. The biggest lesson being that your end users have to use your product whether they like it or not. Period. They have to do their job. Because of this, there is more emphasis put on being able to complete tasks efficiently and accurately rather than the visual design. This learning impacted the way I prioritized design bugs for engineers to fix. User experience fixes were higher priority fixes compared to asethetics or branding. </p>
+        <!-- ── IMPACT — numbers first ── -->
+        <section class="cs-section cs-center">
+          <div class="cs-container">
+            <p class="cs-eyebrow">Impact</p>
+            <h2 class="cs-heading">What it moved</h2>
+            <div class="cs-metrics">
+              <div class="cs-metric">
+                <span class="cs-metric__num">30%</span>
+                <span class="cs-metric__label">Faster ticket assignment</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric__num">3 → 1</span>
+                <span class="cs-metric__label">Clicks to the work log</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric__num">+3.5 pt</span>
+                <span class="cs-metric__label">User satisfaction (1–5 scale)</span>
+              </div>
+            </div>
+            <p class="cs-text">
+              The work also <span class="accent">informed the product roadmap</span>
+              and contributed to a <span class="accent">client contract renewal</span>.
+            </p>
           </div>
-          <img src="img/enterprise/phones.svg" class="img-responsive col-xs-12 col-md-4" alt="research study">
-        </div>
+        </section>
 
 
-        <div class="row hideme">
-          <img src="img/enterprise/transparency.svg" class="img-responsive col-xs-12 col-md-5" alt="research study">
-          <div class="proj-section-right col-xs-12 col-md-7">
-            <h2> Transparency is Key </h2>
-            <p>  I originally designed each portal to be different for each end user group. I realized that while they do have different roles and responsibilities, the user groups in enterprise tend to be very cross-functional and need to talk to one another. I took this learning from the initial design, the strong desire for more transparency and consistency, and  worked on a redesign while we were still rolling out new features. The second iteration focused on making the portals for the different groups look more alike, but highlighting relevant information for each group specifically. Via the remote testing workshop methods I mentioned earlier, I was able to present the redesign to stakeholders along with the user research data which indicated the redesign improved task completiion times compared to the original. The thoroughness of my pitch allowed for the work to be added to the build roadmap immediately. </p>
+        <!-- ── THE BRIEF ── -->
+        <section class="cs-section cs-center">
+          <div class="cs-container">
+            <p class="cs-eyebrow">The Brief</p>
+            <h2 class="cs-heading">
+              “How might we automate the assignment of field workers to tickets —
+              at scale, across regions, in real time?”
+            </h2>
+            <p class="cs-text">
+              Three user groups, one workflow: <strong>field workers</strong> on
+              site, <strong>regional owners</strong> managing metros, and
+              <strong>dispatch agents</strong> routing work remotely across
+              timezones.
+            </p>
+            <figure class="cs-figure cs-flat">
+              <img src="img/enterprise/world.svg"
+                   alt="Field work spanning regions and timezones worldwide" loading="lazy">
+            </figure>
           </div>
-        </div>
+        </section>
 
-        <div class="row hideme">
-          <div class="proj-section-right col-xs-12 col-md-12">
-            <h2>  Sharpening my Instinct for "Customize for Standardize?" </h2>
-            <p>  If you want to automate a process, it means you have to standardize it - in this case it meant making a process flow and the user experience the same across 3 different teams. One standardization effort ask from business stakeholders was to have a table filtered by default. Through workshops, however, I discovered that because each worker logging in has their own personal process of filtering tickets- the default filtered list was actually a major pain point because they would have to reset filters first, and then apply their own personal custom settings that worked best for them. To accommodate the user needs for customization and satisfy the business needs of some sort of standardization, I designed and proposed a ‘saved filter’ widget. The feature was well recieved by both business stakeholders and end users. Working on this product for over a year helped me gain an intuition for deciding when to customize and when to standardize. I learned to ask the right questions in workshops related to standardize veruss customize for features going forward, such as ticket UI design and timer design. By working this into the ideation and research phase, I was able to mitigate technical debt for the team and reduce roadmap pivots.  </p>
+
+        <!-- ── DESIGN THE PROCESS FIRST ── -->
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Approach</p>
+              <h2 class="cs-heading">Design the process before the pixels</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                You can't automate a workflow you haven't defined. Before any UI, I
+                mapped the decisioning logic — how a ticket gets grouped, matched to
+                a metro, checked for availability and skills, and assigned — and
+                pressure-tested it against the messy real-world scenarios
+                (no calendar resource, multiple resources, overtime).
+              </p>
+              <figure class="cs-figure">
+                <img src="img/enterprise/decisioning-logic.png"
+                     alt="The decisioning logic mapped scenario by scenario — how a ticket is routed and assigned — before any UI" loading="lazy">
+              </figure>
+              <figure class="cs-figure cs-flat">
+                <img src="img/enterprise/card-sorting.svg"
+                     alt="Card sort exercise to define the information architecture and field priority" loading="lazy">
+              </figure>
+              <p class="cs-text">
+                This artifact aligned engineering, PM, and the client on a single
+                source of truth — and surfaced the open questions early, before they
+                became rework.
+              </p>
+            </div>
           </div>
-        </div>
-      
-
-      </div>
-
-    </div>
-
-<!--         <div id="header-container">
+        </section>
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
-    <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
-    <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
-    <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-  <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
-  <script src="js/project.js"></script>
-</body>
-  </html>
+        <!-- ── FIELD RESEARCH ── -->
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Research</p>
+              <h2 class="cs-heading">Field workers don't work at a desk</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                I shadowed a field worker for a day and visited a live POP site.
+                The context changed the product: limited WiFi, on ladders, laptop
+                left in the truck. So I pushed back on the desktop-first default and
+                argued for a <span class="accent">mobile-first field app</span>.
+              </p>
+              <figure class="cs-figure">
+                <img src="img/enterprise/field-research.png"
+                     alt="Shadowing a field worker on site — limited WiFi, on ladders, on the move" loading="lazy">
+              </figure>
+              <p class="cs-text">
+                I also ran feedback rounds <strong>without their managers present</strong>.
+                Power dynamics skew honesty — the boss in the room changes the
+                answer. The regional owners were the paying stakeholder, but not the
+                only user who mattered.
+              </p>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── FIELD WORKER APP ── -->
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Field App</p>
+              <h2 class="cs-heading">Designing automation people trust</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                The first app tracked travel and work with live timers. Early
+                testing flagged a real risk: the ticking timer felt like
+                surveillance.
+              </p>
+              <figure class="cs-figure cs-embed">
+                <div class="cs-embed__fit" data-w="1660" data-h="864">
+                  <iframe src="embeds/field_worker_mobile_stripped.html"
+                          title="Field-worker mobile app — travel and work timer flow (live prototype)"
+                          loading="lazy" scrolling="no"></iframe>
+                </div>
+              </figure>
+              <figure class="cs-figure cs-embed">
+                <div class="cs-embed__fit" data-w="415" data-h="864">
+                  <iframe src="embeds/field_worker_mobile.html"
+                          title="Field-worker mobile app — interactive ticket detail (live prototype)"
+                          loading="lazy"></iframe>
+                </div>
+              </figure>
+              <figure class="cs-figure">
+                <img src="img/enterprise/field-feedback.png"
+                     alt="Early feedback: the running timer felt like surveillance, so the design changed" loading="lazy">
+              </figure>
+              <p class="cs-text">
+                I reframed the design around autonomy — a pause control, looser
+                tracking, and a phased automation model (rule-based first, then
+                data-informed) that kept a human in the loop. The shift showed up in
+                how people talked about it.
+              </p>
+              <blockquote class="cs-quote">
+                “Instead of being watched, I feel like I get to help make it better.”
+                <cite>— Field worker, usability testing</cite>
+              </blockquote>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── DISPATCH AGENT — SIGNATURE WIN ── -->
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Signature Decision</p>
+              <h2 class="cs-heading">From invisible to at-a-glance</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                Dispatch agents work remotely — a different timezone from the job,
+                and they must action a ticket in under six minutes. From a heuristic
+                evaluation with <strong>10 agents across Manila, Frankfurt, and
+                London</strong>, one pattern dominated: the work log they relied on
+                was buried three clicks deep, at the bottom of a long scroll.
+              </p>
+              <p class="cs-text">
+                I designed a <span class="accent">slide-out work log</span> pinned to
+                the right at full height. The underlying platform had no slide-out
+                pane component, so I partnered with engineering to build a custom one.
+              </p>
+              <figure class="cs-figure">
+                <img src="img/enterprise/worklog.png"
+                     alt="The slide-out work log — a custom component built with engineering" loading="lazy">
+              </figure>
+              <p class="cs-text">
+                Result: <span class="accent">three clicks to one</span>, no more
+                scrolling, ticket-assignment time down <span class="accent">30%</span>,
+                and a +2.5-point satisfaction lift for dispatch agents.
+              </p>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── CLOSING / NEXT PROJECT ── -->
+        <section class="cs-closing">
+          <div class="cs-container">
+            <span class="cs-next__kicker">Next project</span>
+            <a class="cs-next" href="/#work">See more work →</a>
+          </div>
+        </section>
+
+      </main>
+
+    </div><!-- /.page-content -->
+
+
+    <!-- ScrollReveal for section reveals -->
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+    <!-- Shared nav hamburger + back-to-top -->
+    <script src="js/project.js"></script>
+
+    <script>
+      var allowsMotion = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+
+      // ── Scroll reveal — same easing/feel as the project pages ──
+      if (typeof ScrollReveal !== 'undefined' && allowsMotion) {
+        var sr = ScrollReveal({
+          distance: '28px', duration: 1000,
+          easing: 'cubic-bezier(0.16, 1, 0.3, 1)', opacity: 0, reset: false,
+        });
+        sr.reveal('.cs-eyebrow',  { origin: 'bottom', distance: '16px' });
+        sr.reveal('.cs-heading',  { origin: 'bottom', distance: '24px', interval: 80 });
+        sr.reveal('.cs-lead, .cs-text, .cs-quote', { origin: 'bottom', distance: '16px', delay: 80, interval: 60 });
+        sr.reveal('.cs-figure, .cs-pair > .cs-figure', { origin: 'bottom', distance: '40px', delay: 120, interval: 120 });
+        sr.reveal('.cs-metric', { origin: 'bottom', interval: 100 });
+      }
+
+      // ── Scale the live HTML/CSS prototype embeds to fit the column ──
+      // Each iframe renders at its natural design size, then we scale it
+      // down (never up) to the available width and size the box to match.
+      function fitEmbeds() {
+        document.querySelectorAll('.cs-embed__fit').forEach(function (box) {
+          var w = +box.dataset.w, h = +box.dataset.h;
+          var avail = box.parentElement.clientWidth;
+          var scale = Math.min(1, avail / w);
+          var f = box.querySelector('iframe');
+          f.style.width = w + 'px';
+          f.style.height = h + 'px';
+          f.style.transform = 'scale(' + scale + ')';
+          box.style.width = (w * scale) + 'px';
+          box.style.height = (h * scale) + 'px';
+        });
+      }
+      fitEmbeds();
+      window.addEventListener('load', fitEmbeds);
+      window.addEventListener('resize', fitEmbeds);
+    </script>
+  </body>
+</html>

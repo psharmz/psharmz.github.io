@@ -2,16 +2,16 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "static-public",
+      "name": "bioregion",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8099", "--directory", "public"],
-      "port": 8099
+      "runtimeArgs": ["-m", "http.server", "8011", "--bind", "127.0.0.1", "--directory", "/Users/parul/bioregion-quest"],
+      "port": 8011
     },
     {
-      "name": "react-app",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["start"],
-      "port": 3000
+      "name": "static-root",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8100", "--bind", "127.0.0.1", "--directory", "/Users/parul/psharmz.github.io"],
+      "port": 8100
     }
   ]
 }

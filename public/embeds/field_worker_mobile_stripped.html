@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Field Worker Mobile App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      gap: 40px;
+    }
+
+    .phone-frame {
+      width: 375px;
+      height: 812px;
+      background: #F4F6FF;
+      border-radius: 40px;
+      border: 12px solid #000;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 28px;
+      background: #000;
+      border-radius: 0 0 40px 40px;
+      z-index: 10;
+    }
+
+    .screen {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .header {
+      background: #F4F6FF;
+      padding: 20px 16px 16px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .ticket-id {
+      font-size: 12px;
+      color: #09193E;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .ticket-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #09193E;
+      margin-bottom: 12px;
+    }
+
+    .status-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: 4px;
+      background: #09193E;
+      color: white;
+      font-weight: 500;
+    }
+
+    .badge.active {
+      background: #09193E;
+      color: white;
+    }
+
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: #09193E;
+      border-top: 1px solid #09193E;
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      padding-top: 8px;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 10px;
+      padding: 8px 0;
+      flex: 1;
+      transition: color 0.2s;
+      line-height: 1.2;
+    }
+
+    .nav-item.active {
+      color: white;
+    }
+
+    .nav-item div div {
+      display: block;
+    }
+
+    .nav-icon {
+      font-size: 24px;
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+    }
+
+    .timer-display {
+      font-size: 96px;
+      font-weight: 300;
+      color: #09193E;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    .start-button {
+      padding: 16px 48px;
+      background: #09193E;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 500;
+      font-family: 'Roboto', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .start-button:hover {
+      background: #0a1f52;
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .start-button:active {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transform: translateY(2px);
+    }
+
+    .material-icons {
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="notch"></div>
+    
+    <div class="screen">
+      <div class="header">
+        <div class="ticket-id">APT-001</div>
+        <div class="ticket-title">Patching and Hotcuts</div>
+        <div class="status-bar">
+          <div class="badge">U&A</div>
+          <div class="badge">P2</div>
+          <div class="badge active">ASSIGNED</div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="timer-display">00:00</div>
+        <button class="start-button">Start Travel</button>
+      </div>
+
+      <div class="bottom-nav">
+        <div class="nav-item active" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">assignment_ind</span></div>
+          <div>My Tickets</div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">calendar_month</span></div>
+          <div>Appointments</div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">assignment</span></div>
+          <div><div>Directed</div><div>Work</div></div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">location_city</span></div>
+          <div><div>Metro</div><div>Tickets</div></div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">person</span></div>
+          <div>Profile</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phone-frame">
+    <div class="notch"></div>
+    
+    <div class="screen">
+      <div class="header">
+        <div class="ticket-id">APT-001</div>
+        <div class="ticket-title">Patching and Hotcuts</div>
+        <div class="status-bar">
+          <div class="badge">U&A</div>
+          <div class="badge">P2</div>
+          <div class="badge active">ASSIGNED</div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="timer-display">15:03</div>
+        <button class="start-button">End Travel</button>
+      </div>
+
+      <div class="bottom-nav">
+        <div class="nav-item active" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">assignment_ind</span></div>
+          <div>My Tickets</div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">calendar_month</span></div>
+          <div>Appointments</div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">assignment</span></div>
+          <div><div>Directed</div><div>Work</div></div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">location_city</span></div>
+          <div><div>Metro</div><div>Tickets</div></div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">person</span></div>
+          <div>Profile</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phone-frame">
+    <div class="notch"></div>
+    
+    <div class="screen">
+      <div class="header">
+        <div class="ticket-id">APT-001</div>
+        <div class="ticket-title">Patching and Hotcuts</div>
+        <div class="status-bar">
+          <div class="badge">U&A</div>
+          <div class="badge">P2</div>
+          <div class="badge active">ASSIGNED</div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="timer-display">00:00</div>
+        <button class="start-button">Start Work</button>
+      </div>
+
+      <div class="bottom-nav">
+        <div class="nav-item active" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">assignment_ind</span></div>
+          <div>My Tickets</div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">calendar_month</span></div>
+          <div>Appointments</div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">assignment</span></div>
+          <div><div>Directed</div><div>Work</div></div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">location_city</span></div>
+          <div><div>Metro</div><div>Tickets</div></div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">person</span></div>
+          <div>Profile</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phone-frame">
+    <div class="notch"></div>
+    
+    <div class="screen">
+      <div class="header">
+        <div class="ticket-id">APT-001</div>
+        <div class="ticket-title">Patching and Hotcuts</div>
+        <div class="status-bar">
+          <div class="badge">U&A</div>
+          <div class="badge">P2</div>
+          <div class="badge active">ASSIGNED</div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="timer-display">1:17:00</div>
+        <button class="start-button">End Work</button>
+      </div>
+
+      <div class="bottom-nav">
+        <div class="nav-item active" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">assignment_ind</span></div>
+          <div>My Tickets</div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">calendar_month</span></div>
+          <div>Appointments</div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">assignment</span></div>
+          <div><div>Directed</div><div>Work</div></div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">location_city</span></div>
+          <div><div>Metro</div><div>Tickets</div></div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">person</span></div>
+          <div>Profile</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

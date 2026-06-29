@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Field Worker Mobile App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .phone-frame {
+      width: 375px;
+      height: 812px;
+      background: #F4F6FF;
+      border-radius: 40px;
+      border: 12px solid #000;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 28px;
+      background: #000;
+      border-radius: 0 0 40px 40px;
+      z-index: 10;
+    }
+
+    .screen {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 80px;
+    }
+
+    .header {
+      background: #F4F6FF;
+      padding: 20px 16px 16px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .ticket-id {
+      font-size: 12px;
+      color: #09193E;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .ticket-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #09193E;
+      margin-bottom: 12px;
+    }
+
+    .status-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: 4px;
+      background: #09193E;
+      color: white;
+      font-weight: 500;
+    }
+
+    .badge.active {
+      background: #09193E;
+      color: white;
+    }
+
+    .section {
+      padding: 20px 16px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .section-title {
+      font-size: 12px;
+      color: #09193E;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .info-label {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .info-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: #09193E;
+      text-align: right;
+    }
+
+    .time-card {
+      background: #f8f8f8;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .time-label {
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 4px;
+    }
+
+    .time-value {
+      font-size: 15px;
+      font-weight: 600;
+      color: #09193E;
+    }
+
+    .time-select {
+      width: 100%;
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #09193E;
+      background: #fff;
+      border: 1px solid #c7cede;
+      border-radius: 6px;
+      padding: 8px 36px 8px 12px;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      /* caret */
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%2309193E' d='M1 1l5 5 5-5'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .time-select:hover { border-color: #09193E; }
+    .time-select:focus {
+      outline: none;
+      border-color: #09193E;
+      box-shadow: 0 0 0 3px rgba(9, 25, 62, 0.12);
+    }
+
+    .details-table {
+      width: 100%;
+      font-size: 13px;
+    }
+
+    .details-table tr {
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .details-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .details-table td {
+      padding: 12px 0;
+    }
+
+    .details-table td:first-child {
+      color: #666;
+    }
+
+    .details-table td:last-child {
+      text-align: right;
+      font-weight: 600;
+      color: #09193E;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 20px;
+      padding: 16px;
+      border-bottom: 1px solid #e0e0e0;
+      font-size: 13px;
+    }
+
+    .tab {
+      color: #999;
+      cursor: pointer;
+      padding-bottom: 12px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .tab.active {
+      color: #09193E;
+      border-bottom-color: #09193E;
+      font-weight: 600;
+    }
+
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: #09193E;
+      border-top: 1px solid #09193E;
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      padding-top: 8px;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 10px;
+      padding: 8px 0;
+      flex: 1;
+      transition: color 0.2s;
+      line-height: 1.2;
+    }
+
+    .nav-item.active {
+      color: white;
+    }
+
+    .nav-item div div {
+      display: block;
+    }
+
+    .fab {
+      position: absolute;
+      top: 85px;
+      right: 16px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #09193E;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      font-size: 28px;
+      z-index: 5;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .fab:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      transform: scale(1.05);
+    }
+
+    .nav-icon {
+      font-size: 24px;
+    }
+
+    .material-icons {
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fab .material-icons {
+      font-size: 28px;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #ddd;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="notch"></div>
+    
+    <div class="screen">
+      <div class="content">
+        <div class="header">
+          <div class="ticket-id">APT-001</div>
+          <div class="ticket-title">Patching and Hotcuts</div>
+          <div class="status-bar">
+            <div class="badge">U&A</div>
+            <div class="badge">P2</div>
+            <div class="badge active">ASSIGNED</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Scheduled for</div>
+          <div style="font-size: 16px; font-weight: 600; color: #000; margin-bottom: 16px;">04 Sept 2024 4:00–6:00 PM</div>
+          <div class="info-grid">
+            <div class="info-row">
+              <div class="info-label">SLO</div>
+              <div class="info-value">04 Sept 2024</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Requesting team</div>
+              <div class="info-value">Requestor</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Assigned technician</div>
+              <div class="info-value">yevans</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Travel & Work Details</div>
+          <div class="time-card">
+            <div class="time-label">Travel time to site</div>
+            <select class="time-select" aria-label="Travel time to site">
+              <option>30 min</option>
+              <option>1 hour</option>
+              <option selected>2 hours</option>
+              <option>3 hours</option>
+              <option>4 hours</option>
+              <option>6 hours</option>
+              <option>8 hours</option>
+              <option>10 hours</option>
+            </select>
+          </div>
+          <div class="time-card">
+            <div class="time-label">Work duration</div>
+            <select class="time-select" aria-label="Work duration">
+              <option>30 min</option>
+              <option>1 hour</option>
+              <option>2 hours</option>
+              <option selected>4 hours</option>
+              <option>6 hours</option>
+              <option>8 hours</option>
+              <option>10 hours</option>
+              <option>12 hours</option>
+            </select>
+          </div>
+          <div class="time-card">
+            <div class="time-label">Travel time home (if applicable)</div>
+            <select class="time-select" aria-label="Travel time home">
+              <option>None</option>
+              <option>30 min</option>
+              <option>1 hour</option>
+              <option selected>2 hours</option>
+              <option>3 hours</option>
+              <option>4 hours</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Request Details</div>
+          <table class="details-table">
+            <tr>
+              <td>Additional consumables needed</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>Work category</td>
+              <td>Decomission</td>
+            </tr>
+            <tr>
+              <td>Work type</td>
+              <td>Chasia</td>
+            </tr>
+            <tr>
+              <td>MOP (Method of Procedure)</td>
+              <td>—</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="section" style="border-bottom: none;">
+          <div class="tabs">
+            <div class="tab active">Details</div>
+            <div class="tab">Work log</div>
+            <div class="tab">Change log</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-nav">
+        <div class="nav-item active" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">assignment_ind</span></div>
+          <div>My Tickets</div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">calendar_month</span></div>
+          <div>Appointments</div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">assignment</span></div>
+          <div><div>Directed</div><div>Work</div></div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">location_city</span></div>
+          <div><div>Metro</div><div>Tickets</div></div>
+        </div>
+        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+          <div class="nav-icon"><span class="material-icons">person</span></div>
+          <div>Profile</div>
+        </div>
+      </div>
+
+      <div class="fab" onclick="alert('Create new ticket');">
+        <span class="material-icons">add</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
