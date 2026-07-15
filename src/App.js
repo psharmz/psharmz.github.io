@@ -148,16 +148,16 @@ function MainPortfolio() {
                 }}>
                   <div className="text-content">
                     <h2 className="hero-greeting">hi, i'm parul</h2>
-                    <p className="hero-blurb"><strong className="accent">I design education, enterprise, and conversational UI products and build them.</strong> Staff-level designer with 5 years at Microsoft shipping to <strong className="accent">300M+ users</strong> — and <strong className="accent">I write the code too.</strong> in React and Typescript. Currently a Fellow at Rooted Futures Lab and Regenerative Intelligence, two highly selective programs at the intersection of technology and regenerative systems. Open to the right full-time role and freelance projects.</p>
+                    <p className="hero-blurb"><strong className="accent">I design education, enterprise, and conversational UI products and build them.</strong> Staff-level designer with 5 years at Microsoft shipping to <strong className="accent">300M+ users</strong> — and <strong className="accent">I write the code too</strong> in React and Typescript. Currently a Fellow at Rooted Futures Lab and Regenerative Intelligence, two highly selective programs at the intersection of technology, environmental justice and regenerative systems. Open to the right full-time role and freelance projects.</p>
                     <div className="hero-actions">
                       <span className="link murals-link">
-                        <a href="murals.html" className="nav-label">Murals</a>
+                        <a href="murals.html" className="nav-label"> Murals </a>
                       </span>
                       <span className="link email-link">
-                        <a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top" className="nav-label">Email</a>
+                        <a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top" className="nav-label"> Email </a>
                       </span>
                       <span className="link resume">
-                        <a href="parul_resume.pdf" target="_blank" className="nav-label">Resume</a>
+                        <a href="parul_resume.pdf" target="_blank" className="nav-label"> Resume </a>
                       </span>
                     </div>
                   </div>
