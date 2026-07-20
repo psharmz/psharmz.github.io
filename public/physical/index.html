@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Physical / interaction design work — Parul Sharma.">
+  <meta name="author" content="Parul Sharma">
+
+  <title>Parul Sharma — Physical</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Karla:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-accent: #00BFA5;
+      --color-bg: #000;
+      --color-text-light: rgba(255, 255, 255, 0.8);
+      --color-text-muted: #888;
+      --font-heading: 'Rubik', sans-serif;
+      --font-body: 'Karla', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--color-bg);
+      color: #fff;
+    }
+
+    body {
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 32px 40px;
+    }
+
+    .brand-link {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.0125em;
+    }
+
+    .brand-link:hover {
+      color: var(--color-accent);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .circle-row {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      gap: clamp(32px, 6vw, 80px);
+      flex-wrap: nowrap;
+    }
+
+    .circle-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      width: clamp(160px, 20vw, 280px);
+    }
+
+    .circle {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .circle-link:hover .circle {
+      transform: scale(1.05);
+      border-color: var(--color-accent);
+    }
+
+    .circle-title {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 1.125rem;
+      color: #fff;
+      margin: 20px 0 4px;
+      text-align: center;
+      transition: color 0.3s ease;
+    }
+
+    .circle-link:hover .circle-title {
+      color: var(--color-accent);
+    }
+
+    .circle-type {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .circle-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 48px;
+      }
+
+      .circle-link {
+        width: clamp(180px, 55vw, 240px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="brand-link" href="/">Parul Sharma</a>
+  </header>
+
+  <main>
+    <div class="circle-row">
+
+      <a class="circle-link" href="ragebot.html">
+        <div class="circle">
+          <img src="img/icons/projects/hippo.png" alt="RageBot">
+        </div>
+        <p class="circle-title">RageBot</p>
+        <p class="circle-type">IoT &amp; Sensor Design</p>
+      </a>
+
+      <a class="circle-link" href="actorwho.html">
+        <div class="circle">
+          <img src="img/icons/projects/actor_who.jpg" alt="Actor Who">
+        </div>
+        <p class="circle-title">Actor Who</p>
+        <p class="circle-type">Yellow Pencil Award D&amp;AD</p>
+      </a>
+
+      <a class="circle-link" href="safecomm.html">
+        <div class="circle">
+          <img src="img/icons/projects/SafeComm.jpg" alt="SafeComm">
+        </div>
+        <p class="circle-title">SafeComm</p>
+        <p class="circle-type">Cisco Switch Up Challenge</p>
+      </a>
+
+    </div>
+  </main>
+
+</body>
+</html>

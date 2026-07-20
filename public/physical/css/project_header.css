@@ -1,0 +1,39 @@
+/*  HEADER CSS  */
+
+body {
+  font-size: 225%;
+  font-family: 'Karla', sans-serif;
+  background-color: #000;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+header {
+  padding-top: 5%;
+  margin-bottom: 2%;
+  font-weight: 300;
+}
+
+.back-header {
+  background: #000;
+  padding: 24px 4%;
+  margin-bottom: 0;
+}
+
+a.back-link {
+  font-family: 'Rubik', sans-serif;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #fff;
+  display: inline-block;
+}
+
+a.back-link:after {
+  background: #fff;
+}
+
+a.back-link:hover,
+a.back-link:hover:after {
+  color: #00BFA5;
+  background: #00BFA5;
+}
