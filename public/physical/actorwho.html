@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Actor Who — a networked transmedia performance turning Edinburgh's red telephone booths into audition booths, and the pivot to ReCall.">
+  <meta name="author" content="Parul Sharma">
 
   <title>Parul Sharma — Actor Who</title>
 
@@ -27,6 +27,144 @@
   <script type='text/javascript' src='../unitegallery/js/unitegallery.min.js'></script>
   <link rel='stylesheet' href='../unitegallery/css/unite-gallery.css' type='text/css' />
 
+  <style>
+    .aw-kicker {
+      font-family: 'Karla', sans-serif;
+      font-weight: 600;
+      font-size: 0.8em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #00BFA5;
+      display: block;
+      margin-bottom: 2%;
+    }
+
+    .aw-figure {
+      margin-top: 4%;
+      margin-bottom: 4%;
+    }
+
+    .aw-figure img {
+      width: 100%;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .aw-two-col {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4%;
+      margin-top: 4%;
+      margin-bottom: 4%;
+    }
+
+    .aw-two-col > div {
+      flex: 1 1 320px;
+    }
+
+    .aw-two-col img {
+      width: 100%;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .aw-quote-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5%;
+      margin-top: 4%;
+      margin-bottom: 4%;
+    }
+
+    blockquote.aw-quote {
+      flex: 1 1 320px;
+      border: none;
+      border-left: 3px solid #00BFA5;
+      padding-left: 5%;
+      margin: 0;
+      font-family: 'Karla', sans-serif;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 1em;
+      line-height: 1.6;
+    }
+
+    blockquote.aw-quote cite {
+      display: block;
+      margin-top: 3%;
+      font-style: normal;
+      font-size: 0.75em;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .aw-pullquote {
+      font-family: 'Rubik', sans-serif;
+      font-weight: 500;
+      font-size: 1.4em;
+      color: #fff;
+      line-height: 1.4;
+      border-left: 3px solid #00BFA5;
+      padding-left: 5%;
+      margin: 6% 0;
+    }
+
+    .aw-columns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8%;
+      margin-top: 4%;
+    }
+
+    .aw-columns > div {
+      flex: 1 1 280px;
+    }
+
+    .aw-columns h4 {
+      font-family: 'Rubik', sans-serif;
+      color: #00BFA5;
+      font-weight: 600;
+      margin-bottom: 4%;
+    }
+
+    .aw-list {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 3%;
+      text-align: left;
+    }
+
+    .aw-list li {
+      font-family: 'Karla', sans-serif;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.65;
+      padding-left: 1.4em;
+      position: relative;
+      margin-bottom: 3%;
+      text-align: left;
+    }
+
+    .aw-list li::before {
+      content: "\2192";
+      position: absolute;
+      left: 0;
+      color: #00BFA5;
+      font-weight: 600;
+    }
+
+    .aw-pivot {
+      margin-top: 6%;
+      padding: 6% 5%;
+      background: rgba(0, 191, 165, 0.06);
+      border: 1px solid rgba(0, 191, 165, 0.25);
+      border-radius: 8px;
+    }
+
+    .aw-video-wrap video {
+      width: 100%;
+      display: block;
+    }
+  </style>
+
 </head>
 
     <body>
@@ -37,179 +175,280 @@
 
       <div id="header-container">
 
-        <div class="proj-header-image">
-          <img src="img/headers/actorwho-header.png" alt="actor who image"/>
+        <div class="proj-header-image aw-video-wrap">
+          <video width="100%" autoplay playsinline controls poster="img/headers/actorwho-header.png">
+            <source src="img/actorwho/intro.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
 
         <div class="proj-header-about">
           <img src="img/icons/bbclogo.png" width='150px' alt="BBC logo"/>
           <img src="img/icons/dandadlogo.png" width='100px' alt="D&AD logo"/>
-          <p class="header-about-text"> Actor Who captures the serendipitous spirit of the Edinburgh Festivals by repurposing the iconic yet outdated red UK telephone booths as audition booths. By posting the auditions on Twitter for voting, Actor Who allows anyone to participate in the Edinburgh Festivals, regardless of where they are. Actor Who recieved a Yellow Pencil by the D&AD for the BBC brief at the New Blood Awards. </p>
-
+          <p class="header-about-text"> Actor Who repurposes Edinburgh's iconic red telephone booths as audition booths for a transmedia performance, letting anyone, anywhere join the Fringe by voting, casting, and auditioning over Twitter. It won a D&AD Yellow Pencil for the BBC brief at New Blood, and later evolved — through testing and a deliberate pivot — into ReCall, a location-based audio memory archive. </p>
         </div>
        </div>
 
       <!-- display the project INFO -->
 
       <div class="container-fluid project-info">
+
         <div class="row">
           <div class="proj-section-right col-xs-12 col-md-12">
-            <h2> Design Opportunity and Proposal </h2>
-            <video width="100%" autoplay playsinline controls poster="img/headers/actorwho-header.png">
-              <source src="img/actorwho/intro.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+            <span class="aw-kicker">The Brief</span>
+            <h2> Why Red Telephone Booths? </h2>
+            <p class="aw-pullquote"> "A transmedia experience allowing anyone anywhere to join in on the magic of the Edinburgh Festivals." </p>
+            <p> The Edinburgh Festivals draw over 50,000 performances and 2.4 million ticket sales a year, but the experience is bound to whoever can physically be in the city. At the same time, Edinburgh's red K6 telephone booths — instantly recognisable, historically loaded, and increasingly obsolete — sit unused across the city center, adoptable from BT for &pound;1 each. That mismatch was the opening: invaluable, iconic real estate doing nothing, next to an audience that couldn't all be there in person. </p>
+            <div class="aw-figure">
+              <img src="img/actorwho/why_booths.jpg" alt="why red telephone booths infographic with Edinburgh Festivals statistics and booth location map">
+            </div>
+            <blockquote class="aw-quote">
+              "There's a feeling of protection inside. It has an elegant-looking design&hellip; it's nice and quiet. But mostly it's because they're solid and there's a permanence about them that people like. There's something honest and reliable about them."
+              <cite>&mdash; T. Hundley, "Support rings out for fading phone booths," 2004</cite>
+            </blockquote>
           </div>
         </div>
 
         <div class="row">
           <div class="proj-section-left col-xs-12 col-md-12">
-            <h2> Technical Details </h2>
-            <img src="img/actorwho/prototype.jpg" class="img-responsive col-xs-12 product-pics" alt="prototype details">
+            <span class="aw-kicker">Theory</span>
+            <h2> What Makes a Place, a Place? </h2>
+            <div class="aw-quote-row">
+              <blockquote class="aw-quote">
+                "Each aspect, each detail, of this place has a meaning to members of the group, for each portion of its space corresponds to various and different aspects of the structure and life of their society."
+                <cite>&mdash; M. Boyer, <em>The City of Collective Memory</em>, 2001</cite>
+              </blockquote>
+              <blockquote class="aw-quote">
+                "But place and group have each received the imprint of the other. Therefore every phase of the group can be translated into spatial terms, and its residence is the juncture of all these terms."
+                <cite>&mdash; M. Halbwachs &amp; L. Coser, <em>On Collective Memory</em></cite>
+              </blockquote>
+            </div>
+            <p> The founding question was less about technology than about memory: when dealing with a location's history, does the collective experience or the individual memory create meaning? And as location history becomes something we carry in our pockets, what happens to a place when its stories can be pulled up anywhere, by anyone, instead of lived on-site? </p>
           </div>
         </div>
 
         <div class="row">
           <div class="proj-section-right col-xs-12 col-md-12">
-            <h2> Product Design and Development </h2>
-
-            <p> From sketching out the end-to-end user journey to building the UI and telephone booth... </p>
-
-          <div id="gallery1" style="display:none;">
-
-            <img alt="" class="img-responsive col-xs-12 col-md-4" src="img/actorwho/actorwho_process/journeynotes.jpg"
-            data-description="end-to-end journey flow of the actor who experience">
-            <img alt="" class="img-responsive col-xs-12 col-md-4" src="img/actorwho/actorwho_process/uitest.jpg"
-            data-description="UI development: making sure the processing slides work witht the keypad">
-          </div>
-
-          <script type="text/javascript">
-
-            jQuery(document).ready(function($){
-              $("#gallery1").unitegallery(
-                {
-                  gallery_theme: "tiles",
-                  tiles_max_columns: 2,
-                  tiles_space_between_cols: 2
-                });
-
-            });
-
-          </script>
-
-          <div id="gallery" style="display:none;">
-
-            <img alt="" class="img-responsive col-xs-12 col-md-3" src="img/actorwho/actorwho_process/blueprint.jpg"
-            data-description="measurements for telephone booth building">
-            <img alt="" class="img-responsive col-xs-12 col-md-3" src="img/actorwho/actorwho_process/buildingbooth.jpg"
-            data-description="building the booth">
-            <img alt="" class="img-responsive col-xs-12 col-md-3" src="img/actorwho/actorwho_process/ring_sound.jpg"
-            data-description="sensor that triggers the phone ring when a person walks into the booth">
-            <img alt="" class="img-responsive col-xs-12 col-md-3" src="img/actorwho/actorwho_process/keypad.jpg"
-            data-description="keypad used to control the UI">
-          </div>
-
-          <script type="text/javascript">
-
-            jQuery(document).ready(function($){
-              $("#gallery").unitegallery(
-                {
-                  gallery_theme: "tiles",
-                  tiles_max_columns: 4,
-                  tiles_space_between_cols: 4
-                });
-
-            });
-
-          </script>
-
+            <span class="aw-kicker">Research</span>
+            <h2> Digital Archiving &amp; Engagement Marketing </h2>
+            <div class="aw-columns">
+              <div>
+                <h4>Digital Archiving</h4>
+                <p> The goal of a digital archive is to hold all knowledge, past and present, in one place — and the collective intelligence of that archive surfaces things a single, isolated trail never could. </p>
+              </div>
+              <div>
+                <h4>Engagement Marketing</h4>
+                <p> The ability to psychologically connect with an audience — to move people emotionally and drive action — has always been paramount to advertising. A phone booth offers a way to engage with the city physically, in a way social media and digital content alone can't. </p>
+              </div>
+            </div>
+            <div class="aw-two-col">
+              <div>
+                <img src="img/actorwho/booth_interior.jpg" alt="interior of a real red telephone booth in Edinburgh with coin payphone">
+              </div>
+              <div>
+                <img src="img/actorwho/similar_design_works.jpg" alt="precedent design works: country's smallest library, dancing traffic light, moments in time">
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="row">
-          <div class="proj-section-left col-xs-12 col-md-6">
-            <h2> Usability Testing </h2>
-            <p> We tested our protoype phone booth experience at the Design with Data exhibition. Testing revealed some key insights for the next iteration of design and development that led to a product pivot as well as UX design improvements. </p>
-            <p> Starting with the Positives: </p>
-            <p> The enclosed space of a telephone booth felt intimate and warm </p>
-            <p> People loved the branding and concept </p>
-            <p> The experience embodied the serendipitous spirit of the Fringe </p>
-
+          <div class="proj-section-left col-xs-12 col-md-12">
+            <span class="aw-kicker">Interactive Design</span>
+            <h2> Concept &amp; Flow </h2>
+            <p> Directors vote on story direction through Twitter polls online; actors audition in person inside the booth. Every episode release triggers a Twitter question, which opens a casting window, which releases the next episode — a loop designed to keep the story alive between physical visits to the booth. </p>
+            <div class="aw-figure">
+              <img src="img/actorwho/concept_flow.jpg" alt="Actor Who concept and flow diagram showing prologue, twitter voting, auditions and casting, and episode releases">
+            </div>
+            <div class="aw-figure">
+              <img src="img/actorwho/twitter_presence.jpg" alt="why Twitter: low barrier to access, no new download, 313 million active monthly users, Edinburgh Festivals follower counts">
+            </div>
+            <div class="aw-two-col">
+              <div>
+                <img src="img/actorwho/actorwho_process/journeynotes.jpg" alt="hand drawn user journey flow: walk in booth, triggers ring, pick up phone, quiz, casting, recording, thank you">
+              </div>
+              <div>
+                <img src="img/actorwho/concept_sketch.jpg" alt="early concept sketch of the booth interior labeled Box Theatre with cameras, speakers, and responsive light">
+              </div>
+            </div>
+            <span class="aw-kicker">Data Used</span>
+            <ul class="aw-list">
+              <li> Downtown phone booth locations </li>
+              <li> Twitter network </li>
+              <li> Audio/video input from the booth's webcam and external mic </li>
+            </ul>
           </div>
-          <img src="img/actorwho/usertesting1.png" class="img-responsive col-xs-12 col-md-6" alt="user testing">
         </div>
 
         <div class="row">
-          <img src="img/actorwho/phonebooth.png" class="img-responsive col-xs-12 col-md-6" alt="user testing">
-          <div class="proj-section-right col-xs-12 col-md-6">
-            <h2> Room For Improvement </h2>
-            <p> Many people were camera shy and asked if their voice could just be recorded </p>
-            <p> Some visitors did not find it obvious they needed to pick up the phone and tried just interacting with the screen </p>
-            <p> Many people wished they could replay their audition before submitting </p>
-            <p> Many people felt strange reading lines alone, unless it was a monologue. </p>
+          <div class="proj-section-right col-xs-12 col-md-12">
+            <span class="aw-kicker">Building Actor Who</span>
+            <h2> From Render to Working Booth </h2>
+            <p> The physical build ran in parallel with the software: a full-size phone booth housing a laptop, numeric keypad, and handset, with an Arduino and distance sensor programmed to ring the phone the moment someone walked in. </p>
+            <div class="aw-figure">
+              <img src="img/actorwho/prototype.jpg" alt="3D render of the phone booth interior next to the working cardboard prototype build">
+            </div>
+            <div class="aw-two-col">
+              <div>
+                <img src="img/actorwho/actorwho_process/blueprint.jpg" alt="building the arched roof of the booth from foam and wood">
+              </div>
+              <div>
+                <img src="img/actorwho/actorwho_process/buildingbooth.jpg" alt="team sourcing timber and materials at the hardware store">
+              </div>
+            </div>
+            <div class="aw-two-col">
+              <div>
+                <img src="img/actorwho/actorwho_process/keypad.jpg" alt="numeric keypad relabeled with phone booth keys">
+              </div>
+              <div>
+                <img src="img/actorwho/actorwho_process/ring_sound.jpg" alt="arduino distance sensor and speaker mounted inside the booth doorframe">
+              </div>
+            </div>
+            <div class="aw-figure">
+              <img src="img/actorwho/usertesting1.png" alt="physical dimension specifications for the booth and terminal">
+            </div>
           </div>
         </div>
 
         <div class="row">
-          <div class="proj-section-left col-xs-12 col-md-6">
+          <div class="proj-section-left col-xs-12 col-md-12">
+            <span class="aw-kicker">Testing in the Wild</span>
+            <h2> Exhibition &amp; UX Testing </h2>
+            <div class="aw-two-col">
+              <div>
+                <img src="img/actorwho/phonebooth.png" alt="Actor Who exhibited at the design showcase with poster and working booth">
+              </div>
+              <div>
+                <img src="img/actorwho/actorwho_process/uitest.jpg" alt="participant testing the quiz on the laptop screen and keypad">
+              </div>
+            </div>
+            <div class="aw-two-col">
+              <div>
+                <img src="img/actorwho/testing_setup_main.jpg" alt="testing setup: keypad, handset, and business cards on the terminal desk, and the full booth on display">
+              </div>
+              <div>
+                <img src="img/actorwho/testing_setup_selfies.jpg" alt="three participants testing the booth, photographed through its fisheye webcam">
+              </div>
+            </div>
+            <p> Five participants ran through a quiz-and-audition script in person; 23 audition videos were collected. </p>
+            <ul class="aw-list">
+              <li> More comfortable sharing voice than facial video </li>
+              <li> Wished they could play back their audition and try again </li>
+              <li> "Don't call us, we'll tweet you" leaves you in anticipation </li>
+              <li> Wished there were different play genres available </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="proj-section-right col-xs-12 col-md-12">
+            <div class="aw-pivot">
+              <span class="aw-kicker">The Pivot</span>
+              <h2> When the Data Said "Not Quite" </h2>
+              <p> Exhibition testing surfaced a real tension: people loved the booth, the branding, and the physical ritual of picking up the phone — but they were uneasy being filmed without a chance to review it, and wanted more real-time, Edinburgh-specific substance behind the experience. </p>
+              <div class="aw-columns">
+                <div>
+                  <h4>What Worked</h4>
+                  <ul class="aw-list">
+                    <li> Loved the phone booth as an object </li>
+                    <li> Liked the physical ritual of the actions </li>
+                    <li> Enjoyed the branding and the idea </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>What Didn't</h4>
+                  <ul class="aw-list">
+                    <li> Wanted real-time integration </li>
+                    <li> Uneasy about instructions and how to act </li>
+                    <li> Nervous about being filmed without review — fine with voice only </li>
+                    <li> Some hardware issues </li>
+                  </ul>
+                </div>
+              </div>
+              <p> That feedback resolved into four main points: use more data, make the experience more Edinburgh-specific, let people share without feeling self-conscious about how they look, and make it real time. </p>
+              <p class="aw-pullquote"> The new idea: change Actor Who into a geographic, location-based story database in key phone booths around the city — letting people listen to historical tales and add their own space-based stories to a never-ending, real-time timeline. </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="proj-section-left col-xs-12 col-md-12">
+            <span class="aw-kicker">Prototype 2</span>
             <h2> ReCall </h2>
-            <p> Based on the feedback we recieved, we decided shift our product design. Due to the hesitation of video recording, we asked how we could still provide a serendipitous, intimate, and fun phonebooth experience that was solely voice based. Because of the feedback that solo auditions felt awkward, we drifted away from an audition idea and shifted more to a product that allows visitors leave their memories in the phone booth. </p>
-          </div>
-          <div class="video-wrapper col-xs-12 col-md-6">
-            <video autoplay loop muted playsinline>
-              <source type="video/mp4" src="https://media.giphy.com/media/2OP9jbHFlFPW/giphy.mp4">
-            </video>
+            <p class="aw-pullquote"> An audio time machine to call the past, present, and future of a specific location, and allow an individual to add their stories to the space's timeline in real time. </p>
+            <p> The same booths, the same keypad interaction, but a different purpose: instead of auditioning for a fictional show, visitors listen to real stories tied to that exact spot in Edinburgh, then record and add their own. Grassmarket was identified as the richest starting location, historically. </p>
+            <div class="aw-figure">
+              <img src="img/actorwho/recall_locations.jpg" alt="map of ReCall locations of interest around Edinburgh with Grassmarket highlighted as most historically interesting">
+            </div>
+            <div class="aw-columns">
+              <div>
+                <h4>Data Used</h4>
+                <ul class="aw-list">
+                  <li> Picture libraries </li>
+                  <li> Historical databases </li>
+                  <li> Audio recordings </li>
+                  <li> Geographic data </li>
+                  <li> New audio input from visitors </li>
+                </ul>
+                <p style="font-family:'Karla',sans-serif; color:rgba(255,255,255,0.5); font-size:0.85em;"> Sources: Edinburgh Collected, Capital Collections, Our Town Stories </p>
+              </div>
+              <div>
+                <h4>Technical Specs</h4>
+                <ul class="aw-list">
+                  <li> Still used the keypad for interface navigation </li>
+                  <li> Switched from Processing to HTML, CSS, and Javascript for dynamic, real-time recording uploads </li>
+                  <li> Hosted on Heroku for full-stack needs </li>
+                  <li> Prototype scope: past and present listening and recording only </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="row">
-          <div class="proj-section-right col-xs-12 col-md-6">
-            <h2> UI/UX iteration </h2>
-            <p> Just like for Actor Who, Recall went through many rounds of design iterations before getting the UI just right. Below is an example of how the 'Recall a Memory' screen was reworked. On the left, an early iteration allowed for users to enter in a year using the keypad. Through feedback and proof of concept, we realized this lead to a lot of edge cases. What if the year didn't exist? It also required visitors to interact longer with the keypad. In order to improve usability and reduce cognitive load, we changed to a toggle model to select a year. </p>
-          </div>
-
-          <img class="img-responsive col-xs-12 col-md-6" src="img/actorwho/recall_process/journeynotes.jpg">
-        </div>
-
 
         <div class="row">
           <div class="proj-section-right col-xs-12 col-md-12">
-
-          <h2> 'Recall a Memory' Design Iterations and Prototyping </h2>
-
-          <div class="col-md-12" id="gallery3" style="display:none;">
-            <img alt="" class="img-responsive col-xs-12 col-md-6" src="img/actorwho/recall_process/selectyearv1.png"
-            data-description="">
-            <img alt="" class="img-responsive col-xs-12 col-md-6" src="img/actorwho/recall_process/selectayearv2.png"
-            data-description="">
-            <img alt="" class="img-responsive col-xs-12 col-md-6" src="img/actorwho/recall_process/selectmemory.gif"
-            data-description="">
+            <span class="aw-kicker">V2 Design Iteration</span>
+            <h2> Designing "Recall a Memory" </h2>
+            <p> Just like Actor Who, ReCall went through rounds of UI iteration before the interaction felt right. The first version asked visitors to type a specific year on the keypad — but that meant guessing whether a year existed at all, and more time spent fumbling with the keys. The second version replaced typing with a directional toggle across a fixed timeline, cutting the interaction down to up/down/left/right and confirm. </p>
+            <div class="aw-figure">
+              <img src="img/actorwho/recall_process/journeynotes.jpg" alt="hand drawn app flow: intro/home, main menu timeline, listen or record branches, year chosen, year play">
+            </div>
+            <div class="aw-two-col">
+              <div>
+                <img src="img/actorwho/recall_process/selectyearv1.png" alt="version 1: typing a specific year on the keypad to recall a memory">
+              </div>
+              <div>
+                <img src="img/actorwho/recall_process/selectayearv2.png" alt="version 2: toggling through a fixed timeline of years using directional keys">
+              </div>
+            </div>
+            <div class="aw-two-col">
+              <div>
+                <img src="img/actorwho/recall_process/selectmemory.gif" alt="animated interaction of selecting and playing back a memory on the timeline">
+              </div>
+              <div>
+                <img src="img/actorwho/recall_ui_test.jpg" alt="working cardboard prototype screen recording showing the record a memory interface">
+              </div>
+            </div>
+            <p> Five participants tried the second prototype. </p>
+            <ul class="aw-list">
+              <li> Liked being able to replay a recording before submitting </li>
+              <li> Satisfying to see a new recording added alongside the other entries </li>
+              <li> Some fumbled with the keypad navigation at first, but everyone "got it" </li>
+            </ul>
           </div>
-
-          <script type="text/javascript">
-
-            jQuery(document).ready(function($){
-              $("#gallery3").unitegallery(
-                {
-                  gallery_theme: "tiles",
-                  tiles_max_columns: 2,
-                  tiles_space_between_cols: 2
-                });
-
-            });
-
-          </script>
-
         </div>
-      </div>
-
 
         <div class="row">
-          <div class="proj-section-right col-xs-12 col-md-12">
-            <h2> ReCall Feedback </h2>
-            <p> While Actor Who made users nervous, ReCall empowered users. If they didn't like a recording, they could re-record it. Improvements were also made to the directions on how to use the keypad. Overall, ReCall had a higher success rate in user journey completions than Actor Who did. </p>
+          <div class="proj-section-left col-xs-12 col-md-12">
+            <span class="aw-kicker">Looking Forward</span>
+            <h2> Moving Forward </h2>
+            <p> Right now the phone booths only act as a location-based database for voice recordings — but that's a floor, not a ceiling. </p>
+            <ul class="aw-list">
+              <li> Pull in Instagram images or tweets taken around Grassmarket automatically </li>
+              <li> Find an interesting way for the booths to "gather" and display that content </li>
+              <li> Swap booths between cities for a day — a Grassmarket booth trades places with one at Piccadilly Circus — and push the location-based element further with AR </li>
+            </ul>
           </div>
-          <iframe style="transform: scale(0.9)" width="972" height="720" src="//invis.io/7BE8HA3S2" frameborder="0" allowfullscreen></iframe>
         </div>
 
       </div>
