@@ -12,6 +12,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8100", "--bind", "127.0.0.1", "--directory", "/Users/parul/psharmz.github.io"],
       "port": 8100
+    },
+    {
+      "name": "studyhall",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8200", "--bind", "127.0.0.1", "--directory", "/Users/parul/studyhall"],
+      "port": 8200
     }
   ]
 }
