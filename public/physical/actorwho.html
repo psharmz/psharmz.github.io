@@ -39,6 +39,11 @@
       margin-bottom: 2%;
     }
 
+    .project-info h2 {
+      box-shadow: none;
+      display: block;
+    }
+
     .aw-figure {
       margin-top: 4%;
       margin-bottom: 4%;
@@ -162,6 +167,18 @@
     .aw-video-wrap video {
       width: 100%;
       display: block;
+    }
+
+    @media (min-width: 768px) {
+      .proj-header-image.aw-video-wrap {
+        flex: 2 1 0;
+        max-width: 66.6667%;
+      }
+
+      .proj-header-about {
+        flex: 1 1 0;
+        max-width: 33.3333%;
+      }
     }
   </style>
 

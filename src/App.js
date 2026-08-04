@@ -285,7 +285,7 @@ function MainPortfolio() {
               <div className="card-body">
                 <h2 className="card-title">Windows Copilot</h2>
                 <p className="card-text">AI at Windows scale · Student & educator experiences</p>
-                <a href="password_protected_page.html" className="stretched-link"></a>
+                <a href="windows.html" className="stretched-link"></a>
               </div>
             </div>
 
@@ -338,6 +338,24 @@ function MainPortfolio() {
                 <p className="quote-text" dangerouslySetInnerHTML={{ __html: `"${renderHighlightedText(quotes[1].text, quotes[1].highlights)}"` }} />
               </div>
               <p className="quote-author">— {quotes[1].author}</p>
+            </div>
+
+            {/* HORIZONTAL DESIGN — Speaker Progress + EDU Insights */}
+            <div
+              className="project-card scroll-reveal"
+              style={{ gridColumn: '1 / 13', gridRow: '37 / 44' }}
+              {...cardHover}
+              onClick={(e) => {
+                e.currentTarget.style.transform = 'scale(0.98)';
+                e.currentTarget.style.opacity = '0.9';
+                setTimeout(() => { window.location.href = 'horizontal-design.html'; }, 150);
+              }}
+            >
+              <img src="img/msoft/insights_final_framework.jpg" className="card-img-top" alt="horizontal design" />
+              <div className="card-body">
+                <h2 className="card-title">Horizontal Design</h2>
+                <p className="card-text">Speaker Progress · EDU Insights framework · Scaled across every Learning Accelerator</p>
+              </div>
             </div>
 
           </div>

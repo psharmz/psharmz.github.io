@@ -15,9 +15,15 @@
     },
     {
       "name": "studyhall",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8200", "--bind", "127.0.0.1", "--directory", "/Users/parul/studyhall"],
-      "port": 8200
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "/Users/parul/studyhall"],
+      "port": 5601
+    },
+    {
+      "name": "react-app",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "port": 3000
     }
   ]
 }

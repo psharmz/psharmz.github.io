@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="Horizontal design at Microsoft Education — Speaker Progress and the EDU Insights framework that scaled across every Learning Accelerator — by Parul Sharma.">
+  <meta name="author" content="Parul Sharma">
+
+  <title>Parul Sharma — Horizontal Design</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="css/header.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/project.css">
+  <link rel="stylesheet" type="text/css" href="css/template.css">
+
+  <!-- Reusable Navigation Component (injects the embossed nav + brand mark) -->
+  <script src="js/nav-component.js"></script>
+
+  <style>
+    /* Jump-to pills — lets a skimmer pick one of the two stories below */
+    .cs-subnav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm, 0.875rem);
+      justify-content: center;
+      margin-top: var(--space-lg, 1.5rem);
+    }
+    .cs-subnav a {
+      font-family: var(--font-body);
+      font-size: var(--type-body-small);
+      font-weight: 700;
+      color: var(--color-text-teal);
+      border: 1.5px solid var(--color-text-teal);
+      border-radius: 999px;
+      padding: 0.5em 1.2em;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .cs-subnav a:hover {
+      background: var(--color-text-teal);
+      color: #000;
+    }
+    /* The Microsoft mark is a wide, light-grey wordmark — sit it in a white
+       chip so it reads cleanly on the dark hero rather than being cropped
+       into the default square logo slot. */
+    .cs-hero__logo--wide {
+      width: auto;
+      height: auto;
+      max-width: 220px;
+      padding: 14px 22px;
+      background: #fff;
+      border-radius: 16px;
+      object-fit: contain;
+    }
+    .cs-quote {
+      font-family: var(--font-heading);
+      font-size: var(--type-title-large);
+      font-weight: var(--weight-regular);
+      line-height: var(--leading-tight);
+      color: var(--color-text-primary);
+      border-left: 3px solid var(--color-accent);
+      padding-left: var(--space-lg);
+      margin: var(--space-xl) 0;
+    }
+  </style>
+</head>
+
+  <body class="template-page embossed-nav">
+
+    <!-- Nav + brand mark are injected by js/nav-component.js -->
+
+    <div class="page-content">
+
+      <!-- ════════════════════════════════════════════════════════
+           HERO
+           ════════════════════════════════════════════════════════ -->
+      <header class="cs-hero">
+        <div class="cs-container">
+
+          <img class="cs-hero__logo cs-hero__logo--wide" src="img/msoft/microsoft.png" alt="Microsoft logo">
+
+          <p class="cs-eyebrow">Case Study · Microsoft Education</p>
+
+          <h1 class="cs-hero__title">Designing once, scaling across the whole suite</h1>
+
+          <p class="cs-hero__summary">
+            Two stories about work that had to hold up beyond a single screen:
+            <span class="accent">Speaker Progress</span>, plugged seamlessly into the
+            Assignment and Grades experiences educators already used in Microsoft Teams;
+            and <span class="accent">EDU Insights</span>, a progressive-disclosure framework
+            that shipped across every Learning Accelerator and lifted discoverability
+            <span class="accent">40%</span>.
+          </p>
+
+          <div class="cs-hero__meta">
+            <div class="cs-meta">
+              <span class="cs-meta__label">Role</span>
+              <span class="cs-meta__value">Product Designer</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Client</span>
+              <span class="cs-meta__value">Microsoft Education</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Platform</span>
+              <span class="cs-meta__value">Web · Teams · Mobile</span>
+            </div>
+          </div>
+
+          <nav class="cs-subnav" aria-label="Jump to a project">
+            <a href="#speaker-progress">Speaker Progress</a>
+            <a href="#edu-insights">EDU Insights</a>
+          </nav>
+
+          <span class="cs-hero__cue" aria-hidden="true"></span>
+        </div>
+      </header>
+
+
+      <!-- ════════════════════════════════════════════════════════
+           BODY
+           ════════════════════════════════════════════════════════ -->
+      <main class="cs-body">
+
+        <!-- ── SPEAKER PROGRESS ── -->
+        <section class="cs-section cs-split" id="speaker-progress">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Speaker Progress · The Problem</p>
+              <h2 class="cs-heading">Public Speaking Anxiety Doesn't End When Class Does</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                Part of Microsoft Education's suite of <a target="_blank" href="https://www.microsoft.com/en-us/education/learning-tools/learning-accelerators">Learning
+                Accelerators</a>, Speaker Progress helps students overcome their fear of
+                public speaking and become more confident, captivating, and competent
+                speakers. My role was the educator side of that equation: personalizing the
+                student report so a teacher could see meaningful progress at a glance, and
+                plugging the new feature seamlessly into the Assignment and Grades
+                experiences educators already used in Microsoft Teams — rather than asking
+                them to learn a separate tool.
+              </p>
+              <div class="cs-pair">
+                <figure class="cs-figure">
+                  <img src="img/msoft/speaker.gif" alt="Speaker Progress educator report" loading="lazy">
+                </figure>
+                <figure class="cs-figure">
+                  <img src="img/msoft/speakerstudent.gif" alt="Speaker Progress student rehearsal report" loading="lazy">
+                </figure>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── EDU INSIGHTS — the horizontal systems story ── -->
+        <section class="cs-section cs-center" id="edu-insights">
+          <div class="cs-container">
+            <p class="cs-eyebrow">EDU Insights · The Systems Challenge</p>
+            <h2 class="cs-heading">One Pattern, Four Products, One Design System</h2>
+            <p class="cs-lead">
+              At a company as large as Microsoft, shipping one good feature isn't the hard
+              part — making it scale across a whole product family is.
+            </p>
+            <p class="cs-text">The prompt I was given put that challenge plainly:</p>
+            <blockquote class="cs-quote">
+              "Create a progressive disclosure system that guides an educator from a single
+              data card in a learning product to the full history in the Insights app."
+            </blockquote>
+            <p class="cs-text">
+              The Insights team was a highly motivated partner going in — they wanted more
+              traffic to their app, which meant discoverability from every Learning
+              Accelerator was already in their interest.
+            </p>
+          </div>
+        </section>
+
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Discovery</p>
+              <h2 class="cs-heading">Designing for the Classroom, Not a Standalone App</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                Before any UI work, we had to establish two things: where Insights-relevant
+                data was already surfacing across Assignments, and who the real audience
+                was — students, teachers, or both. The Insights team confirmed they had
+                almost no standalone users, only schools, so the container decision followed
+                directly: design for the classroom experience (Reading Progress, Speaker
+                Progress) rather than a standalone product like Reading Coach.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Research</p>
+              <h2 class="cs-heading">Teachers Care About the Story Behind the Grade</h2>
+            </aside>
+            <div class="cs-split__body">
+              <figure class="cs-figure">
+                <img src="img/msoft/insights_teacher_interviews.jpg" alt="Interviewing teachers about what data they care about" loading="lazy">
+              </figure>
+              <p class="cs-text">
+                Interviewing teachers surfaced a clear pattern: they cared about outlier
+                data — a student who usually scores 90% but suddenly drops 20 points below
+                their own average — far more than the raw grade itself. The number wasn't
+                the point; the context around the number was.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Ideation</p>
+              <h2 class="cs-heading">Flip the Card? Add an Icon? Constraints Picked the Answer</h2>
+            </aside>
+            <div class="cs-split__body">
+              <figure class="cs-figure">
+                <img src="img/msoft/insights_interaction_ideas.jpg" alt="Interaction design ideas for surfacing insights" loading="lazy">
+              </figure>
+              <p class="cs-text">
+                Early interaction ideas ranged from reusing the existing info-icon pattern
+                next to data labels to flipping the entire card. We also explored trend
+                arrows and color coding, but ran into a real constraint: Microsoft can't
+                universally define what counts as a "good" or "bad" trend for every metric,
+                so a naive green-up, red-down treatment was off the table.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Systems Thinking</p>
+              <h2 class="cs-heading">Auditing Every Card, Across Every Learning Accelerator</h2>
+            </aside>
+            <div class="cs-split__body">
+              <figure class="cs-figure">
+                <img src="img/msoft/insights_framework_audit.jpg" alt="Auditing insight cards across learning accelerators" loading="lazy">
+              </figure>
+              <p class="cs-text">
+                Any single interaction decision only mattered if it held up everywhere else.
+                I audited every insight card across every Learning Accelerator and turned
+                that audit into a design framework — a set of cohesion rules so a pattern
+                established in Reading Progress would look and behave the same way in
+                Speaker Progress.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">The Framework</p>
+              <h2 class="cs-heading">Card → Modal → Full Insights: Progressive Disclosure</h2>
+            </aside>
+            <div class="cs-split__body">
+              <figure class="cs-figure">
+                <img src="img/msoft/insights_progressive_disclosure.jpg" alt="Progressive disclosure framework: card, modal, full insights" loading="lazy">
+              </figure>
+              <p class="cs-text">
+                The framework's core idea: don't jump straight from a single data point to
+                the full historical Insights app. Teachers are usually mid-grading when they
+                land on a review screen, and a hard cut to a different app is disorienting.
+                So the pattern steps through three levels instead — a card with a single
+                number, a modal with one graph, then the full Insights experience — keeping
+                teachers in their flow rather than yanking them out of it.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">The Blind Spot</p>
+              <h2 class="cs-heading">A Hover Interaction That Only Worked on Desktop</h2>
+            </aside>
+            <div class="cs-split__body">
+              <figure class="cs-figure">
+                <img src="img/msoft/insights_learnings_ipad.jpg" alt="Students and teachers using iPads, a blind spot for the hover interaction" loading="lazy">
+              </figure>
+              <p class="cs-text">
+                I'd gotten attached to a card-hover interaction, prototyped with real Fluent
+                components. It worked well — until I remembered that students and teachers
+                do most of this on iPads, where hover states don't exist. I reworked the
+                interaction around click and tap instead, so desktop and iPad behaved the
+                same way.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="cs-section cs-center">
+          <div class="cs-container">
+            <p class="cs-eyebrow">The Result</p>
+            <h2 class="cs-heading">Shipped Across Every Assignment Type</h2>
+            <figure class="cs-figure">
+              <img src="img/msoft/insights_final_framework.jpg" alt="Final insights framework shipped in Speaker Progress" loading="lazy">
+            </figure>
+            <p class="cs-text">
+              No card flips. A click state on desktop that becomes a tap on mobile and iPad.
+            </p>
+            <div class="cs-metrics">
+              <div class="cs-metric">
+                <span class="cs-metric__num">40%</span>
+                <span class="cs-metric__label">Increase in card clicks &amp; traffic to Insights</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── CLOSING / NEXT PROJECT ── -->
+        <section class="cs-closing">
+          <div class="cs-container">
+            <span class="cs-next__kicker">Next project</span>
+            <a class="cs-next" href="/#work">See more work →</a>
+          </div>
+        </section>
+
+      </main>
+
+    </div><!-- /.page-content -->
+
+
+    <!-- ScrollReveal for section reveals -->
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+    <!-- Shared nav hamburger + back-to-top -->
+    <script src="js/project.js"></script>
+
+    <script>
+      var allowsMotion = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+
+      if (typeof ScrollReveal !== 'undefined' && allowsMotion) {
+        var sr = ScrollReveal({
+          distance: '28px', duration: 1000,
+          easing: 'cubic-bezier(0.16, 1, 0.3, 1)', opacity: 0, reset: false,
+        });
+        sr.reveal('.cs-eyebrow',  { origin: 'bottom', distance: '16px' });
+        sr.reveal('.cs-heading',  { origin: 'bottom', distance: '24px', interval: 80 });
+        sr.reveal('.cs-lead, .cs-text', { origin: 'bottom', distance: '16px', delay: 80, interval: 60 });
+        sr.reveal('.cs-figure, .cs-pair > .cs-figure', { origin: 'bottom', distance: '40px', delay: 120, interval: 120 });
+        sr.reveal('.cs-metric', { origin: 'bottom', interval: 100 });
+      }
+    </script>
+  </body>
+</html>

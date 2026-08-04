@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="description" content="Rasa Platform case study — designing and building a React web app that let non-engineers train enterprise chatbots, cutting handoff and training time by 40%.">
+  <meta name="description" content="Rasa Platform case study: designing and building a React web app that let non-engineers train enterprise chatbots, cutting handoff and training time by 40%.">
   <meta name="author" content="Parul Sharma">
 
   <title>Parul Sharma — Rasa Platform Case Study</title>
@@ -22,8 +22,8 @@
   <link rel="stylesheet" type="text/css" href="css/project.css">
   <link rel="stylesheet" type="text/css" href="css/template.css">
 
-  <!-- Page-scoped tweaks: brand logo treatment, the "How Might We" list,
-       and the small concept tag-row. All colours pull from the tokens. -->
+  <!-- Page-scoped tweaks: brand logo treatment, the toggle, and the small
+       concept tag-row. All colours pull from the tokens. -->
   <style>
     /* Rasa wordmark sits on a white rounded tile so the purple reads on black. */
     .rasa-page .cs-hero__logo {
@@ -35,6 +35,9 @@
       object-fit: contain;
       box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
     }
+
+    /* A subtle black border on the low-fi wireframe so it reads as a frame. */
+    .rasa-page .cs-figure--framed { border: 1px solid var(--color-text-primary); }
 
     /* How-Might-We — five teal circles, the full question inside each. They
        sit in a row on desktop, 3-over-2 on tablets, and stack one-per-row
@@ -118,8 +121,28 @@
       .rasa-page .cs-questions li { animation: none; }
     }
 
-    /* A subtle black border on the low-fi wireframe so it reads as a frame. */
-    .rasa-page .cs-figure--framed { border: 1px solid var(--color-text-primary); }
+    /* Full-bleed workshop-photo pair — edge to edge, equal height via
+       object-fit so the shorter photo never leaves whitespace beneath it. */
+    .rasa-page .cs-fullbleed-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      margin: clamp(2.5rem, 6vw, 4rem) 0;
+    }
+    .rasa-page .cs-fullbleed-pair img {
+      display: block;
+      width: 100%;
+      height: clamp(320px, 46vw, 580px);
+      object-fit: cover;
+    }
+    @media (max-width: 700px) {
+      .rasa-page .cs-fullbleed-pair {
+        grid-template-columns: 1fr;
+      }
+      .rasa-page .cs-fullbleed-pair img {
+        height: clamp(260px, 80vw, 420px);
+      }
+    }
 
     /* ── Full-width auto-toggling workflow block ── */
     .rasa-page .cs-flow {
@@ -187,7 +210,7 @@
       .rasa-page .cs-flow__fig .cs-toggle__img { transition: none; }
     }
 
-    /* Small role/concept tags shown under the overview. */
+    /* Small role/concept tags shown under the solution. */
     .rasa-page .cs-tags {
       display: flex;
       flex-wrap: wrap;
@@ -231,7 +254,7 @@
 
           <p class="cs-hero__summary">
             Rasa Platform is an ML-Ops tool for building and training enterprise
-            chatbots — pre-ChatGPT. As the <span class="accent">solo front-end
+            chatbots, pre-ChatGPT. As the <span class="accent">solo front-end
             engineer</span>, I researched, designed, and shipped the React web app
             that <span class="accent">cut handoff and training time by 40%</span>
             and helped Rasa pivot from services to a product company.
@@ -248,12 +271,8 @@
               <span class="cs-meta__value">2017–2018 · Berlin</span>
             </div>
             <div class="cs-meta">
-              <span class="cs-meta__label">Team</span>
-              <span class="cs-meta__value">Solo · with ML engineers &amp; PMs</span>
-            </div>
-            <div class="cs-meta">
-              <span class="cs-meta__label">Platform</span>
-              <span class="cs-meta__value">React web app</span>
+              <span class="cs-meta__label">Skills</span>
+              <span class="cs-meta__value">React web development · Sketch</span>
             </div>
           </div>
 
@@ -267,39 +286,21 @@
            ════════════════════════════════════════════════════════ -->
       <main class="cs-body">
 
-        <!-- ── 1 · OVERVIEW ── -->
-        <section class="cs-section cs-split">
+        <!-- ── 1 · THE PROBLEM ── -->
+        <section class="cs-section cs-center">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Overview</p>
-              <h2 class="cs-heading">What is Rasa Platform?</h2>
-            </aside>
-            <div class="cs-split__body">
-              <p class="cs-text">
-                An ML-Ops platform for enterprise chatbots, built in 2017 — years
-                before ChatGPT. Teams used it to design conversation flows,
-                annotate and train NLU data, test the bot, and ship it. The
-                closest tool today is <span class="accent">Weights &amp; Biases'
-                Weave</span> for LLMs.
-              </p>
-              <p class="cs-text">
-                The vision: let machine-learning engineers and non-technical
-                project owners build a chatbot <span class="accent">together</span>,
-                in one shared tool — instead of lobbing files back and forth.
-              </p>
-              <figure class="cs-figure">
-                <img src="img/rasa/rasa.gif"
-                     alt="Rasa Platform reviewing and correcting a bot's predictions" loading="lazy">
-              </figure>
-              <figcaption class="cs-caption">Rasa Platform — reviewing and correcting the bot's predictions, with confidence scores.</figcaption>
-
-              <div class="cs-tags" aria-label="Core concepts">
-                <span class="cs-tag">Stories</span>
-                <span class="cs-tag">Traces</span>
-                <span class="cs-tag">Confidence Scores</span>
-                <span class="cs-tag">NLU Training</span>
-              </div>
-            </div>
+            <p class="cs-eyebrow">The Problem</p>
+            <p class="cs-text">
+              While enterprise customers (like banking and insurance companies) had
+              solid workflows to build chatbots in Rasa, training and testing models
+              remained highly ambiguous. Teams frequently hit roadblocks, relying on
+              the Rasa team to build custom solutions so engineers and PMs could
+              collaborate on iterations. Without these, engineers faced heavy
+              overhead: parsing feedback from screenshots, emails and Jira notes. To
+              share a chatbot with a nontechnical teammate, engineers would even
+              build custom sandbox environments, and sometimes, even teach PMs how
+              to test chatbots using CLI terminals like a developer.
+            </p>
           </div>
         </section>
 
@@ -312,17 +313,30 @@
         </figure>
 
 
-        <!-- ── 2 · THE PROBLEM ── -->
-        <section class="cs-section cs-center">
+        <!-- ── 2 · HOW WE INVESTIGATED ── -->
+        <section class="cs-section cs-split">
           <div class="cs-container">
-            <p class="cs-eyebrow">The Problem</p>
-            <h2 class="cs-heading">Two very different users, one bot</h2>
-            <p class="cs-text">
-              Building a chatbot split the work between a machine-learning
-              developer and a non-technical project owner — two people who barely
-              shared a workflow. The handoff was slow, and no one could see how
-              well the bot was performing. I framed the work as five questions:
-            </p>
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">How We Investigated</p>
+              <h2 class="cs-heading">Learnings from existing customer relationships</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                In the spirit of Rasa making the shift from being a professional
+                services company to a product company, I proposed to the CEO and
+                COO that I run a design thinking workshop with the entire startup.
+                I had everyone pull from their experiences building for existing
+                clients.
+              </p>
+              <p class="cs-text">
+                We divided the existing clients into two personas: engineers and
+                PMs. Each person mapped the behaviors, pain points, and goals of
+                existing customers that build chatbots using Rasa.
+              </p>
+              <p class="cs-text">
+                Five recurring pain points emerged across teams:
+              </p>
+            </div>
           </div>
 
           <ul class="cs-questions">
@@ -334,44 +348,11 @@
           </ul>
         </section>
 
-
-        <!-- ── 3 · PROCESS ── -->
-        <section class="cs-section cs-split">
-          <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Process</p>
-              <h2 class="cs-heading">Workshops → personas → a shared journey</h2>
-            </aside>
-            <div class="cs-split__body">
-              <p class="cs-text">
-                I led design workshops with developers, project owners, and end
-                users to learn how each saw chatbot creation. Getting different
-                roles in one room to hear each other was itself a win — it sparked
-                a real <span class="accent">culture shift</span>.
-              </p>
-              <!-- SIDE-BY-SIDE PAIR — workshop photos -->
-              <div class="cs-pair">
-                <figure class="cs-figure">
-                  <img src="img/rasa/workshop.png" alt="Design workshop in Berlin" loading="lazy">
-                </figure>
-                <figure class="cs-figure">
-                  <img src="img/rasa/workshop2.png" alt="Workshop participants mapping workflows" loading="lazy">
-                </figure>
-              </div>
-              <p class="cs-text">
-                We mapped the current journey from both the engineer's and the
-                project owner's point of view, then turned each pain point into an
-                opportunity for the platform — sketching the end-to-end structure
-                and pressure-testing feasibility with engineers before designing.
-              </p>
-              <figure class="cs-figure">
-                <img src="img/rasa/art_board.png"
-                     alt="Early structural sketches mapping the end-to-end flow" loading="lazy">
-              </figure>
-              <figcaption class="cs-caption">Early structural sketches mapping the end-to-end flow.</figcaption>
-            </div>
-          </div>
-        </section>
+        <!-- FULL-BLEED PAIR — workshop photos, edge to edge -->
+        <div class="cs-fullbleed-pair">
+          <img src="img/rasa/workshop.png" alt="Design workshop in Berlin" loading="lazy">
+          <img src="img/rasa/workshop2.png" alt="Workshop participants mapping workflows" loading="lazy">
+        </div>
 
 
         <!-- ── FULL-WIDTH AUTO-TOGGLE — current analog flow ⇄ where Rasa fits in ── -->
@@ -400,28 +381,47 @@
         </section>
 
 
+        <!-- ── 3 · WHAT WE DISCOVERED ── -->
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">What We Discovered</p>
+              <h2 class="cs-heading">Two modes unlock everything</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                PMs needed two different experiences. Structured annotation mode for
+                training data. Loose playground mode for testing. The real unlock: a
+                shareable link. No custom environment. No friction.
+              </p>
+              <figure class="cs-figure">
+                <img src="img/rasa/rasa.gif"
+                     alt="Rasa Platform reviewing and correcting a bot's predictions" loading="lazy">
+              </figure>
+              <figcaption class="cs-caption">Rasa Platform: reviewing and correcting the bot's predictions, with confidence scores.</figcaption>
+              <figure class="cs-figure">
+                <img src="img/rasa/art_board.png"
+                     alt="Early wireframes shared out for feedback" loading="lazy">
+              </figure>
+              <figcaption class="cs-caption">Early wireframes shared out for feedback.</figcaption>
+            </div>
+          </div>
+        </section>
+
+
         <!-- ── 4 · THE SOLUTION ── -->
         <section class="cs-section cs-split">
           <div class="cs-container">
             <aside class="cs-split__aside">
               <p class="cs-eyebrow">The Solution</p>
-              <h2 class="cs-heading">One streamlined, collaborative training loop</h2>
+              <h2 class="cs-heading">A platform that lets PMs annotate and test independently</h2>
             </aside>
             <div class="cs-split__body">
               <p class="cs-text">
-                The redesign gave both users a single shared loop. The developer
-                builds and trains the bot, then shares it with a link. The project
-                owner chats to test it, flags a bad reply with an
-                <span class="accent">&ldquo;x&rdquo;</span>, and sends the full
-                conversation plus debug info back. The developer fixes it in
-                interactive learning and retrains — no more lossy handoffs.
-              </p>
-              <p class="cs-text">
-                I designed the NLU training queue (with confidence scores so
-                non-engineers can see exactly what to fix), the chat + debug
-                playground, and the train/share flow — then built it in React,
-                going straight from low-fi wireframes to production under tight
-                deadlines.
+                I designed the NLU training queue with confidence scores (so
+                non-engineers knew what to fix), a chat + debug playground, and a
+                share-via-link flow. Built it in React from wireframes to production
+                under deadline.
               </p>
               <figure class="cs-figure cs-figure--framed">
                 <img src="img/rasa/wireframe.png" alt="Low-fidelity wireframes for the platform" loading="lazy">
@@ -430,23 +430,24 @@
               <figure class="cs-figure">
                 <img src="img/rasa/rasa_platform2.png" alt="NLU training queue with confidence scores" loading="lazy">
               </figure>
-              <figcaption class="cs-caption">The NLU training queue — confidence scores guide non-technical PMs to the data that needs fixing.</figcaption>
+              <figcaption class="cs-caption">The NLU training queue: confidence scores guide non-technical PMs to the data that needs fixing.</figcaption>
+
+              <div class="cs-tags" aria-label="Core concepts">
+                <span class="cs-tag">Stories</span>
+                <span class="cs-tag">Traces</span>
+                <span class="cs-tag">Confidence Scores</span>
+                <span class="cs-tag">NLU Training</span>
+              </div>
             </div>
           </div>
         </section>
 
 
-        <!-- ── 5 · OUTCOME ── -->
+        <!-- ── 5 · IMPACT ── -->
         <section class="cs-section cs-center">
           <div class="cs-container">
-            <p class="cs-eyebrow">Outcome</p>
+            <p class="cs-eyebrow">Impact</p>
             <h2 class="cs-heading">Impact &amp; outcomes</h2>
-            <p class="cs-text">
-              The work helped Rasa shift from a professional-services company —
-              designing bespoke bots per customer — to a repeatable,
-              <span class="accent">product-led</span> business with happy
-              customers.
-            </p>
             <div class="cs-metrics">
               <div class="cs-metric">
                 <span class="cs-metric__num">40%</span>
@@ -465,22 +466,15 @@
         </section>
 
 
-        <!-- ── 6 · REFLECTION / LEARNINGS ── -->
+        <!-- ── 6 · WHAT I LEARNED ── -->
         <section class="cs-section cs-center">
           <div class="cs-container">
-            <p class="cs-eyebrow">Reflection</p>
+            <p class="cs-eyebrow">What I Learned</p>
             <h2 class="cs-heading">What I'd build next</h2>
             <p class="cs-text">
-              The biggest learning: <span class="accent">communicating how the ML
-              model performs is crucial to the business.</span> My next step would
-              be richer performance analytics — comparing confidence across intents,
-              surfacing best- and worst-performing intents, and tracking quality by
-              model version — so both customers and engineers always know how good
-              the bot is and how to make it better.
-            </p>
-            <p class="cs-text">
-              Working on the experience here is what cemented my interest in design
-              and sparked my pivot from engineer to designer.
+              Model performance visibility is crucial to the business. Next step:
+              richer analytics, tracking quality by version, comparing confidence
+              across intents. This work cemented my pivot from engineer to designer.
             </p>
           </div>
         </section>

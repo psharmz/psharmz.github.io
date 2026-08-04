@@ -399,6 +399,22 @@ h2 {
     min-height: 0;
 }
 
+.card-badge {
+    position: absolute;
+    top: var(--space-md);
+    left: var(--space-md);
+    z-index: 2;
+    background: var(--color-text-teal);
+    color: #000;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: var(--type-label-medium);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    padding: 0.35em 0.8em;
+    border-radius: 999px;
+}
+
 .project-card:hover {
     z-index: 2;
     transform: scale(1.015);

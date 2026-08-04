@@ -5,113 +5,156 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Career Coach — personalized career guidance for higher-ed students, a Microsoft Education case study by Parul Sharma.">
+  <meta name="author" content="Parul Sharma">
 
-  <title>Parul Sharma</title>
+  <title>Parul Sharma — Career Coach</title>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,600&display=swap" rel="stylesheet">
 
-  
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/header.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="css/project.css">
+  <link rel="stylesheet" type="text/css" href="css/template.css">
 
-  <!-- Reusable Navigation Component -->
+  <!-- Reusable Navigation Component (injects the embossed nav + brand mark) -->
   <script src="js/nav-component.js"></script>
 
-  <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-  <script type='text/javascript' src='unitegallery/themes/tiles/ug-theme-tiles.js'></script>
-  <link rel='stylesheet' href='unitegallery/themes/default/ug-theme-default.css' type='text/css' /> 
-  <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
-  <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
-
-
+  <style>
+    /* The Microsoft mark is a wide, light-grey wordmark — sit it in a white
+       chip so it reads cleanly on the dark hero rather than being cropped
+       into the default square logo slot. */
+    .cs-hero__logo--wide {
+      width: auto;
+      height: auto;
+      max-width: 220px;
+      padding: 14px 22px;
+      background: #fff;
+      border-radius: 16px;
+      object-fit: contain;
+    }
+  </style>
 </head>
 
-    <body class="embossed-nav">
-        <!-- Nav + brand mark are injected by js/nav-component.js -->
+  <body class="template-page embossed-nav">
 
-        <div class="page-content">
+    <!-- Nav + brand mark are injected by js/nav-component.js -->
 
-          <div class="prj-header">
- 
-            <img src="img/msoft/microsoft.png" width="20%" alt="microsoft header Image"/>
-            <p> From education products like <span class="accent">Speaker Coach</span> and <span class="accent">Career Coach</span>, to <span class="accent">Windows</span> products like Expressive Input Panel and <span class="accent">Copilot</span>, I had the opportunity to explore various consumer and enterprise design challenges through both a deep vertical and across horizonal ecosystem lens. I collaborated directly with talented researchers, product managers, and engineers on 0 to 1 products as well as new features for existing products. </p> 
+    <div class="page-content">
 
-        </div>
+      <!-- ════════════════════════════════════════════════════════
+           HERO
+           ════════════════════════════════════════════════════════ -->
+      <header class="cs-hero">
+        <div class="cs-container">
 
+          <img class="cs-hero__logo cs-hero__logo--wide" src="img/msoft/microsoft.png" alt="Microsoft logo">
 
-      <!-- display the project INFO -->
+          <p class="cs-eyebrow">Case Study · Microsoft Education</p>
 
-      <div class="container-fluid project-info">
+          <h1 class="cs-hero__title">Personalized guidance, at Microsoft's scale</h1>
 
-        <div class="row">
-
-        <div class="row hideme">
-              <video width="100%" autoplay controls class="img-responsive col-xs-12 col-md-7" alt="product 1" >
-              <source src="img/msoft/intro1.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          <div class="proj-section-right col-xs-12 col-md-5">
-            <h2> Career Coach </h2>
-            <p> Career Coach empowers higher education students to discover their career path, grow real-world skills, and build their network. The objective was to deliver guidance that was personalized to a students' education, skills, and interests. You can learn more about the product and browse snippets of the UI <a target="_blank" href="https://support.microsoft.com/en-us/topic/career-coach-quick-start-guide-for-students-c419db47-9290-4961-9684-c3f86a9b3708">here</a>. 
+          <p class="cs-hero__summary">
+            From education products like <span class="accent">Speaker Coach</span> and
+            <span class="accent">Career Coach</span>, to <span class="accent">Windows</span>
+            products like Expressive Input Panel and <span class="accent">Copilot</span>, I had
+            the opportunity to explore various consumer and enterprise design challenges through
+            both a deep vertical and across horizontal ecosystem lens. I collaborated directly
+            with talented researchers, product managers, and engineers on 0 to 1 products as
+            well as new features for existing products.
           </p>
+
+          <div class="cs-hero__meta">
+            <div class="cs-meta">
+              <span class="cs-meta__label">Role</span>
+              <span class="cs-meta__value">Product Designer</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Client</span>
+              <span class="cs-meta__value">Microsoft Education</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Platform</span>
+              <span class="cs-meta__value">Web · Teams · Mobile</span>
+            </div>
           </div>
+
+          <span class="cs-hero__cue" aria-hidden="true"></span>
         </div>
-      </div>
+      </header>
 
-      <div class="row">
-         <img src="img/msoft/cc_mobile.png" class="img-responsive col-xs-12 col-md-12">
-      </div>
 
-      
-         
-      
-          
-          <h2 class="col-xs-12"> Speaker Progress </h2>
+      <!-- ════════════════════════════════════════════════════════
+           BODY
+           ════════════════════════════════════════════════════════ -->
+      <main class="cs-body">
 
-          <p class="col-xs-12"> Part of the Microsoft Education's suite of <a target="_blank" href="https://www.microsoft.com/en-us/education/learning-tools/learning-accelerators"> Learning Accelerators </a>, Speaker Progress helps students overcome their fear of public speaking and become more confident, captivating, and competent speakers. It can also help educators enhance their teaching methods and outcomes by using a fun and effective tool that supports their students' learning and growth. I was responsible for the educator experience of the product, which included personalization of the student report and seamlessly plugging in the new feature into the existing Assignment and Grades product experiences in Microsoft Teams.
+        <!-- ── CAREER COACH ── -->
+        <section class="cs-section cs-split" id="career-coach">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Career Coach · The Problem</p>
+              <h2 class="cs-heading">Career Guidance That Doesn't Scale to One-Size-Fits-All</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                Higher-ed students each arrive with a different education, skill set, and set
+                of interests — but most career guidance tools give everyone the same generic
+                advice. Career Coach's objective was to deliver guidance personalized to the
+                individual student, so they could discover a career path, grow real-world
+                skills, and build their network on their own terms. You can browse snippets
+                of the shipped UI <a target="_blank" href="https://support.microsoft.com/en-us/topic/career-coach-quick-start-guide-for-students-c419db47-9290-4961-9684-c3f86a9b3708">here</a>.
+              </p>
+              <figure class="cs-figure">
+                <video width="100%" autoplay muted loop playsinline>
+                  <source src="img/msoft/intro1.mp4" type="video/mp4">
+                </video>
+              </figure>
+              <figure class="cs-figure">
+                <img src="img/msoft/cc_mobile.png" alt="Career Coach mobile experience" loading="lazy">
+              </figure>
+            </div>
+          </div>
+        </section>
 
- </p>
 
-          <img src="img/msoft/speaker.gif" class="img-responsive col-xs-12" >
+        <!-- ── CLOSING / NEXT PROJECT ── -->
+        <section class="cs-closing">
+          <div class="cs-container">
+            <span class="cs-next__kicker">Next project</span>
+            <a class="cs-next" href="/#work">See more work →</a>
+          </div>
+        </section>
 
-          <img src="img/msoft/speakerstudent.gif" class="img-responsive col-xs-12" >
+      </main>
 
-          <h2 class="col-xs-12"> Horizontal Efforts for EDU Insights </h2>
+    </div><!-- /.page-content -->
 
-          <p class="col-xs-12"> At a company as large as Microsoft, a critical systems design challenge emerges: how does a design pattern scale across multiple products within a cohesive design system? One notable design prompt that I was given that encapsulated this was "Create a progressive disclosure system that guides an educator from a single data card in a learning product to the full history in the Insights app." While we started with Reading Coach first, the goal was to develop a scalable framework that could then be applied to all Learning Accelerators—Speaker, Reading, Math, Search—in a consistent manner through systematic design patterns.  </p>
 
-          <img src="img/msoft/insights.jpg" class="img-responsive col-xs-12" >
+    <!-- ScrollReveal for section reveals -->
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+    <!-- Shared nav hamburger + back-to-top -->
+    <script src="js/project.js"></script>
 
-        
+    <script>
+      var allowsMotion = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
 
-          
-        </div>
-      </div>
-
-    </div>
-    
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
-    <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-  <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
-  <script src="js/project.js"></script>
-</body>
-  </html>
+      if (typeof ScrollReveal !== 'undefined' && allowsMotion) {
+        var sr = ScrollReveal({
+          distance: '28px', duration: 1000,
+          easing: 'cubic-bezier(0.16, 1, 0.3, 1)', opacity: 0, reset: false,
+        });
+        sr.reveal('.cs-eyebrow',  { origin: 'bottom', distance: '16px' });
+        sr.reveal('.cs-heading',  { origin: 'bottom', distance: '24px', interval: 80 });
+        sr.reveal('.cs-lead, .cs-text', { origin: 'bottom', distance: '16px', delay: 80, interval: 60 });
+        sr.reveal('.cs-figure, .cs-pair > .cs-figure', { origin: 'bottom', distance: '40px', delay: 120, interval: 120 });
+        sr.reveal('.cs-metric', { origin: 'bottom', interval: 100 });
+      }
+    </script>
+  </body>
+</html>

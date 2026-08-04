@@ -5,140 +5,284 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Microsoft Windows case studies — EDU Copilot, Advanced Paste, and the Windows UI Library — by Parul Sharma.">
+  <meta name="author" content="Parul Sharma">
 
-  <title>Parul Sharma</title>
+  <title>Parul Sharma — Windows &amp; AI</title>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,600&display=swap" rel="stylesheet">
 
-  
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/header.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="css/project.css">
+  <link rel="stylesheet" type="text/css" href="css/template.css">
 
-  <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-  <script type='text/javascript' src='unitegallery/themes/tiles/ug-theme-tiles.js'></script>
-  <link rel='stylesheet' href='unitegallery/themes/default/ug-theme-default.css' type='text/css' /> 
-  <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
-  <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
-
-  <!-- Reusable Navigation Component -->
+  <!-- Reusable Navigation Component (injects the embossed nav + brand mark) -->
   <script src="js/nav-component.js"></script>
 
-  <script>
-    // Check if user is authenticated
-    function checkAuthentication() {
-        const isAuthenticated = sessionStorage.getItem('authenticated');
-        const authTime = sessionStorage.getItem('authTime');
-
-        // Check if not authenticated or session expired (30 minutes)
-        if (!isAuthenticated || !authTime) {
-            window.location.href = 'password_protected_page.html';
-            return;
-        }
-
-        // Check if session expired (30 minutes = 1800000 ms)
-        const currentTime = Date.now();
-        const sessionAge = currentTime - parseInt(authTime);
-        if (sessionAge > 1800000) {
-            sessionStorage.removeItem('authenticated');
-            sessionStorage.removeItem('authTime');
-            window.location.href = 'password_protected_page.html';
-            return;
-        }
+  <style>
+    /* Jump-to pills — lets a skimmer pick one of the three stories below */
+    .cs-subnav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm, 0.875rem);
+      justify-content: center;
+      margin-top: var(--space-lg, 1.5rem);
     }
-
-    // Run authentication check immediately when script loads
-    checkAuthentication();
-
-    // Also check when page becomes visible (prevents bypassing via browser back button)
-    document.addEventListener('visibilitychange', function() {
-        if (!document.hidden) {
-            checkAuthentication();
-        }
-    });
-
-    // Additional check when page loads
-    window.addEventListener('load', checkAuthentication);
-  </script>
-
+    .cs-subnav a {
+      font-family: var(--font-body);
+      font-size: var(--type-body-small);
+      font-weight: 700;
+      color: var(--color-text-teal);
+      border: 1.5px solid var(--color-text-teal);
+      border-radius: 999px;
+      padding: 0.5em 1.2em;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .cs-subnav a:hover {
+      background: var(--color-text-teal);
+      color: #000;
+    }
+    /* The Microsoft mark is a wide, light-grey wordmark — sit it in a white
+       chip so it reads cleanly on the dark hero rather than being cropped
+       into the default square logo slot. */
+    .cs-hero__logo--wide {
+      width: auto;
+      height: auto;
+      max-width: 220px;
+      padding: 14px 22px;
+      background: #fff;
+      border-radius: 16px;
+      object-fit: contain;
+    }
+  </style>
 </head>
 
-    <body class="embossed-nav">
+  <body class="template-page embossed-nav">
 
-        <div class="page-content" style="padding-bottom: 100px;">
+    <!-- Nav + brand mark are injected by js/nav-component.js -->
 
-          <div class="prj-header">
- 
-            <img src="img/msoft/microsoft.png" width="20%" height="20%" alt="microsoft header Image"/>
-             <br> </br>
+    <div class="page-content">
 
-            <h2> Product Designer </h2>
-            <p> From education products like Speaker Coach and Career Coach, to Windows products like Expressive Input Panel and Copilot, I had the opportunity to explore various consumer and enterprise design challenges through both a deep vertical and across horizontal ecosystem lens. I collaborated directly with talented researchers, product managers, and engineers on 0 to 1 products as well as new features for existing products. </p> 
+      <!-- ════════════════════════════════════════════════════════
+           HERO
+           ════════════════════════════════════════════════════════ -->
+      <header class="cs-hero">
+        <div class="cs-container">
 
-        </div>
+          <img class="cs-hero__logo cs-hero__logo--wide" src="img/msoft/microsoft.png" alt="Microsoft logo">
 
+          <p class="cs-eyebrow">Case Study · Microsoft Windows</p>
 
-      <!-- display the project INFO -->
+          <h1 class="cs-hero__title">Bringing AI into Windows, without losing trust</h1>
 
-      <div class="container-fluid project-info">
-
-        <div class="row">
-
-        <div class="row hideme">
-          <img src="img/msoft/copilotword.png" class="img-responsive col-xs-12 col-md-7" >
-             
-          <div class="proj-section-right col-xs-12 col-md-5">
-            <h2> Horizontal Efforts for EDU Copliot </h2>
-            <p> EDU Copilot represents another significant systems design initiative—a Copilot with education-specific prompts and trained on data specific to your class and students, enabling it to behave like a teaching assistant. EDU Copilot was architected to not only work with Grades and Assignments, but also integrate seamlessly while moving throughout the entirety of the M365 suite, which required cross-functional collaboration with design teams across Word, PowerPoint, Excel, and Outlook to ensure design system consistency. 
+          <p class="cs-hero__summary">
+            Three stories from Windows and M365: a horizontal
+            <span class="accent">EDU Copilot</span> framework spanning Word, PowerPoint,
+            Excel, and Outlook; <span class="accent">Advanced Paste</span>, a PowerToys
+            favorite promoted into core Windows; and the community-facing
+            <span class="accent">Windows UI Library</span>.
           </p>
+
+          <div class="cs-hero__meta">
+            <div class="cs-meta">
+              <span class="cs-meta__label">Role</span>
+              <span class="cs-meta__value">Product Designer</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Client</span>
+              <span class="cs-meta__value">Microsoft Windows &amp; M365</span>
+            </div>
+            <div class="cs-meta">
+              <span class="cs-meta__label">Platform</span>
+              <span class="cs-meta__value">Windows · M365</span>
+            </div>
           </div>
+
+          <nav class="cs-subnav" aria-label="Jump to a project">
+            <a href="#edu-copilot">EDU Copilot</a>
+            <a href="#advanced-paste">Advanced Paste</a>
+            <a href="#windows-ui-library">Windows UI Library</a>
+          </nav>
+
+          <span class="cs-hero__cue" aria-hidden="true"></span>
         </div>
-      </div>
-
-    
-
-          <h2 class="col-xs-12"> Advanced Paste </h2>
-
-          <p class="col-xs-12"> A beloved feature of the PowerToys product, Advanced Paste got so much traction we decided to bring it into the core Windows experience. This AI feature allows you to copy any content, transform it, and then paste it. Some powerful uses include removing background from images, translating text to a different language, or transcribing a video quickly on the fly, right before pasting. </p>
-
-          <img src="img/msoft/advpaste1.png" class="img-responsive col-xs-12" >
-          <img src="img/msoft/advpaste2.png" class="img-responsive col-xs-12" >
-
-          <h2 class="col-xs-12"> Windows UI Library </h2>
-
-          <p class="col-xs-12"> An ongoing effort outside of product work was maintaining our community facing Figma library for Windows app developers and designers. This included keeping the library up to date with the latest Figma best practices and adding in new components. </p>
-
-          <img src="img/msoft/winui.png" class="img-responsive col-xs-12" >
+      </header>
 
 
+      <!-- ════════════════════════════════════════════════════════
+           BODY
+           ════════════════════════════════════════════════════════ -->
+      <main class="cs-body">
 
-          
-        </div>
-      </div>
+        <!-- ── EDU COPILOT ── -->
+        <section class="cs-section cs-split" id="edu-copilot">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">EDU Copilot · The Systems Challenge</p>
+              <h2 class="cs-heading">One Teaching Assistant, Consistent Across the Entire M365 Suite</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                EDU Copilot is a Copilot with education-specific prompts, trained on data
+                specific to a given class and its students, so it can behave like a teaching
+                assistant rather than a generic chat window. The hard part wasn't any single
+                surface — it was that EDU Copilot had to work with Grades and Assignments and
+                follow a teacher seamlessly across the entire M365 suite, which meant
+                partnering directly with the design teams for Word, PowerPoint, Excel, and
+                Outlook to keep the experience consistent everywhere it showed up.
+              </p>
+              <figure class="cs-figure">
+                <img src="img/msoft/copilotword.png" alt="EDU Copilot inside Word" loading="lazy">
+              </figure>
+            </div>
+          </div>
+        </section>
 
-    </div>
-    
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">The Prompt</p>
+              <h2 class="cs-heading">One AI Framework, Horizontally, Across a Product Family</h2>
+            </aside>
+            <div class="cs-split__body">
+              <figure class="cs-figure">
+                <img src="img/msoft/copilot_finding_partners.jpg" alt="Finding partners across Word, PowerPoint, Excel, Outlook, and Teams" loading="lazy">
+              </figure>
+              <p class="cs-text">
+                Before any UI work, the job was mostly organizational: finding the right
+                partners across Word, PowerPoint, Excel, Outlook, and Teams — herding cats,
+                some days — and running FigJam workshops until the group could agree on a
+                shared direction.
+              </p>
+            </div>
+          </div>
+        </section>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' /> 
-    <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script> 
+        <section class="cs-section cs-center">
+          <div class="cs-container">
+            <p class="cs-eyebrow">Research</p>
+            <h2 class="cs-heading">Trust Was the Real Constraint, Not Capability</h2>
+            <p class="cs-text">
+              The open questions going in were less about what Copilot could technically do
+              and more about the people on the other side of it: how educators already think
+              about AI, which problems they actually wanted help with, and how much they
+              trusted an AI suggestion enough to act on it.
+            </p>
+          </div>
+        </section>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-  <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
-  <script src="js/project.js"></script>
-</body>
-  </html>
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">The Outcome</p>
+              <h2 class="cs-heading">A Framework for Where Copilot Shows Up, and What It Suggests First</h2>
+            </aside>
+            <div class="cs-split__body">
+              <figure class="cs-figure">
+                <img src="img/msoft/copilot_outcomes.jpg" alt="EDU Copilot framework outcomes" loading="lazy">
+              </figure>
+              <p class="cs-text">
+                Two things came out of it: an experience framework for injecting Copilot into
+                Education products consistently — as a chat pane and inline, in context —
+                and a way to prioritize AI-first feature work based on where teachers and
+                students actually were with their comfort in AI, rather than where the
+                technology was capable of going. That's why AI-assisted rubrics shipped as a
+                starting point ahead of full AI grading — it matched the trust educators
+                already had, instead of asking for more than they were ready to give.
+              </p>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── ADVANCED PASTE ── -->
+        <section class="cs-section cs-split" id="advanced-paste">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Advanced Paste · The Opportunity</p>
+              <h2 class="cs-heading">A PowerToys Favorite, Promoted to Core Windows</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                Advanced Paste started as a PowerToys feature and got so much traction we
+                brought it into the core Windows experience. It lets you copy any content,
+                transform it, and then paste the result — removing the background from an
+                image, translating text into another language, or transcribing a video on
+                the fly, all right before you paste.
+              </p>
+              <div class="cs-pair">
+                <figure class="cs-figure">
+                  <img src="img/msoft/advpaste1.png" alt="Advanced Paste — transform on copy" loading="lazy">
+                </figure>
+                <figure class="cs-figure">
+                  <img src="img/msoft/advpaste2.png" alt="Advanced Paste — paste the result" loading="lazy">
+                </figure>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── WINDOWS UI LIBRARY ── -->
+        <section class="cs-section cs-split" id="windows-ui-library">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Ongoing Craft</p>
+              <h2 class="cs-heading">Keeping One Library Current for Every Windows App Developer</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                Outside of product work, I maintained our community-facing Figma library for
+                Windows app developers and designers — keeping it current with the latest
+                Figma best practices and adding new components as the platform grew.
+              </p>
+              <figure class="cs-figure">
+                <img src="img/msoft/winui.png" alt="Windows UI Library in Figma" loading="lazy">
+              </figure>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── CLOSING / NEXT PROJECT ── -->
+        <section class="cs-closing">
+          <div class="cs-container">
+            <span class="cs-next__kicker">Next project</span>
+            <a class="cs-next" href="/#work">See more work →</a>
+          </div>
+        </section>
+
+      </main>
+
+    </div><!-- /.page-content -->
+
+
+    <!-- ScrollReveal for section reveals -->
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+    <!-- Shared nav hamburger + back-to-top -->
+    <script src="js/project.js"></script>
+
+    <script>
+      var allowsMotion = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+
+      if (typeof ScrollReveal !== 'undefined' && allowsMotion) {
+        var sr = ScrollReveal({
+          distance: '28px', duration: 1000,
+          easing: 'cubic-bezier(0.16, 1, 0.3, 1)', opacity: 0, reset: false,
+        });
+        sr.reveal('.cs-eyebrow',  { origin: 'bottom', distance: '16px' });
+        sr.reveal('.cs-heading',  { origin: 'bottom', distance: '24px', interval: 80 });
+        sr.reveal('.cs-lead, .cs-text', { origin: 'bottom', distance: '16px', delay: 80, interval: 60 });
+        sr.reveal('.cs-figure, .cs-pair > .cs-figure', { origin: 'bottom', distance: '40px', delay: 120, interval: 120 });
+        sr.reveal('.cs-metric', { origin: 'bottom', interval: 100 });
+      }
+    </script>
+  </body>
+</html>
