@@ -148,16 +148,20 @@ function MainPortfolio() {
                 }}>
                   <div className="text-content">
                     <h2 className="hero-greeting">hi, i'm parul</h2>
-                    <p className="hero-blurb"><strong className="accent">I design education, enterprise, and conversational UI products and build them.</strong> Staff-level designer with 5 years at Microsoft shipping to <strong className="accent">300M+ users</strong> — and <strong className="accent">I write the code too</strong> in React and Typescript. Currently a Fellow at Rooted Futures Lab and Regenerative Intelligence, two highly selective programs at the intersection of technology, environmental justice and regenerative systems. Open to the right full-time role and freelance projects.</p>
+                    <p className="hero-blurb"><strong className="accent">I design and build education, enterprise, and conversational UI products.</strong> As a former designer at Microsoft and Accenture, I delivered for <strong className="accent">300M+ users</strong> while <strong className="accent">writing code in React and TypeScript</strong>. I specialize in technical implementation and have been designing chatbot conversational UI long before the current AI boom.</p>
+                    <p className="hero-blurb">Currently a Fellow at Rooted Futures Lab, I am now <strong className="accent">seeking full-time design roles or freelance projects</strong> at the intersection of large-scale systems and emerging technology.</p>
                     <div className="hero-actions">
                       <span className="link murals-link">
-                        <a href="murals.html" className="nav-label"> Murals </a>
+                        <a href="murals.html" className="nav-label">Murals</a>
                       </span>
-                      <span className="link email-link">
-                        <a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top" className="nav-label"> Email </a>
+                      <span className="link portfolio-link">
+                        <a href="portfolio.html" className="nav-label nav-label--lock">
+                          <span className="lock-icon" role="img" aria-label="Password protected">🔒</span>
+                          View Portfolio
+                        </a>
                       </span>
                       <span className="link resume">
-                        <a href="parul_resume.pdf" target="_blank" className="nav-label"> Resume </a>
+                        <a href="parul_resume.pdf" target="_blank" className="nav-label">Resume</a>
                       </span>
                     </div>
                   </div>

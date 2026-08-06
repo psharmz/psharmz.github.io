@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Parul Sharma — Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --teal: #00BFA5;
+      --bg: #000;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      background: var(--bg);
+      color: #fff;
+      font-family: 'Karla', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Brand mark, pinned top left ── */
+    /* Whole mark is the link home — photo and name both clickable. */
+    .brand {
+      position: fixed;
+      top: 28px;
+      left: 32px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .brand:hover,
+    .brand:focus-visible {
+      opacity: 0.75;
+    }
+
+    .brand__photo {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #fff;
+      object-fit: cover;
+      flex: none;
+    }
+
+    .brand__name {
+      font-family: 'Rubik', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--teal);
+      margin: 0;
+    }
+
+    /* ── Centred password field ── */
+    .gate {
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+    }
+
+    .gate__form {
+      width: 100%;
+      max-width: 340px;
+    }
+
+    .gate__input {
+      width: 100%;
+      background: transparent;
+      border: 1.5px solid var(--teal);
+      border-radius: 2px;
+      color: #fff;
+      font-family: 'Rubik', sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.12em;
+      padding: 14px 16px;
+      outline: none;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .gate__input::placeholder {
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+
+    .gate__input:focus {
+      box-shadow: 0 0 0 3px rgba(0, 191, 165, 0.25);
+    }
+
+    /* Wrong password — border flips red and the field shakes once. */
+    .gate__input.is-error {
+      border-color: #ff5252;
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      10%, 90% { transform: translateX(-2px); }
+      30%, 70% { transform: translateX(4px); }
+      50%      { transform: translateX(-4px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gate__input.is-error { animation: none; }
+    }
+
+    .gate__error {
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: #ff5252;
+      margin: 12px 2px 0;
+      min-height: 1em;
+    }
+
+    @media (max-width: 600px) {
+      .brand { top: 20px; left: 20px; }
+      .brand__photo { width: 44px; height: 44px; }
+      .brand__name { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="brand" href="/" aria-label="Parul Sharma — back to homepage">
+    <img class="brand__photo" src="img/p.svg" alt="">
+    <p class="brand__name">parul sharma</p>
+  </a>
+
+  <main class="gate">
+    <form class="gate__form" id="gate-form" autocomplete="off">
+      <label class="sr-only" for="gate-input" hidden>Password</label>
+      <input
+        class="gate__input"
+        id="gate-input"
+        type="password"
+        placeholder="Password"
+        aria-describedby="gate-error"
+        autofocus>
+      <p class="gate__error" id="gate-error" role="alert"></p>
+    </form>
+  </main>
+
+  <script>
+    // Client-side gate only — this keeps the page out of casual view, it is not
+    // real access control (the check ships in the page source).
+    var PASSWORD = 'parul';
+    var DESTINATION = 'portfolio-home.html';
+
+    var form  = document.getElementById('gate-form');
+    var input = document.getElementById('gate-input');
+    var error = document.getElementById('gate-error');
+
+    function attempt() {
+      if (input.value === PASSWORD) {
+        sessionStorage.setItem('portfolioUnlocked', 'true');
+        window.location.href = DESTINATION;
+        return;
+      }
+
+      error.textContent = 'Incorrect password';
+      input.classList.remove('is-error');
+      void input.offsetWidth; // restart the shake
+      input.classList.add('is-error');
+      input.select();
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      attempt();
+    });
+
+    // The form has no submit button, so don't lean on implicit submission —
+    // handle Enter on the field directly.
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        attempt();
+      }
+    });
+
+    input.addEventListener('input', function () {
+      error.textContent = '';
+      input.classList.remove('is-error');
+    });
+  </script>
+</body>
+</html>

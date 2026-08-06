@@ -185,6 +185,10 @@ h2 {
     margin: 0;
 }
 
+.hero-blurb + .hero-blurb {
+    margin-top: 1rem;
+}
+
 .hero-blurb .accent {
     font-weight: 700;
     color: var(--color-text-teal);
@@ -573,6 +577,48 @@ h2 {
 
 .link.email-link:hover {
     transform: translateY(-5px) rotate(3deg);
+}
+
+.link.portfolio-link {
+    transition: transform 0.3s ease;
+}
+
+.link.portfolio-link:hover {
+    transform: translateY(-5px) rotate(3deg);
+}
+
+/* The hero buttons drop the Impact Label face. Its glyphs are solid blocks with
+   the letters knocked out, so "teal text on no background" is impossible in it —
+   colouring the type just colours the tape. Rubik, uppercase and tracked out,
+   keeps the label rhythm while letting the letters themselves carry the teal. */
+.hero-actions .nav-label {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text-teal);
+    border: 1.5px solid var(--color-text-teal);
+    border-radius: 2px;
+    /* Right padding is short by one tracking step — the letter-spacing leaves a
+       trailing gap after the last character that would otherwise read as slack. */
+    padding: 0.6em 0.95em 0.6em 1.1em;
+}
+
+/* Gated portfolio button — the lock sits to the left of the label. */
+.nav-label--lock {
+    gap: 0.3em;
+    white-space: nowrap;
+}
+
+.nav-label--lock .lock-icon {
+    /* Emoji fonts first, so the label-maker face never swallows the glyph. */
+    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+    font-size: 0.8em;
+    line-height: 1;
+    flex: none;
 }
 
 .resume:hover {

@@ -11,6 +11,15 @@ function createNavigation() {
         ? ''
         : '<span class="link murals-link"><a href="murals.html">Murals</a></span>';
 
+    // "Work" funnels visitors to the gated portfolio index — except on the
+    // gated page itself, where that would just send you back through the
+    // password screen you already cleared; there it points at the homepage
+    // mosaic instead.
+    var onGatedPortfolio = /(^|\/)portfolio-home\.html$/.test(path);
+    // Root-relative, matching the brand link — so it still resolves if the nav
+    // is ever dropped onto a page in a subdirectory.
+    var workHref = onGatedPortfolio ? '/#work' : '/portfolio.html';
+
     return `
         <nav class="top-nav">
             <div class="nav-links">
@@ -20,7 +29,7 @@ function createNavigation() {
                         <span class="brand-link-name">Parul</span>
                     </a>
                 </span>
-                <span class="link work-link"><a href="/#work">Work</a></span>
+                <span class="link work-link"><a href="${workHref}">Work</a></span>
                 ${muralsLink}
                 <span class="link email-link"><a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top">Email</a></span>
                 <span class="link resume"><a href="parul_resume.pdf" target="_blank">Resume</a></span>

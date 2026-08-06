@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="author" content="Parul Sharma">
+
+  <title>Parul Sharma — Portfolio</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="css/header.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/project.css">
+
+  <!-- Reusable Navigation Component (injects the embossed nav + brand mark) -->
+  <script src="js/nav-component.js"></script>
+
+  <style>
+    /* The shared nav is built for light pages; this one stays black to match
+       the gate it sits behind, so the surface colours are flipped here. */
+    .portfolio-page {
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+      /* Rows start translated sideways; without this they'd widen the document
+         and produce a horizontal scrollbar before they settle. */
+      overflow-x: hidden;
+    }
+
+    /* The pinned brand mark's chip is a near-opaque white on the light pages —
+       on black it reads as a bright blob, so drop it back to a dark tile. */
+    .portfolio-page .back-to-top {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .portfolio-page .page-content {
+      padding: calc(var(--murals-nav-h) + var(--space-xl)) var(--space-xl) var(--space-xl);
+    }
+
+    /* Wide editorial rails — roughly a seventh of the viewport on each side,
+       matching the reference. Phones keep a normal gutter (below). */
+    @media (min-width: 901px) {
+      .portfolio-page .page-content {
+        padding-inline: 14vw;
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════
+       WORK INDEX
+       Alternating rows: one large plate on one side, a narrow
+       centred text column on the other holding the number, the
+       project name, the sub-header and a "View project" button.
+       NB: Bootstrap 3 sets html{font-size:10px} on these pages,
+       so every size here is px — rem would render half-size.
+       ════════════════════════════════════════════════════════ */
+    .pf-index {
+      /* Plate height is capped rather than the width being filled, so every
+         row lands at a similar height whatever the asset's ratio — that's what
+         keeps the row pitch at roughly two-thirds of the viewport, i.e. about
+         one and a half case studies in view at a time. */
+      --pf-plate-h: clamp(230px, 40vh, 400px);
+      max-width: 1560px;
+      margin: 0 auto;
+      padding-block: clamp(40px, 8vw, 120px);
+    }
+
+    .pf-project {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(24px, 4vw, 72px);
+      /* Text sits level with the top of the plate, not centred against it. */
+      align-items: start;
+      margin-bottom: clamp(80px, 26vh, 260px);
+    }
+
+    .pf-project:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Default row: plate left, text right. */
+    .pf-project__plate  { grid-column: 1 / 9; }
+    .pf-project__body   { grid-column: 9 / 13; }
+
+    /* Every other row flips, so the eye zig-zags down the page. */
+    .pf-project--flip .pf-project__plate { grid-column: 5 / 13; grid-row: 1; }
+    .pf-project--flip .pf-project__body  { grid-column: 1 / 5;  grid-row: 1; }
+
+    /* Text aligns away from the plate: text on the right of the image reads
+       left-aligned, text on the left of the image reads right-aligned, so each
+       column's hard edge faces the image. */
+    .pf-project__body        { text-align: left; }
+    .pf-project--flip .pf-project__body { text-align: right; }
+
+    /* The plate is shrink-to-fit (height-capped), so push it to the outer
+       rail rather than letting it float in the middle of its columns. */
+    .pf-project__plate        { justify-self: start; }
+    .pf-project--flip .pf-project__plate { justify-self: end; }
+
+    /* ── Plates ──────────────────────────────────────────────────
+       No aspect-ratio and no object-fit: the media sets its own
+       height so the plate ends up exactly the size of the asset,
+       with nothing cropped. */
+    .pf-plate {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      line-height: 0; /* kills the inline-media descender gap */
+      /* Same lift as .cs-figure on the case-study pages, plus a cool halo —
+         on black the original black shadow alone would be invisible. */
+      box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.12),
+        0 18px 60px rgba(255, 255, 255, 0.14);
+      transition: transform 0.4s var(--ease-standard),
+                  box-shadow 0.4s ease;
+    }
+
+    /* Height-capped, width follows — nothing is cropped and no ratio is forced. */
+    .pf-plate img,
+    .pf-plate video {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: var(--pf-plate-h);
+      margin: 0;
+    }
+
+    .pf-project__link:hover .pf-plate,
+    .pf-project__link:focus-visible .pf-plate {
+      transform: translateY(-4px);
+      box-shadow:
+        0 14px 36px rgba(0, 0, 0, 0.2),
+        0 24px 76px rgba(255, 255, 255, 0.2);
+    }
+
+    /* The Copilot crop is a white-background still — inset it so the plate
+       doesn't read as a bright slab butted against the black page. */
+    .pf-plate--pad {
+      background: #fff;
+      padding: clamp(24px, 3vw, 56px);
+    }
+
+    /* ── Text column ── */
+    .pf-project__num {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: var(--weight-regular);
+      letter-spacing: 0.22em;
+      color: var(--color-text-teal);
+      margin: 0 0 14px;
+    }
+
+    .pf-project__name {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 0 0 clamp(18px, 2vw, 32px);
+    }
+
+    .pf-project__title {
+      font-family: var(--font-heading);
+      font-size: clamp(26px, 2.5vw, 40px);
+      font-weight: var(--weight-regular);
+      line-height: 1.18;
+      letter-spacing: 0.005em;
+      color: #fff;
+      margin: 0;
+    }
+
+    /* Sub-header carries the outcome numbers, so it's body copy rather than
+       display type — it runs long and needs to stay readable. */
+    .pf-project__sub {
+      font-family: var(--font-body);
+      font-size: clamp(15px, 1.15vw, 18px);
+      line-height: 1.6;
+      color: var(--color-text-light);
+      margin: clamp(16px, 1.6vw, 24px) 0 0;
+    }
+
+    /* Same outlined-teal treatment as the homepage hero buttons. */
+    .pf-project__cta {
+      display: inline-block;
+      margin-top: clamp(24px, 2.6vw, 40px);
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: var(--weight-medium, 500);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-text-teal);
+      border: 1.5px solid var(--color-text-teal);
+      border-radius: 2px;
+      padding: 12px 18px 12px 22px; /* short on the right: tracking adds a gap */
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    .pf-project__cta:hover,
+    .pf-project__cta:focus-visible {
+      background: var(--color-text-teal);
+      color: #000;
+    }
+
+    .pf-project__link {
+      text-decoration: none;
+      display: block;
+    }
+
+    /* ── Scroll-in: the plate and the text travel in from opposite sides and
+       come to rest together in the middle. Rows start hidden only once JS has
+       flagged the page, so with JS off everything is simply visible. ── */
+    .pf-js .pf-project__plate,
+    .pf-js .pf-project__body {
+      opacity: 0;
+      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.7s ease;
+    }
+
+    .pf-js .pf-project__plate            { transform: translateX(-14vw); }
+    .pf-js .pf-project__body             { transform: translateX(14vw); }
+    .pf-js .pf-project--flip .pf-project__plate { transform: translateX(14vw); }
+    .pf-js .pf-project--flip .pf-project__body  { transform: translateX(-14vw); }
+
+    .pf-js .pf-project.is-in .pf-project__plate,
+    .pf-js .pf-project.is-in .pf-project__body {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pf-js .pf-project__plate,
+      .pf-js .pf-project__body {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    /* Stack to a single column on tablet and below — the zig-zag needs the
+       width to read, and below it the flipped rows just look arbitrary. */
+    @media (max-width: 900px) {
+      .pf-project {
+        grid-template-columns: 1fr;
+        gap: clamp(20px, 5vw, 40px);
+      }
+
+      .pf-project__plate,
+      .pf-project__body,
+      .pf-project--flip .pf-project__plate,
+      .pf-project--flip .pf-project__body {
+        grid-column: 1 / -1;
+        grid-row: auto;
+      }
+
+      /* Plate always leads on mobile, whichever way the desktop row ran. */
+      .pf-project--flip .pf-project__plate { order: -1; }
+
+      /* One column, so there is no "away from the image" side to align to. */
+      .pf-project__body,
+      .pf-project--flip .pf-project__body { text-align: left; }
+
+      .pf-project__plate,
+      .pf-project--flip .pf-project__plate { justify-self: stretch; }
+
+      .pf-plate { width: 100%; }
+
+      .pf-plate img,
+      .pf-plate video {
+        width: 100%;
+        max-height: none;
+      }
+
+      /* Nothing slides sideways in a single column — just fade up. */
+      .pf-js .pf-project__plate,
+      .pf-js .pf-project__body,
+      .pf-js .pf-project--flip .pf-project__plate,
+      .pf-js .pf-project--flip .pf-project__body {
+        transform: translateY(24px);
+      }
+    }
+  </style>
+</head>
+
+  <body class="portfolio-page embossed-nav">
+
+    <!-- Nav + brand mark are injected by js/nav-component.js -->
+
+    <div class="page-content">
+
+      <!-- ════════════════════════════════════════════════════════
+           WORK INDEX
+           ════════════════════════════════════════════════════════ -->
+      <div class="pf-index">
+
+        <!-- 01 · RASA ──────────────────────────────────────────── -->
+        <section class="pf-project">
+          <a class="pf-project__link pf-project__plate" href="rasa.html" aria-label="Rasa case study">
+            <span class="pf-plate">
+              <img src="img/rasa/rasa.gif"
+                   alt="Rasa Platform reviewing and correcting a bot's predictions">
+            </span>
+          </a>
+          <div class="pf-project__body">
+            <p class="pf-project__num">01&mdash;04</p>
+            <h2 class="pf-project__title">Rasa</h2>
+            <p class="pf-project__sub">
+              Reducing training time for chatbots by 40 percent. Creating a seamless
+              way to share and hand off training models.
+            </p>
+            <a class="pf-project__cta" href="rasa.html">View project</a>
+          </div>
+        </section>
+
+        <!-- 02 · CAREER COACH ──────────────────────────────────── -->
+        <section class="pf-project pf-project--flip">
+          <a class="pf-project__link pf-project__plate" href="teams.html" aria-label="Career Coach case study">
+            <span class="pf-plate">
+              <video autoplay muted loop playsinline
+                     aria-label="Career Coach product walkthrough">
+                <source src="img/msoft/intro1.mp4" type="video/mp4">
+              </video>
+            </span>
+          </a>
+          <div class="pf-project__body">
+            <p class="pf-project__num">02&mdash;04</p>
+            <h2 class="pf-project__title">Career Coach</h2>
+            <p class="pf-project__sub">
+              Increased usage of LinkedIn&rsquo;s Economic Graph by 32%. Increased faculty
+              active sessions by 20%. Signed on 3 universities before GA launch.
+            </p>
+            <a class="pf-project__cta" href="teams.html">View project</a>
+          </div>
+        </section>
+
+        <!-- 03 · GOOGLE ────────────────────────────────────────── -->
+        <section class="pf-project">
+          <a class="pf-project__link pf-project__plate" href="enterprise.html" aria-label="Google case study">
+            <span class="pf-plate">
+              <video autoplay muted loop playsinline
+                     aria-label="Google enterprise platform walkthrough">
+                <source src="img/cover_vid.mp4" type="video/mp4">
+              </video>
+            </span>
+          </a>
+          <div class="pf-project__body">
+            <p class="pf-project__num">03&mdash;04</p>
+            <h2 class="pf-project__title">Google</h2>
+            <p class="pf-project__sub">
+              30 percent productivity gain by designing an enterprise app for automating
+              10 workstreams across 4 timezones and 3 user groups.
+            </p>
+            <a class="pf-project__cta" href="enterprise.html">View project</a>
+          </div>
+        </section>
+
+        <!-- 04 · MICROSOFT EDUCATION + COPILOT ─────────────────── -->
+        <section class="pf-project pf-project--flip">
+          <a class="pf-project__link pf-project__plate" href="horizontal-design.html" aria-label="Microsoft Education and Copilot case study">
+            <span class="pf-plate pf-plate--pad">
+              <img src="img/msoft/copilot_icons.jpg"
+                   alt="Microsoft 365 product icons ringing the Office mark">
+            </span>
+          </a>
+          <div class="pf-project__body">
+            <p class="pf-project__num">04&mdash;04</p>
+            <h2 class="pf-project__title">Microsoft Education &amp; Copilot</h2>
+            <p class="pf-project__sub">
+              Created frameworks for AI in education and progressive disclosure for
+              Insights. Increased discoverability by 40 percent. Lowered teacher
+              apprehension and skepticism around AI features.
+            </p>
+            <a class="pf-project__cta" href="horizontal-design.html">View project</a>
+          </div>
+        </section>
+
+      </div><!-- /.pf-index -->
+
+    </div><!-- /.page-content -->
+
+    <!-- Shared nav hamburger + back-to-top -->
+    <script src="js/project.js"></script>
+
+    <script>
+      // Reveal each row as it comes into view: the plate and the text slide in
+      // from opposite sides and settle together. The .pf-js flag is what arms
+      // the hidden start state, so no-JS visitors just get the static layout.
+      //
+      // Deliberately a scroll/rAF check rather than IntersectionObserver: the
+      // start state is opacity:0, so if the observer never delivers a callback
+      // the page reads as blank. A geometry test can't fail that way, and four
+      // rows is nowhere near enough to cost anything.
+      (function () {
+        var rows = [].slice.call(document.querySelectorAll('.pf-project'));
+        if (!rows.length) return;
+
+        document.documentElement.classList.add('pf-js');
+
+        var ticking = false;
+
+        function check() {
+          ticking = false;
+          var limit = (window.innerHeight || 0) * 0.88;
+
+          rows = rows.filter(function (row) {
+            var box = row.getBoundingClientRect();
+            if (box.top < limit && box.bottom > 0) {
+              row.classList.add('is-in'); // reveal once, then drop from the list
+              return false;
+            }
+            return true;
+          });
+
+          if (!rows.length) {
+            window.removeEventListener('scroll', request);
+            window.removeEventListener('resize', request);
+          }
+        }
+
+        function request() {
+          if (ticking) return;
+          ticking = true;
+          if (window.requestAnimationFrame) {
+            window.requestAnimationFrame(check);
+          } else {
+            check();
+          }
+        }
+
+        window.addEventListener('scroll', request, { passive: true });
+        window.addEventListener('resize', request);
+        check();
+      })();
+    </script>
+  </body>
+</html>
