@@ -26,33 +26,12 @@
        chip so it reads cleanly on the dark hero rather than being cropped
        into the default square logo slot. -->
   <style>
+    /* The Google Cloud wordmark is wider than the shared chip's default,
+       so this page widens it. Everything else about the chip comes from
+       .cs-hero__logo--wide in template.css. */
     .cs-hero__logo--wide {
-      width: auto;
-      height: auto;
-      max-width: 260px;
-      padding: 16px 24px;
-      background: #fff;
-      border-radius: 16px;
-      object-fit: contain;
-    }
-    /* Pull-quote from a real user — high-signal evidence of design impact. */
-    .cs-quote {
-      font-family: var(--font-heading);
-      font-size: var(--type-title-large);
-      font-weight: var(--weight-regular);
-      line-height: var(--leading-tight);
-      color: var(--color-text-primary);
-      border-left: 3px solid var(--color-accent);
-      padding-left: var(--space-lg);
-      margin: var(--space-xl) 0;
-    }
-    .cs-quote cite {
-      display: block;
-      margin-top: var(--space-md);
-      font-family: var(--font-body);
-      font-size: var(--type-caption);
-      font-style: normal;
-      color: var(--color-text-secondary);
+      --cs-logo-max: 260px;
+      --cs-logo-pad: 16px 24px;
     }
 
     /* Live HTML/CSS prototype embeds (iframes) — the real originals of the
@@ -112,9 +91,12 @@
           <h1 class="cs-hero__title">Automating field dispatch at scale</h1>
 
           <p class="cs-hero__summary">
-            A regional-management platform and field-worker mobile app that made
-            automation possible across <span class="accent">10 workstreams, 4
-            timezones, and 3 user groups</span> — a 30% productivity gain.
+            A dispatch console that routes field work across global metros, paired
+            with the mobile app field workers carry on site. It made automation
+            possible across <span class="accent">10 workstreams, 4 timezones, and 3
+            user groups</span>, a 30% productivity gain. The work also
+            <span class="accent">informed the product roadmap</span> and contributed
+            to a <span class="accent">client contract renewal</span>.
           </p>
 
           <!-- META ROW -->
@@ -147,64 +129,33 @@
            ════════════════════════════════════════════════════════ -->
       <main class="cs-body">
 
-        <!-- ── OVERVIEW ── -->
-        <section class="cs-section cs-center">
-          <div class="cs-container">
-            <p class="cs-eyebrow">Overview</p>
-            <p class="cs-lead">
-              A dispatch console that routes field work across global metros — paired
-              with the mobile app field workers carry on site. I owned the design
-              end to end, from the underlying workflow logic to the final UI.
-            </p>
-          </div>
-        </section>
 
 
-        <!-- ── IMPACT — numbers first ── -->
-        <section class="cs-section cs-center">
-          <div class="cs-container">
-            <p class="cs-eyebrow">Impact</p>
-            <h2 class="cs-heading">What it moved</h2>
-            <div class="cs-metrics">
-              <div class="cs-metric">
-                <span class="cs-metric__num">30%</span>
-                <span class="cs-metric__label">Faster ticket assignment</span>
-              </div>
-              <div class="cs-metric">
-                <span class="cs-metric__num">3 → 1</span>
-                <span class="cs-metric__label">Clicks to the work log</span>
-              </div>
-              <div class="cs-metric">
-                <span class="cs-metric__num">+3.5 pt</span>
-                <span class="cs-metric__label">User satisfaction (1–5 scale)</span>
-              </div>
-            </div>
-            <p class="cs-text">
-              The work also <span class="accent">informed the product roadmap</span>
-              and contributed to a <span class="accent">client contract renewal</span>.
-            </p>
-          </div>
-        </section>
 
 
         <!-- ── THE BRIEF ── -->
-        <section class="cs-section cs-center">
+        <section class="cs-section cs-split" id="brief">
           <div class="cs-container">
-            <p class="cs-eyebrow">The Brief</p>
-            <h2 class="cs-heading">
-              “How might we automate the assignment of field workers to tickets —
-              at scale, across regions, in real time?”
-            </h2>
-            <p class="cs-text">
-              Three user groups, one workflow: <strong>field workers</strong> on
-              site, <strong>regional owners</strong> managing metros, and
-              <strong>dispatch agents</strong> routing work remotely across
-              timezones.
-            </p>
-            <figure class="cs-figure cs-flat">
-              <img src="img/enterprise/world.svg"
-                   alt="Field work spanning regions and timezones worldwide" loading="lazy">
-            </figure>
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">The Brief</p>
+              <h2 class="cs-heading">
+                “How might we automate the assignment of field workers to tickets
+                at scale, across regions, in real time?”
+              </h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                Three user groups, one workflow:
+                <span class="accent">field workers</span> on site,
+                <span class="accent">regional owners</span> managing metros, and
+                <span class="accent">dispatch agents</span> routing work remotely
+                across timezones.
+              </p>
+              <figure class="cs-figure cs-flat">
+                <img src="img/enterprise/world.svg"
+                     alt="Field work spanning regions and timezones worldwide" loading="lazy">
+              </figure>
+            </div>
           </div>
         </section>
 
@@ -219,8 +170,8 @@
             <div class="cs-split__body">
               <p class="cs-text">
                 You can't automate a workflow you haven't defined. Before any UI, I
-                mapped the decisioning logic — how a ticket gets grouped, matched to
-                a metro, checked for availability and skills, and assigned — and
+                mapped the decisioning logic (how a ticket gets grouped, matched to
+                a metro, checked for availability and skills, and assigned) and
                 pressure-tested it against the messy real-world scenarios
                 (no calendar resource, multiple resources, overtime).
               </p>
@@ -228,15 +179,11 @@
                 <img src="img/enterprise/decisioning-logic.png"
                      alt="The decisioning logic mapped scenario by scenario — how a ticket is routed and assigned — before any UI" loading="lazy">
               </figure>
-              <figure class="cs-figure cs-flat">
-                <img src="img/enterprise/card-sorting.svg"
-                     alt="Card sort exercise to define the information architecture and field priority" loading="lazy">
-              </figure>
-              <p class="cs-text">
-                This artifact aligned engineering, PM, and the client on a single
-                source of truth — and surfaced the open questions early, before they
-                became rework.
-              </p>
+              <figcaption class="cs-caption">
+                Workshops on all scenarios aligned engineering, PM, and the client on
+                a single source of truth, and surfaced the open questions early,
+                before they became rework.
+              </figcaption>
             </div>
           </div>
         </section>
@@ -260,12 +207,10 @@
                 <img src="img/enterprise/field-research.png"
                      alt="Shadowing a field worker on site — limited WiFi, on ladders, on the move" loading="lazy">
               </figure>
-              <p class="cs-text">
-                I also ran feedback rounds <strong>without their managers present</strong>.
-                Power dynamics skew honesty — the boss in the room changes the
-                answer. The regional owners were the paying stakeholder, but not the
-                only user who mattered.
-              </p>
+              <figure class="cs-figure cs-flat">
+                <img src="img/enterprise/card-sorting.svg"
+                     alt="Card sort exercise to define the information architecture and field priority" loading="lazy">
+              </figure>
             </div>
           </div>
         </section>
@@ -303,14 +248,14 @@
                      alt="Early feedback: the running timer felt like surveillance, so the design changed" loading="lazy">
               </figure>
               <p class="cs-text">
-                I reframed the design around autonomy — a pause control, looser
+                I reframed the design around autonomy: a pause control, looser
                 tracking, and a phased automation model (rule-based first, then
                 data-informed) that kept a human in the loop. The shift showed up in
                 how people talked about it.
               </p>
               <blockquote class="cs-quote">
                 “Instead of being watched, I feel like I get to help make it better.”
-                <cite>— Field worker, usability testing</cite>
+                <cite>Field worker, usability testing</cite>
               </blockquote>
             </div>
           </div>
@@ -321,15 +266,15 @@
         <section class="cs-section cs-split">
           <div class="cs-container">
             <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Signature Decision</p>
+              <p class="cs-eyebrow">Dispatch Agent App</p>
               <h2 class="cs-heading">From invisible to at-a-glance</h2>
             </aside>
             <div class="cs-split__body">
               <p class="cs-text">
-                Dispatch agents work remotely — a different timezone from the job,
+                Dispatch agents work remotely in a different timezone from the job,
                 and they must action a ticket in under six minutes. From a heuristic
-                evaluation with <strong>10 agents across Manila, Frankfurt, and
-                London</strong>, one pattern dominated: the work log they relied on
+                evaluation with <span class="accent">10 agents across Manila, Frankfurt, and
+                London</span>, one pattern dominated: the work log they relied on
                 was buried three clicks deep, at the bottom of a long scroll.
               </p>
               <p class="cs-text">
@@ -350,6 +295,31 @@
           </div>
         </section>
 
+
+
+        <!-- ── IMPACT — numbers first ──
+             Full width rather than split, so the circles get the room they
+             need; same arrangement as the Career Coach impact section. -->
+        <section class="cs-section" id="impact">
+          <div class="cs-container">
+            <p class="cs-eyebrow">Impact</p>
+            <h2 class="cs-heading">What it moved</h2>
+            <div class="cs-metrics cs-metrics--circles">
+              <div class="cs-metric">
+                <span class="cs-metric__num">30%</span>
+                <span class="cs-metric__label">Faster ticket assignment</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric__num">3 → 1</span>
+                <span class="cs-metric__label">Clicks to the work log</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric__num">+3.5 pt</span>
+                <span class="cs-metric__label">User satisfaction (1–5 scale)</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <!-- ── CLOSING / NEXT PROJECT ── -->
         <section class="cs-closing">

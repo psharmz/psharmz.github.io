@@ -61,7 +61,9 @@
   --type-title-large:      24px;   /* 1.5rem equivalent   — matches homepage card titles */
   --type-hero:             clamp(20px, 2.5vw, 1.75rem); /* fluid — header blurb, 20px–28px */
   --type-label:            13px;   /* MD3 Label Medium    — eyebrows / overlines  */
-  --type-caption:          1.125rem; /* supporting text — image captions, metric labels */
+  --type-caption:          18px;   /* supporting text — image captions, metric labels.
+                                      px, not rem: Bootstrap 3 sets html{font-size:10px},
+                                      so 1.125rem rendered as 11.25px, not the intended 18. */
 
   /* Rhythm */
   /* Weights */

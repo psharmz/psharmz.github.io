@@ -325,6 +325,71 @@
 }
 
 
+/* ── WIDE CLIENT LOGO ────────────────────────────────────────
+   Wide, light wordmarks (Microsoft, Google) need a white chip so they
+   read on the dark hero instead of being cropped into the square logo
+   slot. Was duplicated inline on four case studies. Override the two
+   custom properties per page if a mark needs more room. */
+.cs-hero__logo--wide {
+  width: auto;
+  height: auto;
+  max-width: var(--cs-logo-max, 220px);
+  padding: var(--cs-logo-pad, 14px 22px);
+  background: #fff;
+  border-radius: 16px;
+  object-fit: contain;
+}
+
+/* ── PULL QUOTE ──────────────────────────────────────────────
+   A real user's words, called out of the body copy. */
+.cs-quote {
+  font-family: var(--font-heading);
+  font-size: var(--type-title-large);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+  border-left: 3px solid var(--color-accent);
+  padding-left: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.cs-quote cite {
+  display: block;
+  margin-top: var(--space-md);
+  font-family: var(--font-body);
+  font-size: var(--type-caption);
+  font-style: normal;
+  color: var(--color-text-secondary);
+}
+
+/* ── IN-PAGE SUB-NAV ─────────────────────────────────────────
+   Jump links for multi-project case studies. */
+.cs-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm, 0.875rem);
+  justify-content: center;
+  margin-top: var(--space-lg, 1.5rem);
+}
+
+.cs-subnav a {
+  font-family: var(--font-body);
+  font-size: var(--type-body-small);
+  font-weight: 700;
+  color: var(--color-text-teal);
+  border: 1.5px solid var(--color-text-teal);
+  border-radius: 999px;
+  padding: 0.5em 1.2em;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cs-subnav a:hover {
+  background: var(--color-text-teal);
+  color: #000;
+}
+
+
 /* ── METRICS / IMPACT ────────────────────────────────────────── */
 .cs-metrics {
   display: grid;

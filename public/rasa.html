@@ -153,16 +153,23 @@
     .rasa-page .cs-flowscroll {
       --p: 0;                          /* 0 = current flow, 1 = where Rasa fits in */
       --fs-step-h: 3.2em;              /* one label slot — fits two wrapped lines */
+      /* Scroll spent pinned while the cross-fade runs. The page holds still
+         for this distance, then releases once the purple state is fully in. */
+      --fs-travel: 620px;
+      padding-bottom: clamp(2rem, 6vh, 4.5rem);
     }
 
-    /* The band hugs the diagram rather than pinning across a tall track: a
-       100vh sticky stage left ~450px of dead space around a 448px figure.
-       --p is now driven by the band's travel through the viewport (see the
-       JS below), so the cross-fade survives without the scroll room. */
-    .rasa-page .cs-flowscroll__track { height: auto; }
+    /* The track is only as tall as the hugged stage plus its pin travel — not
+       the old 220vh, which padded the diagram out with ~450px of dead space.
+       --fs-stage-h / --fs-stage-top are measured and set by the JS below, so
+       the stage pins centred in the viewport at whatever height it resolves to. */
+    .rasa-page .cs-flowscroll__track {
+      height: calc(var(--fs-stage-h, 460px) + var(--fs-travel));
+    }
 
     .rasa-page .cs-flowscroll__stage {
-      position: static;
+      position: sticky;
+      top: var(--fs-stage-top, 0px);
       height: auto;
       padding-block: 5px;          /* the band sits 10px taller than the fig */
       display: flex;
@@ -618,35 +625,55 @@
         sr.reveal('.cs-metric', { origin: 'bottom', distance: '24px', scale: 0.92, interval: 180 });
       }
 
-      // ── Workflow scroll driver — maps --p, which the label slide and the
-      //    image cross-fade both read, to the band's travel across the
-      //    viewport. (It used to read a 220vh sticky track, but that padded
-      //    the diagram out with ~450px of dead space.) The change is squeezed
-      //    into a narrow band around centre so each end state holds steady
-      //    and the switch itself feels like one deliberate move. ──
+      // ── Workflow scroll driver.
+      //    The stage hugs the diagram and pins centred in the viewport. While
+      //    it is pinned the page holds still, and that scroll distance drives
+      //    --p (the label slide + the image cross-fade) from 0 to 1. Only once
+      //    purple is fully in does the stage release and the page move on.
+      //
+      //    Progress is measured against the PIN travel (trackH - stageH), not
+      //    the viewport: that is exactly the window during which the stage is
+      //    stuck, so the fade finishes precisely as it lets go. ──
       (function () {
         var sec = document.querySelector('.cs-flowscroll');
         if (!sec) return;
         var track = sec.querySelector('.cs-flowscroll__track');
+        var stage = sec.querySelector('.cs-flowscroll__stage');
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var stacked = window.matchMedia('(max-width: 900px)');
-        var BAND_START = 0.40, BAND_END = 0.64;
+        // Small holds at each end so the two states settle before/after.
+        var BAND_START = 0.10, BAND_END = 0.82;
         var ticking = false;
+
+        // Publish the stage's measured height so the track can size its pin
+        // travel, and centre the pin in the viewport.
+        function measure() {
+          if (stacked.matches) {
+            sec.style.removeProperty('--fs-stage-h');
+            sec.style.removeProperty('--fs-stage-top');
+            return 0;
+          }
+          var h = stage.getBoundingClientRect().height;
+          sec.style.setProperty('--fs-stage-h', h + 'px');
+          sec.style.setProperty('--fs-stage-top',
+            Math.max(0, Math.round((window.innerHeight - h) / 2)) + 'px');
+          return h;
+        }
 
         function update() {
           ticking = false;
           if (stacked.matches) { sec.style.removeProperty('--p'); return; }
 
+          var stageH = measure();
           var r = track.getBoundingClientRect();
-          var vh = window.innerHeight;
-          // 0 as the band's top edge enters from the bottom, 1 as its bottom
-          // edge leaves past the top.
-          var travel = vh + r.height;
-          if (travel <= 0) return;
+          var pinTravel = r.height - stageH;
+          if (pinTravel <= 0) return;
 
-          var raw = Math.min(1, Math.max(0, (vh - r.top) / travel));
+          var top = parseFloat(getComputedStyle(stage).top) || 0;
+          // 0 the moment the stage sticks, 1 the moment it releases.
+          var raw = Math.min(1, Math.max(0, (top - r.top) / pinTravel));
           var t = Math.min(1, Math.max(0, (raw - BAND_START) / (BAND_END - BAND_START)));
-          // Smoothstep, so it eases in and out of the switch rather than ramping.
+          // Smoothstep, so it eases in and out rather than ramping linearly.
           var p = reduce ? (t < 0.5 ? 0 : 1) : t * t * (3 - 2 * t);
           sec.style.setProperty('--p', p.toFixed(4));
         }
@@ -656,7 +683,8 @@
         }
 
         window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onScroll);
+        window.addEventListener('resize', function () { measure(); onScroll(); });
+        measure();
         update();
       })();
 
