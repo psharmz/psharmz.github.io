@@ -67,14 +67,22 @@
          keeps the row pitch at roughly two-thirds of the viewport, i.e. about
          one and a half case studies in view at a time. */
       --pf-plate-h: clamp(230px, 40vh, 400px);
+      /* Matches the width the old 4-column text track resolved to. */
+      --pf-body-w: clamp(240px, 21vw, 330px);
       max-width: 1560px;
       margin: 0 auto;
       padding-block: clamp(40px, 8vw, 120px);
     }
 
+    /* Two content-sized tracks rather than a 12-column grid. The plate is
+       width:fit-content and rarely filled its 8 columns, so the leftover track
+       space opened a ~450px hole between image and text that no `gap` value
+       could close. Sizing the plate track to `auto` leaves only the gap. */
     .pf-project {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
+      grid-template-columns: auto var(--pf-body-w);
+      /* Row packs against its own rail, which is what keeps the zig-zag. */
+      justify-content: start;
       gap: clamp(24px, 4vw, 72px);
       /* Text sits level with the top of the plate, not centred against it. */
       align-items: start;
@@ -86,12 +94,16 @@
     }
 
     /* Default row: plate left, text right. */
-    .pf-project__plate  { grid-column: 1 / 9; }
-    .pf-project__body   { grid-column: 9 / 13; }
+    .pf-project__plate  { grid-column: 1; grid-row: 1; }
+    .pf-project__body   { grid-column: 2; grid-row: 1; }
 
     /* Every other row flips, so the eye zig-zags down the page. */
-    .pf-project--flip .pf-project__plate { grid-column: 5 / 13; grid-row: 1; }
-    .pf-project--flip .pf-project__body  { grid-column: 1 / 5;  grid-row: 1; }
+    .pf-project--flip {
+      grid-template-columns: var(--pf-body-w) auto;
+      justify-content: end;
+    }
+    .pf-project--flip .pf-project__plate { grid-column: 2; grid-row: 1; }
+    .pf-project--flip .pf-project__body  { grid-column: 1; grid-row: 1; }
 
     /* Text aligns away from the plate: text on the right of the image reads
        left-aligned, text on the left of the image reads right-aligned, so each

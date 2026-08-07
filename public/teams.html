@@ -38,6 +38,109 @@
       border-radius: 16px;
       object-fit: contain;
     }
+
+    /* ── Wireframe walkthrough ──────────────────────────────────────
+       8.5MB of screen recording, so it is preload="none" and only starts
+       once it scrolls into view (see the observer below).
+
+       The recording is 1280x872 with black letterboxing baked in: the
+       content sits at x 124-1120, y 0-862. Measured off decoded frames.
+       Rather than re-encode, the figure clips to that window — the video
+       is blown up so the content region exactly fills the frame, and the
+       bars fall outside it.
+
+       Sits inline in .cs-split__body, so it inherits the text column's
+       width automatically. */
+    .cc-video {
+      --vid-w: 1280;  --vid-h: 872;    /* full frame */
+      --crop-x: 124;  --crop-w: 996;   /* content window, horizontally */
+      --crop-h: 862;                   /* content window, vertically */
+
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      margin: var(--space-lg) 0 0;
+      aspect-ratio: var(--crop-w) / var(--crop-h);
+      background: #f2f1f7;
+      border-radius: 12px;
+    }
+
+    .cc-video__el {
+      position: absolute;
+      top: 0;
+      /* Scale so the crop window fills the frame, then shift the left bar out. */
+      left: calc(-100% * var(--crop-x) / var(--crop-w));
+      width: calc(100% * var(--vid-w) / var(--crop-w));
+      height: auto;
+      display: block;
+    }
+
+    /* ── Flat figures beside a section heading ──────────────────────
+       Native widths are small (351px / 814px) and .cs-figure img forces
+       width:100%, which upscaled and softened them. Capped and flat —
+       no card shadow, radius or hover lift. */
+    .cc-aside-fig {
+      max-width: 240px;
+      border-radius: 0;
+      box-shadow: none;
+      overflow: visible;
+    }
+
+    .cs-figure.cc-aside-fig:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* ── Scannable beats ────────────────────────────────────────────
+       These sections are meant to be skimmed, so they read as marked
+       lines rather than prose. */
+    .cc-beats {
+      list-style: none;
+      margin: var(--space-md) 0 0;
+      padding: 0;
+    }
+
+    .cc-beats li {
+      /* header.css carries a bare `li { height: 25px; float: left;
+         padding: 0 20px }` that applies to every list item on the page —
+         it collapsed this list to zero height. All three are reset here. */
+      float: none;
+      height: auto;
+      padding: 0;
+
+      position: relative;
+      margin-bottom: var(--space-md);
+      font-family: var(--font-body);
+      font-size: var(--type-hero);
+      line-height: var(--leading-body);
+      color: var(--color-text-secondary);
+    }
+
+    /* Lead-in labels ("The Tradeoff:") read as each beat's subject. */
+    .cc-beats strong {
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+    }
+
+
+    /* ── Wide product shots ─────────────────────────────────────────
+       The Insights screens are dense dashboards; inside .cs-split__body
+       they render ~700px and their UI text is illegible. These run at
+       viewport width instead, capped so a whole screen stays in view. */
+    .cc-shot {
+      width: min(94vw, 1400px);
+      margin: clamp(2.5rem, 6vw, 4.5rem) auto;
+    }
+
+    .cc-shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 84vh;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
   </style>
 </head>
 
@@ -55,18 +158,18 @@
 
           <img class="cs-hero__logo cs-hero__logo--wide" src="img/msoft/microsoft.png" alt="Microsoft logo">
 
-          <p class="cs-eyebrow">Case Study · Microsoft Education</p>
+          <p class="cs-eyebrow">Case Study · Microsoft Education · Career Coach</p>
 
-          <h1 class="cs-hero__title">Personalized guidance, at Microsoft's scale</h1>
+          <h1 class="cs-hero__title">Turning data into insights and storytelling</h1>
 
           <p class="cs-hero__summary">
-            From education products like <span class="accent">Speaker Coach</span> and
-            <span class="accent">Career Coach</span>, to <span class="accent">Windows</span>
-            products like Expressive Input Panel and <span class="accent">Copilot</span>, I had
-            the opportunity to explore various consumer and enterprise design challenges through
-            both a deep vertical and across horizontal ecosystem lens. I collaborated directly
-            with talented researchers, product managers, and engineers on 0 to 1 products as
-            well as new features for existing products.
+            Career Coach unlocked a significant volume of data for university faculty —
+            skills extracted from resumes, career interests bookmarked in the app, alumni
+            industry trends. I focused on
+            <span class="accent">the narrative behind those metrics</span>: transforming
+            disparate data points into a cohesive story that could
+            <span class="accent">empower college career counselors to better support their
+            students</span>.
           </p>
 
           <div class="cs-hero__meta">
@@ -94,47 +197,192 @@
            ════════════════════════════════════════════════════════ -->
       <main class="cs-body">
 
-        <!-- ── CAREER COACH ── -->
-        <section class="cs-section cs-split" id="career-coach">
+        <!-- ── 1 · THE PROBLEM ── -->
+        <section class="cs-section cs-split" id="problem">
           <div class="cs-container">
             <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Career Coach · The Problem</p>
-              <h2 class="cs-heading">Career Guidance That Doesn't Scale to One-Size-Fits-All</h2>
+              <p class="cs-eyebrow">The Problem</p>
+              <h2 class="cs-heading">What does a university actually know about its own students?</h2>
+              <figure class="cs-figure cc-aside-fig">
+                <img src="img/careercoach/teacher.png"
+                     alt="A faculty member at a laptop surrounded by question marks, with the LinkedIn logo below"
+                     loading="lazy">
+              </figure>
             </aside>
             <div class="cs-split__body">
               <p class="cs-text">
-                Higher-ed students each arrive with a different education, skill set, and set
-                of interests — but most career guidance tools give everyone the same generic
-                advice. Career Coach's objective was to deliver guidance personalized to the
-                individual student, so they could discover a career path, grow real-world
-                skills, and build their network on their own terms. You can browse snippets
-                of the shipped UI <a target="_blank" href="https://support.microsoft.com/en-us/topic/career-coach-quick-start-guide-for-students-c419db47-9290-4961-9684-c3f86a9b3708">here</a>.
+                I was given two seemingly separate feature requests: first,
+                <span class="accent">integrating LinkedIn's Job Market Insights widget into
+                Career Coach to increase API usage of the existing LinkedIn Economic
+                Graph</span>; and second, <span class="accent">surfacing student usage data
+                for university stakeholders</span>.
               </p>
-              <figure class="cs-figure">
-                <video width="100%" autoplay muted loop playsinline>
-                  <source src="img/msoft/intro1.mp4" type="video/mp4">
-                </video>
+              <p class="cs-text">
+                Underlying these requirements was a fundamental question:
+                <span class="accent">How might Career Coach help university faculty members
+                understand their students well enough to help them achieve their career
+                goals?</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <figure class="cc-shot">
+          <img src="img/careercoach/cc_mobile.jpg"
+               alt="Three Career Coach mobile screens: saved skill interests, a filtered list of people to connect with, and a LinkedIn invitation flow"
+               loading="lazy">
+        </figure>
+
+
+        <!-- ── 2 · RESEARCH ── -->
+        <section class="cs-section cs-split" id="research">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Research</p>
+              <h2 class="cs-heading">What does this widget actually help a user decide?</h2>
+              <figure class="cs-figure cc-aside-fig">
+                <img src="img/careercoach/faculty.png"
+                     alt="Illustration of eight faculty members of varied ages, genders and backgrounds"
+                     loading="lazy">
               </figure>
-              <figure class="cs-figure">
-                <img src="img/msoft/cc_mobile.png" alt="Career Coach mobile experience" loading="lazy">
+            </aside>
+            <div class="cs-split__body">
+              <ul class="cc-beats">
+                <li>
+                  I recruited a diverse group of faculty for
+                  <span class="accent">think-aloud usability sessions</span> of
+                  LinkedIn&rsquo;s <span class="accent">existing Job Market Insights
+                  widget</span> to understand dropdown selections and information gaps.
+                </li>
+                <li>
+                  I also <span class="accent">conducted interviews</span>, and in a second
+                  round of testing, I did a <span class="accent">card sort exercise</span>
+                  to understand the importance and stack ranking of the data points.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── 3 · WHAT WE FOUND ── -->
+        <section class="cs-section cs-split" id="findings">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">What We Found</p>
+              <h2 class="cs-heading">Context and recency matter</h2>
+            </aside>
+            <div class="cs-split__body">
+              <ul class="cc-beats">
+                <li>
+                  We found job market data is
+                  <span class="accent">useless on its own</span>; faculty read the market
+                  through their specific students&rsquo; majors and skills and cared about
+                  the latest three months of market data.
+                </li>
+                <li>
+                  For students, real-world constraints like visa status and
+                  &ldquo;dream city&rdquo; locations decide what is realistic for their
+                  career goals.
+                </li>
+              </ul>
+
+              <!-- Silent, loops when in view. Cropped past the baked-in
+                   letterboxing; see .cc-video. -->
+              <figure class="cc-video">
+                <video class="cc-video__el" muted loop playsinline preload="none"
+                       aria-label="Screen recording walking through the early Insights wireframes">
+                  <source src="img/careercoach/cc_wireframes.mp4" type="video/mp4">
+                </video>
               </figure>
             </div>
           </div>
         </section>
 
 
+        <!-- ── 4 · DESIGN PIVOTS ── -->
+        <section class="cs-section cs-split" id="pivots">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Design Pivots</p>
+              <h2 class="cs-heading">Realizing we had it backwards</h2>
+            </aside>
+            <div class="cs-split__body">
+              <ul class="cc-beats">
+                <li>
+                  <strong>The Insight Reframing:</strong> Moved away from side-by-side data
+                  sets&mdash;which still put <span class="accent">cognitive load</span> on
+                  professors to gather the insights they need&mdash;and instead, worked to
+                  storytell <span class="accent">students&rsquo; skill gaps</span> based on
+                  their dream city and career.
+                </li>
+                <li>
+                  The <span class="accent">&ldquo;aha&rdquo; moment</span> of we need to
+                  switch the inputs and outputs of the LinkedIn widget and design for
+                  storytelling the student skill gap.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── 5 · FINAL DESIGN ── -->
+        <section class="cs-section cs-split" id="final-design">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">Final Design</p>
+              <h2 class="cs-heading">Designing with tradeoffs and technical constraints</h2>
+            </aside>
+            <div class="cs-split__body">
+              <ul class="cc-beats">
+                <li>
+                  <strong>The Tradeoff:</strong> For the
+                  <span class="accent">initial release</span>, I decided to use
+                  <span class="accent">Career Coach alumni data</span> for the inversion of
+                  the inputs and outputs due to
+                  <span class="accent">technical constraints</span>. Both the Teams and
+                  LinkedIn <span class="accent">engineering teams needed more
+                  resources</span> to rework the LinkedIn widget to fit our use cases.
+                </li>
+              </ul>
+              <p class="cs-text">
+                The shipped design followed Microsoft Teams brand and component library, held
+                an <span class="accent">accessibility Grade A rating</span>, one of the few
+                Grade A rated products at Microsoft.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- The Insights screens are dense dashboards — in the split column
+             their UI text is unreadable, so they run wide on their own. -->
+        <figure class="cc-shot">
+          <img src="img/careercoach/insights_interests.jpg"
+               alt="Career interests and skills tab: a ranked list of careers students saved, with saves by year in school and top companies where alumni work"
+               loading="lazy">
+        </figure>
+
+        <figure class="cc-shot">
+          <img src="img/careercoach/insights_jobmarket.jpg"
+               alt="Job market trends tab showing top careers, top skills and top hiring employers for a selected country and metro area"
+               loading="lazy">
+        </figure>
+
+
+
         <!-- ── CAREER COACH · IMPACT ── -->
         <section class="cs-section" id="career-coach-impact">
           <div class="cs-container">
-            <p class="cs-eyebrow">Career Coach · Impact</p>
-            <h2 class="cs-heading">A market differentiator before it even hit GA</h2>
+            <p class="cs-eyebrow">Impact</p>
+            <h2 class="cs-heading">A market differentiator and stronger partnerships</h2>
             <p class="cs-text">
               Walking customers through the Insights work on live calls turned the personalization
               story into a selling point — three new universities signed before general availability.
               The same work deepened the LinkedIn partnership: they agreed to combine identity work
               with us and shared long-term goals for the integration.
             </p>
-            <div class="cs-metrics">
+            <div class="cs-metrics cs-metrics--circles">
               <div class="cs-metric">
                 <span class="cs-metric__num">3</span>
                 <span class="cs-metric__label">New universities signed before GA launch</span>
@@ -184,6 +432,37 @@
         sr.reveal('.cs-figure, .cs-pair > .cs-figure', { origin: 'bottom', distance: '40px', delay: 120, interval: 120 });
         sr.reveal('.cs-metric', { origin: 'bottom', interval: 100 });
       }
+
+      // ── Wireframe video — silent, looping, and deliberately lazy.
+      //    preload="none" keeps 8.5MB off the wire until the figure is
+      //    actually reached; it then loops for as long as it is on screen
+      //    and pauses when it isn't, so it never plays to nobody. ──
+      (function () {
+        var vid = document.querySelector('.cc-video__el');
+        if (!vid) return;
+
+        // Muted + playsinline are what let autoplay through on mobile.
+        vid.muted = true;
+        vid.defaultMuted = true;
+
+        if (!('IntersectionObserver' in window)) { vid.preload = 'metadata'; return; }
+
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              if (vid.preload !== 'auto') vid.preload = 'auto';
+              // play() rejects when the tab is backgrounded or autoplay is
+              // blocked; the catch keeps that out of the console.
+              var p = vid.play();
+              if (p && p.catch) p.catch(function () {});
+            } else if (!vid.paused) {
+              vid.pause();
+            }
+          });
+        }, { threshold: 0.25 });
+
+        io.observe(vid);
+      })();
     </script>
   </body>
 </html>

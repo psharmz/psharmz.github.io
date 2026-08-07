@@ -315,6 +315,15 @@
   will-change: transform;
 }
 
+/* Full-bleed band sized to the image rather than to a fixed height. The
+   default band crops to clamp(360px, 66vh, 720px) with object-fit: cover,
+   which suits photography but cuts the edges off diagrams and boards.
+   Use with a plain <img> (no .cs-parallax__img) so it stays in flow and
+   .cs-figure img's width:100%/height:auto applies. */
+.cs-fullbleed--fit {
+  height: auto;
+}
+
 
 /* ── METRICS / IMPACT ────────────────────────────────────────── */
 .cs-metrics {
@@ -340,6 +349,74 @@
 }
 
 /* .cs-metric__label styling is shared with .cs-caption above. */
+
+/* ── Metrics as circles — opt in with .cs-metrics--circles ─────
+   Shared by the Rasa and Career Coach case studies so impact
+   sections read as one system across projects. Explicit diameter
+   (width AND height as real lengths, never aspect-ratio) so they
+   stay true circles as grid items. Fixed-width tracks with
+   space-between push them apart rather than filling the row. */
+.cs-metrics--circles {
+  --cm-d: clamp(190px, 21vw, 260px);
+  grid-template-columns: repeat(3, var(--cm-d));
+  justify-content: space-between;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.cs-metrics--circles .cs-metric {
+  width: var(--cm-d);
+  height: var(--cm-d);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2em 1.85em;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #fff;
+  box-shadow:
+    0 2px 10px color-mix(in srgb, var(--color-text-primary) 14%, transparent),
+    0 16px 34px color-mix(in srgb, var(--color-accent) 38%, transparent);
+}
+
+/* Sized to sit comfortably for a bare number and a short phrase alike. */
+.cs-metrics--circles .cs-metric__num {
+  font-size: clamp(22px, 2.5vw, 32px);
+  line-height: 1.12;
+  color: #fff;
+  margin-bottom: var(--space-sm);
+}
+
+.cs-metrics--circles .cs-metric__label {
+  font-size: clamp(12px, 1.05vw, 14px);
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Inside .cs-center, .cs-container caps at 820px — a reading measure
+   that leaves ~680px and squeezes the circles together. They're
+   graphics, not prose, so the row breaks out of it. The negative
+   margins are load-bearing: an oversized flex item is clamped to
+   overflow rightward under `align-items: center`, and
+   `margin-inline: auto` collapses to 0 when free space is negative,
+   so neither centres it. The percentage resolves against the
+   container's content box, giving an even bleed each side. */
+.cs-center .cs-metrics--circles {
+  --cm-row-w: min(1040px, calc(100vw - 96px));
+  max-width: none;
+  width: var(--cm-row-w);
+  margin-inline: calc((100% - var(--cm-row-w)) / 2);
+}
+
+/* .cs-metrics drops to one column at 767px; keep the circles centred
+   rather than stretched to the column. */
+@media (max-width: 767px) {
+  .cs-metrics--circles {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: clamp(1.5rem, 6vw, 2.5rem);
+  }
+}
 
 
 /* ── CLOSING / NEXT PROJECT ──────────────────────────────────── */

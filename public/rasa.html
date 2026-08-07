@@ -37,7 +37,9 @@
     }
 
     /* A subtle black border on the low-fi wireframe so it reads as a frame. */
-    .rasa-page .cs-figure--framed { border: 1px solid var(--color-text-primary); }
+    /* The low-fi wireframe is nearly white to its edges, so it needs a frame
+       to read as an artefact rather than bleeding into the page. */
+    .rasa-page .cs-figure--framed { border: 2px solid #000; }
 
     /* How-Might-We — five teal circles, the full question inside each. They
        sit in a row on desktop, 3-over-2 on tablets, and stack one-per-row
@@ -144,71 +146,131 @@
       }
     }
 
-    /* ── Full-width auto-toggling workflow block ── */
-    .rasa-page .cs-flow {
-      padding-block: clamp(2.5rem, 6vw, 4.5rem);
-    }
-    .rasa-page .cs-flow__head {
-      display: flex;
-      justify-content: center;
-      margin-bottom: var(--space-lg);
-    }
-    .rasa-page .cs-flow__fig {
-      position: relative;
-      width: 100%;        /* .cs-body is full viewport width — true full-bleed */
-      margin: 0;
-    }
-    .rasa-page .cs-flow__cap {
-      text-align: center;
-      max-width: 64ch;
-      margin: var(--space-md) auto 0;
+    /* ── Scroll-driven workflow block ──────────────────────────────
+       --p runs 0 → 1 as the track scrolls past (set by JS below). The
+       label slide and the image cross-fade both read off it, so they
+       move as one gesture. No transitions: the scroll IS the timeline. */
+    .rasa-page .cs-flowscroll {
+      --p: 0;                          /* 0 = current flow, 1 = where Rasa fits in */
+      --fs-step-h: 3.2em;              /* one label slot — fits two wrapped lines */
     }
 
-    /* ── Before/after segmented toggle ── */
-    .rasa-page .cs-toggle {
-      display: inline-flex;
-      gap: 0.25rem;
-      margin: clamp(2rem, 5vw, 3rem) 0 var(--space-md);
-      padding: 0.3rem;
-      background: rgba(0, 0, 0, 0.05);
-      border-radius: 999px;
+    /* The band hugs the diagram rather than pinning across a tall track: a
+       100vh sticky stage left ~450px of dead space around a 448px figure.
+       --p is now driven by the band's travel through the viewport (see the
+       JS below), so the cross-fade survives without the scroll room. */
+    .rasa-page .cs-flowscroll__track { height: auto; }
+
+    .rasa-page .cs-flowscroll__stage {
+      position: static;
+      height: auto;
+      padding-block: 5px;          /* the band sits 10px taller than the fig */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(0.75rem, 1.5vw, 2rem);
+      padding-inline: clamp(0.75rem, 1.5vw, 2rem);
     }
-    .rasa-page .cs-toggle__btn {
+
+    /* ── Sliding teal label ── */
+    .rasa-page .cs-flowscroll__label {
+      flex: 0 0 auto;
+      width: clamp(130px, 15vw, 230px);
+      margin: 0;
+      /* Set here so --fs-step-h's em resolves identically on the window and
+         the steps — otherwise the window sizes off the paragraph's font and
+         the slide overshoots its slot. */
+      font-size: var(--type-label);
+    }
+    /* The window clips to exactly one slot, so the outgoing step leaves as
+       the incoming one arrives. */
+    .rasa-page .cs-flowscroll__window {
+      display: block;
+      height: var(--fs-step-h);
+      overflow: hidden;
+    }
+    .rasa-page .cs-flowscroll__slide {
+      display: block;
+      transform: translateY(calc(var(--p) * -1 * var(--fs-step-h)));
+      will-change: transform;
+    }
+    /* Fixed-height slots keep the travel exact whether a label wraps or not. */
+    .rasa-page .cs-flowscroll__step {
+      display: flex;
+      align-items: center;
+      height: var(--fs-step-h);
       font-family: var(--font-heading);
       font-size: var(--type-label);
       font-weight: var(--weight-semibold);
-      letter-spacing: 0.04em;
-      color: var(--color-text-secondary);
-      background: transparent;
-      border: 0;
-      border-radius: 999px;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      transition: background var(--motion-fast) var(--ease-standard),
-                  color var(--motion-fast) var(--ease-standard);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-text-teal);
+      line-height: var(--leading-label);
     }
-    .rasa-page .cs-toggle__btn.is-active {
-      background: var(--color-accent);
-      color: #fff;
-    }
-    .rasa-page .cs-toggle__btn:not(.is-active):hover { color: var(--color-text-primary); }
 
-    /* Stacked toggle images — full width, fully visible (no crop), cross-fade. */
-    .rasa-page .cs-flow__fig .cs-toggle__img {
+    /* ── Cross-fading diagram ── */
+    .rasa-page .cs-flowscroll__fig {
+      position: relative;
+      width: 80vw;
+      margin: 0;
+    }
+    .rasa-page .cs-flowscroll__img {
       display: block;
       width: 100%;
       height: auto;
-      transition: opacity 0.5s var(--ease-standard);
+      max-height: 76vh;
+      object-fit: contain;
     }
-    .rasa-page .cs-flow__fig .cs-toggle__img:not(.is-active) {
+    /* The two files are the same artwork bar the purple boxes, so fading the
+       top one over the bottom looks like the boxes recolouring in place. */
+    .rasa-page .cs-flowscroll__img--over {
       position: absolute;
       inset: 0;
-      opacity: 0;
+      opacity: var(--p);
       pointer-events: none;
     }
-    @media (prefers-reduced-motion: reduce) {
-      .rasa-page .cs-flow__fig .cs-toggle__img { transition: none; }
+
+    /* Below desktop the pin costs more than it gives, so both states show
+       stacked. `display: contents` flattens the label/figure wrappers so the
+       four pieces become grid items and can be re-ordered into
+       label → diagram → label → diagram; otherwise both labels stack above
+       both images and neither one is paired with its diagram. */
+    @media (max-width: 900px) {
+      .rasa-page .cs-flowscroll__track { height: auto; }
+
+      .rasa-page .cs-flowscroll__stage {
+        position: static;
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+        padding-block: clamp(2.5rem, 6vw, 4.5rem);
+      }
+
+      .rasa-page .cs-flowscroll__label,
+      .rasa-page .cs-flowscroll__window,
+      .rasa-page .cs-flowscroll__slide,
+      .rasa-page .cs-flowscroll__fig { display: contents; }
+
+      .rasa-page .cs-flowscroll__step {
+        height: auto;
+        font-size: var(--type-label);
+      }
+      .rasa-page .cs-flowscroll__step:first-child { order: 1; }
+      .rasa-page .cs-flowscroll__img:not(.cs-flowscroll__img--over) { order: 2; }
+      .rasa-page .cs-flowscroll__step:last-child  { order: 3; margin-top: var(--space-lg); }
+      .rasa-page .cs-flowscroll__img--over        { order: 4; }
+
+      .rasa-page .cs-flowscroll__img {
+        width: 100%;
+        max-height: none;
+      }
+      .rasa-page .cs-flowscroll__img--over {
+        position: static;
+        opacity: 1;
+      }
     }
+
 
     /* Small role/concept tags shown under the solution. */
     .rasa-page .cs-tags {
@@ -287,20 +349,35 @@
       <main class="cs-body">
 
         <!-- ── 1 · THE PROBLEM ── -->
-        <section class="cs-section cs-center">
+        <section class="cs-section cs-split" id="problem">
           <div class="cs-container">
-            <p class="cs-eyebrow">The Problem</p>
-            <p class="cs-text">
-              While enterprise customers (like banking and insurance companies) had
-              solid workflows to build chatbots in Rasa, training and testing models
-              remained highly ambiguous. Teams frequently hit roadblocks, relying on
-              the Rasa team to build custom solutions so engineers and PMs could
-              collaborate on iterations. Without these, engineers faced heavy
-              overhead: parsing feedback from screenshots, emails and Jira notes. To
-              share a chatbot with a nontechnical teammate, engineers would even
-              build custom sandbox environments, and sometimes, even teach PMs how
-              to test chatbots using CLI terminals like a developer.
-            </p>
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">The Problem</p>
+              <h2 class="cs-heading">Enterprise customers face messy workflows to train and test ML models</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                While enterprise customers (like banking and insurance companies) had
+                solid workflows to build chatbots in Rasa,
+                <span class="accent">training and testing models remained highly
+                ambiguous</span>.
+              </p>
+
+              <p class="cs-text">
+                Teams frequently <span class="accent">hit roadblocks</span>, relying on
+                the Rasa team to build <span class="accent">custom solutions</span> so
+                engineers and PMs could collaborate on iterations. Without these,
+                engineers faced <span class="accent">heavy overhead</span>: parsing
+                feedback from screenshots, emails and Jira notes.
+              </p>
+
+              <p class="cs-text">
+                To share a chatbot with a nontechnical teammate, engineers would even
+                <span class="accent">build custom sandbox environments</span>, and
+                sometimes, even teach PMs how to test chatbots using
+                <span class="accent">CLI terminals</span> like a developer.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -322,23 +399,42 @@
             </aside>
             <div class="cs-split__body">
               <p class="cs-text">
-                In the spirit of Rasa making the shift from being a professional
-                services company to a product company, I proposed to the CEO and
-                COO that I run a design thinking workshop with the entire startup.
-                I had everyone pull from their experiences building for existing
-                clients.
+                In the spirit of Rasa making the
+                <span class="accent">shift from being a professional services company
+                to a product company</span>, I proposed to the CEO and COO that I run a
+                design thinking workshop with the entire startup. I had everyone pull
+                from their experiences building for existing clients.
               </p>
               <p class="cs-text">
                 We divided the existing clients into two personas: engineers and
-                PMs. Each person mapped the behaviors, pain points, and goals of
-                existing customers that build chatbots using Rasa.
-              </p>
-              <p class="cs-text">
-                Five recurring pain points emerged across teams:
+                PMs. Each person mapped the <span class="accent">behaviors</span>,
+                <span class="accent">pain points</span>, and
+                <span class="accent">goals</span> of existing customers that build
+                chatbots using Rasa.
               </p>
             </div>
           </div>
+        </section>
 
+
+        <!-- FULL-BLEED PAIR — workshop photos, edge to edge -->
+        <div class="cs-fullbleed-pair">
+          <img src="img/rasa/workshop.png" alt="Design workshop in Berlin" loading="lazy">
+          <img src="img/rasa/workshop2.png" alt="Workshop participants mapping workflows" loading="lazy">
+        </div>
+
+
+        <!-- ── 3 · WHAT WE LEARNED ── -->
+        <section class="cs-section cs-split" id="learned">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">What We Learned</p>
+              <h2 class="cs-heading">Five recurring pain points across all users</h2>
+            </aside>
+            <div class="cs-split__body"></div>
+          </div>
+
+          <!-- Sits outside .cs-container so the circle row runs full width. -->
           <ul class="cs-questions">
             <li><span>Make debugging training data easier?</span></li>
             <li><span>Make annotating data less tedious?</span></li>
@@ -348,65 +444,71 @@
           </ul>
         </section>
 
-        <!-- FULL-BLEED PAIR — workshop photos, edge to edge -->
-        <div class="cs-fullbleed-pair">
-          <img src="img/rasa/workshop.png" alt="Design workshop in Berlin" loading="lazy">
-          <img src="img/rasa/workshop2.png" alt="Workshop participants mapping workflows" loading="lazy">
-        </div>
 
-
-        <!-- ── FULL-WIDTH AUTO-TOGGLE — current analog flow ⇄ where Rasa fits in ── -->
-        <section class="cs-flow" aria-label="Workflow: current flow vs. where Rasa fits in">
-          <div class="cs-container cs-flow__head">
-            <div class="cs-toggle" role="group" aria-label="Workflow view">
-              <button type="button" class="cs-toggle__btn is-active" aria-pressed="true" data-view="current">Current flow</button>
-              <button type="button" class="cs-toggle__btn" aria-pressed="false" data-view="rasa">Where Rasa fits in</button>
-            </div>
-          </div>
-          <figure class="cs-flow__fig">
-            <img class="cs-toggle__img is-active" data-view="current"
-                 src="img/rasa/Rasa.009.jpeg"
-                 alt="The current, analog chatbot-training workflow across developer and project owner">
-            <img class="cs-toggle__img" data-view="rasa"
-                 src="img/rasa/Rasa.010.jpeg"
-                 alt="The same workflow with opportunities for Rasa Platform highlighted in purple">
-          </figure>
-          <div class="cs-container">
-            <figcaption class="cs-caption cs-flow__cap">
-              The boxes in <span class="accent">purple</span> mark where we saw
-              opportunities in the current analog flow for Rasa Platform to step in
-              as an enterprise tooling product.
-            </figcaption>
-          </div>
-        </section>
-
-
-        <!-- ── 3 · WHAT WE DISCOVERED ── -->
+        <!-- ── 3 · EARLY ITERATIONS ── -->
         <section class="cs-section cs-split">
           <div class="cs-container">
             <aside class="cs-split__aside">
-              <p class="cs-eyebrow">What We Discovered</p>
-              <h2 class="cs-heading">Two modes unlock everything</h2>
+              <p class="cs-eyebrow">Early Iterations</p>
+              <h2 class="cs-heading">Turning Pain Points into Design Opportunities</h2>
             </aside>
             <div class="cs-split__body">
               <p class="cs-text">
-                PMs needed two different experiences. Structured annotation mode for
-                training data. Loose playground mode for testing. The real unlock: a
-                shareable link. No custom environment. No friction.
+                Solved the handoff bottleneck: developers couldn&rsquo;t share
+                work-in-progress models efficiently, and PMs couldn&rsquo;t give
+                actionable feedback. Created a shared submission flow with structured
+                feedback collection that worked for both workflows.
               </p>
-              <figure class="cs-figure">
-                <img src="img/rasa/rasa.gif"
-                     alt="Rasa Platform reviewing and correcting a bot's predictions" loading="lazy">
-              </figure>
-              <figcaption class="cs-caption">Rasa Platform: reviewing and correcting the bot's predictions, with confidence scores.</figcaption>
-              <figure class="cs-figure">
-                <img src="img/rasa/art_board.png"
-                     alt="Early wireframes shared out for feedback" loading="lazy">
-              </figure>
-              <figcaption class="cs-caption">Early wireframes shared out for feedback.</figcaption>
             </div>
           </div>
         </section>
+
+
+        <!-- ── SCROLL-DRIVEN WORKFLOW — current flow ⇄ where Rasa fits in.
+             The stage pins while the track scrolls past; the label slides up
+             and the diagram cross-fades in the same beat. Both images are the
+             same artwork, so the fade reads as boxes turning purple. ── -->
+        <section class="cs-flowscroll" aria-label="Workflow: current flow versus where Rasa fits in">
+          <div class="cs-flowscroll__track">
+            <div class="cs-flowscroll__stage">
+
+              <p class="cs-flowscroll__label">
+                <span class="cs-flowscroll__window">
+                  <span class="cs-flowscroll__slide">
+                    <span class="cs-flowscroll__step">Current flow</span>
+                    <span class="cs-flowscroll__step">Where Rasa fits in</span>
+                  </span>
+                </span>
+              </p>
+
+              <figure class="cs-flowscroll__fig">
+                <img class="cs-flowscroll__img"
+                     src="img/rasa/rasa_flow_current.jpg"
+                     alt="The chatbot-training workflow across developer and project owner, shown before and after: the steps Rasa Platform takes over are highlighted in purple.">
+                <!-- Same artwork, purple state. Decorative: the base alt above
+                     describes both states, so announcing it twice adds nothing. -->
+                <img class="cs-flowscroll__img cs-flowscroll__img--over"
+                     src="img/rasa/rasa_flow_rasa.jpg" alt="" aria-hidden="true">
+              </figure>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- Low-fi wireframes, directly below the workflow band. -->
+        <div class="cs-container">
+          <figure class="cs-figure cs-figure--framed">
+            <img src="img/rasa/wireframe.png" alt="Low-fidelity wireframes for the platform" loading="lazy">
+          </figure>
+          <figcaption class="cs-caption">Low-fi wireframes, reviewed with engineering, business, and end users.</figcaption>
+        </div>
+
+        <!-- Edge to edge like the platform band above, but --fit so the whole
+             5785px-wide board shows instead of being cropped to a band. -->
+        <figure class="cs-figure cs-fullbleed cs-fullbleed--fit">
+          <img src="img/rasa/art_board.png"
+               alt="Early wireframes shared out for feedback" loading="lazy">
+        </figure>
 
 
         <!-- ── 4 · THE SOLUTION ── -->
@@ -423,10 +525,11 @@
                 share-via-link flow. Built it in React from wireframes to production
                 under deadline.
               </p>
-              <figure class="cs-figure cs-figure--framed">
-                <img src="img/rasa/wireframe.png" alt="Low-fidelity wireframes for the platform" loading="lazy">
+              <figure class="cs-figure">
+                <img src="img/rasa/rasa.gif"
+                     alt="Rasa Platform reviewing and correcting a bot's predictions" loading="lazy">
               </figure>
-              <figcaption class="cs-caption">Low-fi wireframes, reviewed with engineering, business, and end users.</figcaption>
+              <figcaption class="cs-caption">Rasa Platform: reviewing and correcting the bot's predictions, with confidence scores.</figcaption>
               <figure class="cs-figure">
                 <img src="img/rasa/rasa_platform2.png" alt="NLU training queue with confidence scores" loading="lazy">
               </figure>
@@ -448,7 +551,7 @@
           <div class="cs-container">
             <p class="cs-eyebrow">Impact</p>
             <h2 class="cs-heading">Impact &amp; outcomes</h2>
-            <div class="cs-metrics">
+            <div class="cs-metrics cs-metrics--circles">
               <div class="cs-metric">
                 <span class="cs-metric__num">40%</span>
                 <span class="cs-metric__label">Less handoff &amp; training time</span>
@@ -511,40 +614,50 @@
         sr.reveal('.cs-heading',  { origin: 'bottom', distance: '24px', interval: 80 });
         sr.reveal('.cs-text, .cs-questions', { origin: 'bottom', distance: '16px', delay: 80, interval: 60 });
         sr.reveal('.cs-figure, .cs-pair > .cs-figure', { origin: 'bottom', distance: '40px', delay: 120, interval: 120 });
-        sr.reveal('.cs-metric', { origin: 'bottom', interval: 100 });
+        // Wider interval + a slight scale so the circles land one at a time.
+        sr.reveal('.cs-metric', { origin: 'bottom', distance: '24px', scale: 0.92, interval: 180 });
       }
 
-      // ── Workflow toggle — auto-cycles continuously between the two views so
-      //    the user never has to click. The buttons stay in sync as a legend
-      //    (and still work as manual jumps), but nothing pauses the cycle. ──
+      // ── Workflow scroll driver — maps --p, which the label slide and the
+      //    image cross-fade both read, to the band's travel across the
+      //    viewport. (It used to read a 220vh sticky track, but that padded
+      //    the diagram out with ~450px of dead space.) The change is squeezed
+      //    into a narrow band around centre so each end state holds steady
+      //    and the switch itself feels like one deliberate move. ──
       (function () {
-        var flow = document.querySelector('.cs-flow');
-        if (!flow) return;
-        var btns = flow.querySelectorAll('.cs-toggle__btn');
-        var imgs = flow.querySelectorAll('.cs-toggle__img');
-        var views = ['current', 'rasa'];
-        var i = 0;
+        var sec = document.querySelector('.cs-flowscroll');
+        if (!sec) return;
+        var track = sec.querySelector('.cs-flowscroll__track');
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var stacked = window.matchMedia('(max-width: 900px)');
+        var BAND_START = 0.40, BAND_END = 0.64;
+        var ticking = false;
 
-        function show(view) {
-          i = views.indexOf(view);
-          btns.forEach(function (b) {
-            var on = b.getAttribute('data-view') === view;
-            b.classList.toggle('is-active', on);
-            b.setAttribute('aria-pressed', on ? 'true' : 'false');
-          });
-          imgs.forEach(function (img) {
-            img.classList.toggle('is-active', img.getAttribute('data-view') === view);
-          });
+        function update() {
+          ticking = false;
+          if (stacked.matches) { sec.style.removeProperty('--p'); return; }
+
+          var r = track.getBoundingClientRect();
+          var vh = window.innerHeight;
+          // 0 as the band's top edge enters from the bottom, 1 as its bottom
+          // edge leaves past the top.
+          var travel = vh + r.height;
+          if (travel <= 0) return;
+
+          var raw = Math.min(1, Math.max(0, (vh - r.top) / travel));
+          var t = Math.min(1, Math.max(0, (raw - BAND_START) / (BAND_END - BAND_START)));
+          // Smoothstep, so it eases in and out of the switch rather than ramping.
+          var p = reduce ? (t < 0.5 ? 0 : 1) : t * t * (3 - 2 * t);
+          sec.style.setProperty('--p', p.toFixed(4));
         }
 
-        btns.forEach(function (btn) {
-          btn.addEventListener('click', function () { show(btn.getAttribute('data-view')); });
-        });
+        function onScroll() {
+          if (!ticking) { ticking = true; requestAnimationFrame(update); }
+        }
 
-        // Always cycling — every 1.75s, regardless of hover or focus.
-        setInterval(function () {
-          show(views[(i + 1) % views.length]);
-        }, 1750);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        update();
       })();
 
       // ── Subtle parallax on full-bleed bands (Apple-restrained) ──

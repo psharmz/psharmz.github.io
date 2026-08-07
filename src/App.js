@@ -344,10 +344,10 @@ function MainPortfolio() {
               <p className="quote-author">— {quotes[1].author}</p>
             </div>
 
-            {/* HORIZONTAL DESIGN — Speaker Progress + EDU Insights */}
+            {/* HORIZONTAL DESIGN — Speaker Progress + EDU Insights (hidden) */}
             <div
               className="project-card scroll-reveal"
-              style={{ gridColumn: '1 / 13', gridRow: '37 / 44' }}
+              style={{ gridColumn: '1 / 13', gridRow: '37 / 44', display: 'none' }}
               {...cardHover}
               onClick={(e) => {
                 e.currentTarget.style.transform = 'scale(0.98)';
