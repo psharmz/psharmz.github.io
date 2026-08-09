@@ -36,21 +36,105 @@
 
     /* Live HTML/CSS prototype embeds (iframes) — the real originals of the
        app screenshots, scaled responsively to fit the reading column. The
-       iframe isolates the prototype's own CSS from the case-study page. */
-    .cs-figure.cs-embed { background: #fff; }
+       iframe isolates the prototype's own CSS from the case-study page.
+
+       No card treatment: the phone mock-up already has its own frame and
+       shadow, so a panel behind it reads as a box around a box. Background,
+       radius and shadow are all off, and overflow stays visible so the
+       phone's own shadow isn't clipped. */
+    .cs-figure.cs-embed {
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+      overflow: visible;
+    }
     .cs-figure.cs-embed:hover {           /* keep interactive embeds stable */
       transform: none;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      box-shadow: none;
     }
     .cs-embed__fit {
       position: relative;
       margin: 0 auto;
+      /* hidden, not visible: the iframe keeps its full layout width and is only
+         shrunk by a transform, so an un-clipped box stretches the grid track
+         and overflows narrow viewports. The phone's shadow is safe regardless —
+         it lives inside the iframe's own padded canvas. */
       overflow: hidden;
     }
     .cs-embed__fit iframe {
       border: 0;
       display: block;
       transform-origin: top left;
+      background: transparent;          /* let the page show through */
+    }
+
+    /* ── Five-whys chat thread ──────────────────────────────────────
+       A reconstructed interview, laid out like a message thread: the field
+       worker on the left, me on the right. Bubbles pop in one at a time —
+       ScrollReveal drives the stagger (see the sr.reveal call below), so
+       nothing animates until the thread is actually on screen. */
+    .cs-chat {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      margin-top: clamp(2.5rem, 6vw, 4rem);
+      /* Slightly more air below than above: the thread is a distinct block,
+         and returning to prose needs a cleaner break than entering it. */
+      margin-bottom: clamp(3rem, 7vw, 5rem);
+    }
+
+    .cs-chat__msg {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--space-sm);
+      max-width: 82%;
+    }
+
+    /* Me: mirrored to the right-hand side. */
+    .cs-chat__msg--me {
+      flex-direction: row-reverse;
+      align-self: flex-end;
+    }
+
+    .cs-chat__avatar {
+      flex: 0 0 auto;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      line-height: 1;
+      background: #ecebf2;
+      overflow: hidden;
+    }
+
+    .cs-chat__avatar--img {
+      object-fit: cover;
+      background: #fff;
+    }
+
+    .cs-chat__bubble {
+      margin: 0;
+      padding: 0.7em 1.05em;
+      font-family: var(--font-body);
+      font-size: var(--type-caption);
+      line-height: var(--leading-body);
+      background: #f1f0f5;
+      color: var(--color-text-primary);
+      /* Squared-off bottom corner on the speaker's side reads as a tail. */
+      border-radius: 18px 18px 18px 4px;
+    }
+
+    .cs-chat__msg--me .cs-chat__bubble {
+      background: var(--color-accent);
+      color: #fff;
+      border-radius: 18px 18px 4px 18px;
+    }
+
+    @media (max-width: 600px) {
+      .cs-chat__msg { max-width: 100%; }
     }
 
     /* Flat image — sits directly on the page with no card treatment. */
@@ -59,6 +143,11 @@
       box-shadow: none;
       overflow: visible;
       background: transparent;
+      /* .cs-figure adds clamp(2.5rem, 6vw, 4rem) of top margin to separate a
+         card from the copy above it. A flat figure has no card edge, so that
+         gap just reads as a hole. */
+      margin-top: 0;
+      padding-top: 0;
     }
     .cs-figure.cs-flat:hover {
       transform: none;
@@ -175,18 +264,25 @@
                 pressure-tested it against the messy real-world scenarios
                 (no calendar resource, multiple resources, overtime).
               </p>
-              <figure class="cs-figure">
-                <img src="img/enterprise/decisioning-logic.png"
-                     alt="The decisioning logic mapped scenario by scenario — how a ticket is routed and assigned — before any UI" loading="lazy">
-              </figure>
-              <figcaption class="cs-caption">
-                Workshops on all scenarios aligned engineering, PM, and the client on
-                a single source of truth, and surfaced the open questions early,
-                before they became rework.
-              </figcaption>
             </div>
           </div>
         </section>
+
+        <!-- Near-viewport width with the same side margins as the Career
+             Coach product shots, plus a shadow so the pale diagram lifts
+             off the white page. -->
+        <figure class="cs-shot cs-shot--raised">
+          <img src="img/enterprise/decisioning-logic.png"
+               alt="The decisioning logic mapped scenario by scenario — how a ticket is routed and assigned — before any UI" loading="lazy">
+        </figure>
+
+        <div class="cs-container">
+          <figcaption class="cs-caption">
+            Workshops on all scenarios aligned engineering, PM, and the client on
+            a single source of truth, and surfaced the open questions early,
+            before they became rework.
+          </figcaption>
+        </div>
 
 
         <!-- ── FIELD RESEARCH ── -->
@@ -216,6 +312,14 @@
         </section>
 
 
+        <!-- Field app screens, full width above the section it introduces. -->
+        <figure class="cs-figure cs-flat">
+          <img src="img/enterprise/mobile-screens-splash.jpg"
+               alt="Four field-app screens: start travel, end travel, start work and end work, each with a running timer"
+               loading="lazy">
+        </figure>
+
+
         <!-- ── FIELD WORKER APP ── -->
         <section class="cs-section cs-split">
           <div class="cs-container">
@@ -225,34 +329,72 @@
             </aside>
             <div class="cs-split__body">
               <p class="cs-text">
-                The first app tracked travel and work with live timers. Early
-                testing flagged a real risk: the ticking timer felt like
-                surveillance.
+                The first version tracked travel and work with live timers. However,
+                interviews I did and surveys I conducted with field workers revealed
+                the feedback that they wanted the timer removed. I investigated
+                further.
               </p>
               <figure class="cs-figure cs-embed">
-                <div class="cs-embed__fit" data-w="1660" data-h="864">
+                <div class="cs-embed__fit" data-w="495" data-h="932">
                   <iframe src="embeds/field_worker_mobile_stripped.html"
                           title="Field-worker mobile app — travel and work timer flow (live prototype)"
                           loading="lazy" scrolling="no"></iframe>
                 </div>
               </figure>
-              <figure class="cs-figure cs-embed">
-                <div class="cs-embed__fit" data-w="415" data-h="864">
-                  <iframe src="embeds/field_worker_mobile.html"
-                          title="Field-worker mobile app — interactive ticket detail (live prototype)"
-                          loading="lazy"></iframe>
+              <!-- Five whys, reconstructed from the interviews. -->
+              <div class="cs-chat" role="list"
+                   aria-label="Five whys with a field worker about the running timer">
+                <div class="cs-chat__msg cs-chat__msg--them" role="listitem">
+                  <span class="cs-chat__avatar" aria-hidden="true">&#128119;</span>
+                  <p class="cs-chat__bubble">We&rsquo;d like a pause work button</p>
                 </div>
-              </figure>
-              <figure class="cs-figure">
-                <img src="img/enterprise/field-feedback.png"
-                     alt="Early feedback: the running timer felt like surveillance, so the design changed" loading="lazy">
-              </figure>
+                <div class="cs-chat__msg cs-chat__msg--me" role="listitem">
+                  <img class="cs-chat__avatar cs-chat__avatar--img" src="img/p.svg" alt="Parul">
+                  <p class="cs-chat__bubble">why</p>
+                </div>
+                <div class="cs-chat__msg cs-chat__msg--them" role="listitem">
+                  <span class="cs-chat__avatar" aria-hidden="true">&#128119;</span>
+                  <p class="cs-chat__bubble">feels like we are being micromanaged</p>
+                </div>
+                <div class="cs-chat__msg cs-chat__msg--me" role="listitem">
+                  <img class="cs-chat__avatar cs-chat__avatar--img" src="img/p.svg" alt="Parul">
+                  <p class="cs-chat__bubble">why</p>
+                </div>
+                <div class="cs-chat__msg cs-chat__msg--them" role="listitem">
+                  <span class="cs-chat__avatar" aria-hidden="true">&#128119;</span>
+                  <p class="cs-chat__bubble">having a ticking timer recording you to the
+                    second feels stressful and unfair</p>
+                </div>
+                <div class="cs-chat__msg cs-chat__msg--me" role="listitem">
+                  <img class="cs-chat__avatar cs-chat__avatar--img" src="img/p.svg" alt="Parul">
+                  <p class="cs-chat__bubble">why</p>
+                </div>
+                <div class="cs-chat__msg cs-chat__msg--them" role="listitem">
+                  <span class="cs-chat__avatar" aria-hidden="true">&#128119;</span>
+                  <p class="cs-chat__bubble">We don&rsquo;t always work on one ticket at a
+                    time. Sometimes, since I have the tools out already I&rsquo;ll do part
+                    of another job and then come back to the other one</p>
+                </div>
+              </div>
+
               <p class="cs-text">
                 I reframed the design around autonomy: a pause control, looser
                 tracking, and a phased automation model (rule-based first, then
                 data-informed) that kept a human in the loop. The shift showed up in
                 how people talked about it.
               </p>
+              <!-- Cropped to the phone (x 456-823 of the 1280px frame) and
+                   capped at the window's own 367px so it renders 1:1 rather
+                   than being upscaled 1.7x to fill the column; --vid-max then
+                   centres it. In the body column it also stays clear of the
+                   sticky aside. -->
+              <figure class="cs-figure cs-video cs-flat cs-video--trim cs-video--crop-x"
+                      style="--vid-w: 1280; --vid-x0: 456; --vid-x1: 823; --vid-max: 367px">
+                <video class="cs-video__el" muted loop playsinline preload="none"
+                       aria-label="The reworked field app with the running timer removed">
+                  <source src="img/enterprise/no-timer.mp4" type="video/mp4">
+                </video>
+              </figure>
               <blockquote class="cs-quote">
                 “Instead of being watched, I feel like I get to help make it better.”
                 <cite>Field worker, usability testing</cite>
@@ -277,14 +419,28 @@
                 London</span>, one pattern dominated: the work log they relied on
                 was buried three clicks deep, at the bottom of a long scroll.
               </p>
+              <!-- Cropped to the laptop (x 83-888 of the 1280px frame) so it
+                   fills the text column instead of floating in dead space. -->
+              <figure class="cs-figure cs-video cs-flat cs-video--trim cs-video--crop-x"
+                      style="--vid-w: 1280; --vid-x0: 83; --vid-x1: 888">
+                <video class="cs-video__el" muted loop playsinline preload="none"
+                       aria-label="The original work log, buried three clicks deep at the bottom of a long scroll">
+                  <source src="img/enterprise/old-worklog.mp4" type="video/mp4">
+                </video>
+              </figure>
               <p class="cs-text">
                 I designed a <span class="accent">slide-out work log</span> pinned to
                 the right at full height. The underlying platform had no slide-out
                 pane component, so I partnered with engineering to build a custom one.
               </p>
-              <figure class="cs-figure">
-                <img src="img/enterprise/worklog.png"
-                     alt="The slide-out work log — a custom component built with engineering" loading="lazy">
+              <!-- Same treatment as the clip above: cropped to the laptop
+                   (x 78-1063 of the 1530px frame) so it fills the text column. -->
+              <figure class="cs-figure cs-video cs-flat cs-video--trim cs-video--crop-x"
+                      style="--vid-w: 1530; --vid-x0: 78; --vid-x1: 1063">
+                <video class="cs-video__el" muted loop playsinline preload="none"
+                       aria-label="The slide-out work log in use — a custom component built with engineering">
+                  <source src="img/cover_vid.mp4" type="video/mp4">
+                </video>
               </figure>
               <p class="cs-text">
                 Result: <span class="accent">three clicks to one</span>, no more
@@ -353,6 +509,13 @@
         sr.reveal('.cs-lead, .cs-text, .cs-quote', { origin: 'bottom', distance: '16px', delay: 80, interval: 60 });
         sr.reveal('.cs-figure, .cs-pair > .cs-figure', { origin: 'bottom', distance: '40px', delay: 120, interval: 120 });
         sr.reveal('.cs-metric', { origin: 'bottom', interval: 100 });
+        // Chat bubbles arrive one at a time. The overshooting easing is what
+        // makes them pop rather than fade; the interval paces the exchange.
+        sr.reveal('.cs-chat__msg', {
+          origin: 'bottom', distance: '14px', scale: 0.82,
+          interval: 430, duration: 620,
+          easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+        });
       }
 
       // ── Scale the live HTML/CSS prototype embeds to fit the column ──

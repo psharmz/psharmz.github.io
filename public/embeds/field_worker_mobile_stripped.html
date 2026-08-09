@@ -15,12 +15,16 @@
 
     body {
       font-family: 'Roboto', sans-serif;
-      background: white;
+      /* Transparent so the case-study page shows through: the phone should
+         float on the page, not sit on a white panel. */
+      background: transparent;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 20px;
+      /* Room for .phone-frame's 0 20px 60px shadow: 60px each side,
+         40px above, 80px below. At 20px it was clipped on every edge. */
+      padding: 40px 60px 80px;
       gap: 40px;
     }
 
@@ -211,51 +215,7 @@
       </div>
 
       <div class="content">
-        <div class="timer-display">00:00</div>
-        <button class="start-button">Start Travel</button>
-      </div>
-
-      <div class="bottom-nav">
-        <div class="nav-item active" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
-          <div class="nav-icon"><span class="material-icons">assignment_ind</span></div>
-          <div>My Tickets</div>
-        </div>
-        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
-          <div class="nav-icon"><span class="material-icons">calendar_month</span></div>
-          <div>Appointments</div>
-        </div>
-        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
-          <div class="nav-icon"><span class="material-icons">assignment</span></div>
-          <div><div>Directed</div><div>Work</div></div>
-        </div>
-        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
-          <div class="nav-icon"><span class="material-icons">location_city</span></div>
-          <div><div>Metro</div><div>Tickets</div></div>
-        </div>
-        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
-          <div class="nav-icon"><span class="material-icons">person</span></div>
-          <div>Profile</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="phone-frame">
-    <div class="notch"></div>
-    
-    <div class="screen">
-      <div class="header">
-        <div class="ticket-id">APT-001</div>
-        <div class="ticket-title">Patching and Hotcuts</div>
-        <div class="status-bar">
-          <div class="badge">U&A</div>
-          <div class="badge">P2</div>
-          <div class="badge active">ASSIGNED</div>
-        </div>
-      </div>
-
-      <div class="content">
-        <div class="timer-display">15:03</div>
+        <div class="timer-display" id="timer">00:00</div>
         <button class="start-button">End Travel</button>
       </div>
 
@@ -284,92 +244,20 @@
     </div>
   </div>
 
-  <div class="phone-frame">
-    <div class="notch"></div>
-    
-    <div class="screen">
-      <div class="header">
-        <div class="ticket-id">APT-001</div>
-        <div class="ticket-title">Patching and Hotcuts</div>
-        <div class="status-bar">
-          <div class="badge">U&A</div>
-          <div class="badge">P2</div>
-          <div class="badge active">ASSIGNED</div>
-        </div>
-      </div>
 
-      <div class="content">
-        <div class="timer-display">00:00</div>
-        <button class="start-button">Start Work</button>
-      </div>
-
-      <div class="bottom-nav">
-        <div class="nav-item active" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
-          <div class="nav-icon"><span class="material-icons">assignment_ind</span></div>
-          <div>My Tickets</div>
-        </div>
-        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
-          <div class="nav-icon"><span class="material-icons">calendar_month</span></div>
-          <div>Appointments</div>
-        </div>
-        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
-          <div class="nav-icon"><span class="material-icons">assignment</span></div>
-          <div><div>Directed</div><div>Work</div></div>
-        </div>
-        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
-          <div class="nav-icon"><span class="material-icons">location_city</span></div>
-          <div><div>Metro</div><div>Tickets</div></div>
-        </div>
-        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
-          <div class="nav-icon"><span class="material-icons">person</span></div>
-          <div>Profile</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="phone-frame">
-    <div class="notch"></div>
-    
-    <div class="screen">
-      <div class="header">
-        <div class="ticket-id">APT-001</div>
-        <div class="ticket-title">Patching and Hotcuts</div>
-        <div class="status-bar">
-          <div class="badge">U&A</div>
-          <div class="badge">P2</div>
-          <div class="badge active">ASSIGNED</div>
-        </div>
-      </div>
-
-      <div class="content">
-        <div class="timer-display">1:17:00</div>
-        <button class="start-button">End Work</button>
-      </div>
-
-      <div class="bottom-nav">
-        <div class="nav-item active" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
-          <div class="nav-icon"><span class="material-icons">assignment_ind</span></div>
-          <div>My Tickets</div>
-        </div>
-        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
-          <div class="nav-icon"><span class="material-icons">calendar_month</span></div>
-          <div>Appointments</div>
-        </div>
-        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
-          <div class="nav-icon"><span class="material-icons">assignment</span></div>
-          <div><div>Directed</div><div>Work</div></div>
-        </div>
-        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
-          <div class="nav-icon"><span class="material-icons">location_city</span></div>
-          <div><div>Metro</div><div>Tickets</div></div>
-        </div>
-        <div class="nav-item" onclick="this.parentElement.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
-          <div class="nav-icon"><span class="material-icons">person</span></div>
-          <div>Profile</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <script>
+    /* The running timer is the whole point of this embed: the case study is
+       about it reading as surveillance. Counts up mm:ss from load. */
+    (function () {
+      var el = document.getElementById('timer');
+      if (!el) return;
+      var t = 0;
+      function pad(n) { return (n < 10 ? '0' : '') + n; }
+      setInterval(function () {
+        t += 1;
+        el.textContent = pad(Math.floor(t / 60)) + ':' + pad(t % 60);
+      }, 1000);
+    })();
+  </script>
 </body>
 </html>

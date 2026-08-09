@@ -15,12 +15,16 @@
 
     body {
       font-family: 'Roboto', sans-serif;
-      background: white;
+      /* Transparent so the case-study page shows through: the phone should
+         float on the page, not sit on a white panel. */
+      background: transparent;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 20px;
+      /* Room for .phone-frame's 0 20px 60px shadow: 60px each side,
+         40px above, 80px below. At 20px it was clipped on every edge. */
+      padding: 40px 60px 80px;
     }
 
     .phone-frame {

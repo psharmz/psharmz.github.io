@@ -190,9 +190,18 @@
   margin-top: 0;
 }
 
-/* Right column keeps a comfortable measure. */
+/* Right column keeps a comfortable measure. Placed explicitly rather than
+   by auto-flow, so a section can have more than one body block — e.g. copy,
+   then a full-width figure, then more copy — and each still lands in the
+   right-hand column. */
 .cs-split__body {
+  grid-column: 2;
   max-width: 60ch;
+}
+
+/* Breaks the two-column rhythm for something that needs the whole width. */
+.cs-split__full {
+  grid-column: 1 / -1;
 }
 
 
@@ -390,6 +399,93 @@
 }
 
 
+/* ── WIDE PRODUCT SHOTS ──────────────────────────────────────
+   Dense screens (dashboards, scenario grids) are illegible at the
+   ~630px of a .cs-split__body. These run near-viewport-width instead,
+   capped so a whole screen still fits on one screen. Sits as a direct
+   child of .cs-body, outside any .cs-container.
+
+   Add .cs-shot--raised for a drop shadow where the artwork's own edges
+   don't read against the page. */
+.cs-shot {
+  width: min(94vw, 1400px);
+  margin: clamp(2.5rem, 6vw, 4.5rem) auto;
+}
+
+.cs-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 84vh;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.cs-shot--raised img {
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.16);
+}
+
+
+/* ── LOOPING SILENT VIDEO ────────────────────────────────────
+   Screen recordings that behave like a moving figure: muted, looping,
+   no controls. preload="none" keeps the bytes off the wire until the
+   figure is reached; js/project.js starts it on scroll-in and pauses
+   it on scroll-out so it never plays to an empty screen.
+
+     <figure class="cs-figure cs-video">
+       <video class="cs-video__el" muted loop playsinline preload="none">
+         <source src="…" type="video/mp4">
+       </video>
+     </figure> */
+.cs-video {
+  background: #f4f4f6;
+}
+
+.cs-video__el {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Screen recordings often carry the capture window's own 2–4px chrome border
+   baked into the pixels, which reads as a stray box edge on the page. Clip it
+   off instead of re-encoding. Tune per video with --vid-trim. */
+.cs-video--trim .cs-video__el {
+  clip-path: inset(var(--vid-trim, 4px));
+}
+
+/* Crops a fraction off the frame's right edge and pulls what's left flush
+   right, so it lines up with the copy above rather than the column's left
+   edge. The box narrows while the video keeps its full width inside it, so
+   the picture stays the same scale and the surplus is clipped. */
+/* Crops dead space off the sides of a recording so the subject fills the
+   column. Give it the frame's pixel width and the left/right edges of the
+   region you want kept; the frame is scaled and shifted so exactly that
+   window fills the figure.
+
+     <figure class="cs-figure cs-video cs-video--crop-x"
+             style="--vid-w: 1280; --vid-x0: 83; --vid-x1: 888">
+
+   Three classes deep on purpose: pages define .cs-figure.cs-flat { overflow:
+   visible } in their own inline <style>, which loads after this file and so
+   wins any equal-specificity tie — without the clip the surplus spills out. */
+.cs-figure.cs-video.cs-video--crop-x {
+  overflow: hidden;
+  width: 100%;
+  /* Cap with --vid-max where filling the column would mean upscaling a small
+     subject past its real resolution; it then centres in the column. */
+  max-width: var(--vid-max, none);
+  margin-inline: auto;
+}
+
+.cs-video--crop-x .cs-video__el {
+  --vid-win: calc(var(--vid-x1) - var(--vid-x0));
+  width: calc(100% * var(--vid-w) / var(--vid-win));
+  max-width: none;
+  margin-left: calc(-100% * var(--vid-x0) / var(--vid-win));
+}
+
+
 /* ── METRICS / IMPACT ────────────────────────────────────────── */
 .cs-metrics {
   display: grid;
@@ -520,6 +616,12 @@
   .cs-split .cs-container {
     grid-template-columns: 1fr;
     gap: var(--space-xl);
+  }
+  /* One column, so everything sits in it — the explicit placements above
+     would otherwise point at a track that no longer exists. */
+  .cs-split__body,
+  .cs-split__full {
+    grid-column: 1;
   }
   /* The heading shouldn't stick once it's stacked above the copy. */
   .cs-split__aside {

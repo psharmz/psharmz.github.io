@@ -111,23 +111,6 @@
     }
 
 
-    /* ── Wide product shots ─────────────────────────────────────────
-       The Insights screens are dense dashboards; inside .cs-split__body
-       they render ~700px and their UI text is illegible. These run at
-       viewport width instead, capped so a whole screen stays in view. */
-    .cc-shot {
-      width: min(94vw, 1400px);
-      margin: clamp(2.5rem, 6vw, 4.5rem) auto;
-    }
-
-    .cc-shot img {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-height: 84vh;
-      object-fit: contain;
-      border-radius: 12px;
-    }
 
   </style>
 </head>
@@ -215,7 +198,7 @@
           </div>
         </section>
 
-        <figure class="cc-shot">
+        <figure class="cs-shot">
           <img src="img/careercoach/cc_mobile.jpg"
                alt="Three Career Coach mobile screens: saved skill interests, a filtered list of people to connect with, and a LinkedIn invitation flow"
                loading="lazy">
@@ -346,13 +329,13 @@
 
         <!-- The Insights screens are dense dashboards — in the split column
              their UI text is unreadable, so they run wide on their own. -->
-        <figure class="cc-shot">
+        <figure class="cs-shot">
           <img src="img/careercoach/insights_interests.jpg"
                alt="Career interests and skills tab: a ranked list of careers students saved, with saves by year in school and top companies where alumni work"
                loading="lazy">
         </figure>
 
-        <figure class="cc-shot">
+        <figure class="cs-shot">
           <img src="img/careercoach/insights_jobmarket.jpg"
                alt="Job market trends tab showing top careers, top skills and top hiring employers for a selected country and metro area"
                loading="lazy">
