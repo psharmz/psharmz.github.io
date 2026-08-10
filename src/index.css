@@ -62,6 +62,34 @@
     /* --- Grid --- */
     --grid-gap:   20px;
     --page-rail:  40px;
+
+    /* --- Palette sampled from the hero portrait (img/parul-avatar.jpg) ---
+       Blush is the background field, forest the sweater, ink the hair, clay the
+       skin. Blush is precious — never a large field. Teal stays the only colour
+       that means "interactive". */
+    --color-blush:  #F7B9C8;
+    --color-forest: #1E3028;
+    --color-clay:   #A66F54;
+    --color-ink:    #2F2620;
+
+    /* --- Motion ---
+       One easing curve for everything: the expo glide .clients-logos already
+       used. Durations are long on purpose — the whole point is that nothing
+       announces itself. */
+    --ease-glide:   cubic-bezier(0.16, 1, 0.3, 1);
+    --dur-reveal:   900ms;
+    --dur-hover:    250ms;
+    --reveal-lift:  24px;
+    --reveal-step:  70ms;   /* stagger between siblings */
+
+    /* --- Depth ---
+       Used exactly once, on .clients-section: a shadow cast upward from the
+       leading edge plus a rim that catches the light, so scrolling up reads as a
+       pane of glass sliding over the hero. Negative spread keeps the shadow off
+       the sides so it reads as an edge rather than a box. Deliberately not
+       repeated on the bands below — one glass moment, not a page texture. */
+    --glaze-shadow: 0 -32px 64px -24px rgba(0, 0, 0, 0.85);
+    --glaze-rim:    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 * {
@@ -79,6 +107,21 @@ body {
 
 html {
     scroll-behavior: smooth;
+}
+
+/* Film grain — a fixed, non-interactive overlay above everything. Two jobs: it
+   kills the banding large dark gradients produce on 8-bit displays, and it gives
+   the flat fields a material quality. Inlined feTurbulence, so it's ~280 bytes
+   and no network request. Keep the opacity low enough to read as texture rather
+   than noise. */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 p {
@@ -139,11 +182,32 @@ h2 {
     position: relative;
 }
 
+/* Bloom — a soft blush halo well past the portrait's edge, so she reads as lit
+   from behind rather than pasted onto black. Sits under the photo. */
+.profile-image::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 150%;
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+        circle at center,
+        rgba(247, 185, 200, 0.16) 0%,
+        rgba(247, 185, 200, 0.06) 42%,
+        transparent 68%
+    );
+    pointer-events: none;
+    z-index: -1;
+}
+
 .profile-image img {
     max-width: 100%;
     height: auto;
     object-fit: contain;
     border-radius: 50%;
+    position: relative;
 }
 
 .profile-image:hover {
@@ -219,8 +283,18 @@ h2 {
 }
 
 /* Clients Section */
+/* Everything after the hero has to sit ABOVE it. The hero parallax translates
+   its children down by up to 0.7x the scroll offset, so the portrait and blurb
+   keep painting well past the hero's own layout box — roughly the first 2000px
+   of scroll. .hero-section is positioned, so a `static` section below it loses
+   the paint order and the hero bleeds through. Positioned + z-index + an opaque
+   background is what keeps these readable on scroll. */
 .clients-section {
     background: var(--color-bg);
+    position: relative;
+    z-index: 1;
+    /* The pane of glass sliding over the hero. */
+    box-shadow: var(--glaze-shadow), var(--glaze-rim);
     padding: var(--space-xl) var(--page-rail);
     display: flex;
     flex-direction: column;
@@ -234,13 +308,31 @@ h2 {
     gap: var(--space-md);
 }
 
+/* Geometric markers — three primitives (bar, circle, square), always teal,
+   always the same optical weight. The bar wipes in as the entry signature for a
+   section; the others fade. Bauhaus discipline: no fourth shape. */
 .clients-dash {
     display: block;
     height: 2px;
     background: var(--color-text-teal);
     transform-origin: left;
-    animation: dashIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
+    animation: dashIn 0.7s var(--ease-glide) 1.2s both;
     width: 2.5rem;
+}
+
+.clients-dash--circle,
+.clients-dash--square {
+    width: 10px;
+    height: 10px;
+    animation: markerIn 0.7s var(--ease-glide) 1.2s both;
+}
+
+.clients-dash--circle { border-radius: 50%; }
+.clients-dash--square { border-radius: 1px; }
+
+@keyframes markerIn {
+    from { opacity: 0; transform: scale(0.4); }
+    to   { opacity: 1; transform: scale(1); }
 }
 
 @keyframes dashIn {
@@ -293,9 +385,11 @@ h2 {
 /* Work Section */
 .work-section {
     min-height: unset;
-    background: transparent;
+    /* Opaque, and stacked above the hero — see .below-hero note below. */
+    background: var(--color-bg);
     padding: 2rem 0;
     position: relative;
+    z-index: 1;
 }
 
 .work-header {
@@ -378,14 +472,52 @@ h2 {
     }
 }
 
+/* Gentle load-in. Transition rather than keyframes so there's a single source of
+   truth for the resting state and nothing can land mid-animation; opacity and
+   transform only, so a reveal can never shift layout. Reveals fire once — the
+   observer unobserves on intersect. */
 .scroll-reveal {
     opacity: 0;
+    transform: translate3d(0, var(--reveal-lift), 0);
+    transition:
+        opacity var(--dur-reveal) var(--ease-glide) var(--delay, 0s),
+        transform var(--dur-reveal) var(--ease-glide) var(--delay, 0s);
+    /* Pre-promote: without this the compositor layer is created mid-transition
+       and the first frame of a long reveal visibly stutters. */
+    will-change: opacity, transform;
     animation: none !important;
 }
 
 .scroll-reveal.visible {
-    animation: slideInUp 0.6s ease-out var(--delay, 0s) forwards !important;
-    animation-fill-mode: both !important;
+    opacity: 1;
+    transform: none;
+}
+
+/* Type settling — the heading rises and its tracking contracts, so it reads as
+   coming into focus rather than sliding in. */
+.scroll-reveal .card-title,
+.strength__title,
+.clients-heading {
+    transition: letter-spacing var(--dur-reveal) var(--ease-glide);
+}
+
+.scroll-reveal:not(.visible) .card-title,
+.strength:not(.is-in) .strength__title {
+    letter-spacing: 0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    /* Land in place — the reveal still resolves, it just doesn't travel. */
+    .scroll-reveal {
+        transform: none;
+        transition: opacity 300ms linear;
+        will-change: auto;
+    }
+
+    .scroll-reveal:not(.visible) .card-title,
+    .strength:not(.is-in) .strength__title {
+        letter-spacing: normal;
+    }
 }
 
 .project-card {
@@ -482,6 +614,340 @@ h2 {
 }
 
 /* Mosaic testimonial cards */
+/* ── WORDS FROM OTHERS ────────────────────────────────────────
+   Testimonial cards. Shares .clients-header / .clients-dash /
+   .clients-heading with the "I've Worked With" band above so the two
+   sections read as a pair. */
+.words-section {
+    background: var(--color-bg);
+    /* Same stacking reason as .clients-section above. */
+    position: relative;
+    z-index: 1;
+    padding: var(--space-xl) var(--page-rail) calc(var(--space-xl) * 2);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-xl) + var(--space-md));
+}
+
+/* Masonry-ish columns: the quotes vary a lot in length, and a fixed grid
+   would leave tall gaps under the short ones. */
+.words-grid {
+    columns: 2;
+    column-gap: var(--space-xl);
+}
+
+.word-card {
+    break-inside: avoid;
+    margin: 0 0 var(--space-xl);
+    padding: var(--space-2xl);
+    background: var(--color-surface-testimonial);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 18px;
+    font-size: 1rem;          /* reset from body's inherited 225% */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+/* Same grey treatment as .client-logo — a mark, not a link. */
+.word-card__logo {
+    height: 22px;
+    width: auto;
+    max-width: 150px;
+    object-fit: contain;
+    object-position: left center;
+    align-self: flex-start;
+    filter: grayscale(1) brightness(0.55) invert(1) opacity(0.65);
+}
+
+.word-card__quote {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--type-body-large);
+    line-height: var(--leading-body);
+    color: var(--color-text-light);
+}
+
+/* The Rasa mark is a speech bubble whose "RASA" glyphs are only ~60% of the
+   canvas height, so at the shared 22px it reads far smaller than the Google and
+   Microsoft wordmarks. 34px puts it at the same 70px width and ~20px glyph
+   height as the Google logo. */
+.word-card__logo--rasa {
+    height: 34px;
+}
+
+/* Multi-paragraph quotes. Inherit rather than re-declare type, so a paragraph
+   break never changes how the quote reads. */
+.word-card__quote p {
+    margin: 0 0 var(--space-md);
+    font: inherit;
+    color: inherit;
+}
+
+.word-card__quote p:last-child {
+    margin-bottom: 0;
+}
+
+.word-card__quote .accent {
+    color: var(--color-text-teal);
+    font-weight: var(--weight-semibold);
+}
+
+/* Looks and behaves exactly like the Murals / View Portfolio / Resume buttons —
+   the shared appearance lives with .hero-actions .nav-label, and the lift is the
+   same one .link.portfolio-link and .resume use on hover. */
+/* Appearance and hover are shared with the hero buttons — see
+   `.hero-actions .nav-label, .word-card__cta` further down. Only the placement
+   inside the card belongs here. */
+.word-card__cta {
+    align-self: flex-start;
+}
+
+/* Hairline above the attribution, mirroring the reference layout. */
+.word-card__person {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding-top: var(--space-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+    margin-top: auto;
+}
+
+.word-card__avatar {
+    flex: 0 0 auto;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.word-card__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.word-card__name {
+    font-family: var(--font-heading);
+    font-size: var(--type-body-small);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-light);
+}
+
+.word-card__role {
+    font-family: var(--font-body);
+    font-size: var(--type-label-medium);
+    /* --color-text-secondary is a light-background token; on the dark card it
+       reads at ~2:1. --color-text-muted is the dark-background equivalent. */
+    color: var(--color-text-muted);
+}
+
+/* Experiences and Strengths
+   ------------------------------------------------------------------
+   Numbered work/quote pairs between "I've Worked With" and the mosaic.
+   Reuses .clients-header for the section title and .word-card for the quote. */
+.strengths-section {
+    background: var(--color-bg);
+    /* Positioned above the parallax hero — same reason as .clients-section. */
+    position: relative;
+    z-index: 1;
+    /* No horizontal rail: each band is full-bleed and carries its own. */
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Full-bleed bands, flush against each other, each tinted for its discipline.
+   All three are near-black so the dark theme holds and the teal accent stays
+   the brightest thing on the page — the tint just signals a change of subject
+   as you scroll. */
+.strength {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    padding: calc(var(--space-xl) + var(--space-md)) var(--page-rail);
+    /* Positioned above the parallax hero, same as every post-hero section. No
+       glaze here on purpose: the glass edge is used exactly once, over
+       "I've Worked With", so it reads as a deliberate moment rather than a
+       texture repeated down the page. */
+    position: relative;
+    z-index: 1;
+}
+
+/* Differential parallax: the media drifts a hair slower than its quote card, so
+   the two columns separate in depth as the band passes. --band-drift is set in
+   App.js; the numbers are deliberately too small to notice directly. */
+.strength__media {
+    transform: translate3d(0, var(--band-drift, 0px), 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .strength__media {
+        transform: none;
+    }
+}
+
+/* Deep pine — picks up the teal accent. */
+.strength--zero-to-one { background: #0E1F1C; }
+/* Deep indigo — nods to Rasa's purple. */
+.strength--developers { background: #17142C; }
+/* Deep navy — nods to the dispatch app's own navy UI. */
+.strength--enterprise { background: #0F1A2B; }
+
+/* Tighter than the row's own gap, so the eyebrow reads as part of the header
+   rather than a separate block. */
+.strength__head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+/* Same treatment as .cs-eyebrow on the case-study pages. Restated rather than
+   shared because index.css doesn't load public/css/template.css. */
+.strength__eyebrow {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-text-teal);
+}
+
+/* Same display type as .pf-project__title on portfolio-home.html ("Microsoft
+   Education & Copilot"): regular weight at a large fluid size, so the size does
+   the work instead of the weight. Restated because that page loads
+   css/project.css rather than this bundle. */
+.strength__title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(26px, 2.5vw, 40px);
+    font-weight: var(--weight-regular);
+    line-height: 1.18;
+    letter-spacing: 0.005em;
+    color: #fff;
+}
+
+/* Equal heights come from the grid's default `align-items: stretch`: the row is
+   as tall as the taller item, and both children fill it. */
+.strength__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+}
+
+/* No panel — the media sits directly on the page. */
+.strength__media {
+    margin: 0;
+    min-width: 0;
+    position: relative;
+}
+
+/* Absolute, so the media contributes no intrinsic height and the card alone
+   sets the row height — otherwise a tall frame (the phone is 1:2) stretches the
+   row past 1000px. `contain` then fits the whole thing inside: these are UI
+   recordings, and cropping them to the card's aspect ratio cuts away half the
+   interface. */
+.strength__media img,
+.strength__media video {
+    position: absolute;
+    inset: 0;
+    display: block;
+    /* Explicit, not `auto`: an absolutely positioned replaced element with auto
+       width falls back to its intrinsic size and overflows the page. */
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* The embed's phone is laid out at a fixed 375x812 (plus room for its shadow),
+   so it can't reflow to an arbitrary box — scale it instead, the same way
+   .cs-embed__fit does on the case-study page. --embed-fit is set in App.js. */
+.strength__media--embed {
+    overflow: hidden;
+}
+
+/* Anchored bottom-right of the panel. transform-origin matches the anchor so the
+   fit scale collapses the box toward that corner instead of the centre — the
+   embed's own padding leaves the phone a little breathing room off both edges. */
+.strength__media--embed iframe {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 495px;
+    height: 932px;
+    border: 0;
+    background: transparent;
+    transform: scale(var(--embed-fit, 1));
+    transform-origin: bottom right;
+    /* Above the backdrop. The iframe body is transparent, so the animation shows
+       through around the phone. */
+    z-index: 1;
+}
+
+/* Animated brand mark behind the phone. Backgrounds can't be used for the image
+   itself — this CSS is webpack-bundled and the asset lives in public/ — so it's
+   a real <img> sharing the media box's absolute layer. */
+.strength__backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+/* White panel behind the Google mark. The GIF's own white was flattened to a
+   transparent index, so the panel comes from here — on the figure rather than on
+   the image, so the mark can be shifted around inside it without dragging the
+   panel along. .strength__media--embed already clips, so overhang is cropped. */
+.strength--enterprise .strength__media {
+    background: #fff;
+    border-radius: 18px;
+}
+
+/* Sits high in the panel, deliberately cropped at the top. */
+.strength--enterprise .strength__backdrop {
+    transform: translateY(-14%);
+}
+
+/* The card is a masonry item by default; inside a row it just fills its cell. */
+.strength__row .word-card {
+    margin: 0;
+    break-inside: auto;
+}
+
+@media (max-width: 860px) {
+    .strength__row {
+        grid-template-columns: 1fr;
+    }
+
+    /* Stacked, there is no height to match — let the media keep its own shape.
+       The backdrop is excluded: it has to stay on its own layer behind the
+       phone, not drop into flow above it. */
+    .strength__media img:not(.strength__backdrop),
+    .strength__media video {
+        position: static;
+        width: 100%;
+        height: auto;
+    }
+
+    .strength__media--embed {
+        /* An iframe has no intrinsic ratio to fall back on once it stops
+           filling a stretched cell. */
+        aspect-ratio: 375 / 812;
+        max-height: 70vh;
+    }
+}
+
+@media (max-width: 860px) {
+    .words-grid { columns: 1; }
+}
+
+
 .mosaic-testimonial {
     background: var(--color-surface-testimonial);
     border: 1.5px solid var(--color-text-teal);
@@ -591,7 +1057,8 @@ h2 {
    the letters knocked out, so "teal text on no background" is impossible in it —
    colouring the type just colours the tape. Rubik, uppercase and tracked out,
    keeps the label rhythm while letting the letters themselves carry the teal. */
-.hero-actions .nav-label {
+.hero-actions .nav-label,
+.word-card__cta {
     display: inline-flex;
     align-items: center;
     font-family: var(--font-heading);
@@ -599,12 +1066,34 @@ h2 {
     font-weight: 500;
     letter-spacing: 0.16em;
     text-transform: uppercase;
+    text-decoration: none;
     color: var(--color-text-teal);
     border: 1.5px solid var(--color-text-teal);
     border-radius: 2px;
     /* Right padding is short by one tracking step — the letter-spacing leaves a
        trailing gap after the last character that would otherwise read as slack. */
     padding: 0.6em 0.95em 0.6em 1.1em;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+/* One hover for every outlined button: the colours invert and it tilts. */
+.hero-actions .nav-label:hover,
+.hero-actions .nav-label:focus-visible,
+.word-card__cta:hover,
+.word-card__cta:focus-visible {
+    background: var(--color-text-teal);
+    color: var(--color-bg);
+    transform: rotate(-2deg);
+    /* Belt and braces: the global .link:hover a reset only applies ≥768px. */
+    text-decoration: none;
+}
+
+/* The tilt now lives on the button itself. These wrappers still carry the
+   icon-era lift/scale from .murals-link / .portfolio-link / .resume, which would
+   compound with it — cancel them inside the hero only, since the mobile footer
+   and nav still use those classes with icons. */
+.hero-actions .link:hover {
+    transform: none;
 }
 
 /* Gated portfolio button — the lock sits to the left of the label. */

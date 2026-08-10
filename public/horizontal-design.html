@@ -71,11 +71,6 @@
             </div>
           </div>
 
-          <nav class="cs-subnav" aria-label="Jump to a project">
-            <a href="#speaker-progress">Speaker Progress</a>
-            <a href="#edu-insights">EDU Insights</a>
-          </nav>
-
           <span class="cs-hero__cue" aria-hidden="true"></span>
         </div>
       </header>
@@ -165,9 +160,6 @@
               <h2 class="cs-heading">Teachers Care About the Story Behind the Grade</h2>
             </aside>
             <div class="cs-split__body">
-              <figure class="cs-figure">
-                <img src="img/msoft/insights_teacher_interviews.jpg" alt="Interviewing teachers about what data they care about" loading="lazy">
-              </figure>
               <p class="cs-text">
                 Interviewing teachers surfaced a clear pattern: they cared about outlier
                 data — a student who usually scores 90% but suddenly drops 20 points below
@@ -185,9 +177,6 @@
               <h2 class="cs-heading">Flip the Card? Add an Icon? Constraints Picked the Answer</h2>
             </aside>
             <div class="cs-split__body">
-              <figure class="cs-figure">
-                <img src="img/msoft/insights_interaction_ideas.jpg" alt="Interaction design ideas for surfacing insights" loading="lazy">
-              </figure>
               <p class="cs-text">
                 Early interaction ideas ranged from reusing the existing info-icon pattern
                 next to data labels to flipping the entire card. We also explored trend
@@ -196,6 +185,12 @@
                 so a naive green-up, red-down treatment was off the table.
               </p>
             </div>
+            <!-- Silent loop; js/project.js plays it only while it's on screen. -->
+            <figure class="cs-figure cs-video cs-split__full">
+              <video class="cs-video__el" src="img/msoft/animation_cards.mp4"
+                     aria-label="Card interaction animation explorations"
+                     autoplay muted loop playsinline preload="metadata"></video>
+            </figure>
           </div>
         </section>
 
@@ -227,9 +222,6 @@
               <h2 class="cs-heading">Card → Modal → Full Insights: Progressive Disclosure</h2>
             </aside>
             <div class="cs-split__body">
-              <figure class="cs-figure">
-                <img src="img/msoft/insights_progressive_disclosure.jpg" alt="Progressive disclosure framework: card, modal, full insights" loading="lazy">
-              </figure>
               <p class="cs-text">
                 The framework's core idea: don't jump straight from a single data point to
                 the full historical Insights app. Teachers are usually mid-grading when they
@@ -239,6 +231,9 @@
                 teachers in their flow rather than yanking them out of it.
               </p>
             </div>
+            <figure class="cs-figure cs-split__full">
+              <img src="img/msoft/insights_progressive_disclosure-crop.jpg" alt="Three levels of disclosure: a card, a modal, and the full insights view" loading="lazy">
+            </figure>
           </div>
         </section>
 
@@ -249,9 +244,6 @@
               <h2 class="cs-heading">A Hover Interaction That Only Worked on Desktop</h2>
             </aside>
             <div class="cs-split__body">
-              <figure class="cs-figure">
-                <img src="img/msoft/insights_learnings_ipad.jpg" alt="Students and teachers using iPads, a blind spot for the hover interaction" loading="lazy">
-              </figure>
               <p class="cs-text">
                 I'd gotten attached to a card-hover interaction, prototyped with real Fluent
                 components. It worked well — until I remembered that students and teachers
@@ -260,6 +252,9 @@
                 same way.
               </p>
             </div>
+            <figure class="cs-figure cs-split__full">
+              <img src="img/msoft/insights_learnings_ipad-crop.jpg" alt="Students and teachers using iPads, where hover states don't exist" loading="lazy">
+            </figure>
           </div>
         </section>
 

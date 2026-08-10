@@ -161,7 +161,15 @@
     // Client-side gate only — this keeps the page out of casual view, it is not
     // real access control (the check ships in the page source).
     var PASSWORD = 'parul';
-    var DESTINATION = 'portfolio-home.html';
+
+    // Callers can forward to a specific page with ?next=<file>.html — the
+    // "View Case Study" buttons on the testimonial cards do this. Only a bare
+    // same-directory .html filename is accepted, so the param can't be turned
+    // into an open redirect.
+    var next = new URLSearchParams(window.location.search).get('next');
+    var DESTINATION = next && /^[A-Za-z0-9_-]+\.html$/.test(next)
+      ? next
+      : 'portfolio-home.html';
 
     var form  = document.getElementById('gate-form');
     var input = document.getElementById('gate-input');

@@ -202,27 +202,38 @@
       margin: clamp(16px, 1.6vw, 24px) 0 0;
     }
 
-    /* Same outlined-teal treatment as the homepage hero buttons. */
+    /* Matches the homepage buttons exactly (`.hero-actions .nav-label,
+       .word-card__cta` in src/index.css). Restated rather than shared: this page
+       loads css/project.css, not the React bundle's stylesheet, so there is no
+       common file to put it in. Keep the two in sync by hand.
+       Values are the computed equivalents at 16px: 0.6em/0.95em/1.1em padding
+       and 0.16em tracking. */
     .pf-project__cta {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       margin-top: clamp(24px, 2.6vw, 40px);
       font-family: var(--font-heading);
-      font-size: 13px;
-      font-weight: var(--weight-medium, 500);
+      font-size: 16px;
+      font-weight: 500;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       text-decoration: none;
       color: var(--color-text-teal);
       border: 1.5px solid var(--color-text-teal);
       border-radius: 2px;
-      padding: 12px 18px 12px 22px; /* short on the right: tracking adds a gap */
-      transition: background 0.25s ease, color 0.25s ease;
+      /* Right padding is short by one tracking step — the letter-spacing leaves a
+         trailing gap after the last character that would otherwise read as slack. */
+      padding: 0.6em 0.95em 0.6em 1.1em;
+      transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
     }
 
+    /* Colours invert and the button tilts, same as the homepage. */
     .pf-project__cta:hover,
     .pf-project__cta:focus-visible {
       background: var(--color-text-teal);
       color: #000;
+      transform: rotate(-2deg);
+      text-decoration: none;
     }
 
     .pf-project__link {
