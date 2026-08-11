@@ -9,7 +9,7 @@ function TeamsPage() {
       {/* Profile image in top left */}
       <div className="work-header">
         <button onClick={() => navigate('/')} className="back-to-top">
-          <img alt="profile" src="img/p.svg" width="60px" className="profile-logo" />
+          <img alt="profile" src="img/p.png" width="60px" className="profile-logo" />
         </button>
       </div>
 

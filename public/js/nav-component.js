@@ -26,7 +26,7 @@ function createNavigation() {
             <div class="nav-links">
                 <span class="link brand-link">
                     <a href="/">
-                        <img src="img/p.svg" alt="Parul" />
+                        <img src="img/p.png" alt="Parul" />
                         <span class="brand-link-name">Parul</span>
                     </a>
                 </span>
@@ -39,7 +39,7 @@ function createNavigation() {
 
         <div class="work-header">
             <button onclick="window.location.href='/'" class="back-to-top">
-                <img alt="profile" src="img/p.svg" width="60px" class="profile-logo" />
+                <img alt="profile" src="img/p.png" width="60px" class="profile-logo" />
             </button>
             <span class="murals-brand">Parul</span>
         </div>

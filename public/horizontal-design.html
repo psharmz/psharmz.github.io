@@ -14,8 +14,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
-  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/fonts.css">
 
   <link rel="stylesheet" type="text/css" href="css/header.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -26,6 +25,14 @@
   <script src="js/nav-component.js"></script>
 
   <style>
+    /* The card animation was captured with a soft grey window rim baked into the
+       pixels: measured 3px on the right (cols 1499-1501 running 226 -> 173 -> 140)
+       and 3px on the bottom (rows 217-219, 235 -> 199 -> 165), against content at
+       ~253. Clip it rather than re-encode. Percentages so it holds at any rendered
+       size — 0.3% of 1502px and 1.8% of 220px, a shade over the measured 3px. */
+    .cards-anim {
+      --vid-trim: 0 0.3% 1.8% 0;
+    }
   </style>
 </head>
 
@@ -186,7 +193,7 @@
               </p>
             </div>
             <!-- Silent loop; js/project.js plays it only while it's on screen. -->
-            <figure class="cs-figure cs-video cs-split__full">
+            <figure class="cs-figure cs-video cs-video--trim cards-anim cs-split__full">
               <video class="cs-video__el" src="img/msoft/animation_cards.mp4"
                      aria-label="Card interaction animation explorations"
                      autoplay muted loop playsinline preload="metadata"></video>
@@ -292,7 +299,7 @@
 
 
     <!-- ScrollReveal for section reveals -->
-    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+    <script src="js/vendor/scrollreveal.min.js"></script>
     <!-- Shared nav hamburger + back-to-top -->
     <script src="js/project.js"></script>
 

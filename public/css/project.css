@@ -5,7 +5,7 @@
    No !important needed.
    ============================================================ */
 
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Karla:wght@400;600&display=swap");
+@import url("fonts.css");  /* self-hosted Rubik + Karla */
 
 /* Embossed label-maker face (Impact Label by Tension Type — freeware, web
    embedding permitted; license ships in /fonts/misc/). */

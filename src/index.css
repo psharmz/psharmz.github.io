@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Karla:wght@400;600&display=swap');
+/* Rubik and Karla are self-hosted and declared in public/css/fonts.css, linked
+   from public/index.html. An @import here was the worst place for them: the
+   browser had to fetch this bundled stylesheet, parse it, then make two more
+   sequential trips to Google before any styled text could paint. */
 
 /* The "Impact Label" @font-face is declared in public/index.html (CRA serves
    the font from public/, so it can't be referenced from this bundled CSS). */

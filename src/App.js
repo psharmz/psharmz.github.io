@@ -32,7 +32,7 @@ function MainPortfolio() {
     },
     {
       text: "I worked with Parul at Microsoft in Education product design. These include working in a space to define AI and Copilot scenarios and use for educational purpose inside the classroom. She has great capabilities to look across horizontal spaces and make logical connections that reduce and simplify the user experience.",
-      highlights: ["look across horizontal spaces", "reduce and simplify the user experience"],
+      highlights: ["define AI and Copilot scenarios", "look across horizontal spaces", "reduce and simplify the user experience"],
       name: "Jon Esterly",
       role: "Principal Product Designer, Education at Microsoft",
       company: { name: "Microsoft", logo: "img/logos/microsoft.png" },
@@ -90,6 +90,7 @@ function MainPortfolio() {
     {
       slug: 'zero-to-one',
       title: 'Designing 0 \u2192 1 Products',
+      eyebrow: 'LinkedIn Economic Graph API \u00b7 +32% traffic',
       video: 'img/msoft/intro1.mp4',
       mediaAlt: 'Microsoft Teams education product walkthrough',
       quote: byName('Paul Ray')
@@ -458,7 +459,7 @@ function MainPortfolio() {
             <button onClick={() => navigate('/#work')} className="back-to-top">
               <img
                 alt="profile"
-                src="img/p.svg"
+                src="img/p.png"
                 width="60px"
                 className="profile-logo"
               />
@@ -520,7 +521,9 @@ function MainPortfolio() {
                 setTimeout(() => navigate('/enterprise'), 150);
               }}
             >
-              <img src="https://i.pinimg.com/originals/b7/41/21/b741215d216b11b8ff17f27f4bff2a9d.gif" className="card-img-top" alt="google" />
+              {/* Local copy — the Pinterest hotlink was still being fetched even
+                  with the card hidden, since display:none doesn't stop image loads. */}
+              <img src="img/enterprise/google-logo.gif" className="card-img-top" alt="google" />
               <div className="card-body">
                 <h2 className="card-title">Google</h2>
                 <p className="card-text">Solo end-to-end · Enterprise · 10+ workstreams across 4 timezones</p>
