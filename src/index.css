@@ -385,6 +385,134 @@ h2 {
     }
 }
 
+/* ── CURRENTLY WORKING ON ─────────────────────────────────────
+   Sits directly under "I've Worked With" and reuses its header trio
+   (.clients-header / .clients-dash / .clients-heading). No glaze shadow —
+   that belongs to the one section that slides over the hero. Same
+   positioned + opaque treatment so the parallax hero can't bleed through. */
+.now-section {
+    background: var(--color-bg);
+    position: relative;
+    z-index: 1;
+    padding: var(--space-xl) var(--page-rail) calc(var(--space-xl) * 1.5);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-xl) + var(--space-md));
+}
+
+.now-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.6s both;
+}
+
+/* Same surface, hairline and radius as .word-card, so the boxes belong to
+   the same family as the testimonials further down. */
+.now-card {
+    background: var(--color-surface-testimonial);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 18px;
+    /* No padding on the box itself — the media runs edge to edge under the
+       rounded top corners, and .now-card__body carries the inset instead. */
+    overflow: hidden;
+    font-size: 1rem;          /* reset from body's inherited 225% */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Only the card that leads somewhere gets a hover, so the lift reads as an
+   affordance rather than decoration. Anchors inherit none of the card's type,
+   hence the explicit resets. */
+.now-card--link {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.4s ease;
+}
+
+.now-card--link:hover,
+.now-card--link:focus-visible {
+    transform: translateY(-6px);
+    border-color: rgba(0, 191, 165, 0.55);
+    text-decoration: none;
+    color: inherit;
+}
+
+/* One fixed aspect for all three so the titles line up across the row,
+   whatever the source media's own proportions are. */
+.now-card__media {
+    margin: 0;
+    aspect-ratio: 16 / 10;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    overflow: hidden;
+}
+
+.now-card__media img,
+.now-card__media video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Wordmarks read as artwork, not as a photograph — fit the whole mark inside
+   the box with breathing room instead of cropping it to fill. */
+.now-card__media--mark img {
+    object-fit: contain;
+    padding: var(--space-xl);
+}
+
+.now-card__body {
+    padding: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+/* Same treatment as .strength__eyebrow on the bands below, dialled down a
+   step: these cards are a third the width, and 14px at 0.28em tracking wraps
+   "Client Work" onto two lines. */
+.now-card__eyebrow {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: var(--type-label-medium);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-teal);
+}
+
+.now-card__title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: var(--type-title-large);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-title);
+    color: var(--color-text-light);
+}
+
+/* Body copy, not a caption. --type-body-small (13px) in --color-text-muted
+   (#888 — a ~5:1 grey) is the card-subtitle treatment from the mosaic, and it
+   reads as fine print here. This is the same pairing .hero-blurb and
+   .word-card__quote use, so every run of prose on the page matches. */
+.now-card__sub {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--type-body-large);
+    line-height: var(--leading-body);
+    color: var(--color-text-light);
+}
+
+@media (max-width: 900px) {
+    .now-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+}
+
 /* Work Section */
 .work-section {
     min-height: unset;

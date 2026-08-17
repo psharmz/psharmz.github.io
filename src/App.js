@@ -376,8 +376,7 @@ function MainPortfolio() {
                 }}>
                   <div className="text-content">
                     <h2 className="hero-greeting">hi, i'm parul</h2>
-                    <p className="hero-blurb"><strong className="accent">I'm mission-driven. I design and build products for problems I am passionate about.</strong> I spent 8 years at Microsoft and Accenture shipping for <strong className="accent">300M+ developers, students, and teachers</strong>. I code <strong className="accent">(React/TypeScript)</strong>, which helps me work with engineers in their language.</p>
-                    <p className="hero-blurb">Right now I'm working on <strong className="accent">environmental justice education and regenerative systems research</strong>, trying to figure out where design actually moves the needle on climate. <strong className="accent">Looking for a role where I can do that full-time.</strong></p>
+                    <p className="hero-blurb"><strong className="accent">Mission-driven designer and builder for problems I care about.</strong> Shipped for <strong className="accent">300M+ at Microsoft and Accenture</strong>. Former React developer who speaks engineer fluently and understands technical constraints. <strong className="accent">Looking for full-time or freelance work where design moves the needle.</strong></p>
                     <div className="hero-actions">
                       <span className="link murals-link">
                         <a href="murals.html" className="nav-label">Murals</a>
@@ -417,6 +416,71 @@ function MainPortfolio() {
           <img src="img/logos/microsoft.png" alt="Microsoft" className="client-logo" />
           <img src="img/logos/google.png" alt="Google" className="client-logo" />
           <img src="img/logos/accenture.png" alt="Accenture" className="client-logo" />
+        </div>
+      </section>
+
+      {/* Currently Working On — shares .clients-header / .clients-dash /
+          .clients-heading with the band above so the two read as a pair. */}
+      <section className="now-section">
+        <div className="clients-header">
+          <span className="clients-dash" />
+          <h3 className="clients-heading">Currently Working On</h3>
+        </div>
+        <div className="now-grid">
+          <a className="now-card now-card--link" href="rooted-futures.html">
+            <figure className="now-card__media">
+              <img
+                src="img/now/rooted-futures.jpg"
+                alt="Hands of many skin tones reaching toward a laptop set in a green hillside"
+                loading="lazy"
+              />
+            </figure>
+            <div className="now-card__body">
+              <p className="now-card__eyebrow">Game Design</p>
+              <h4 className="now-card__title">Rooted Futures Lab Fellowship</h4>
+              <p className="now-card__sub">
+                Designing and developing a web-based game for college students
+                to learn about Environmental Justice in Tech (EJIT) principles
+              </p>
+            </div>
+          </a>
+          {/* The only card with somewhere to go, so it's the only one that's a
+              link. The static page lives in public/, same as the case studies. */}
+          <a className="now-card now-card--link" href="regenintel.html">
+            {/* A wordmark, not a photo — contained on the card surface rather
+                than cropped to fill like the other two. */}
+            <figure className="now-card__media now-card__media--mark">
+              <img src="img/now/regenintel.png" alt="The Regenerative Fellowship" loading="lazy" />
+            </figure>
+            <div className="now-card__body">
+              <p className="now-card__eyebrow">Research</p>
+              <h4 className="now-card__title">RegenIntel Fellowship</h4>
+              <p className="now-card__sub">
+                Research projects on Himalayan Bioregion and Plastics in Our Food
+              </p>
+            </div>
+          </a>
+          <div className="now-card">
+            <figure className="now-card__media">
+              <video
+                src="img/now/praio.mp4"
+                aria-label="Praio-branded mailer box folding from a flat dieline into a closed box"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              />
+            </figure>
+            <div className="now-card__body">
+              <p className="now-card__eyebrow">Client Work</p>
+              <h4 className="now-card__title">Freelance</h4>
+              <p className="now-card__sub">
+                Clients include Praio, Wonderschool, and others. UI/UX, logo
+                design, branding, etc.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
