@@ -23,8 +23,8 @@ function MainPortfolio() {
   // shared placeholder for now, swap per person as portraits come in.
   const quotes = [
     {
-      text: "I'm happy to recommend Parul for any product design role! She brings a rare combination of courage, creativity, and user-centered thinking to every project she touches.",
-      highlights: ["rare combination", "courage", "creativity", "user-centered thinking"],
+      text: "Parul is exactly the kind of designer who not only delivers strong solutions but also helps shape a stronger design culture. I'm happy to recommend Parul for any product design role! She brings a rare combination of courage, creativity, and user-centered thinking to every project she touches.",
+      highlights: ["design culture", "rare combination", "courage", "creativity", "user-centered thinking"],
       name: "Paul Ray",
       role: "Director of Product Design, Education at Microsoft",
       company: { name: "Microsoft", logo: "img/logos/microsoft.png" },
@@ -36,7 +36,9 @@ function MainPortfolio() {
       name: "Jon Esterly",
       role: "Principal Product Designer, Education at Microsoft",
       company: { name: "Microsoft", logo: "img/logos/microsoft.png" },
-      avatar: "img/avatars/jon-esterly.jpg"
+      avatar: "img/avatars/jon-esterly.jpg",
+      cta: { label: "View Framework Sensemaking", href: "horizontal-design.html" },
+      featured: true
     },
     {
       text: "I worked with Parul during her project in Google NetOps. Parul has a passion for UI development in application design, and has proposed creative solutions to improve the user interface to support complex processes. We worked together across multiple workstreams (10+) for various circuit deliveries and field operations. She has received strong feedback from my partner teams during her time on the project.",
@@ -68,8 +70,8 @@ function MainPortfolio() {
       featured: true
     },
     {
-      text: "Her instinct for inclusive design, proactive collaboration, and thoughtful questioning consistently elevates team outcomes, as seen in her impactful work on Career Coach, Speaker Progress, and Learning Accelerators. She demonstrates maturity and conviction, while her positive, curious attitude fosters a supportive and innovative team environment. Parul is exactly the kind of designer who not only delivers strong solutions but also helps shape a stronger design culture.",
-      highlights: ["inclusive design", "proactive collaboration", "elevates team outcomes", "Career Coach", "design culture"],
+      text: "Her instinct for inclusive design, proactive collaboration, and thoughtful questioning consistently elevates team outcomes, as seen in her impactful work on Career Coach, Speaker Progress, and Learning Accelerators. She demonstrates maturity and conviction, while her positive, curious attitude fosters a supportive and innovative team environment.",
+      highlights: ["inclusive design", "proactive collaboration", "elevates team outcomes", "Career Coach", "Speaker Progress", "Learning Accelerators"],
       name: "Paul Ray",
       role: "Director of Product Design, Education at Microsoft",
       company: { name: "Microsoft", logo: "img/logos/microsoft.png" },
@@ -94,6 +96,15 @@ function MainPortfolio() {
       video: 'img/msoft/intro1.mp4',
       mediaAlt: 'Microsoft Teams education product walkthrough',
       quote: byName('Paul Ray')
+    },
+    {
+      slug: 'horizontal',
+      title: 'Copilot for EDU and Insights Framework',
+      eyebrow: 'Framework creation across education spaces horizontally',
+      // Two stills crossfading in one frame — see .strength__media--fade.
+      fade: ['img/msoft/reading-progress.jpg', 'img/msoft/speakerstudent.gif'],
+      mediaAlt: 'Reading Coach in Microsoft Teams: word practice, reading start, syllable breakdown and the teacher reading-progress report, alternating with a student Speaker Progress recording',
+      quote: byName('Jon Esterly')
     },
     {
       slug: 'developers',
@@ -376,7 +387,7 @@ function MainPortfolio() {
                 }}>
                   <div className="text-content">
                     <h2 className="hero-greeting">hi, i'm parul</h2>
-                    <p className="hero-blurb"><strong className="accent">Mission-driven designer and builder for problems I care about.</strong> Shipped for <strong className="accent">300M+ at Microsoft and Accenture</strong>. Former React developer who speaks engineer fluently and understands technical constraints. <strong className="accent">Looking for full-time or freelance work where design moves the needle.</strong></p>
+                    <p className="hero-blurb">Mission-driven product designer and <strong className="accent">coded-prototyper</strong> with 8+ years building for <strong className="accent">EdTech (K-12, higher-ed)</strong>, developer experiences, and enterprise contexts. Zero-to-one thinker who establishes frameworks at scale such as <strong className="accent">Copilot for EDU</strong> and pairs exceptional craft with strategic thinking—with <strong className="accent">safety and accessibility at the core</strong>.</p>
                     <div className="hero-actions">
                       <span className="link murals-link">
                         <a href="murals.html" className="nav-label">Murals</a>
@@ -427,41 +438,50 @@ function MainPortfolio() {
           <h3 className="clients-heading">Currently Working On</h3>
         </div>
         <div className="now-grid">
-          <a className="now-card now-card--link" href="rooted-futures.html">
-            <figure className="now-card__media">
+          {/* Two destinations now — the write-up and the live prototype — so the
+              card can't be one big anchor: an <a> inside an <a> is invalid and
+              the parser would split the card in half. The title carries the link
+              to the write-up instead, and the prototype gets its own button. */}
+          <div className="now-card">
+            {/* A screenshot of the game itself, shown whole rather than cropped
+                to fill — hence the --screenshot variant, which contains the
+                image and fills the letterbox with the game's own background. */}
+            <figure className="now-card__media now-card__media--screenshot">
               <img
-                src="img/now/rooted-futures.jpg"
-                alt="Hands of many skin tones reaching toward a laptop set in a green hillside"
+                src="img/now/study-hall-game.png"
+                alt="A Study Hall scenario card: Day 1 at Tech Flow, where a hiring AI is flagging certain resumes, with five responses to choose from"
                 loading="lazy"
               />
             </figure>
             <div className="now-card__body">
-              <p className="now-card__eyebrow">Game Design</p>
-              <h4 className="now-card__title">Rooted Futures Lab Fellowship</h4>
+              <p className="now-card__eyebrow">Educational Game Design</p>
+              <h4 className="now-card__title">
+                <a className="now-card__title-link" href="rooted-futures.html">
+                  Rooted Futures Lab Fellowship
+                </a>
+              </h4>
               <p className="now-card__sub">
-                Designing and developing a web-based game for college students
-                to learn about Environmental Justice in Tech (EJIT) principles
+                Designing a web-based game that teaches young people to think
+                critically about environmental justice and technology. The
+                challenge: make complex systems-level thinking accessible and
+                engaging through game design.
               </p>
+              {/* Lives on rfl-studyhall.github.io, not in this repo, so it opens
+                  in a new tab rather than navigating away from the portfolio. */}
+              <a
+                className="now-card__cta"
+                href="https://rfl-studyhall.github.io"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Play Game Prototype
+              </a>
             </div>
-          </a>
-          {/* The only card with somewhere to go, so it's the only one that's a
-              link. The static page lives in public/, same as the case studies. */}
-          <a className="now-card now-card--link" href="regenintel.html">
-            {/* A wordmark, not a photo — contained on the card surface rather
-                than cropped to fill like the other two. */}
-            <figure className="now-card__media now-card__media--mark">
-              <img src="img/now/regenintel.png" alt="The Regenerative Fellowship" loading="lazy" />
-            </figure>
-            <div className="now-card__body">
-              <p className="now-card__eyebrow">Research</p>
-              <h4 className="now-card__title">RegenIntel Fellowship</h4>
-              <p className="now-card__sub">
-                Research projects on Himalayan Bioregion and Plastics in Our Food
-              </p>
-            </div>
-          </a>
-          <div className="now-card">
-            <figure className="now-card__media">
+          </div>
+          <div className="now-card now-card--flat">
+            {/* Two clients, one slot: the Wonderschool still fades in over the
+                Praio video on a loop (see .now-card__media--duo). */}
+            <figure className="now-card__media now-card__media--duo">
               <video
                 src="img/now/praio.mp4"
                 aria-label="Praio-branded mailer box folding from a flat dieline into a closed box"
@@ -471,13 +491,22 @@ function MainPortfolio() {
                 playsInline
                 preload="metadata"
               />
+              <img
+                className="now-card__duo-still"
+                src="img/now/wonderschool.jpg"
+                alt="Wonderschool on a laptop and two phones: the family homepage, the provider licensing sign-up, and the licensing progress dashboard"
+                loading="lazy"
+              />
             </figure>
             <div className="now-card__body">
               <p className="now-card__eyebrow">Client Work</p>
-              <h4 className="now-card__title">Freelance</h4>
+              <h4 className="now-card__title">EdTech and CleanTech</h4>
               <p className="now-card__sub">
-                Clients include Praio, Wonderschool, and others. UI/UX, logo
-                design, branding, etc.
+                Designed institutional workflows for education-focused
+                platforms including Wonderschool's provider acquisition funnel.
+                Identified user abandonment patterns and simplified complex
+                multi-stakeholder experiences through progressive disclosure
+                and mobile-first design. Additional clients: Praio and others.
               </p>
             </div>
           </div>
@@ -498,7 +527,7 @@ function MainPortfolio() {
             {/* Grid, not flex: the default `stretch` is what keeps the media
                 and the card exactly the same height. */}
             <div className="strength__row">
-              <figure className={`strength__media${s.embed ? ' strength__media--embed' : ''}`}>
+              <figure className={`strength__media${s.embed ? ' strength__media--embed' : ''}${s.fade ? ' strength__media--fade' : ''}`}>
                 {s.backdrop && (
                   <img className="strength__backdrop" src={s.backdrop} alt="" aria-hidden="true" />
                 )}
@@ -509,6 +538,12 @@ function MainPortfolio() {
                   <video src={s.video} aria-label={s.mediaAlt} autoPlay muted loop playsInline preload="metadata" />
                 )}
                 {s.media && <img src={s.media} alt={s.mediaAlt} loading="lazy" />}
+                {s.fade && (
+                  <>
+                    <img className="strength__fade-a" src={s.fade[0]} alt={s.mediaAlt} loading="lazy" />
+                    <img className="strength__fade-b" src={s.fade[1]} alt="" aria-hidden="true" loading="lazy" />
+                  </>
+                )}
               </figure>
               {renderWordCard(s.quote, `strength-${i}`)}
             </div>

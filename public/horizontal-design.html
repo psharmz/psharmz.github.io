@@ -5,10 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="description" content="Horizontal design at Microsoft Education — Speaker Progress and the EDU Insights framework that scaled across every Learning Accelerator — by Parul Sharma.">
+  <meta name="description" content="Horizontal design at Microsoft Education — the EDU Insights progressive-disclosure framework and the EDU Copilot AI framework across Microsoft 365 — by Parul Sharma.">
   <meta name="author" content="Parul Sharma">
 
-  <title>Parul Sharma — Horizontal Design</title>
+  <title>Parul Sharma — Copilot for EDU and Insights Framework</title>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -33,6 +33,159 @@
     .cards-anim {
       --vid-trim: 0 0.3% 1.8% 0;
     }
+
+    /* ── M365 icon cluster: pops in one icon at a time on scroll ── */
+    .m365-icons {
+      position: relative;
+      aspect-ratio: 1420 / 1260;
+      margin-top: clamp(2.5rem, 6vw, 4rem);
+    }
+    .m365-icons img {
+      position: absolute;
+      height: auto;
+      opacity: 0;
+      transform: scale(.4);
+    }
+    .m365-icons.is-in img {
+      animation: m365-pop .55s cubic-bezier(.34, 1.56, .64, 1) forwards;
+      animation-delay: calc(var(--i) * 120ms);
+    }
+    @keyframes m365-pop {
+      to { opacity: 1; transform: scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .m365-icons img { opacity: 1; transform: none; }
+      .m365-icons.is-in img { animation: none; }
+    }
+
+    /* ── Progressive-disclosure animation ─────────────────────────────
+       One 10s loop. Beats (as % of the loop):
+         0–15   card on the review screen; cursor travels to it, clicks at 15
+         16–20  modal opens, graph draws in
+         30–42  cursor moves to "Open in Insights", clicks at 42
+         46–54  full Insights slides in, graphs draw
+         86–94  Insights fades, revealing the card again → loop          */
+    .pd-figure { background: #fff; }
+    .pd { display: block; width: 100%; height: auto; }
+    .pd-figure .pd-fallback { display: none; }
+    .pd-bg { fill: #fff; }
+
+    .pd-t     { font: 600 17px/1 Karla, system-ui, sans-serif; fill: #525760; }
+    .pd-t--muted { font-weight: 500; fill: #7c8089; }
+    .pd-t--inv   { fill: #fff; }
+    .pd-t--head  { font: 700 20px/1 Rubik, system-ui, sans-serif; fill: #2b2f36; }
+    .pd-t--alert { font-weight: 700; fill: #c2410c; }
+    .pd-num      { font: 700 64px/1 Rubik, system-ui, sans-serif; fill: #2b2f36; }
+    .pd-num--sm  { font-size: 48px; }
+
+    .pd-line {
+      fill: none; stroke: #525760; stroke-width: 4;
+      stroke-linecap: round; stroke-linejoin: round;
+      stroke-dasharray: 1; stroke-dashoffset: 1;
+    }
+
+    .pd * { animation-duration: 10s; animation-iteration-count: infinite;
+            animation-timing-function: cubic-bezier(.45,0,.25,1); }
+
+    .pd-modal, .pd-ripple, .pd-cursor__press, .pd-btn {
+      transform-box: fill-box; transform-origin: center;
+    }
+
+    .pd-cursor        { animation-name: pd-cursor; }
+    .pd-cursor__press { animation-name: pd-press; }
+    .pd-ripple        { fill: #525760; opacity: 0; }
+    .pd-ripple--1     { animation-name: pd-ripple-1; }
+    .pd-ripple--2     { animation-name: pd-ripple-2; fill: #fff; }
+    .pd-dim           { opacity: 0; animation-name: pd-dim; }
+    .pd-modal         { opacity: 0; animation-name: pd-modal; }
+    .pd-line--modal   { animation-name: pd-draw-modal; }
+    .pd-dot           { fill: #c2410c; opacity: 0; animation-name: pd-dot; }
+    .pd-btn           { animation-name: pd-btn; }
+    .pd-insights      { animation-name: pd-insights; }
+    .pd-line--ins     { animation-name: pd-draw-ins; }
+    .pd-line--late    { animation-name: pd-draw-ins-late; }
+    .pd-step          { opacity: 0; animation-timing-function: ease; }
+    .pd-step--1       { animation-name: pd-step-1; }
+    .pd-step--2       { animation-name: pd-step-2; }
+    .pd-step--3       { animation-name: pd-step-3; }
+
+    @keyframes pd-cursor {
+      0%        { transform: translate(1010px, 590px); opacity: 0; }
+      4%        { transform: translate(1010px, 590px); opacity: 1; }
+      13%, 30%  { transform: translate(552px, 166px); }
+      40%, 45%  { transform: translate(730px, 460px); opacity: 1; }
+      50%, 100% { transform: translate(730px, 460px); opacity: 0; }
+    }
+    @keyframes pd-press {
+      0%, 14%, 17%, 41%, 44%, 100% { transform: scale(1); }
+      15%, 42%                     { transform: scale(.82); }
+    }
+    @keyframes pd-ripple-1 {
+      0%, 15%   { opacity: 0;   transform: scale(.2); }
+      15.5%     { opacity: .28; transform: scale(.3); }
+      21%, 100% { opacity: 0;   transform: scale(1.4); }
+    }
+    @keyframes pd-ripple-2 {
+      0%, 42%   { opacity: 0;   transform: scale(.2); }
+      42.5%     { opacity: .45; transform: scale(.3); }
+      48%, 100% { opacity: 0;   transform: scale(1.5); }
+    }
+    @keyframes pd-dim {
+      0%, 16%   { opacity: 0; }
+      20%, 48%  { opacity: .3; }
+      54%, 100% { opacity: 0; }
+    }
+    @keyframes pd-modal {
+      0%, 16%   { opacity: 0; transform: translateY(18px) scale(.94); }
+      21%, 48%  { opacity: 1; transform: none; }
+      53%, 100% { opacity: 0; transform: none; }
+    }
+    @keyframes pd-draw-modal {
+      0%, 21%   { stroke-dashoffset: 1; }
+      29%, 100% { stroke-dashoffset: 0; }
+    }
+    @keyframes pd-dot {
+      0%, 28%   { opacity: 0; }
+      30%, 100% { opacity: 1; }
+    }
+    @keyframes pd-btn {
+      0%, 41.5%, 44%, 100% { transform: scale(1); }
+      42.5%                { transform: scale(.95); }
+    }
+    @keyframes pd-insights {
+      0%, 46%   { transform: translateX(1140px); opacity: 1; }
+      54%, 86%  { transform: translateX(0);      opacity: 1; }
+      94%, 99.9%{ transform: translateX(0);      opacity: 0; }
+      100%      { transform: translateX(1140px); opacity: 0; }
+    }
+    @keyframes pd-draw-ins {
+      0%, 54%   { stroke-dashoffset: 1; }
+      64%, 100% { stroke-dashoffset: 0; }
+    }
+    @keyframes pd-draw-ins-late {
+      0%, 57%   { stroke-dashoffset: 1; }
+      67%, 100% { stroke-dashoffset: 0; }
+    }
+    @keyframes pd-step-1 {
+      0%, 16%   { opacity: 1; }
+      19%, 90%  { opacity: 0; }
+      94%, 100% { opacity: 1; }
+    }
+    @keyframes pd-step-2 {
+      0%, 16%   { opacity: 0; }
+      19%, 47%  { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+    @keyframes pd-step-3 {
+      0%, 47%   { opacity: 0; }
+      50%, 90%  { opacity: 1; }
+      94%, 100% { opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pd-figure .pd { display: none; }
+      .pd-figure .pd-fallback { display: block; }
+    }
   </style>
 </head>
 
@@ -55,12 +208,12 @@
           <h1 class="cs-hero__title">Designing once, scaling across the whole suite</h1>
 
           <p class="cs-hero__summary">
-            Two stories about work that had to hold up beyond a single screen:
-            <span class="accent">Speaker Progress</span>, plugged seamlessly into the
-            Assignment and Grades experiences educators already used in Microsoft Teams;
-            and <span class="accent">EDU Insights</span>, a progressive-disclosure framework
+            Two frameworks that had to hold up beyond a single screen:
+            <span class="accent">EDU Insights</span>, a progressive-disclosure pattern
             that shipped across every Learning Accelerator and lifted discoverability
-            <span class="accent">40%</span>.
+            <span class="accent">40%</span>; and <span class="accent">EDU Copilot</span>,
+            one AI experience framework carried consistently across Word, PowerPoint,
+            Excel, Outlook, and Teams.
           </p>
 
           <div class="cs-hero__meta">
@@ -74,7 +227,7 @@
             </div>
             <div class="cs-meta">
               <span class="cs-meta__label">Platform</span>
-              <span class="cs-meta__value">Web · Teams · Mobile</span>
+              <span class="cs-meta__value">Across all of M365</span>
             </div>
           </div>
 
@@ -88,74 +241,23 @@
            ════════════════════════════════════════════════════════ -->
       <main class="cs-body">
 
-        <!-- ── SPEAKER PROGRESS ── -->
-        <section class="cs-section cs-split" id="speaker-progress">
+        <!-- ── 1. EDU INSIGHTS — progressive disclosure ── -->
+        <section class="cs-section cs-split" id="edu-insights">
           <div class="cs-container">
             <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Speaker Progress · The Problem</p>
-              <h2 class="cs-heading">Public Speaking Anxiety Doesn't End When Class Does</h2>
+              <p class="cs-eyebrow">EDU Insights · The Systems Challenge</p>
+              <h2 class="cs-heading">EDU Insights: Progressive Disclosure at Scale</h2>
             </aside>
             <div class="cs-split__body">
               <p class="cs-text">
-                Part of Microsoft Education's suite of <a target="_blank" href="https://www.microsoft.com/en-us/education/learning-tools/learning-accelerators">Learning
-                Accelerators</a>, Speaker Progress helps students overcome their fear of
-                public speaking and become more confident, captivating, and competent
-                speakers. My role was the educator side of that equation: personalizing the
-                student report so a teacher could see meaningful progress at a glance, and
-                plugging the new feature seamlessly into the Assignment and Grades
-                experiences educators already used in Microsoft Teams — rather than asking
-                them to learn a separate tool.
+                Designed a progressive disclosure system that became the foundational pattern
+                for how educators access data across multiple Microsoft learning products.
+                The challenge: balance quick insights with deep exploration across different
+                contexts.
               </p>
-              <div class="cs-pair">
-                <figure class="cs-figure">
-                  <img src="img/msoft/speaker.gif" alt="Speaker Progress educator report" loading="lazy">
-                </figure>
-                <figure class="cs-figure">
-                  <img src="img/msoft/speakerstudent.gif" alt="Speaker Progress student rehearsal report" loading="lazy">
-                </figure>
-              </div>
-            </div>
-          </div>
-        </section>
-
-
-        <!-- ── EDU INSIGHTS — the horizontal systems story ── -->
-        <section class="cs-section cs-center" id="edu-insights">
-          <div class="cs-container">
-            <p class="cs-eyebrow">EDU Insights · The Systems Challenge</p>
-            <h2 class="cs-heading">One Pattern, Four Products, One Design System</h2>
-            <p class="cs-lead">
-              At a company as large as Microsoft, shipping one good feature isn't the hard
-              part — making it scale across a whole product family is.
-            </p>
-            <p class="cs-text">The prompt I was given put that challenge plainly:</p>
-            <blockquote class="cs-quote">
-              "Create a progressive disclosure system that guides an educator from a single
-              data card in a learning product to the full history in the Insights app."
-            </blockquote>
-            <p class="cs-text">
-              The Insights team was a highly motivated partner going in — they wanted more
-              traffic to their app, which meant discoverability from every Learning
-              Accelerator was already in their interest.
-            </p>
-          </div>
-        </section>
-
-        <section class="cs-section cs-split">
-          <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Discovery</p>
-              <h2 class="cs-heading">Designing for the Classroom, Not a Standalone App</h2>
-            </aside>
-            <div class="cs-split__body">
-              <p class="cs-text">
-                Before any UI work, we had to establish two things: where Insights-relevant
-                data was already surfacing across Assignments, and who the real audience
-                was — students, teachers, or both. The Insights team confirmed they had
-                almost no standalone users, only schools, so the container decision followed
-                directly: design for the classroom experience (Reading Progress, Speaker
-                Progress) rather than a standalone product like Reading Coach.
-              </p>
+              <figure class="cs-figure">
+                <img src="img/msoft/reading-coach-accuracy-modal.jpg" alt="Reading Coach progress page with an Average accuracy modal open over it, showing one line graph of the last thirty days" loading="lazy">
+              </figure>
             </div>
           </div>
         </section>
@@ -164,15 +266,18 @@
           <div class="cs-container">
             <aside class="cs-split__aside">
               <p class="cs-eyebrow">Research</p>
-              <h2 class="cs-heading">Teachers Care About the Story Behind the Grade</h2>
+              <h2 class="cs-heading">What Teachers Actually Need: Context, Not Just Grades</h2>
             </aside>
             <div class="cs-split__body">
               <p class="cs-text">
-                Interviewing teachers surfaced a clear pattern: they cared about outlier
-                data — a student who usually scores 90% but suddenly drops 20 points below
-                their own average — far more than the raw grade itself. The number wasn't
-                the point; the context around the number was.
+                Interviews with teachers revealed they care about outlier data—a student who
+                usually scores 90% but suddenly drops 20 points. The grade wasn't the insight;
+                the story behind it was. That finding shaped the entire progressive disclosure
+                system: quick surface-level view for scanning, deep context available on demand.
               </p>
+              <figure class="cs-figure">
+                <img src="img/msoft/insights_learnings_ipad-crop.jpg" alt="Students and teachers using iPads, where hover states don't exist" loading="lazy">
+              </figure>
             </div>
           </div>
         </section>
@@ -180,16 +285,16 @@
         <section class="cs-section cs-split">
           <div class="cs-container">
             <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Ideation</p>
-              <h2 class="cs-heading">Flip the Card? Add an Icon? Constraints Picked the Answer</h2>
+              <p class="cs-eyebrow">The Challenge</p>
+              <h2 class="cs-heading">One Pattern, Everywhere</h2>
             </aside>
             <div class="cs-split__body">
               <p class="cs-text">
-                Early interaction ideas ranged from reusing the existing info-icon pattern
-                next to data labels to flipping the entire card. We also explored trend
-                arrows and color coding, but ran into a real constraint: Microsoft can't
-                universally define what counts as a "good" or "bad" trend for every metric,
-                so a naive green-up, red-down treatment was off the table.
+                Early ideas ranged from info-icons to card flips to color coding. But Microsoft
+                couldn't universally define what counts as "good" or "bad" trend across every
+                metric—so those approaches fell away. I audited every insight card across every
+                Learning Accelerator and built a framework to ensure the pattern would look and
+                behave consistently everywhere it appeared.
               </p>
             </div>
             <!-- Silent loop; js/project.js plays it only while it's on screen. -->
@@ -204,19 +309,222 @@
         <section class="cs-section cs-split">
           <div class="cs-container">
             <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Systems Thinking</p>
-              <h2 class="cs-heading">Auditing Every Card, Across Every Learning Accelerator</h2>
+              <p class="cs-eyebrow">The Solution</p>
+              <h2 class="cs-heading">Progressive Disclosure (Card → Modal → Full Insights)</h2>
             </aside>
             <div class="cs-split__body">
-              <figure class="cs-figure">
-                <img src="img/msoft/insights_framework_audit.jpg" alt="Auditing insight cards across learning accelerators" loading="lazy">
-              </figure>
               <p class="cs-text">
-                Any single interaction decision only mattered if it held up everywhere else.
-                I audited every insight card across every Learning Accelerator and turned
-                that audit into a design framework — a set of cohesion rules so a pattern
-                established in Reading Progress would look and behave the same way in
-                Speaker Progress.
+                Teachers usually land on a review screen mid-grading. A hard jump to a
+                separate Insights app is disorienting. So the pattern steps through three
+                levels instead—card, modal, full app—keeping teachers in flow. On desktop
+                it's a click; on iPad it's a tap. Same behavior everywhere.
+              </p>
+            </div>
+            <!-- Progressive disclosure, animated: card → modal → full Insights.
+                 Inline SVG so it stays sharp at any width and costs a few KB.
+                 Every part shares one 10s clock (see .pd in the <style> above),
+                 so the cursor, modal and slide-in never drift out of sync.
+                 Reduced motion gets the original static 3-up diagram instead. -->
+            <figure class="cs-figure cs-split__full pd-figure">
+              <svg class="pd" viewBox="0 0 1200 700" role="img"
+                   aria-label="Animation: a teacher clicks an insight card showing a single number, a modal opens with one graph, then clicking Open in Insights slides in the full historical Insights view">
+                <defs>
+                  <clipPath id="pd-clip"><rect x="60" y="40" width="1080" height="560" rx="18"/></clipPath>
+                  <filter id="pd-shadow" x="-20%" y="-20%" width="140%" height="150%">
+                    <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#2b2f36" flood-opacity=".22"/>
+                  </filter>
+                </defs>
+
+                <rect class="pd-bg" width="1200" height="700"/>
+
+                <g clip-path="url(#pd-clip)">
+                  <!-- ── Stage 1: Assignment review screen ── -->
+                  <rect x="60" y="40" width="1080" height="560" fill="#fff"/>
+                  <rect x="60" y="40" width="1080" height="52" fill="#F3F2EE"/>
+                  <circle cx="92" cy="66" r="10" fill="#C9C5B8"/>
+                  <rect x="114" y="59" width="160" height="14" rx="7" fill="#C9C5B8"/>
+                  <text class="pd-t pd-t--muted" x="1110" y="71" text-anchor="end">Assignment review</text>
+
+                  <!-- student list -->
+                  <rect x="60" y="92" width="240" height="508" fill="#FAF9F6"/>
+                  <g fill="#E1DED3">
+                    <rect x="84" y="118" width="192" height="44" rx="10" fill="#525760"/>
+                    <rect x="84" y="176" width="192" height="44" rx="10"/>
+                    <rect x="84" y="234" width="192" height="44" rx="10"/>
+                    <rect x="84" y="292" width="192" height="44" rx="10"/>
+                    <rect x="84" y="350" width="192" height="44" rx="10"/>
+                  </g>
+                  <text class="pd-t pd-t--inv" x="104" y="146">Scarlet L.</text>
+
+                  <!-- insight cards -->
+                  <g class="pd-card">
+                    <rect x="340" y="124" width="260" height="160" rx="16" fill="#E1DED3"/>
+                    <text class="pd-t pd-t--muted" x="364" y="160">Accuracy rate</text>
+                    <text class="pd-num" x="362" y="226">83%</text>
+                    <text class="pd-t pd-t--alert" x="364" y="260">▼ 20 pts below her avg</text>
+                  </g>
+                  <rect x="620" y="124" width="240" height="160" rx="16" fill="#EEEDE8"/>
+                  <rect x="644" y="152" width="110" height="12" rx="6" fill="#D6D3C8"/>
+                  <rect x="644" y="190" width="70" height="36" rx="8" fill="#D6D3C8"/>
+                  <rect x="880" y="124" width="236" height="160" rx="16" fill="#EEEDE8"/>
+                  <rect x="904" y="152" width="120" height="12" rx="6" fill="#D6D3C8"/>
+                  <rect x="904" y="190" width="54" height="36" rx="8" fill="#D6D3C8"/>
+
+                  <!-- student work -->
+                  <rect x="340" y="310" width="776" height="266" rx="16" fill="#FAF9F6"/>
+                  <g fill="#E4E1D7">
+                    <rect x="372" y="344" width="640" height="12" rx="6"/>
+                    <rect x="372" y="376" width="700" height="12" rx="6"/>
+                    <rect x="372" y="408" width="590" height="12" rx="6"/>
+                    <rect x="372" y="456" width="680" height="12" rx="6"/>
+                    <rect x="372" y="488" width="520" height="12" rx="6"/>
+                    <rect x="372" y="520" width="610" height="12" rx="6"/>
+                  </g>
+
+                  <!-- ── Stage 2: modal ── -->
+                  <rect class="pd-dim" x="60" y="40" width="1080" height="560" fill="#2b2f36"/>
+                  <g class="pd-modal">
+                    <rect x="330" y="140" width="540" height="380" rx="20" fill="#fff" filter="url(#pd-shadow)"/>
+                    <text class="pd-t pd-t--head" x="362" y="186">Accuracy over time</text>
+                    <text class="pd-t pd-t--muted" x="838" y="186" text-anchor="end">✕</text>
+                    <rect x="362" y="208" width="476" height="206" rx="12" fill="#F3F2EE"/>
+                    <g stroke="#E1DED3" stroke-width="2">
+                      <line x1="382" y1="260" x2="818" y2="260"/>
+                      <line x1="382" y1="310" x2="818" y2="310"/>
+                      <line x1="382" y1="360" x2="818" y2="360"/>
+                    </g>
+                    <path class="pd-line pd-line--modal" pathLength="1"
+                          d="M384 300 L450 282 L516 290 L582 268 L648 276 L714 262 L780 352"/>
+                    <circle class="pd-dot" cx="780" cy="352" r="7"/>
+                    <g class="pd-btn">
+                      <rect x="628" y="440" width="210" height="48" rx="12" fill="#525760"/>
+                      <text class="pd-t pd-t--inv" x="733" y="470" text-anchor="middle">Open in Insights →</text>
+                    </g>
+                  </g>
+
+                  <!-- ── Stage 3: full Insights ── -->
+                  <g class="pd-insights">
+                    <rect x="60" y="40" width="1080" height="560" fill="#fff"/>
+                    <rect x="60" y="40" width="1080" height="52" fill="#525760"/>
+                    <text class="pd-t pd-t--inv" x="92" y="72">Insights</text>
+                    <rect x="60" y="92" width="96" height="508" fill="#F3F2EE"/>
+                    <g fill="#D6D3C8">
+                      <rect x="84" y="120" width="48" height="48" rx="12" fill="#525760"/>
+                      <rect x="84" y="184" width="48" height="48" rx="12"/>
+                      <rect x="84" y="248" width="48" height="48" rx="12"/>
+                      <rect x="84" y="312" width="48" height="48" rx="12"/>
+                    </g>
+                    <text class="pd-t pd-t--head" x="188" y="136">Scarlet L. · Reading progress, all year</text>
+                    <rect x="188" y="160" width="620" height="206" rx="16" fill="#F3F2EE"/>
+                    <path class="pd-line pd-line--ins" pathLength="1"
+                          d="M212 320 L262 300 L312 306 L362 284 L412 290 L462 266 L512 272 L562 250 L612 258 L662 236 L712 244 L784 330"/>
+                    <rect x="188" y="384" width="620" height="192" rx="16" fill="#F3F2EE"/>
+                    <path class="pd-line pd-line--ins pd-line--late" pathLength="1"
+                          d="M212 540 L262 526 L312 530 L362 512 L412 518 L462 498 L512 502 L562 486 L612 490 L662 470 L712 476 L784 452"/>
+                    <rect x="832" y="160" width="284" height="416" rx="16" fill="#E1DED3"/>
+                    <text class="pd-t pd-t--muted" x="856" y="196">This week</text>
+                    <text class="pd-num pd-num--sm" x="854" y="248">83%</text>
+                    <rect x="856" y="280" width="220" height="12" rx="6" fill="#C9C5B8"/>
+                    <rect x="856" y="306" width="180" height="12" rx="6" fill="#C9C5B8"/>
+                    <rect x="856" y="360" width="236" height="64" rx="12" fill="#fff"/>
+                    <rect x="856" y="438" width="236" height="64" rx="12" fill="#fff"/>
+                  </g>
+
+                  <!-- click ripples -->
+                  <circle class="pd-ripple pd-ripple--1" cx="556" cy="170" r="46"/>
+                  <circle class="pd-ripple pd-ripple--2" cx="733" cy="464" r="40"/>
+                </g>
+
+                <rect x="60" y="40" width="1080" height="560" rx="18" fill="none" stroke="#E1DED3" stroke-width="2"/>
+
+                <!-- cursor -->
+                <g class="pd-cursor">
+                  <g class="pd-cursor__press">
+                    <path d="M0 0 L0 34 L9 26 L15 40 L21 37 L15 24 L27 24 Z"
+                          fill="#1f2328" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
+                  </g>
+                </g>
+
+                <!-- step indicator -->
+                <g class="pd-steps">
+                  <g><rect x="228" y="628" width="236" height="44" rx="22" fill="#EEEDE8"/>
+                     <text class="pd-t" x="346" y="656" text-anchor="middle">1 · Card</text></g>
+                  <g><rect x="482" y="628" width="236" height="44" rx="22" fill="#EEEDE8"/>
+                     <text class="pd-t" x="600" y="656" text-anchor="middle">2 · Modal</text></g>
+                  <g><rect x="736" y="628" width="236" height="44" rx="22" fill="#EEEDE8"/>
+                     <text class="pd-t" x="854" y="656" text-anchor="middle">3 · Full Insights</text></g>
+
+                  <g class="pd-step pd-step--1"><rect x="228" y="628" width="236" height="44" rx="22" fill="#525760"/>
+                     <text class="pd-t pd-t--inv" x="346" y="656" text-anchor="middle">1 · Card</text></g>
+                  <g class="pd-step pd-step--2"><rect x="482" y="628" width="236" height="44" rx="22" fill="#525760"/>
+                     <text class="pd-t pd-t--inv" x="600" y="656" text-anchor="middle">2 · Modal</text></g>
+                  <g class="pd-step pd-step--3"><rect x="736" y="628" width="236" height="44" rx="22" fill="#525760"/>
+                     <text class="pd-t pd-t--inv" x="854" y="656" text-anchor="middle">3 · Full Insights</text></g>
+                </g>
+              </svg>
+              <img class="pd-fallback" src="img/msoft/insights_progressive_disclosure-crop.jpg"
+                   alt="Three levels of disclosure: a card, a modal, and the full insights view" loading="lazy">
+            </figure>
+          </div>
+        </section>
+
+        <section class="cs-section" id="insights-impact">
+          <div class="cs-container">
+            <p class="cs-eyebrow">The Result</p>
+            <h2 class="cs-heading">Shipped Across Every Assignment Type</h2>
+            <p class="cs-text">
+              The framework increased card clicks and traffic to Insights by 40%.
+            </p>
+            <figure class="cs-figure">
+              <img src="img/msoft/insights_final_framework-crop.jpg" alt="Final insights framework shipped in Speaker Progress" loading="lazy">
+            </figure>
+          </div>
+        </section>
+
+
+        <!-- ── 2. EDU COPILOT — AI across Microsoft 365 ── -->
+        <section class="cs-section cs-split" id="edu-copilot">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">EDU Copilot · The Challenge</p>
+              <h2 class="cs-heading">EDU Copilot: Defining AI in Education at Scale</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                EDU Copilot had to work consistently across the entire M365 suite: Word, PowerPoint,
+                Excel, Outlook, Teams. That meant partnering with every product team and establishing
+                a shared direction. The hard part wasn't building Copilot. It was ensuring it behaved
+                the same way everywhere teachers encountered it.
+              </p>
+              <!-- The M365 cluster, one icon per image so each can pop in on its own.
+                   Positions are the icons' spots in the original composite
+                   (img/msoft/copilot_icons.jpg, 1420x1260). No card chrome — it
+                   sits straight on the page. Script at the bottom adds .is-in. -->
+              <div class="m365-icons" role="img" aria-label="Microsoft 365 app icons — PowerPoint, OneDrive, Word, Excel, OneNote, Teams and Outlook — around the Microsoft 365 mark">
+                <img src="img/msoft/m365-icons/m365.jpg" alt="" style="--i:0;left:34.08%;top:33.02%;width:29.86%" loading="lazy">
+                <img src="img/msoft/m365-icons/powerpoint.jpg" alt="" style="--i:1;left:38.87%;top:6.67%;width:20.28%" loading="lazy">
+                <img src="img/msoft/m365-icons/onedrive.jpg" alt="" style="--i:2;left:67.32%;top:17.78%;width:21.13%" loading="lazy">
+                <img src="img/msoft/m365-icons/word.jpg" alt="" style="--i:3;left:75.21%;top:43.81%;width:19.44%" loading="lazy">
+                <img src="img/msoft/m365-icons/excel.jpg" alt="" style="--i:4;left:63.38%;top:68.25%;width:18.31%" loading="lazy">
+                <img src="img/msoft/m365-icons/onenote.jpg" alt="" style="--i:5;left:29.01%;top:73.65%;width:17.18%" loading="lazy">
+                <img src="img/msoft/m365-icons/teams.jpg" alt="" style="--i:6;left:3.94%;top:52.38%;width:20.56%" loading="lazy">
+                <img src="img/msoft/m365-icons/outlook.jpg" alt="" style="--i:7;left:5.92%;top:18.1%;width:21.97%" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cs-section cs-split">
+          <div class="cs-container">
+            <aside class="cs-split__aside">
+              <p class="cs-eyebrow">The Insight</p>
+              <h2 class="cs-heading">Trust, Not Capability</h2>
+            </aside>
+            <div class="cs-split__body">
+              <p class="cs-text">
+                Interviews with educators revealed the constraint wasn't technical. It was human.
+                How much did teachers trust an AI suggestion enough to act on it? Which problems
+                did they actually want help with? That trust gap shaped everything.
               </p>
             </div>
           </div>
@@ -226,60 +534,24 @@
           <div class="cs-container">
             <aside class="cs-split__aside">
               <p class="cs-eyebrow">The Framework</p>
-              <h2 class="cs-heading">Card → Modal → Full Insights: Progressive Disclosure</h2>
+              <h2 class="cs-heading">Matching Capability to Confidence</h2>
             </aside>
             <div class="cs-split__body">
               <p class="cs-text">
-                The framework's core idea: don't jump straight from a single data point to
-                the full historical Insights app. Teachers are usually mid-grading when they
-                land on a review screen, and a hard cut to a different app is disorienting.
-                So the pattern steps through three levels instead — a card with a single
-                number, a modal with one graph, then the full Insights experience — keeping
-                teachers in their flow rather than yanking them out of it.
+                Built an experience framework for how and where Copilot appears across Education
+                products, and a way to prioritize features based on where educators' trust actually
+                was, not where the technology could go.
               </p>
-            </div>
-            <figure class="cs-figure cs-split__full">
-              <img src="img/msoft/insights_progressive_disclosure-crop.jpg" alt="Three levels of disclosure: a card, a modal, and the full insights view" loading="lazy">
-            </figure>
-          </div>
-        </section>
-
-        <section class="cs-section cs-split">
-          <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">The Blind Spot</p>
-              <h2 class="cs-heading">A Hover Interaction That Only Worked on Desktop</h2>
-            </aside>
-            <div class="cs-split__body">
               <p class="cs-text">
-                I'd gotten attached to a card-hover interaction, prototyped with real Fluent
-                components. It worked well — until I remembered that students and teachers
-                do most of this on iPads, where hover states don't exist. I reworked the
-                interaction around click and tap instead, so desktop and iPad behaved the
-                same way.
+                I explored multiple interaction patterns: in-context experiences (hover states,
+                right-click selections) versus a dedicated chat pane. Both approaches were tested
+                to understand which felt more natural and trustworthy. AI-assisted rubrics shipped
+                first, not because it was technically easier, but as a proof point. It matched
+                what teachers were ready for, rather than asking for more trust than they had.
               </p>
-            </div>
-            <figure class="cs-figure cs-split__full">
-              <img src="img/msoft/insights_learnings_ipad-crop.jpg" alt="Students and teachers using iPads, where hover states don't exist" loading="lazy">
-            </figure>
-          </div>
-        </section>
-
-        <section class="cs-section cs-center">
-          <div class="cs-container">
-            <p class="cs-eyebrow">The Result</p>
-            <h2 class="cs-heading">Shipped Across Every Assignment Type</h2>
-            <figure class="cs-figure">
-              <img src="img/msoft/insights_final_framework.jpg" alt="Final insights framework shipped in Speaker Progress" loading="lazy">
-            </figure>
-            <p class="cs-text">
-              No card flips. A click state on desktop that becomes a tap on mobile and iPad.
-            </p>
-            <div class="cs-metrics">
-              <div class="cs-metric">
-                <span class="cs-metric__num">40%</span>
-                <span class="cs-metric__label">Increase in card clicks &amp; traffic to Insights</span>
-              </div>
+              <figure class="cs-figure">
+                <img src="img/msoft/copilotword.png" alt="EDU Copilot in context inside Word, suggesting flash cards or a quiz from the selected text" loading="lazy">
+              </figure>
             </div>
           </div>
         </section>
@@ -317,6 +589,20 @@
         sr.reveal('.cs-figure, .cs-pair > .cs-figure', { origin: 'bottom', distance: '40px', delay: 120, interval: 120 });
         sr.reveal('.cs-metric', { origin: 'bottom', interval: 100 });
       }
+    </script>
+    <script>
+      // Pop the M365 icons in once the cluster is a third of the way on screen.
+      (function () {
+        var cluster = document.querySelector('.m365-icons');
+        if (!cluster) return;
+        if (!('IntersectionObserver' in window)) { cluster.classList.add('is-in'); return; }
+        var io = new IntersectionObserver(function (entries) {
+          if (!entries[0].isIntersecting) return;
+          cluster.classList.add('is-in');
+          io.disconnect();
+        }, { threshold: 0.35 });
+        io.observe(cluster);
+      })();
     </script>
   </body>
 </html>
