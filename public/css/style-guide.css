@@ -1,0 +1,88 @@
+/* Layout for style-guide.html only. All type on the page comes from the shared
+   roles in fonts.css; nothing here sets a font-family or a type size. */
+*, *::before, *::after { box-sizing: border-box; }
+html { background: #111; }
+body.sg {
+  margin: 0;
+  background: #111;
+  color: var(--color-text-statement);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+.sg-wrap { max-width: 1100px; margin: 0 auto; padding: 72px 24px 120px; }
+.sg-intro { margin-bottom: 56px; }
+.sg-intro > .type-display { color: #fff; }
+.sg-intro > .type-statement { margin-top: 16px; max-width: 40em; }
+.sg-section { padding: 40px 0; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+.sg-section > .type-name { color: #fff; margin: 0 0 24px; }
+.sg-role {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 8px 40px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.sg-role:last-child { border-bottom: 0; }
+.sg-role__meta { color: var(--color-text-caption); }
+.sg-role__meta code, .sg-table code {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  color: var(--brand-blush);
+}
+.sg-role__meta strong { display: block; color: #fff; margin-bottom: 4px; }
+.sg-sample { color: #fff; margin: 0; overflow-wrap: anywhere; }
+.sg-table { width: 100%; border-collapse: collapse; }
+.sg-table td, .sg-table th {
+  text-align: left;
+  padding: 10px 12px 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  vertical-align: top;
+}
+.sg-table th { color: var(--color-text-caption); font-weight: 400; }
+.sg-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+.sg-hue { padding: 24px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+.sg-hue:last-child { border-bottom: 0; }
+.sg-hue > .type-name { margin: 0 0 4px; }
+.sg-hue > .type-caption { margin: 0 0 16px; }
+.sg-swatches--five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 720px) { .sg-swatches--five { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.sg-swatch { border-radius: 12px; overflow: hidden; background: rgba(255, 255, 255, 0.04); }
+.sg-swatch__chip { height: 84px; }
+.sg-swatch__chip--rosewater-100 { background: var(--rosewater-100); }
+.sg-swatch__chip--rosewater-300 { background: var(--rosewater-300); }
+.sg-swatch__chip--rosewater-500 { background: var(--rosewater-500); }
+.sg-swatch__chip--rosewater-700 { background: var(--rosewater-700); }
+.sg-swatch__chip--rosewater-900 { background: var(--rosewater-900); }
+.sg-swatch__chip--terracotta-100 { background: var(--terracotta-100); }
+.sg-swatch__chip--terracotta-300 { background: var(--terracotta-300); }
+.sg-swatch__chip--terracotta-500 { background: var(--terracotta-500); }
+.sg-swatch__chip--terracotta-700 { background: var(--terracotta-700); }
+.sg-swatch__chip--terracotta-900 { background: var(--terracotta-900); }
+.sg-swatch__chip--pine-100 { background: var(--pine-100); }
+.sg-swatch__chip--pine-300 { background: var(--pine-300); }
+.sg-swatch__chip--pine-500 { background: var(--pine-500); }
+.sg-swatch__chip--pine-700 { background: var(--pine-700); }
+.sg-swatch__chip--pine-900 { background: var(--pine-900); }
+.sg-swatch__chip--brick-100 { background: var(--brick-100); }
+.sg-swatch__chip--brick-300 { background: var(--brick-300); }
+.sg-swatch__chip--brick-500 { background: var(--brick-500); }
+.sg-swatch__chip--brick-700 { background: var(--brick-700); }
+.sg-swatch__chip--brick-900 { background: var(--brick-900); }
+.sg-swatch__chip--brand-pink { background: var(--brand-pink); }
+.sg-swatch__chip--brand-green { background: var(--brand-green); }
+.sg-swatch__chip--brand-caramel { background: var(--brand-caramel); }
+.sg-swatch__chip--brand-red { background: var(--brand-red); }
+.sg-swatch__chip--brand-shadow { background: var(--brand-shadow); }
+.sg-swatch__chip--brand-blush { background: var(--brand-blush); }
+.sg-swatch__chip--sage-100 { background: var(--sage-100); }
+.sg-swatch__chip--sage-300 { background: var(--sage-300); }
+.sg-swatch__chip--sage-500 { background: var(--sage-500); }
+.sg-swatch__chip--sage-700 { background: var(--sage-700); }
+.sg-swatch__chip--sage-900 { background: var(--sage-900); }
+.sg-swatch__chip--action-primary { background: var(--action-primary); }
+.sg-swatch__chip--action-primary-on-dark { background: var(--action-primary-on-dark); }
+.sg-swatch__chip--action-secondary { background: var(--action-secondary); }
+.sg-swatch__label { padding: 12px; }
+.sg-swatch__label strong { display: block; color: #fff; }
+@media (max-width: 720px) {
+  .sg-role { grid-template-columns: 1fr; }
+}

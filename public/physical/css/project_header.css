@@ -2,7 +2,7 @@
 
 body {
   font-size: 225%;
-  font-family: 'Karla', sans-serif;
+  font-family: var(--font-sans, 'DM Sans', sans-serif);
   background-color: #000;
   color: rgba(255, 255, 255, 0.8);
   margin: 0;
@@ -21,7 +21,7 @@ header {
 }
 
 a.back-link {
-  font-family: 'Rubik', sans-serif;
+  font-family: var(--font-sans, 'DM Sans', sans-serif);
   font-size: 0.9em;
   font-weight: 600;
   color: #fff;
@@ -34,6 +34,6 @@ a.back-link:after {
 
 a.back-link:hover,
 a.back-link:hover:after {
-  color: #00BFA5;
-  background: #00BFA5;
+  color: var(--color-text-accent);
+  background: var(--terracotta-500);
 }

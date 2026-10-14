@@ -13,7 +13,7 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
+  <!-- Fonts that back the design tokens (DM Sans = headings + body, Instrument Serif = display) -->
   <link rel="stylesheet" href="css/fonts.css">
 
   <link rel="stylesheet" type="text/css" href="css/header.css">
@@ -35,26 +35,36 @@
            HERO  — logo slot · eyebrow · title · summary · meta
            Dark canvas so the white body panel can overlap it.
            ════════════════════════════════════════════════════════ -->
-      <header class="cs-hero">
-        <div class="cs-container">
+      <header class="cs-hero cs-hero--visual">
+        <div class="cs-hero__wide">
+          <h1 class="cs-hero__title type-display-lg">A short, confident project title</h1>
+          <div class="cs-hero__roleline">
+            <span class="type-statement">Lead Product Designer</span>
+            <span class="type-statement">Client name</span>
+          </div>
+        </div>
+        <figure class="cs-hero__visual cs-scene cs-scene--neutral">
+          <img class="cs-scene__splash" src="img/parul-avatar.jpg" alt="" aria-hidden="true">
+          <div class="cs-window">
+            <div class="cs-window__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img class="cs-window__shot" src="https://picsum.photos/seed/cs-solution/1600/1000" alt="The final product: the key screen or interaction">
+          </div>
+        </figure>
+      </header>
 
-          <!-- PER-CASE-STUDY LOGO / CLIENT MARK — swap src per project -->
-          <img class="cs-hero__logo"
-               src="https://picsum.photos/seed/cs-logo/144/144"
-               alt="Project logo">
 
-          <p class="cs-eyebrow">Case Study · 2024</p>
+      <!-- ════════════════════════════════════════════════════════
+           BODY  — white panel that lifts over the hero
+           ════════════════════════════════════════════════════════ -->
+      <main class="cs-body">
 
-          <h1 class="cs-hero__title">A short, confident project title</h1>
-
-          <p class="cs-hero__summary">
-            One or two sentences that frame the work — the product, the
+        <!-- AT A GLANCE — the story in brief, directly under the visual hero. -->
+        <section class="cs-section cs-glance" aria-label="At a glance">
+          <div class="cs-container">
+            <p class="cs-glance__lead">One or two sentences that frame the work — the product, the
             audience, and the <span class="accent">outcome</span> that
-            mattered. Keep it tight and human.
-          </p>
-
-          <!-- META ROW — Role / Timeline / Team / Platform -->
-          <div class="cs-hero__meta">
+            mattered. Keep it tight and human.</p>
+            <div class="cs-glance__meta">
             <div class="cs-meta">
               <span class="cs-meta__label">Role</span>
               <span class="cs-meta__value">Lead Product Designer</span>
@@ -72,24 +82,32 @@
               <span class="cs-meta__value">Web · iOS</span>
             </div>
           </div>
+            <ul class="cs-results" aria-label="Results">
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">+38%</span>
+                <span class="cs-result__label type-caption">Task completion</span>
+              </li>
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">2.1×</span>
+                <span class="cs-result__label type-caption">Weekly active use</span>
+              </li>
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">4.7★</span>
+                <span class="cs-result__label type-caption">App store rating</span>
+              </li>
+            </ul>
+            
+          </div>
+        </section>
 
-          <span class="cs-hero__cue" aria-hidden="true"></span>
-        </div>
-      </header>
-
-
-      <!-- ════════════════════════════════════════════════════════
-           BODY  — white panel that lifts over the hero
-           ════════════════════════════════════════════════════════ -->
-      <main class="cs-body">
 
         <!-- ── 1 · OVERVIEW — sticky heading left, copy + image right ── -->
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Overview</p>
-              <h2 class="cs-heading">What this project set out to do</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">Overview</p>
+              <h2 class="cs-heading type-display-sm">What this project set out to do</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Open with the context. What's the product, who uses it, and
@@ -125,8 +143,8 @@
         <!-- ── 2 · THE PROBLEM — center-stacked breath ── -->
         <section class="cs-section cs-center">
           <div class="cs-container">
-            <p class="cs-eyebrow">The Problem</p>
-            <h2 class="cs-heading">Frame the core tension in one line</h2>
+            <p class="cs-eyebrow type-caption type-caption--accent">The Problem</p>
+            <h2 class="cs-heading type-display-sm">Frame the core tension in one line</h2>
             <p class="cs-lead">
               A pulled-out statement that captures the problem with weight —
               the kind of sentence you'd put on a slide.
@@ -142,10 +160,10 @@
         <!-- ── 3 · PROCESS — sticky heading + a pair of images ── -->
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Process</p>
-              <h2 class="cs-heading">How the team explored the space</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">Process</p>
+              <h2 class="cs-heading type-display-sm">How the team explored the space</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Walk through research, sketches, or the key decisions. Use the
@@ -182,10 +200,10 @@
         <!-- ── 4 · THE SOLUTION — sticky heading + stacked figures ── -->
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">The Solution</p>
-              <h2 class="cs-heading">What we shipped, and why it works</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">The Solution</p>
+              <h2 class="cs-heading type-display-sm">What we shipped, and why it works</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Describe the final design. Lead with the most important screen,
@@ -207,8 +225,8 @@
         <!-- ── 5 · OUTCOME / IMPACT — center-stacked metrics ── -->
         <section class="cs-section cs-center">
           <div class="cs-container">
-            <p class="cs-eyebrow">Outcome</p>
-            <h2 class="cs-heading">The impact, in numbers</h2>
+            <p class="cs-eyebrow type-caption type-caption--accent">Outcome</p>
+            <h2 class="cs-heading type-display-sm">The impact, in numbers</h2>
             <p class="cs-text">
               A sentence of context for the metrics — the timeframe and how
               they were measured.
@@ -234,8 +252,8 @@
         <!-- ── CLOSING / NEXT PROJECT ── -->
         <section class="cs-closing">
           <div class="cs-container">
-            <span class="cs-next__kicker">Next project</span>
-            <a class="cs-next" href="/#work">See more work →</a>
+            <span class="cs-next__kicker type-caption type-caption--accent">Next project</span>
+            <a class="cs-next type-display-sm" href="/#strengths">See more work →</a>
           </div>
         </section>
 

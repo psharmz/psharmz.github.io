@@ -1,4 +1,4 @@
-@import url("fonts.css");  /* self-hosted Rubik + Karla */
+@import url("fonts.css");  /* self-hosted Instrument Serif + DM Sans */
 
 
 
@@ -10,13 +10,13 @@ body {
 }
 
 p {
-    font-family: 'Karla', sans-serif;
+    font-family: var(--font-sans);
 }
 
 
 h2 {
 
-	font-family: 'Rubik', sans-serif;
+	font-family: var(--font-sans);
 	color: black;
     font-size: 30px;
 }
@@ -30,7 +30,7 @@ h2 {
 
 .about {
 
-	font-family: 'Karla', sans-serif;
+	font-family: var(--font-sans);
 	font-size: 25px; 
 	padding-left: 10%;
 	padding-top: 5%;

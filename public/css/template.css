@@ -26,19 +26,13 @@
    (matching the px-based --type-* tokens) — never rem — or it renders
    half-size. */
 .cs-eyebrow {
-  font-family: var(--font-heading);
-  font-size: 14px;
-  font-weight: var(--weight-semibold);
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--color-text-teal);
   margin: 0 0 var(--space-lg);
 }
 
 /* Teal + bold highlight inside copy — same as .hero-blurb .accent
    and .murals-statement strong on the homepage/murals page. */
 .template-page .accent {
-  color: var(--color-text-teal);
+  color: var(--color-text-accent);
   font-weight: 700;
 }
 
@@ -75,17 +69,12 @@
 
 /* Exactly the homepage "hi, i'm parul" treatment (.hero-greeting). */
 .cs-hero__title {
-  font-family: var(--font-heading);
-  font-size: var(--type-display);          /* 36px — same as "hi, i'm parul" */
-  font-weight: var(--weight-semibold);
-  line-height: var(--leading-tight);
-  color: #fff;
   margin: 0 0 var(--space-md);
   max-width: 24ch;
 }
 
 /* Exactly the homepage / murals body-paragraph treatment (.hero-blurb,
-   .murals-statement): Karla, --type-hero, regular weight, light on black. */
+   .murals-statement): DM Sans, --type-hero, regular weight, light on black. */
 .cs-hero__summary {
   font-family: var(--font-body);
   font-size: var(--type-hero);
@@ -114,7 +103,7 @@
   font-weight: var(--weight-semibold);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-text-teal);
+  color: var(--color-text-accent);
   margin-bottom: var(--space-sm);
 }
 
@@ -164,6 +153,14 @@
   margin-top: -32px;
   border-radius: 32px 32px 0 0;
   box-shadow: 0 -16px 48px rgba(0, 0, 0, 0.25);
+  /* Inside the white panel the dark-surface text roles flip to dark equivalents
+     (all AA on white). */
+  /* Brick: a different hue from the black body text (Terracotta 700 read as a
+     muddy brown right next to it), 7.5:1 on white. */
+  --color-text-accent: var(--brick-500);
+  --color-accent-fill: var(--brick-500);
+  --color-text-name: var(--color-text-primary);
+  --color-text-caption: var(--color-text-secondary);
   padding-top: clamp(5rem, 11vw, 9rem);
 }
 
@@ -222,17 +219,11 @@
 /* ── HEADINGS & COPY ─────────────────────────────────────────── */
 /* Section heading — MD3 Headline Medium, like .murals-section-label. */
 .cs-heading {
-  font-family: var(--font-heading);
-  font-size: var(--type-headline);         /* 28px */
-  font-weight: var(--weight-medium);
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-title);
-  color: var(--color-text-primary);
   margin: 0 0 var(--space-lg);
 }
 
 /* Body copy — IDENTICAL to the murals intro / homepage about copy:
-   Karla, --type-hero, regular weight, secondary grey, 1.65 leading. */
+   DM Sans, --type-hero, regular weight, secondary grey, 1.65 leading. */
 .cs-text {
   font-family: var(--font-body);
   font-size: var(--type-hero);
@@ -282,7 +273,7 @@
 .cs-caption,
 .cs-metric__label {
   font-family: var(--font-body);
-  font-size: var(--type-caption);
+  font-size: var(--type-figure-caption);
   line-height: var(--leading-body);
   letter-spacing: 0.01em;
   color: var(--color-text-secondary);
@@ -357,7 +348,7 @@
   font-weight: var(--weight-regular);
   line-height: var(--leading-tight);
   color: var(--color-text-primary);
-  border-left: 3px solid var(--color-accent);
+  border-left: 3px solid var(--color-accent-fill);
   padding-left: var(--space-lg);
   margin: var(--space-xl) 0;
 }
@@ -366,7 +357,7 @@
   display: block;
   margin-top: var(--space-md);
   font-family: var(--font-body);
-  font-size: var(--type-caption);
+  font-size: var(--type-figure-caption);
   font-style: normal;
   color: var(--color-text-secondary);
 }
@@ -385,8 +376,8 @@
   font-family: var(--font-body);
   font-size: var(--type-body-small);
   font-weight: 700;
-  color: var(--color-text-teal);
-  border: 1.5px solid var(--color-text-teal);
+  color: var(--color-text-accent);
+  border: 1.5px solid var(--color-accent-fill);
   border-radius: 999px;
   padding: 0.5em 1.2em;
   text-decoration: none;
@@ -394,7 +385,7 @@
 }
 
 .cs-subnav a:hover {
-  background: var(--color-text-teal);
+  background: var(--color-accent-fill);
   color: #000;
 }
 
@@ -505,7 +496,7 @@
   font-size: clamp(36px, 4vw, 48px);
   font-weight: var(--weight-semibold);
   line-height: 1;
-  color: var(--color-text-teal);
+  color: var(--color-text-accent);
   margin-bottom: var(--space-sm);
 }
 
@@ -533,11 +524,11 @@
   justify-content: center;
   padding: 2em 1.85em;
   border-radius: 50%;
-  background: var(--color-accent);
+  background: var(--color-accent-fill);
   color: #fff;
   box-shadow:
     0 2px 10px color-mix(in srgb, var(--color-text-primary) 14%, transparent),
-    0 16px 34px color-mix(in srgb, var(--color-accent) 38%, transparent);
+    0 16px 34px color-mix(in srgb, var(--color-accent-fill) 38%, transparent);
 }
 
 /* Sized to sit comfortably for a bare number and a short phrase alike. */
@@ -588,25 +579,19 @@
 
 .cs-next {
   display: inline-block;
-  font-family: var(--font-heading);
-  font-size: var(--type-display);          /* 36px */
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-title);
-  color: var(--color-text-primary);
   text-decoration: none;
   transition: color var(--motion-fast) var(--ease-standard);
 }
 .cs-next:hover,
-.cs-next:focus { color: var(--color-text-teal); }
+.cs-next:focus-visible { color: var(--color-text-accent); }
+.cs-next:focus-visible {
+  outline: 2px solid var(--action-secondary);
+  outline-offset: 6px;
+  border-radius: 4px;
+}
 
 .cs-next__kicker {
   display: block;
-  font-family: var(--font-heading);
-  font-size: 14px;
-  font-weight: var(--weight-semibold);
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
   margin-bottom: var(--space-lg);
 }
 
@@ -644,4 +629,352 @@
     top: 0;
     height: 100%;
   }
+}
+
+/* ── Display serif (Instrument Serif) on page-level titles ─────────────────
+   Single regular weight, so weight is pinned to 400 and size carries the hierarchy. */
+.cs-hero__title, .cs-heading, .cs-quote, .fs-title, .fs-project__title, .murals-hero h1, .prj-header h1 {
+  font-family: var(--font-display, 'Instrument Serif', Georgia, serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-synthesis: none;
+}
+
+/* The media slot is a "scene": a branded splash background with the final design
+   inside a laptop. Modifiers set the company palette; the device itself is
+   pure CSS so it works for any screenshot. */
+.cs-scene {
+  --device-bezel: #0c0d10;
+  --device-base-a: #d7dade;
+  --device-base-b: #9a9fa6;
+  --scene-bg: linear-gradient(135deg, var(--pine-700), var(--terracotta-700));
+  --scene-blob-a: transparent;
+  --scene-blob-b: transparent;
+  --scene-blob-c: transparent;
+  --scene-blob-d: transparent;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-height: 360px;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 3vw, 2.5rem) clamp(1.75rem, 4vw, 3rem);
+  border-radius: var(--space-md);
+  overflow: hidden;
+  background:
+    radial-gradient(60% 55% at 8% 10%, var(--scene-blob-a), transparent 70%),
+    radial-gradient(55% 50% at 94% 12%, var(--scene-blob-b), transparent 70%),
+    radial-gradient(60% 55% at 6% 96%, var(--scene-blob-c), transparent 70%),
+    radial-gradient(55% 50% at 96% 94%, var(--scene-blob-d), transparent 70%),
+    var(--scene-bg);
+}
+/* The company mark, large and faint, anchored to the corner. */
+.cs-scene__splash {
+  position: absolute;
+  z-index: -1;
+  right: -6%;
+  bottom: -14%;
+  width: 62%;
+  max-width: 520px;
+  height: auto;
+  opacity: 0.13;
+  filter: grayscale(1) brightness(2);
+  pointer-events: none;
+}
+.cs-scene--neutral .cs-scene__splash { display: none; }
+
+/* Company palettes (their marks, not ours). */
+.cs-scene--rasa {
+  --scene-bg: linear-gradient(135deg, #2a0a82, #5a17ee);
+  --scene-blob-a: rgba(167, 139, 250, 0.55);
+  --scene-blob-d: rgba(244, 114, 182, 0.35);
+}
+.cs-scene--microsoft {
+  --scene-bg: linear-gradient(135deg, #0b1b3a, #14284f);
+  --scene-blob-a: rgba(242, 80, 34, 0.55);
+  --scene-blob-b: rgba(127, 186, 0, 0.45);
+  --scene-blob-c: rgba(0, 164, 239, 0.55);
+  --scene-blob-d: rgba(255, 185, 0, 0.45);
+}
+.cs-scene--google {
+  --scene-bg: linear-gradient(135deg, #f8f9fa, #e8eaed);
+  --scene-blob-a: rgba(66, 133, 244, 0.45);
+  --scene-blob-b: rgba(234, 67, 53, 0.35);
+  --scene-blob-c: rgba(52, 168, 83, 0.4);
+  --scene-blob-d: rgba(251, 188, 4, 0.45);
+}
+.cs-scene--google .cs-scene__splash { filter: grayscale(1); opacity: 0.18; }
+
+/* ── Copilot scene: a Word document behind floating prompt cards ──────────
+   Used for the EDU Copilot work. Pure CSS/HTML illustration (decorative; the
+   figure carries the aria-label). Sizes are in em off .cs-copilot's font-size
+   so the whole composition scales together. */
+.cs-scene--copilot {
+  --scene-bg: linear-gradient(140deg, #c9b8fb 0%, #8d7cf3 38%, #4d8cf5 100%);
+  --scene-blob-a: rgba(255, 255, 255, 0.35);
+  --scene-blob-d: rgba(244, 114, 182, 0.35);
+}
+.cs-copilot {
+  display: block;
+  padding: 0;
+  font-size: clamp(11px, 1.2vw, 15px);
+  min-height: clamp(380px, 38vw, 480px);
+}
+.cs-copilot .cs-scene__splash { display: none; }
+
+.cs-copilot__window {
+  position: absolute;
+  top: 13%;
+  left: 43%;
+  right: -7%;
+  bottom: -14%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-text-name);
+  border-radius: 0.9em 0 0 0;
+  box-shadow: 0 2.4em 4em rgba(20, 16, 60, 0.32);
+  color: #1f2330;
+  text-align: left;
+}
+.cs-copilot__titlebar {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 0.7em 1em;
+  background: #f1f2f5;
+  border-bottom: 1px solid #e1e3ea;
+  font-size: 0.8em;
+  color: #5b6070;
+}
+.cs-copilot__dots { display: inline-flex; gap: 0.45em; }
+.cs-copilot__dots i { width: 0.8em; height: 0.8em; border-radius: 50%; background: #ff5f57; }
+.cs-copilot__dots i:nth-child(2) { background: #febc2e; }
+.cs-copilot__dots i:nth-child(3) { background: #28c840; }
+.cs-copilot__ribbon {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.1em;
+  padding: 0.55em 1em;
+  background: #185abd; /* Word blue */
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.75em;
+  white-space: nowrap;
+}
+.cs-copilot__ribbon-ai {
+  margin-left: auto;
+  padding: 0 0.7em;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.2);
+}
+.cs-copilot__page {
+  flex: 1;
+  padding: 1.6em 1.8em;
+  font-size: 0.82em;
+  line-height: 1.5;
+  background: var(--color-text-name);
+}
+.cs-copilot__page h4 { margin: 0 0 0.7em; font-size: 1.35em; font-weight: 700; color: #11131c; }
+.cs-copilot__page h5 { margin: 1em 0 0.35em; font-size: 1em; font-weight: 700; color: #185abd; }
+.cs-copilot__page p { margin: 0 0 0.7em; }
+.cs-copilot__page ul { margin: 0 0 0.7em; padding-left: 1.2em; list-style: disc; }
+.cs-copilot__page li { height: auto; float: none; padding: 0; margin: 0 0 0.2em; }
+
+.cs-copilot__floats { position: absolute; inset: 0; text-align: left; }
+.cs-copilot__suggestions {
+  position: absolute;
+  top: 8%;
+  left: 5.5%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55em;
+}
+.cs-copilot__suggestions li {
+  height: auto;
+  float: none;
+  margin: 0;
+  padding: 0.45em 0.9em;
+  align-self: flex-start;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+  font-size: 0.82em;
+  backdrop-filter: blur(6px);
+}
+.cs-copilot__stack {
+  position: absolute;
+  left: 5.5%;
+  bottom: 7%;
+  width: 54%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+}
+.cs-copilot__prompt,
+.cs-copilot__reply,
+.cs-copilot__result {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  padding: 0.9em 1.1em;
+  background: var(--color-text-name);
+  border-radius: 0.9em;
+  box-shadow: 0 0.8em 2em rgba(30, 20, 90, 0.22);
+  color: #151826;
+  font-size: 1.05em;
+}
+.cs-copilot__prompt { justify-content: space-between; background: rgba(255, 255, 255, 0.92); }
+.cs-copilot__send {
+  display: inline-grid;
+  place-items: center;
+  width: 1.9em;
+  height: 1.9em;
+  border-radius: 0.5em;
+  background: #5b5bf0;
+  color: #fff;
+}
+.cs-copilot__status {
+  margin: 0;
+  padding: 0 0.2em;
+  list-style: none;
+  color: #fff;
+  font-size: 1em;
+}
+.cs-copilot__status li { height: auto; float: none; margin: 0; padding: 0; opacity: 0.45; }
+.cs-copilot__status li:nth-child(2) { opacity: 0.7; }
+.cs-copilot__status li:last-child { opacity: 1; font-weight: 600; }
+.cs-copilot__reply { font-weight: 600; }
+.cs-copilot__result {
+  align-self: flex-end;
+  padding: 0.55em 0.9em;
+  font-size: 0.95em;
+  font-weight: 600;
+}
+.cs-copilot__spark { color: #6b5cf0; }
+
+@media (max-width: 860px) {
+  .cs-copilot__window { left: 38%; }
+  .cs-copilot__stack { width: 62%; }
+}
+
+/* ── Case-study hero: title, role / company, then the final product ────────
+   Super light on text. One big title, the role on the left and the company on
+   the right, then the finished product in a branded scene. Before you scroll,
+   the title block fills ~two thirds of the screen and only the top of the
+   product peeks above the fold; scrolling reveals ALL of it (nothing is cropped
+   or hidden under the panel). The summary, details and results live in
+   .cs-glance, the first block of the white panel. */
+.cs-hero--visual {
+  min-height: 0;
+  display: block;
+  text-align: left;
+  padding: 0 var(--page-rail, 40px) 0;
+}
+.cs-hero__wide {
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 68vh;
+  padding-top: clamp(8rem, 17vh, 10.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cs-hero__title.type-display-lg { max-width: 18ch; margin: 0; }
+.cs-hero__roleline {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  margin-top: clamp(2rem, 6vh, 4rem);
+  padding: var(--space-md) 0 var(--space-lg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+.cs-hero__visual {
+  max-width: 1280px;
+  margin: var(--space-xl) auto 0;
+  min-height: 0;
+  height: auto;
+  /* room at the bottom so the white panel's 32px overlap never covers the work */
+  padding: clamp(1.5rem, 4vw, 3.5rem) clamp(1rem, 4vw, 3.5rem) calc(clamp(1.5rem, 4vw, 3.5rem) + 32px);
+  border-radius: var(--space-md);
+  place-items: center;
+}
+/* The whole product, in a window. */
+.cs-window {
+  position: relative;
+  width: min(100%, 1040px);
+  background: var(--color-text-name);
+  border-radius: 14px;
+  box-shadow: 0 2.2rem 4.5rem rgba(10, 12, 30, 0.35);
+  overflow: hidden;
+}
+.cs-window__bar {
+  display: flex;
+  gap: 0.45rem;
+  padding: 0.7rem 0.9rem;
+  background: #f1f2f5;
+  border-bottom: 1px solid #e1e3ea;
+}
+.cs-window__bar i { width: 10px; height: 10px; border-radius: 50%; background: #ff5f57; }
+.cs-window__bar i:nth-child(2) { background: #febc2e; }
+.cs-window__bar i:nth-child(3) { background: #28c840; }
+.cs-window__shot { display: block; width: 100%; height: auto; }
+
+/* The Copilot scene is an absolute composition; in the hero it keeps its
+   height, and its document window is fully inside the frame (not cropped). */
+.cs-hero__visual.cs-copilot {
+  padding: 0;
+  height: clamp(420px, 44vw, 560px);
+  place-items: initial;
+}
+.cs-hero__visual.cs-copilot .cs-copilot__window {
+  bottom: 8%;
+  right: 4%;
+  border-radius: 0.9em;
+}
+
+/* At a glance: the summary, the facts, and the results, first in the panel. */
+.cs-glance { padding-top: var(--space-2xl); padding-bottom: 0; }
+.cs-glance .cs-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: var(--space-xl) clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+.cs-glance__lead {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--type-hero);
+  line-height: var(--leading-body);
+  color: var(--color-text-primary);
+}
+.cs-glance__lead .accent { font-weight: 700; color: var(--color-text-accent); }
+.cs-glance__meta { display: grid; gap: var(--space-md); }
+.cs-glance__meta .cs-meta__value { color: var(--color-text-primary); font-size: 17px; }
+.cs-results {
+  grid-column: 1 / -1;
+  list-style: none;
+  margin: 0;
+  padding: var(--space-lg) 0 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--space-lg) var(--space-xl);
+}
+.cs-result {
+  height: auto; /* header.css has a global li { height: 25px; float: left } */
+  float: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+.cs-glance .cs-subnav { grid-column: 1 / -1; }
+@media (max-width: 860px) {
+  .cs-glance .cs-container { grid-template-columns: 1fr; }
+  .cs-hero__roleline { flex-direction: column; gap: var(--space-xs); }
+  .cs-hero__wide { min-height: 60vh; }
 }

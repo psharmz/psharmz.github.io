@@ -13,7 +13,7 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
+  <!-- Fonts that back the design tokens (DM Sans = headings + body, Instrument Serif = display) -->
   <link rel="stylesheet" href="css/fonts.css">
 
   <link rel="stylesheet" type="text/css" href="css/header.css">
@@ -37,24 +37,77 @@
       <!-- ════════════════════════════════════════════════════════
            HERO
            ════════════════════════════════════════════════════════ -->
-      <header class="cs-hero">
-        <div class="cs-container">
+      <header class="cs-hero cs-hero--visual">
+        <div class="cs-hero__wide">
+          <h1 class="cs-hero__title type-display-lg">Bringing AI into Windows, without losing trust</h1>
+          <div class="cs-hero__roleline">
+            <span class="type-statement">Product Designer</span>
+            <span class="type-statement">Microsoft Windows &amp; M365</span>
+          </div>
+        </div>
+        <figure class="cs-hero__visual cs-scene cs-scene--copilot cs-copilot" role="img"
+                    aria-label="Copilot in Word: the prompt “Turn this study guide into a quiz” is typed over a study-guide document; Copilot replies “Sure thing, here’s your quiz!” and returns a five-question Unit 4 quiz.">
+              <div class="cs-copilot__window" aria-hidden="true">
+                <div class="cs-copilot__titlebar">
+                  <span class="cs-copilot__dots"><i></i><i></i><i></i></span>
+                  <span class="cs-copilot__filename">Unit 4 Study Guide.docx</span>
+                </div>
+                <div class="cs-copilot__ribbon">
+                  <span>Home</span><span>Insert</span><span>Layout</span><span>References</span><span>Review</span><span>View</span><span class="cs-copilot__ribbon-ai">Copilot</span>
+                </div>
+                <div class="cs-copilot__page">
+                  <h4>Unit 4 Study Guide: Photosynthesis</h4>
+                  <p>Photosynthesis is the process plants use to turn light energy into chemical energy stored as glucose. It happens mostly in the chloroplasts of leaf cells, where chlorophyll absorbs sunlight.</p>
+                  <h5>Key terms</h5>
+                  <ul>
+                    <li><b>Chlorophyll</b> — the green pigment that captures light</li>
+                    <li><b>Stomata</b> — tiny openings that let carbon dioxide in</li>
+                    <li><b>Glucose</b> — the sugar the plant makes and stores</li>
+                  </ul>
+                  <h5>The two stages</h5>
+                  <p>In the light-dependent reactions, water is split and oxygen is released. In the Calvin cycle, carbon dioxide is built into glucose using the energy captured earlier.</p>
+                  <p>Remember: light + water + carbon dioxide becomes glucose + oxygen.</p>
+                </div>
+              </div>
 
-          <img class="cs-hero__logo cs-hero__logo--wide" src="img/msoft/microsoft.png" alt="Microsoft logo">
+              <div class="cs-copilot__floats" aria-hidden="true">
+                <ul class="cs-copilot__suggestions">
+                  <li>Make flash cards from these notes</li>
+                  <li>Rewrite this at a 5th-grade reading level</li>
+                  <li>Create a rubric for this essay</li>
+                </ul>
+                <div class="cs-copilot__stack">
+                  <div class="cs-copilot__prompt">
+                    <span>Turn this study guide into a quiz</span>
+                    <span class="cs-copilot__send">&#8593;</span>
+                  </div>
+                  <ol class="cs-copilot__status">
+                    <li>Reading your study guide…</li>
+                    <li>Picking the key concepts…</li>
+                    <li>Writing questions…</li>
+                  </ol>
+                  <div class="cs-copilot__reply"><span class="cs-copilot__spark">&#10022;</span>Sure thing, here’s your quiz!</div>
+                  <div class="cs-copilot__result"><span class="cs-copilot__spark">&#10022;</span>Unit 4 Quiz · 5 questions</div>
+                </div>
+              </div>
+            </figure>
+      </header>
 
-          <p class="cs-eyebrow">Case Study · Microsoft Windows</p>
 
-          <h1 class="cs-hero__title">Bringing AI into Windows, without losing trust</h1>
+      <!-- ════════════════════════════════════════════════════════
+           BODY
+           ════════════════════════════════════════════════════════ -->
+      <main class="cs-body">
 
-          <p class="cs-hero__summary">
-            Three stories from Windows and M365: a horizontal
+        <!-- AT A GLANCE — the story in brief, directly under the visual hero. -->
+        <section class="cs-section cs-glance" aria-label="At a glance">
+          <div class="cs-container">
+            <p class="cs-glance__lead">Three stories from Windows and M365: a horizontal
             <span class="accent">EDU Copilot</span> framework spanning Word, PowerPoint,
             Excel, and Outlook; <span class="accent">Advanced Paste</span>, a PowerToys
             favorite promoted into core Windows; and the community-facing
-            <span class="accent">Windows UI Library</span>.
-          </p>
-
-          <div class="cs-hero__meta">
+            <span class="accent">Windows UI Library</span>.</p>
+            <div class="cs-glance__meta">
             <div class="cs-meta">
               <span class="cs-meta__label">Role</span>
               <span class="cs-meta__value">Product Designer</span>
@@ -68,30 +121,31 @@
               <span class="cs-meta__value">Windows · M365</span>
             </div>
           </div>
-
-          <nav class="cs-subnav" aria-label="Jump to a project">
+            <ul class="cs-results" aria-label="Results">
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">3</span>
+                <span class="cs-result__label type-caption">Projects in this case study: EDU Copilot, Advanced Paste, Windows UI Library</span>
+              </li>
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">4</span>
+                <span class="cs-result__label type-caption">Office apps carrying one EDU Copilot framework: Word, PowerPoint, Excel, Outlook</span>
+              </li>
+            </ul>
+            <nav class="cs-subnav" aria-label="Jump to a project">
             <a href="#edu-copilot">EDU Copilot</a>
             <a href="#advanced-paste">Advanced Paste</a>
             <a href="#windows-ui-library">Windows UI Library</a>
           </nav>
-
-          <span class="cs-hero__cue" aria-hidden="true"></span>
-        </div>
-      </header>
-
-
-      <!-- ════════════════════════════════════════════════════════
-           BODY
-           ════════════════════════════════════════════════════════ -->
-      <main class="cs-body">
+          </div>
+        </section>
 
         <!-- ── EDU COPILOT ── -->
         <section class="cs-section cs-split" id="edu-copilot">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">EDU Copilot · The Systems Challenge</p>
-              <h2 class="cs-heading">One Teaching Assistant, Consistent Across the Entire M365 Suite</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">EDU Copilot · The Systems Challenge</p>
+              <h2 class="cs-heading type-display-sm">One Teaching Assistant, Consistent Across the Entire M365 Suite</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 EDU Copilot is a Copilot with education-specific prompts, trained on data
@@ -111,10 +165,10 @@
 
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">The Prompt</p>
-              <h2 class="cs-heading">One AI Framework, Horizontally, Across a Product Family</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">The Prompt</p>
+              <h2 class="cs-heading type-display-sm">One AI Framework, Horizontally, Across a Product Family</h2>
+            </div>
             <div class="cs-split__body">
               <figure class="cs-figure">
                 <img src="img/msoft/copilot_finding_partners.jpg" alt="Finding partners across Word, PowerPoint, Excel, Outlook, and Teams" loading="lazy">
@@ -131,8 +185,8 @@
 
         <section class="cs-section cs-center">
           <div class="cs-container">
-            <p class="cs-eyebrow">Research</p>
-            <h2 class="cs-heading">Trust Was the Real Constraint, Not Capability</h2>
+            <p class="cs-eyebrow type-caption type-caption--accent">Research</p>
+            <h2 class="cs-heading type-display-sm">Trust Was the Real Constraint, Not Capability</h2>
             <p class="cs-text">
               The open questions going in were less about what Copilot could technically do
               and more about the people on the other side of it: how educators already think
@@ -144,10 +198,10 @@
 
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">The Outcome</p>
-              <h2 class="cs-heading">A Framework for Where Copilot Shows Up, and What It Suggests First</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">The Outcome</p>
+              <h2 class="cs-heading type-display-sm">A Framework for Where Copilot Shows Up, and What It Suggests First</h2>
+            </div>
             <div class="cs-split__body">
               <figure class="cs-figure">
                 <img src="img/msoft/copilot_outcomes.jpg" alt="EDU Copilot framework outcomes" loading="lazy">
@@ -169,10 +223,10 @@
         <!-- ── ADVANCED PASTE ── -->
         <section class="cs-section cs-split" id="advanced-paste">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Advanced Paste · The Opportunity</p>
-              <h2 class="cs-heading">A PowerToys Favorite, Promoted to Core Windows</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">Advanced Paste · The Opportunity</p>
+              <h2 class="cs-heading type-display-sm">A PowerToys Favorite, Promoted to Core Windows</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Advanced Paste started as a PowerToys feature and got so much traction we
@@ -197,10 +251,10 @@
         <!-- ── WINDOWS UI LIBRARY ── -->
         <section class="cs-section cs-split" id="windows-ui-library">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Ongoing Craft</p>
-              <h2 class="cs-heading">Keeping One Library Current for Every Windows App Developer</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">Ongoing Craft</p>
+              <h2 class="cs-heading type-display-sm">Keeping One Library Current for Every Windows App Developer</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Outside of product work, I maintained our community-facing Figma library for
@@ -218,8 +272,8 @@
         <!-- ── CLOSING / NEXT PROJECT ── -->
         <section class="cs-closing">
           <div class="cs-container">
-            <span class="cs-next__kicker">Next project</span>
-            <a class="cs-next" href="/#work">See more work →</a>
+            <span class="cs-next__kicker type-caption type-caption--accent">Next project</span>
+            <a class="cs-next type-display-sm" href="/#strengths">See more work →</a>
           </div>
         </section>
 

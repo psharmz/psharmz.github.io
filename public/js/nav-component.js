@@ -1,57 +1,41 @@
-// Reusable embossed navigation — the single source of truth for the nav
-// markup across every static project page. All styling lives in
-// css/project.css under `.embossed-nav`; the mobile hamburger is built by
-// js/project.js (which clones .nav-links after this injects it).
+// Shared pill navigation — the single source of truth for the nav on every
+// static page (and the markup the React home page mirrors in src/App.js).
+// Styling lives in css/pill-nav.css, which this file links itself so pages only
+// need the one <script> tag.
 function createNavigation() {
-    // Omit the link that points at the page we're already on (e.g. no
-    // "Murals" link while viewing murals.html).
-    var path = window.location.pathname;
-    var onMurals = /(^|\/)murals\.html$/.test(path);
-    var muralsLink = onMurals
-        ? ''
-        : '<span class="link murals-link"><a href="murals.html">Murals</a></span>';
+    var path = window.location.pathname.replace(/\/index\.html$/, '/');
+    var active = '';
+    if (/(^|\/)murals\.html$/.test(path)) active = 'murals';
+    else if (path === '/' || path === '') active = 'about';
+    else active = 'work'; // portfolio, portfolio-home and every case study live under Work
 
-    // "Work" funnels visitors to the gated portfolio index — except on the gated
-    // index itself, which *is* the work page; linking to it there would send you
-    // back through the password screen you already cleared. So it becomes "Home"
-    // and points at the homepage.
-    var onGatedPortfolio = /(^|\/)portfolio-home\.html$/.test(path);
-    var workLabel = onGatedPortfolio ? 'Home' : 'Work';
-    // Root-relative, matching the brand link — so it still resolves if the nav
-    // is ever dropped onto a page in a subdirectory.
-    var workHref = onGatedPortfolio ? '/' : '/portfolio.html';
+    var link = function (key, href, label, extra) {
+        var cur = active === key ? ' aria-current="page"' : '';
+        return '<a href="' + href + '"' + cur + (extra || '') + '>' + label + '</a>';
+    };
 
-    return `
-        <nav class="top-nav">
-            <div class="nav-links">
-                <span class="link brand-link">
-                    <a href="/">
-                        <img src="img/p.png" alt="Parul" />
-                        <span class="brand-link-name">Parul</span>
-                    </a>
-                </span>
-                <span class="link work-link"><a href="${workHref}">${workLabel}</a></span>
-                ${muralsLink}
-                <span class="link email-link"><a href="mailto:p.sharma9793@gmail.com?Subject=Let's work together" target="_top">Email</a></span>
-                <span class="link resume"><a href="parul_resume.pdf" target="_blank">Resume</a></span>
-            </div>
-        </nav>
-
-        <div class="work-header">
-            <button onclick="window.location.href='/'" class="back-to-top">
-                <img alt="profile" src="img/p.png" width="60px" class="profile-logo" />
-            </button>
-            <span class="murals-brand">Parul</span>
-        </div>
-    `;
+    return '' +
+        '<nav class="pill-nav" aria-label="Primary">' +
+            '<a class="pill-nav__home" href="/" aria-label="Parul Sharma — home">' +
+                '<img class="pill-nav__avatar" src="/img/parul-avatar.jpg" alt="" width="32" height="32" />' +
+            '</a>' +
+            link('cv', '/#cv', 'CV') +
+            link('work', '/portfolio.html', 'Work') + // the password screen
+            link('murals', '/murals.html', 'Murals') +
+            link('about', '/#words', 'About') +
+            link('', 'https://www.linkedin.com/in/psharmz/', 'LinkedIn', ' target="_blank" rel="noopener noreferrer"') +
+        '</nav>';
 }
 
-// Inject the nav and flag the page so the `.embossed-nav` styles apply.
 function injectNavigation() {
-    document.body.classList.add('embossed-nav');
+    if (!document.querySelector('link[href$="pill-nav.css"]')) {
+        var css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = '/css/pill-nav.css';
+        document.head.appendChild(css);
+    }
+    document.body.classList.add('has-pill-nav');
     document.body.insertAdjacentHTML('afterbegin', createNavigation());
 }
 
-// Runs before js/project.js (loaded at body end) so the hamburger has a
-// .nav-links to clone.
 document.addEventListener('DOMContentLoaded', injectNavigation);

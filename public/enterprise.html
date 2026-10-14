@@ -13,7 +13,7 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
+  <!-- Fonts that back the design tokens (DM Sans = headings + body, Instrument Serif = display) -->
   <link rel="stylesheet" href="css/fonts.css">
 
   <link rel="stylesheet" type="text/css" href="css/header.css">
@@ -118,7 +118,7 @@
       margin: 0;
       padding: 0.7em 1.05em;
       font-family: var(--font-body);
-      font-size: var(--type-caption);
+      font-size: var(--type-figure-caption);
       line-height: var(--leading-body);
       background: #f1f0f5;
       color: var(--color-text-primary);
@@ -127,7 +127,7 @@
     }
 
     .cs-chat__msg--me .cs-chat__bubble {
-      background: var(--color-accent);
+      background: var(--color-accent-fill);
       color: #fff;
       border-radius: 18px 18px 4px 18px;
     }
@@ -167,28 +167,39 @@
       <!-- ════════════════════════════════════════════════════════
            HERO  — logo · eyebrow · title · summary · meta
            ════════════════════════════════════════════════════════ -->
-      <header class="cs-hero">
-        <div class="cs-container">
+      <header class="cs-hero cs-hero--visual">
+        <div class="cs-hero__wide">
+          <h1 class="cs-hero__title type-display-lg">Automating field dispatch at scale</h1>
+          <div class="cs-hero__roleline">
+            <span class="type-statement">Lead Product Designer · Solo</span>
+            <span class="type-statement">Google Cloud</span>
+          </div>
+        </div>
+        <figure class="cs-hero__visual cs-scene cs-scene--google">
+          <img class="cs-scene__splash" src="img/headers/cloud_logo.png" alt="" aria-hidden="true">
+          <div class="cs-window">
+            <div class="cs-window__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img class="cs-window__shot" src="img/enterprise/case_visualization.png" alt="The dispatch console: a weekly calendar of field tickets by technician, colour-coded by urgency">
+          </div>
+        </figure>
+      </header>
 
-          <img class="cs-hero__logo cs-hero__logo--wide"
-               src="img/headers/cloud_logo.png"
-               alt="Google Cloud">
 
-          <p class="cs-eyebrow">Case Study · Enterprise</p>
+      <!-- ════════════════════════════════════════════════════════
+           BODY  — white panel that lifts over the hero
+           ════════════════════════════════════════════════════════ -->
+      <main class="cs-body">
 
-          <h1 class="cs-hero__title">Automating field dispatch at scale</h1>
-
-          <p class="cs-hero__summary">
-            A dispatch console that routes field work across global metros, paired
+        <!-- AT A GLANCE — the story in brief, directly under the visual hero. -->
+        <section class="cs-section cs-glance" aria-label="At a glance">
+          <div class="cs-container">
+            <p class="cs-glance__lead">A dispatch console that routes field work across global metros, paired
             with the mobile app field workers carry on site. It made automation
             possible across <span class="accent">10 workstreams, 4 timezones, and 3
             user groups</span>, a 30% productivity gain. The work also
             <span class="accent">informed the product roadmap</span> and contributed
-            to a <span class="accent">client contract renewal</span>.
-          </p>
-
-          <!-- META ROW -->
-          <div class="cs-hero__meta">
+            to a <span class="accent">client contract renewal</span>.</p>
+            <div class="cs-glance__meta">
             <div class="cs-meta">
               <span class="cs-meta__label">Role</span>
               <span class="cs-meta__value">Lead Product Designer · Solo</span>
@@ -206,16 +217,23 @@
               <span class="cs-meta__value">1+ year</span>
             </div>
           </div>
-
-          <span class="cs-hero__cue" aria-hidden="true"></span>
-        </div>
-      </header>
-
-
-      <!-- ════════════════════════════════════════════════════════
-           BODY  — white panel that lifts over the hero
-           ════════════════════════════════════════════════════════ -->
-      <main class="cs-body">
+            <ul class="cs-results" aria-label="Results">
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">30%</span>
+                <span class="cs-result__label type-caption">Faster ticket assignment</span>
+              </li>
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">3 → 1</span>
+                <span class="cs-result__label type-caption">Clicks to the work log</span>
+              </li>
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">+3.5 pt</span>
+                <span class="cs-result__label type-caption">User satisfaction (1–5 scale)</span>
+              </li>
+            </ul>
+            
+          </div>
+        </section>
 
 
 
@@ -224,13 +242,13 @@
         <!-- ── THE BRIEF ── -->
         <section class="cs-section cs-split" id="brief">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">The Brief</p>
-              <h2 class="cs-heading">
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">The Brief</p>
+              <h2 class="cs-heading type-display-sm">
                 “How might we automate the assignment of field workers to tickets
                 at scale, across regions, in real time?”
               </h2>
-            </aside>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Three user groups, one workflow:
@@ -251,10 +269,10 @@
         <!-- ── DESIGN THE PROCESS FIRST ── -->
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Approach</p>
-              <h2 class="cs-heading">Design the process before the pixels</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">Approach</p>
+              <h2 class="cs-heading type-display-sm">Design the process before the pixels</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 You can't automate a workflow you haven't defined. Before any UI, I
@@ -287,10 +305,10 @@
         <!-- ── FIELD RESEARCH ── -->
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Research</p>
-              <h2 class="cs-heading">Field workers don't work at a desk</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">Research</p>
+              <h2 class="cs-heading type-display-sm">Field workers don't work at a desk</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 I shadowed a field worker for a day and visited a live POP site.
@@ -322,10 +340,10 @@
         <!-- ── FIELD WORKER APP ── -->
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Field App</p>
-              <h2 class="cs-heading">Designing automation people trust</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">Field App</p>
+              <h2 class="cs-heading type-display-sm">Designing automation people trust</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 The first version tracked travel and work with live timers. However,
@@ -348,7 +366,7 @@
                   <p class="cs-chat__bubble">We&rsquo;d like a pause work button</p>
                 </div>
                 <div class="cs-chat__msg cs-chat__msg--me" role="listitem">
-                  <img class="cs-chat__avatar cs-chat__avatar--img" src="img/p.png" alt="Parul">
+                  <img class="cs-chat__avatar cs-chat__avatar--img" src="img/parul-avatar.jpg" alt="Parul">
                   <p class="cs-chat__bubble">why</p>
                 </div>
                 <div class="cs-chat__msg cs-chat__msg--them" role="listitem">
@@ -356,7 +374,7 @@
                   <p class="cs-chat__bubble">feels like we are being micromanaged</p>
                 </div>
                 <div class="cs-chat__msg cs-chat__msg--me" role="listitem">
-                  <img class="cs-chat__avatar cs-chat__avatar--img" src="img/p.png" alt="Parul">
+                  <img class="cs-chat__avatar cs-chat__avatar--img" src="img/parul-avatar.jpg" alt="Parul">
                   <p class="cs-chat__bubble">why</p>
                 </div>
                 <div class="cs-chat__msg cs-chat__msg--them" role="listitem">
@@ -365,7 +383,7 @@
                     second feels stressful and unfair</p>
                 </div>
                 <div class="cs-chat__msg cs-chat__msg--me" role="listitem">
-                  <img class="cs-chat__avatar cs-chat__avatar--img" src="img/p.png" alt="Parul">
+                  <img class="cs-chat__avatar cs-chat__avatar--img" src="img/parul-avatar.jpg" alt="Parul">
                   <p class="cs-chat__bubble">why</p>
                 </div>
                 <div class="cs-chat__msg cs-chat__msg--them" role="listitem">
@@ -406,10 +424,10 @@
         <!-- ── DISPATCH AGENT — SIGNATURE WIN ── -->
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Dispatch Agent App</p>
-              <h2 class="cs-heading">From invisible to at-a-glance</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">Dispatch Agent App</p>
+              <h2 class="cs-heading type-display-sm">From invisible to at-a-glance</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Dispatch agents work remotely in a different timezone from the job,
@@ -457,8 +475,8 @@
              need; same arrangement as the Career Coach impact section. -->
         <section class="cs-section" id="impact">
           <div class="cs-container">
-            <p class="cs-eyebrow">Impact</p>
-            <h2 class="cs-heading">What it moved</h2>
+            <p class="cs-eyebrow type-caption type-caption--accent">Impact</p>
+            <h2 class="cs-heading type-display-sm">What it moved</h2>
             <div class="cs-metrics cs-metrics--circles">
               <div class="cs-metric">
                 <span class="cs-metric__num">30%</span>
@@ -479,8 +497,8 @@
         <!-- ── CLOSING / NEXT PROJECT ── -->
         <section class="cs-closing">
           <div class="cs-container">
-            <span class="cs-next__kicker">Next project</span>
-            <a class="cs-next" href="rasa.html">Rasa &rarr;</a>
+            <span class="cs-next__kicker type-caption type-caption--accent">Next project</span>
+            <a class="cs-next type-display-sm" href="rasa.html">Rasa &rarr;</a>
           </div>
         </section>
 

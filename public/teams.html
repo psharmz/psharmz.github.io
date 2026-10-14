@@ -13,7 +13,7 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
+  <!-- Fonts that back the design tokens (DM Sans = headings + body, Instrument Serif = display) -->
   <link rel="stylesheet" href="css/fonts.css">
 
   <link rel="stylesheet" type="text/css" href="css/header.css">
@@ -123,26 +123,40 @@
       <!-- ════════════════════════════════════════════════════════
            HERO
            ════════════════════════════════════════════════════════ -->
-      <header class="cs-hero">
-        <div class="cs-container">
+      <header class="cs-hero cs-hero--visual">
+        <div class="cs-hero__wide">
+          <h1 class="cs-hero__title type-display-lg">Turning data into insights and storytelling</h1>
+          <div class="cs-hero__roleline">
+            <span class="type-statement">Product Designer</span>
+            <span class="type-statement">Microsoft Education</span>
+          </div>
+        </div>
+        <figure class="cs-hero__visual cs-scene cs-scene--microsoft">
+          <img class="cs-scene__splash" src="img/msoft/microsoft.png" alt="" aria-hidden="true">
+          <div class="cs-window">
+            <div class="cs-window__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img class="cs-window__shot" src="img/careercoach/insights_interests.jpg" alt="Career Coach faculty dashboard in Teams: student skills and career interests as bar charts, with a Program Manager detail panel">
+          </div>
+        </figure>
+      </header>
 
-          <img class="cs-hero__logo cs-hero__logo--wide" src="img/msoft/microsoft.png" alt="Microsoft logo">
 
-          <p class="cs-eyebrow">Case Study · Microsoft Education · Career Coach</p>
+      <!-- ════════════════════════════════════════════════════════
+           BODY
+           ════════════════════════════════════════════════════════ -->
+      <main class="cs-body">
 
-          <h1 class="cs-hero__title">Turning data into insights and storytelling</h1>
-
-          <p class="cs-hero__summary">
-            Career Coach unlocked a significant volume of data for university faculty —
+        <!-- AT A GLANCE — the story in brief, directly under the visual hero. -->
+        <section class="cs-section cs-glance" aria-label="At a glance">
+          <div class="cs-container">
+            <p class="cs-glance__lead">Career Coach unlocked a significant volume of data for university faculty —
             skills extracted from resumes, career interests bookmarked in the app, alumni
             industry trends. I focused on
             <span class="accent">the narrative behind those metrics</span>: transforming
             disparate data points into a cohesive story that could
             <span class="accent">empower college career counselors to better support their
-            students</span>.
-          </p>
-
-          <div class="cs-hero__meta">
+            students</span>.</p>
+            <div class="cs-glance__meta">
             <div class="cs-meta">
               <span class="cs-meta__label">Role</span>
               <span class="cs-meta__value">Product Designer</span>
@@ -156,29 +170,36 @@
               <span class="cs-meta__value">Web · Teams · Mobile</span>
             </div>
           </div>
-
-          <span class="cs-hero__cue" aria-hidden="true"></span>
-        </div>
-      </header>
-
-
-      <!-- ════════════════════════════════════════════════════════
-           BODY
-           ════════════════════════════════════════════════════════ -->
-      <main class="cs-body">
+            <ul class="cs-results" aria-label="Results">
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">3</span>
+                <span class="cs-result__label type-caption">New universities signed before GA launch</span>
+              </li>
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">32%</span>
+                <span class="cs-result__label type-caption">Increase in usage of LinkedIn’s JMI Economic Graph</span>
+              </li>
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">20%</span>
+                <span class="cs-result__label type-caption">Increase in active sessions for faculty</span>
+              </li>
+            </ul>
+            
+          </div>
+        </section>
 
         <!-- ── 1 · THE PROBLEM ── -->
         <section class="cs-section cs-split" id="problem">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">The Problem</p>
-              <h2 class="cs-heading">What does a university actually know about its own students?</h2>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">The Problem</p>
+              <h2 class="cs-heading type-display-sm">What does a university actually know about its own students?</h2>
               <figure class="cs-figure cc-aside-fig">
                 <img src="img/careercoach/teacher.png"
                      alt="A faculty member at a laptop surrounded by question marks, with the LinkedIn logo below"
                      loading="lazy">
               </figure>
-            </aside>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 I was given two seemingly separate feature requests: first,
@@ -207,15 +228,15 @@
         <!-- ── 2 · RESEARCH ── -->
         <section class="cs-section cs-split" id="research">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Research</p>
-              <h2 class="cs-heading">What does this widget actually help a user decide?</h2>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">Research</p>
+              <h2 class="cs-heading type-display-sm">What does this widget actually help a user decide?</h2>
               <figure class="cs-figure cc-aside-fig">
                 <img src="img/careercoach/faculty.png"
                      alt="Illustration of eight faculty members of varied ages, genders and backgrounds"
                      loading="lazy">
               </figure>
-            </aside>
+            </div>
             <div class="cs-split__body">
               <ul class="cc-beats">
                 <li>
@@ -238,10 +259,10 @@
         <!-- ── 3 · WHAT WE FOUND ── -->
         <section class="cs-section cs-split" id="findings">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">What We Found</p>
-              <h2 class="cs-heading">Context and recency matter</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">What We Found</p>
+              <h2 class="cs-heading type-display-sm">Context and recency matter</h2>
+            </div>
             <div class="cs-split__body">
               <ul class="cc-beats">
                 <li>
@@ -273,10 +294,10 @@
         <!-- ── 4 · DESIGN PIVOTS ── -->
         <section class="cs-section cs-split" id="pivots">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Design Pivots</p>
-              <h2 class="cs-heading">Realizing we had it backwards</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">Design Pivots</p>
+              <h2 class="cs-heading type-display-sm">Realizing we had it backwards</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Placing relevant data side by side for easy scanning still put
@@ -301,10 +322,10 @@
         <!-- ── 5 · FINAL DESIGN ── -->
         <section class="cs-section cs-split" id="final-design">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Final Design</p>
-              <h2 class="cs-heading">Designing with tradeoffs and technical constraints</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">Final Design</p>
+              <h2 class="cs-heading type-display-sm">Designing with tradeoffs and technical constraints</h2>
+            </div>
             <div class="cs-split__body">
               <ul class="cc-beats">
                 <li>
@@ -345,8 +366,8 @@
         <!-- ── CAREER COACH · IMPACT ── -->
         <section class="cs-section" id="career-coach-impact">
           <div class="cs-container">
-            <p class="cs-eyebrow">Impact</p>
-            <h2 class="cs-heading">A market differentiator and stronger partnerships</h2>
+            <p class="cs-eyebrow type-caption type-caption--accent">Impact</p>
+            <h2 class="cs-heading type-display-sm">A market differentiator and stronger partnerships</h2>
             <p class="cs-text">
               Walking customers through the Insights work on live calls turned the personalization
               story into a selling point — three new universities signed before general availability.
@@ -374,8 +395,8 @@
         <!-- ── CLOSING / NEXT PROJECT ── -->
         <section class="cs-closing">
           <div class="cs-container">
-            <span class="cs-next__kicker">Next project</span>
-            <a class="cs-next" href="enterprise.html">Google →</a>
+            <span class="cs-next__kicker type-caption type-caption--accent">Next project</span>
+            <a class="cs-next type-display-sm" href="enterprise.html">Google →</a>
           </div>
         </section>
 

@@ -1,17 +1,93 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import MobileFooter from './components/MobileFooter';
+import GrainGradient from './components/GrainGradient';
+import WordCard from './components/WordCard';
+import SectionHeader from './components/SectionHeader';
+import LockIcon from './components/LockIcon';
+import { gridQuotes } from './data/testimonials';
+import { strengths } from './data/strengths';
+
+
+// CV timeline. Order = display order. `media` shows to the right on desktop
+// (the last row you hovered stays); `cta` is optional.
+const cvRoles = [
+  {
+    date: '2026', company: 'Rooted Futures Lab', title: 'Product Designer and Engineer',
+    desc: 'Climate research lab. Designing and building Study Hall, a STEM learning game, in React.',
+    media: { type: 'img', src: 'img/now/study-hall-game.png' },
+    cta: { label: 'Play the game', href: 'https://rfl-studyhall.github.io', external: true },
+  },
+  {
+    date: '2025', company: 'Wonderschool', title: 'Senior Product Designer',
+    desc: 'Simplified enterprise UX for state childcare subsidies and daycare licensing. Redesigned provider onboarding to fix a 40%+ drop-off.',
+    media: { type: 'img', src: 'img/now/wonderschool.jpg' },
+    cta: { label: 'Learn more', href: 'https://www.wonderschool.com', external: true },
+  },
+  {
+    date: '2020', company: 'Microsoft', title: 'Designer and Prototyper',
+    desc: 'Designed AI education products used by millions. Created the Copilot for Education AI framework, adopted across M365 education.',
+    media: { type: 'img', src: 'img/msoft/reading-progress.jpg' },
+    cta: { label: 'View Case Study', href: 'horizontal-design.html' },
+  },
+  {
+    date: '2018', company: 'Accenture', title: 'Design Strategist & UX Designer',
+    desc: 'Consulting for Google and the State of California. Simplified complex CalFresh and CalSAWS workflows for children\u2019s benefits caseworkers.',
+    media: { type: 'video', src: 'img/cover_vid.mp4', poster: 'img/posters/cover_vid.jpg' },
+    cta: { label: 'View Case Study', href: 'portfolio.html?next=enterprise.html' },
+  },
+  {
+    date: '2017', company: 'Rasa', title: 'Front-End Developer & UX Designer',
+    desc: 'Sole designer and front-end engineer at a conversational AI startup. Built agentic experiences and ML ops tools for chatbots, 0\u21921 in React.',
+    media: { type: 'img', src: 'img/rasa/workshop.png' },
+    cta: { label: 'View Case Study', href: 'portfolio.html?next=rasa.html' },
+  },
+];
 
 function MainPortfolio() {
   const [scrollY, setScrollY] = useState(0);
+  // Index of the CV row last hovered/focused. Deliberately never resets, so the
+  // preview stays put when the pointer leaves.
+  const [cvActive, setCvActive] = useState(0);
+  // False until the first hover/focus, so the section stays black until used.
+  const [cvEngaged, setCvEngaged] = useState(false);
+  // Which scroll-anchored nav item matches the section in view: 'cv' | 'about' | ''.
+  const [navSection, setNavSection] = useState('');
   const navigate = useNavigate();
+
+  // WCAG 2.2.2: looping demo video shouldn't keep moving for people who've asked
+  // the OS for reduced motion, so hold those on their poster/first frame.
+  useEffect(() => {
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.querySelectorAll('video[autoplay]').forEach((v) => {
+      v.removeAttribute('autoplay');
+      v.pause();
+    });
+  }, []);
+
+  // Underline CV / About in the nav while their section is on screen.
+  useEffect(() => {
+    const targets = [['cv', 'cv'], ['words', 'about']];
+    const visible = new Set();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        const key = targets.find(([id]) => id === en.target.id)[1];
+        if (en.isIntersecting) visible.add(key); else visible.delete(key);
+      });
+      setNavSection([...visible][0] || '');
+    }, { rootMargin: '-40% 0px -40% 0px' });
+    targets.forEach(([id]) => { const el = document.getElementById(id); if (el) io.observe(el); });
+    return () => io.disconnect();
+  }, []);
 
   // Handle hash navigation on component mount
   useEffect(() => {
     const hash = window.location.hash;
-    if (hash === '#work') {
+    if (hash === '#cv') {
+      document.getElementById('cv')?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    } else if (hash === '#work' || hash === '#words' || hash === '#strengths') {
       setTimeout(() => {
-        const element = document.getElementById('work');
+        const element = document.getElementById(hash.slice(1));
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
@@ -19,116 +95,7 @@ function MainPortfolio() {
     }
   }, []);
 
-  // Testimonial cards. `company` picks the grey eyebrow logo; `avatar` is a
-  // shared placeholder for now, swap per person as portraits come in.
-  const quotes = [
-    {
-      text: "Parul is exactly the kind of designer who not only delivers strong solutions but also helps shape a stronger design culture. I'm happy to recommend Parul for any product design role! She brings a rare combination of courage, creativity, and user-centered thinking to every project she touches.",
-      highlights: ["design culture", "rare combination", "courage", "creativity", "user-centered thinking"],
-      name: "Paul Ray",
-      role: "Director of Product Design, Education at Microsoft",
-      company: { name: "Microsoft", logo: "img/logos/microsoft.png" },
-      avatar: "img/avatars/paul-ray.jpg"
-    },
-    {
-      text: "I worked with Parul at Microsoft in Education product design. These include working in a space to define AI and Copilot scenarios and use for educational purpose inside the classroom. She has great capabilities to look across horizontal spaces and make logical connections that reduce and simplify the user experience.",
-      highlights: ["define AI and Copilot scenarios", "look across horizontal spaces", "reduce and simplify the user experience"],
-      name: "Jon Esterly",
-      role: "Principal Product Designer, Education at Microsoft",
-      company: { name: "Microsoft", logo: "img/logos/microsoft.png" },
-      avatar: "img/avatars/jon-esterly.jpg",
-      cta: { label: "View Framework Sensemaking", href: "horizontal-design.html" },
-      featured: true
-    },
-    {
-      text: "I worked with Parul during her project in Google NetOps. Parul has a passion for UI development in application design, and has proposed creative solutions to improve the user interface to support complex processes. We worked together across multiple workstreams (10+) for various circuit deliveries and field operations. She has received strong feedback from my partner teams during her time on the project.",
-      highlights: ["UI development", "creative solutions", "complex processes", "multiple workstreams (10+)"],
-      name: "Eddie Dinh",
-      role: "Google Cloud",
-      company: { name: "Google", logo: "img/logos/google.png" },
-      avatar: "img/avatars/eddie-dinh.jpg",
-      cta: { label: "View Case Study", href: "portfolio.html?next=enterprise.html" },
-      featured: true
-    },
-    {
-      text: "Her concern for the customer and overall experience was truly evident in every design decision. Parul was also a driving force in fostering team culture by creating spaces for collaboration. She started a Teams channel for our team that encouraged quick, constructive design feedback. She also organized a coworking opportunity that she hosted each week offering a flexible, low-pressure way for teammates to connect while working. Her efforts to build engagement and community made a real difference in strengthening the team as a whole.",
-      highlights: ["concern for the customer", "driving force", "team culture", "constructive design feedback", "engagement", "community"],
-      name: "Joshua McGlinn",
-      role: "Principal Design Lead at Microsoft",
-      company: { name: "Microsoft", logo: "img/logos/microsoft.png" },
-      avatar: "img/avatars/joshua-mcglinn.jpg"
-    },
-    {
-      // Blank line splits the quote into paragraphs — see renderWordCard.
-      text: "I've worked with Parul on several machine learning projects, including a longer term one at Rasa. Parul is a joy to work with in terms of energy and mentality, she is interested and able to communicate effectively with participants from customers through management to engineers. Parul has a great understanding not only of UX principles for users, but of how working with ML/AI systems complicates user interactions and what opportunities it gives to improve them.\n\nI would recommend working with Parul to anyone who has the opportunity!",
-      highlights: ["several machine learning projects", "communicate effectively", "UX principles", "ML/AI systems"],
-      name: "Joey Faulkner",
-      role: "Machine Learning Engineer, Rasa",
-      company: { name: "Rasa", logo: "img/logos/rasa.png" },
-      avatar: "img/avatars/joey-faulkner.jpg",
-      cta: { label: "View Case Study", href: "portfolio.html?next=rasa.html" },
-      featured: true
-    },
-    {
-      text: "Her instinct for inclusive design, proactive collaboration, and thoughtful questioning consistently elevates team outcomes, as seen in her impactful work on Career Coach, Speaker Progress, and Learning Accelerators. She demonstrates maturity and conviction, while her positive, curious attitude fosters a supportive and innovative team environment.",
-      highlights: ["inclusive design", "proactive collaboration", "elevates team outcomes", "Career Coach", "Speaker Progress", "Learning Accelerators"],
-      name: "Paul Ray",
-      role: "Director of Product Design, Education at Microsoft",
-      company: { name: "Microsoft", logo: "img/logos/microsoft.png" },
-      avatar: "img/avatars/paul-ray.jpg",
-      // Routes through the password gate, which forwards to Career Coach on
-      // success (see `next` handling in public/portfolio.html).
-      cta: { label: "View Case Study", href: "portfolio.html?next=teams.html" },
-      featured: true
-    }
-  ];
 
-  // "Experiences and Strengths": each row pairs a piece of work with the quote
-  // that speaks to it. `featured` marks the quotes claimed here, so they don't
-  // also appear in the "Words From Others" grid.
-  const byName = (name) => quotes.find((q) => q.name === name && q.featured);
-
-  const strengths = [
-    {
-      slug: 'zero-to-one',
-      title: 'Designing 0 \u2192 1 Products',
-      eyebrow: 'LinkedIn Economic Graph API \u00b7 +32% traffic',
-      video: 'img/msoft/intro1.mp4',
-      mediaAlt: 'Microsoft Teams education product walkthrough',
-      quote: byName('Paul Ray')
-    },
-    {
-      slug: 'horizontal',
-      title: 'Copilot for EDU and Insights Framework',
-      eyebrow: 'Framework creation across education spaces horizontally',
-      // Two stills crossfading in one frame — see .strength__media--fade.
-      fade: ['img/msoft/reading-progress.jpg', 'img/msoft/speakerstudent.gif'],
-      mediaAlt: 'Reading Coach in Microsoft Teams: word practice, reading start, syllable breakdown and the teacher reading-progress report, alternating with a student Speaker Progress recording',
-      quote: byName('Jon Esterly')
-    },
-    {
-      slug: 'developers',
-      title: 'Designing for Developers',
-      media: 'img/msoft/dev-home-machine-config.png',
-      mediaAlt: 'Dev Home machine configuration — developer environment setup',
-      eyebrow: 'Designer + engineer \u00b7 Conversational AI \u00b7 ML dev ops',
-      quote: byName('Joey Faulkner')
-    },
-    {
-      slug: 'enterprise',
-      title: 'Complex Technical Spaces in Enterprise',
-      // The live CSS phone with the counting timer, shared with the Google
-      // case study rather than duplicated.
-      embed: 'embeds/field_worker_mobile_stripped.html',
-      // Animates behind the phone. White was flattened to a transparent index so
-      // it reads on the dark band instead of sitting in a white box.
-      backdrop: 'img/enterprise/google-logo.gif',
-      mediaAlt: 'Field dispatch mobile app with a running travel timer',
-      quote: byName('Eddie Dinh')
-    }
-  ];
-
-  const gridQuotes = quotes.filter((q) => !q.featured);
 
 
   useEffect(() => {
@@ -256,75 +223,10 @@ function MainPortfolio() {
     return () => ro.disconnect();
   }, []);
 
-  const renderHighlightedText = (text, highlights = []) => {
-    if (!highlights || highlights.length === 0) {
-      return text;
-    }
-
-    let result = text;
-    highlights.forEach((highlight) => {
-      const escapedHighlight = highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      result = result.replace(
-        new RegExp(escapedHighlight, 'g'),
-        `<strong style="font-weight: 700; color: var(--color-text-teal);">${highlight}</strong>`
-      );
-    });
-
-    return result;
-  };
-
   // Anything routed through portfolio.html hits the password gate first, so the
   // button wears a lock — same treatment as "View Portfolio" in the hero.
   const isGated = (href) => /^portfolio\.html(\?|$)/.test(href);
 
-  // One card shape, used both for the featured quote below "I've Worked With"
-  // and for every card in the "Words From Others" grid.
-  const renderWordCard = (q, key) => (
-    <figure className="word-card scroll-reveal" key={key}>
-      {/* Company mark, greyed to match the client logos — not a link. The
-          per-brand class is there so a mark whose glyphs don't fill its canvas
-          can be optically sized to match the wordmarks. */}
-      <img
-        className={`word-card__logo word-card__logo--${q.company.name.toLowerCase()}`}
-        src={q.company.logo}
-        alt={q.company.name}
-        aria-hidden="true"
-      />
-      {/* A blank line in `text` starts a new paragraph. The curly quotes wrap
-          the whole quotation, so they open on the first and close on the last. */}
-      <blockquote
-        className="word-card__quote"
-        dangerouslySetInnerHTML={{
-          __html: q.text
-            .split(/\n\s*\n/)
-            .map((para, n, all) =>
-              `<p>${n === 0 ? '“' : ''}${renderHighlightedText(para, q.highlights)}${n === all.length - 1 ? '”' : ''}</p>`
-            )
-            .join('')
-        }}
-      />
-      {q.cta && (
-        <a
-          className={`word-card__cta${isGated(q.cta.href) ? ' nav-label--lock' : ''}`}
-          href={q.cta.href}
-        >
-          {isGated(q.cta.href) && (
-            <span className="lock-icon" role="img" aria-label="Password protected">
-              🔒
-            </span>
-          )}
-          {q.cta.label}
-        </a>
-      )}
-      <figcaption className="word-card__person">
-        <img className="word-card__avatar" src={q.avatar} alt="" aria-hidden="true" />
-        <span className="word-card__meta">
-          <span className="word-card__name">{q.name}</span>
-          <span className="word-card__role">{q.role}</span>
-        </span>
-      </figcaption>
-    </figure>
-  );
 
 
 
@@ -365,78 +267,85 @@ function MainPortfolio() {
   };
 
   return (
-    <div className="App">
+    <div className={`App${cvEngaged ? ` App--cv-${cvActive}` : ''}`}>
 
+      <header className="site-header">
+        <a className="skip-link" href="#main">Skip to content</a>
+        <nav className="pill-nav intro-stagger intro-delay-1" aria-label="Primary">
+          <a className="pill-nav__home" href="/" aria-label="Parul Sharma — home">
+            <img className="pill-nav__avatar" src="/img/parul-avatar.jpg" alt="" width="32" height="32" />
+          </a>
+          <a href="/#cv" aria-current={navSection === 'cv' ? 'location' : undefined} onClick={(e) => { e.preventDefault(); document.getElementById('cv')?.scrollIntoView({ behavior: 'instant', block: 'start' }); window.history.replaceState(null, '', '#cv'); }}>CV</a>
+          <a href="/portfolio.html">Work</a>
+          <a href="/murals.html">Murals</a>
+          <a href="#words" aria-current={navSection === 'about' ? 'location' : undefined} onClick={(e) => { e.preventDefault(); document.getElementById('words')?.scrollIntoView({ behavior: 'smooth' }); }}>About</a>
+          <a href="https://www.linkedin.com/in/psharmz/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </nav>
+      </header>
+
+      <main id="main">
       {/* Hero Section */}
       <section id="home" className="hero-section">
-        <div className="parallax-bg" style={{ transform: `translateY(${scrollY * 0.5}px)` }}>
-          <div className="container">
-            <div className="row blurb">
-              <div className="col-sm-4">
-                <div className="profile-image" style={{
-                  transform: `translateY(${scrollY * 0.3}px) scale(${1 - scrollY * 0.0005})`,
-                  opacity: Math.max(0.3, 1 - scrollY * 0.001)
-                }}>
-                  <img alt="Parul Sharma" src="img/parul-avatar.jpg" width="100%" />
-                </div>
-              </div>
-              <div className="col-sm-8 about">
-                <div className="about-content" style={{
-                  transform: `translateY(${scrollY * 0.2}px)`,
-                  opacity: Math.max(0.2, 1 - scrollY * 0.0015)
-                }}>
-                  <div className="text-content">
-                    <h2 className="hero-greeting">hi, i'm parul</h2>
-                    <p className="hero-blurb">Mission-driven product designer and <strong className="accent">coded-prototyper</strong> with 8+ years building for <strong className="accent">EdTech (K-12, higher-ed)</strong>, developer experiences, and enterprise contexts. Zero-to-one thinker who establishes frameworks at scale such as <strong className="accent">Copilot for EDU</strong> and pairs exceptional craft with strategic thinking—with <strong className="accent">safety and accessibility at the core</strong>.</p>
-                    <div className="hero-actions">
-                      <span className="link murals-link">
-                        <a href="murals.html" className="nav-label">Murals</a>
-                      </span>
-                      <span className="link portfolio-link">
-                        <a href="portfolio.html" className="nav-label nav-label--lock">
-                          <span className="lock-icon" role="img" aria-label="Password protected">🔒</span>
-                          View Portfolio
-                        </a>
-                      </span>
-                      <span className="link linkedin-link">
-                        <a
-                          href="https://www.linkedin.com/in/psharmz/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="nav-label"
-                        >
-                          LinkedIn
-                        </a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
+        <GrainGradient />
+        <div className="hero-body">
+          <h1 className="hero-title">
+            <span className="type-name intro-stagger intro-delay-2">Parul Sharma</span>
+            <span className="type-display intro-stagger intro-delay-3">Designer</span>
+            <span className="type-display intro-stagger intro-delay-4">who ships</span>
+          </h1>
+          <div className="hero-copy">
+            <p className="type-statement intro-stagger intro-delay-5">I design and build products that do good, from classrooms to complex enterprise workflows.</p>
+            <p className="type-caption intro-stagger intro-delay-6">Designer who codes &nbsp;•&nbsp; 8+ years &nbsp;•&nbsp; Mission-driven</p>
+            <div className="hero-clients intro-stagger intro-delay-7">
+              <p className="type-statement">I've worked with</p>
+              <div className="hero-clients__logos">
+                <img className="hero-clients__logo" src="img/logos/microsoft.png" alt="Microsoft" />
+                <img className="hero-clients__logo" src="img/logos/google.png" alt="Google" />
+                <img className="hero-clients__logo" src="img/logos/accenture.png" alt="Accenture" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Clients Section */}
-      <section className="clients-section">
-        <div className="clients-header">
-          <span className="clients-dash" />
-          <h3 className="clients-heading">I've Worked With</h3>
-        </div>
-        <div className="clients-logos">
-          <img src="img/logos/microsoft.png" alt="Microsoft" className="client-logo" />
-          <img src="img/logos/google.png" alt="Google" className="client-logo" />
-          <img src="img/logos/accenture.png" alt="Accenture" className="client-logo" />
+      {/* CV — sits directly under the splash; the nav's CV link jumps here instantly. */}
+      <section id="cv" className={`cv-section${cvEngaged ? ` cv-section--${cvActive}` : ''}`} aria-labelledby="cv-heading"
+        onMouseLeave={() => { setCvEngaged(false); setCvActive(0); }}
+        onBlur={(e) => {
+          // Only reset when focus leaves the whole section, so tabbing between
+          // rows doesn't flash back to black.
+          if (!e.currentTarget.contains(e.relatedTarget)) { setCvEngaged(false); setCvActive(0); }
+        }}
+      >
+        <h2 id="cv-heading" className="sr-only">Career timeline</h2>
+        <div className="cv-layout">
+          <ol className="cv-list">
+            {cvRoles.map((r, i) => (
+              <li
+                key={r.company}
+                className={`cv-item${cvActive === i ? ' cv-item--active' : ''}`}
+                tabIndex={0}
+                onMouseEnter={() => { setCvActive(i); setCvEngaged(true); }}
+                onFocus={() => { setCvActive(i); setCvEngaged(true); }}
+              >
+                <span className="cv-date type-caption">{r.date}</span>
+                <div className="cv-body">
+                  <h3 className="cv-role">
+                    <span className="type-caption type-caption--strong">{r.company}</span>
+                    <span className="type-caption type-caption--role">{r.title}</span>
+                  </h3>
+                  <p className="type-caption cv-desc">{r.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      {/* Currently Working On — shares .clients-header / .clients-dash /
-          .clients-heading with the band above so the two read as a pair. */}
-      <section className="now-section">
-        <div className="clients-header">
-          <span className="clients-dash" />
-          <h3 className="clients-heading">Currently Working On</h3>
-        </div>
+      {/* Currently Working On — a Pine/Sage band that opens with the shared
+          .wave-divider edge. */}
+      <section className="now-section wave-divider">
+        <SectionHeader title="Currently Working On" />
         <div className="now-grid">
           {/* Two destinations now — the write-up and the live prototype — so the
               card can't be one big anchor: an <a> inside an <a> is invalid and
@@ -454,13 +363,13 @@ function MainPortfolio() {
               />
             </figure>
             <div className="now-card__body">
-              <p className="now-card__eyebrow">Educational Game Design</p>
-              <h4 className="now-card__title">
+              <p className="type-caption type-caption--accent now-card__eyebrow">Educational Game Design</p>
+              <h3 className="type-name now-card__title">
                 <a className="now-card__title-link" href="rooted-futures.html">
                   Rooted Futures Lab Fellowship
                 </a>
-              </h4>
-              <p className="now-card__sub">
+              </h3>
+              <p className="type-statement type-statement--muted now-card__sub">
                 Designing a web-based game that teaches young people to think
                 critically about environmental justice and technology. The
                 challenge: make complex systems-level thinking accessible and
@@ -469,7 +378,7 @@ function MainPortfolio() {
               {/* Lives on rfl-studyhall.github.io, not in this repo, so it opens
                   in a new tab rather than navigating away from the portfolio. */}
               <a
-                className="now-card__cta"
+                className="btn type-button now-card__cta"
                 href="https://rfl-studyhall.github.io"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -478,7 +387,7 @@ function MainPortfolio() {
               </a>
             </div>
           </div>
-          <div className="now-card now-card--flat">
+          <div className="now-card">
             {/* Two clients, one slot: the Wonderschool still fades in over the
                 Praio video on a loop (see .now-card__media--duo). */}
             <figure className="now-card__media now-card__media--duo">
@@ -499,9 +408,9 @@ function MainPortfolio() {
               />
             </figure>
             <div className="now-card__body">
-              <p className="now-card__eyebrow">Client Work</p>
-              <h4 className="now-card__title">EdTech and CleanTech</h4>
-              <p className="now-card__sub">
+              <p className="type-caption type-caption--accent now-card__eyebrow">Client Work</p>
+              <h3 className="type-name now-card__title">EdTech and CleanTech</h3>
+              <p className="type-statement type-statement--muted now-card__sub">
                 Designed institutional workflows for education-focused
                 platforms including Wonderschool's provider acquisition funnel.
                 Identified user abandonment patterns and simplified complex
@@ -516,13 +425,14 @@ function MainPortfolio() {
       {/* A run of work/quote pairs, one tinted band each. No section heading —
           the band titles carry it. Each card links to a case study through the
           password gate. */}
-      <section id="strengths" className="strengths-section">
+      <section id="strengths" className="strengths-section" aria-labelledby="work-heading">
+        <h2 id="work-heading" className="sr-only">Selected work</h2>
 
         {strengths.map((s, i) => (
           <div className={`strength strength--${s.slug}`} key={s.slug}>
             <div className="strength__head">
-              {s.eyebrow && <p className="strength__eyebrow">{s.eyebrow}</p>}
-              <h4 className="strength__title">{s.title}</h4>
+              {s.eyebrow && <p className="type-caption type-caption--accent strength__eyebrow">{s.eyebrow}</p>}
+              <h3 className="type-display-sm strength__title">{s.title}</h3>
             </div>
             {/* Grid, not flex: the default `stretch` is what keeps the media
                 and the card exactly the same height. */}
@@ -545,7 +455,18 @@ function MainPortfolio() {
                   </>
                 )}
               </figure>
-              {renderWordCard(s.quote, `strength-${i}`)}
+              <div className="strength__aside">
+                <p className="type-statement strength__summary">{s.summary}</p>
+                {s.cta && (
+                  <a className="btn type-button strength__cta" href={s.cta.href} aria-label={`${s.cta.label}: ${s.title}`}>
+                    {isGated(s.cta.href) && (
+                      <LockIcon />
+                    )}
+                    {s.cta.label}
+                  </a>
+                )}
+                <WordCard quote={s.quote} variant="aside" />
+              </div>
             </div>
           </div>
         ))}
@@ -553,18 +474,6 @@ function MainPortfolio() {
 
       {/* Work Section */}
       <section id="work" className="work-section">
-        <div className="work-header">
-          {scrollY > 300 && (
-            <button onClick={() => navigate('/#work')} className="back-to-top">
-              <img
-                alt="profile"
-                src="img/p.png"
-                width="60px"
-                className="profile-logo"
-              />
-            </button>
-          )}
-        </div>
         
         <div className="page-content">
           <div className="projects-grid">
@@ -685,16 +594,14 @@ function MainPortfolio() {
 
       {/* Words From Others — testimonial cards, same header treatment as
           "I've Worked With" above. */}
-      <section id="words" className="words-section">
-        <div className="clients-header">
-          <span className="clients-dash" />
-          <h3 className="clients-heading">Words From Others</h3>
-        </div>
+      <section id="words" className="words-section wave-divider">
+        <SectionHeader title="Words From Others" />
 
         <div className="words-grid">
-          {gridQuotes.map((q, i) => renderWordCard(q, i))}
+          {gridQuotes.map((q, i) => <WordCard key={i} quote={q} variant="grid" />)}
         </div>
       </section>
+      </main>
     </div>
   );
 }

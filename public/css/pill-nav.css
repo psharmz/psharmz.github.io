@@ -1,0 +1,79 @@
+/* Shared floating pill nav (see js/nav-component.js; mirrored in src/App.js).
+   Centred with auto margins rather than a transform so the intro-stagger
+   animation can use transform without knocking it off-centre. */
+.pill-nav {
+    position: fixed;
+    top: 16px;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    width: max-content;
+    max-width: calc(100vw - 24px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 2.6vw, 30px);
+    padding: 9px clamp(14px, 2.4vw, 26px);
+    border-radius: 9999px;
+    background: rgba(18, 18, 18, 0.62);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    white-space: nowrap;
+    font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+}
+.pill-nav a {
+    position: relative;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.6;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.pill-nav a:hover,
+.pill-nav a:focus-visible,
+.pill-nav a[aria-current] { color: #fff; }
+
+/* Underline: the primary action colour (on dark). Always shown for the current
+   page and for the in-page section you're scrolled to (aria-current="location");
+   a softer one previews on hover. */
+.pill-nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--action-primary-on-dark);
+    transform: scaleX(0);
+    transform-origin: left;
+    opacity: 0.6;
+    transition: transform 0.25s var(--ease-out-soft, ease), opacity 0.2s ease;
+}
+.pill-nav a:hover::after,
+.pill-nav a:focus-visible::after { transform: scaleX(1); }
+.pill-nav a[aria-current]::after { transform: scaleX(1); opacity: 1; }
+.pill-nav a:focus-visible {
+    outline: 2px solid var(--action-secondary);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+.pill-nav__home::after { display: none; }
+@media (prefers-reduced-motion: reduce) {
+    .pill-nav a::after { transition: none; }
+}
+.pill-nav__home { display: flex; padding: 0; }
+.pill-nav__avatar {
+    display: block;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #fff, 0 0 14px rgba(247, 185, 200, 0.55);
+}
+@media (max-width: 480px) {
+    .pill-nav { gap: 11px; padding: 8px 14px; }
+    .pill-nav a { font-size: 14px; }
+    .pill-nav__avatar { width: 28px; height: 28px; }
+}
+/* Pages used to clear a 52px fixed bar; the pill sits a little lower. */
+body.has-pill-nav { --murals-nav-h: 76px; }

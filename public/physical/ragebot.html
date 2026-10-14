@@ -13,7 +13,7 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Karla:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif&display=swap" rel="stylesheet">
 
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -22,12 +22,12 @@
 
   <style>
     .rb-kicker {
-      font-family: 'Karla', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 600;
       font-size: 0.8em;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #00BFA5;
+      color: var(--color-text-accent);
       display: block;
       margin-bottom: 2%;
     }
@@ -80,10 +80,10 @@
     blockquote.rb-quote {
       flex: 1 1 320px;
       border: none;
-      border-left: 3px solid #00BFA5;
+      border-left: 3px solid var(--terracotta-500);
       padding-left: 5%;
       margin: 0;
-      font-family: 'Karla', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-style: italic;
       color: rgba(255, 255, 255, 0.85);
       font-size: 1em;
@@ -116,7 +116,7 @@
 
     .rb-hero-gif p {
       margin-top: 4%;
-      font-family: 'Karla', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       color: rgba(255, 255, 255, 0.5);
       font-size: 0.85em;
     }
@@ -139,7 +139,7 @@
     }
 
     .rb-takeaways li {
-      font-family: 'Karla', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       color: rgba(255, 255, 255, 0.8);
       line-height: 1.65;
       padding-left: 1.4em;
@@ -151,7 +151,7 @@
       content: "→";
       position: absolute;
       left: 0;
-      color: #00BFA5;
+      color: var(--color-text-accent);
       font-weight: 600;
     }
 
@@ -160,6 +160,7 @@
     }
   </style>
 
+  <link rel="stylesheet" href="/css/fonts.css">
 </head>
 
     <body>
@@ -224,7 +225,7 @@
           <span class="rb-kicker col-xs-12">The Turn</span>
           <h2 class="col-xs-12"> Two Explanations, One Design Opportunity </h2>
           <p class="col-xs-12"> This is the moment that separates a data-collection exercise from a design project: we had two competing readings of the same evidence, and instead of picking one, we designed for both. </p>
-          <ul class="col-xs-12" style="font-family:'Karla',sans-serif; color:rgba(255,255,255,0.8); line-height:1.8; padding-left:1.2em;">
+          <ul class="col-xs-12" style="font-family:'DM Sans',sans-serif; color:rgba(255,255,255,0.8); line-height:1.8; padding-left:1.2em;">
             <li> Maybe the student really was swearing under their breath at 2am. </li>
             <li> Or maybe the sensors were simply <em>wrong</em> — and reporting that wrongness as if it were truth. </li>
           </ul>

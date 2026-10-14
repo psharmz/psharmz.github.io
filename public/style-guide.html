@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Style guide — Parul Sharma</title>
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/buttons.css">
+  <link rel="stylesheet" href="/css/style-guide.css">
+  <script src="/js/nav-component.js"></script>
+  <script src="/js/button-shimmer.js" defer></script>
+</head>
+<body class="sg">
+  <main class="sg-wrap">
+    <header class="sg-intro">
+      <h1 class="type-display">Style guide</h1>
+      <p class="type-statement">The typography and brand system for this site. Everything here is defined once in <code>css/fonts.css</code>; pages use the role classes below instead of setting fonts or sizes by hand.</p>
+    </header>
+
+    <section class="sg-section">
+      <h2 class="type-name">Type roles</h2>
+
+      <div class="sg-role">
+        <div class="sg-role__meta type-caption">
+          <strong>Display</strong>
+          <code>.type-display</code><br>
+          Instrument Serif 400<br>
+          <code>--type-display-xl</code> 64–192px<br>
+          leading 0.92 · tracking −0.02em
+        </div>
+        <p class="sg-sample type-display">Designer who ships</p>
+      </div>
+
+      <div class="sg-role">
+        <div class="sg-role__meta type-caption">
+          <strong>Display — section</strong>
+          <code>.type-display-md</code><br>
+          Instrument Serif 400<br>
+          <code>--type-display-md</code> 40–72px<br>
+          section titles (via <code>SectionHeader</code>)
+        </div>
+        <p class="sg-sample type-display-md">Currently Working On</p>
+      </div>
+
+      <div class="sg-role">
+        <div class="sg-role__meta type-caption">
+          <strong>Display — small</strong>
+          <code>.type-display-sm</code><br>
+          Instrument Serif 400<br>
+          <code>--type-display-sm</code> 32–48px<br>
+          band and sub-section titles
+        </div>
+        <p class="sg-sample type-display-sm">Copilot for EDU and Insights Framework</p>
+      </div>
+
+      <div class="sg-role">
+        <div class="sg-role__meta type-caption">
+          <strong>Name / label</strong>
+          <code>.type-name</code><br>
+          DM Sans 700<br>
+          <code>--type-name</code> 17.6–25.6px<br>
+          leading 0.92 · tracking −0.02em
+        </div>
+        <p class="sg-sample type-name">Parul Sharma</p>
+      </div>
+
+      <div class="sg-hue">
+        <h3 class="type-name">Photo palette (legacy tokens)</h3>
+        <p class="type-caption">Sampled from the profile illustration; these feed the gradient and are unchanged.</p>
+        <div class="sg-swatches">
+          <div class="sg-swatch"><div class="sg-swatch__chip sg-swatch__chip--brand-pink"></div><div class="sg-swatch__label type-caption"><strong>Pink</strong><code>--brand-pink</code> #F7B9C8</div></div>
+          <div class="sg-swatch"><div class="sg-swatch__chip sg-swatch__chip--brand-green"></div><div class="sg-swatch__label type-caption"><strong>Green</strong><code>--brand-green</code> #1F4D3A</div></div>
+          <div class="sg-swatch"><div class="sg-swatch__chip sg-swatch__chip--brand-caramel"></div><div class="sg-swatch__label type-caption"><strong>Caramel</strong><code>--brand-caramel</code> #B9703F</div></div>
+          <div class="sg-swatch"><div class="sg-swatch__chip sg-swatch__chip--brand-red"></div><div class="sg-swatch__label type-caption"><strong>Red</strong><code>--brand-red</code> #A32A2A</div></div>
+          <div class="sg-swatch"><div class="sg-swatch__chip sg-swatch__chip--brand-shadow"></div><div class="sg-swatch__label type-caption"><strong>Shadow</strong><code>--brand-shadow</code> #2B1A12</div></div>
+          <div class="sg-swatch"><div class="sg-swatch__chip sg-swatch__chip--brand-blush"></div><div class="sg-swatch__label type-caption"><strong>Blush</strong><code>--brand-blush</code> #F3D6DD</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="type-name">Bands and edges</h2>
+      <table class="sg-table type-statement">
+        <tr><td><code>SectionHeader</code></td><td>Optional <code>.type-caption--accent</code> eyebrow over a <code>.type-display-md</code> title. Use for every new page band.</td></tr>
+        <tr><td><code>.wave-divider</code></td><td>Soft wave top edge (mask from <code>--wave-top</code>); same shape language as the hero's bottom edge. Adds the 64px of top padding it needs.</td></tr>
+        <tr><td>Solid backgrounds</td><td>Only the hero carries the gradient and grain. Every other band is a solid colour (<code>--color-bg</code>, or a flat tint for the featured-work bands).</td></tr>
+        <tr><td>Cards</td><td>Surface <code>--rosewater-100</code> at 6%, 1px Rosewater border at 12%, radius <code>--space-md</code>; hover lifts 2px and the border goes Terracotta 300 at 60%.</td></tr>
+      </table>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="type-name">Accent usage</h2>
+      <p class="type-caption">The old teal is retired. Where it was, and what replaced it:</p>
+      <table class="sg-table type-statement">
+        <tr><td>Eyebrows, links, highlighted words on dark</td><td><code>--color-text-accent</code> (Blush) via <code>.type-caption--accent</code></td></tr>
+        <tr><td>Same text on the white case-study panel</td><td>the panel remaps <code>--color-text-accent</code> to <code>--terracotta-700</code> (AA on white)</td></tr>
+        <tr><td>Borders, bars, dots, fills</td><td><code>--terracotta-500</code> (hover: <code>--terracotta-300</code>)</td></tr>
+        <tr><td>Glows and tinted fills</td><td><code>color-mix(in srgb, var(--terracotta-500) N%, transparent)</code></td></tr>
+        <tr><td>Featured-work bands</td><td>solid deepest steps: Pine 900, Terracotta 900, Sage 900, Rosewater 900</td></tr>
+      </table>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="type-name">Rules</h2>
+      <table class="sg-table type-statement">
+        <tr><td>No inline styles</td><td>Use role classes and tokens. If a value is missing, add a token to <code>css/fonts.css</code>.</td></tr>
+        <tr><td>No hand-set type</td><td>Don't write <code>font-family</code> / <code>font-size</code> in page CSS. Pick a role.</td></tr>
+        <tr><td>Display is regular weight</td><td>Instrument Serif has no bold; size and tracking carry hierarchy.</td></tr>
+        <tr><td>px-based sizes</td><td>Role tokens use px so they match on Bootstrap 3 pages (<code>html { font-size: 10px }</code>).</td></tr>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

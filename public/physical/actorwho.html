@@ -13,7 +13,7 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Karla:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif&display=swap" rel="stylesheet">
 
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -29,12 +29,12 @@
 
   <style>
     .aw-kicker {
-      font-family: 'Karla', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 600;
       font-size: 0.8em;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #00BFA5;
+      color: var(--color-text-accent);
       display: block;
       margin-bottom: 2%;
     }
@@ -84,10 +84,10 @@
     blockquote.aw-quote {
       flex: 1 1 320px;
       border: none;
-      border-left: 3px solid #00BFA5;
+      border-left: 3px solid var(--terracotta-500);
       padding-left: 5%;
       margin: 0;
-      font-family: 'Karla', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-style: italic;
       color: rgba(255, 255, 255, 0.85);
       font-size: 1em;
@@ -103,12 +103,12 @@
     }
 
     .aw-pullquote {
-      font-family: 'Rubik', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 500;
       font-size: 1.4em;
       color: #fff;
       line-height: 1.4;
-      border-left: 3px solid #00BFA5;
+      border-left: 3px solid var(--terracotta-500);
       padding-left: 5%;
       margin: 6% 0;
     }
@@ -125,8 +125,8 @@
     }
 
     .aw-columns h4 {
-      font-family: 'Rubik', sans-serif;
-      color: #00BFA5;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--color-text-accent);
       font-weight: 600;
       margin-bottom: 4%;
     }
@@ -139,7 +139,7 @@
     }
 
     .aw-list li {
-      font-family: 'Karla', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       color: rgba(255, 255, 255, 0.8);
       line-height: 1.65;
       padding-left: 1.4em;
@@ -152,15 +152,15 @@
       content: "\2192";
       position: absolute;
       left: 0;
-      color: #00BFA5;
+      color: var(--color-text-accent);
       font-weight: 600;
     }
 
     .aw-pivot {
       margin-top: 6%;
       padding: 6% 5%;
-      background: rgba(0, 191, 165, 0.06);
-      border: 1px solid rgba(0, 191, 165, 0.25);
+      background: color-mix(in srgb, var(--terracotta-500) 6%, transparent);
+      border: 1px solid color-mix(in srgb, var(--terracotta-500) 25%, transparent);
       border-radius: 8px;
     }
 
@@ -182,6 +182,7 @@
     }
   </style>
 
+  <link rel="stylesheet" href="/css/fonts.css">
 </head>
 
     <body>
@@ -407,7 +408,7 @@
                   <li> Geographic data </li>
                   <li> New audio input from visitors </li>
                 </ul>
-                <p style="font-family:'Karla',sans-serif; color:rgba(255,255,255,0.5); font-size:0.85em;"> Sources: Edinburgh Collected, Capital Collections, Our Town Stories </p>
+                <p style="font-family:'DM Sans',sans-serif; color:rgba(255,255,255,0.5); font-size:0.85em;"> Sources: Edinburgh Collected, Capital Collections, Our Town Stories </p>
               </div>
               <div>
                 <h4>Technical Specs</h4>

@@ -13,7 +13,7 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
+  <!-- Fonts that back the design tokens (DM Sans = headings + body, Instrument Serif = display) -->
   <link rel="stylesheet" href="css/fonts.css">
 
   <link rel="stylesheet" type="text/css" href="css/header.css">
@@ -68,14 +68,14 @@
       text-align: center;
       padding: 1.4em;
       border-radius: 50%;
-      background: var(--color-accent);
+      background: var(--color-accent-fill);
       color: #fff;
       font-family: var(--font-body);
       font-size: clamp(14px, 1.15vw, 18px);
       line-height: 1.32;
       box-shadow:
         0 2px 10px color-mix(in srgb, var(--color-text-primary) 14%, transparent),
-        0 16px 34px color-mix(in srgb, var(--color-accent) 38%, transparent);
+        0 16px 34px color-mix(in srgb, var(--color-accent-fill) 38%, transparent);
       animation: csQPulse 6s ease-in-out infinite;
       will-change: transform;
     }
@@ -210,7 +210,7 @@
       font-weight: var(--weight-semibold);
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--color-text-teal);
+      color: var(--color-text-accent);
       line-height: var(--leading-label);
     }
 
@@ -291,8 +291,8 @@
       font-weight: var(--weight-semibold);
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--color-text-teal);
-      border: 1px solid rgba(0, 191, 165, 0.4);
+      color: var(--color-text-accent);
+      border: 1px solid color-mix(in srgb, var(--color-accent-fill) 40%, transparent);
       border-radius: 999px;
       padding: 0.4rem 0.85rem;
     }
@@ -311,25 +311,38 @@
       <!-- ════════════════════════════════════════════════════════
            HERO
            ════════════════════════════════════════════════════════ -->
-      <header class="cs-hero">
-        <div class="cs-container">
+      <header class="cs-hero cs-hero--visual">
+        <div class="cs-hero__wide">
+          <h1 class="cs-hero__title type-display-lg">Letting non-engineers train chatbots</h1>
+          <div class="cs-hero__roleline">
+            <span class="type-statement">Solo Front-End Engineer (UX-minded)</span>
+            <span class="type-statement">Rasa</span>
+          </div>
+        </div>
+        <figure class="cs-hero__visual cs-scene cs-scene--rasa">
+          <img class="cs-scene__splash" src="img/headers/rasa_logo.png" alt="" aria-hidden="true">
+          <div class="cs-window">
+            <div class="cs-window__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img class="cs-window__shot" src="img/rasa/rasa_platform3.png" alt="Rasa Platform: a conversations list, a chat transcript, and a panel for correcting a message’s intent">
+          </div>
+        </figure>
+      </header>
 
-          <img class="cs-hero__logo" src="img/headers/rasa_logo.png" alt="Rasa logo">
 
-          <p class="cs-eyebrow">Case Study · Rasa · 2017–2018, Berlin</p>
+      <!-- ════════════════════════════════════════════════════════
+           BODY
+           ════════════════════════════════════════════════════════ -->
+      <main class="cs-body">
 
-          <h1 class="cs-hero__title">Letting non-engineers train chatbots</h1>
-
-          <p class="cs-hero__summary">
-            Rasa Platform is an ML-Ops tool for building and training enterprise
+        <!-- AT A GLANCE — the story in brief, directly under the visual hero. -->
+        <section class="cs-section cs-glance" aria-label="At a glance">
+          <div class="cs-container">
+            <p class="cs-glance__lead">Rasa Platform is an ML-Ops tool for building and training enterprise
             chatbots, pre-ChatGPT. As the <span class="accent">solo front-end
             engineer</span>, I researched, designed, and shipped the React web app
             that <span class="accent">cut handoff and training time by 40%</span>
-            and helped Rasa pivot from services to a product company.
-          </p>
-
-          <!-- META ROW -->
-          <div class="cs-hero__meta">
+            and helped Rasa pivot from services to a product company.</p>
+            <div class="cs-glance__meta">
             <div class="cs-meta">
               <span class="cs-meta__label">Role</span>
               <span class="cs-meta__value">Solo Front-End Engineer (UX-minded)</span>
@@ -343,24 +356,31 @@
               <span class="cs-meta__value">React web development · Sketch</span>
             </div>
           </div>
-
-          <span class="cs-hero__cue" aria-hidden="true"></span>
-        </div>
-      </header>
-
-
-      <!-- ════════════════════════════════════════════════════════
-           BODY
-           ════════════════════════════════════════════════════════ -->
-      <main class="cs-body">
+            <ul class="cs-results" aria-label="Results">
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">40%</span>
+                <span class="cs-result__label type-caption">Less handoff and training time</span>
+              </li>
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">Product-led</span>
+                <span class="cs-result__label type-caption">The Berlin workshops moved Rasa from services to a product-led culture</span>
+              </li>
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">Solo</span>
+                <span class="cs-result__label type-caption">Researched, designed and shipped the React web app</span>
+              </li>
+            </ul>
+            
+          </div>
+        </section>
 
         <!-- ── 1 · THE PROBLEM ── -->
         <section class="cs-section cs-split" id="problem">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">The Problem</p>
-              <h2 class="cs-heading">Enterprise customers face messy workflows to train and test ML models</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">The Problem</p>
+              <h2 class="cs-heading type-display-sm">Enterprise customers face messy workflows to train and test ML models</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 While enterprise customers (like banking and insurance companies) had
@@ -399,10 +419,10 @@
         <!-- ── 2 · HOW WE INVESTIGATED ── -->
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">How We Investigated</p>
-              <h2 class="cs-heading">Learnings from existing customer relationships</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">How We Investigated</p>
+              <h2 class="cs-heading type-display-sm">Learnings from existing customer relationships</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 In the spirit of Rasa making the
@@ -433,10 +453,10 @@
         <!-- ── 3 · WHAT WE LEARNED ── -->
         <section class="cs-section cs-split" id="learned">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">What We Learned</p>
-              <h2 class="cs-heading">Five recurring pain points across all users</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">What We Learned</p>
+              <h2 class="cs-heading type-display-sm">Five recurring pain points across all users</h2>
+            </div>
             <div class="cs-split__body"></div>
           </div>
 
@@ -454,10 +474,10 @@
         <!-- ── 3 · EARLY ITERATIONS ── -->
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Early Iterations</p>
-              <h2 class="cs-heading">Turning Pain Points into Design Opportunities</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">Early Iterations</p>
+              <h2 class="cs-heading type-display-sm">Turning Pain Points into Design Opportunities</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Solved the handoff bottleneck: developers couldn&rsquo;t share
@@ -520,10 +540,10 @@
         <!-- ── 4 · THE SOLUTION ── -->
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">The Solution</p>
-              <h2 class="cs-heading">A platform that lets PMs annotate and test independently</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">The Solution</p>
+              <h2 class="cs-heading type-display-sm">A platform that lets PMs annotate and test independently</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 I designed the NLU training queue with confidence scores (so
@@ -555,8 +575,8 @@
         <!-- ── 5 · IMPACT ── -->
         <section class="cs-section cs-center">
           <div class="cs-container">
-            <p class="cs-eyebrow">Impact</p>
-            <h2 class="cs-heading">Impact &amp; outcomes</h2>
+            <p class="cs-eyebrow type-caption type-caption--accent">Impact</p>
+            <h2 class="cs-heading type-display-sm">Impact &amp; outcomes</h2>
             <div class="cs-metrics cs-metrics--circles">
               <div class="cs-metric">
                 <span class="cs-metric__num">40%</span>
@@ -578,8 +598,8 @@
         <!-- ── 6 · WHAT I LEARNED ── -->
         <section class="cs-section cs-center">
           <div class="cs-container">
-            <p class="cs-eyebrow">What I Learned</p>
-            <h2 class="cs-heading">What I'd build next</h2>
+            <p class="cs-eyebrow type-caption type-caption--accent">What I Learned</p>
+            <h2 class="cs-heading type-display-sm">What I'd build next</h2>
             <p class="cs-text">
               Model performance visibility is crucial to the business. Next step:
               richer analytics, tracking quality by version, comparing confidence
@@ -592,8 +612,8 @@
         <!-- ── CLOSING ── -->
         <section class="cs-closing">
           <div class="cs-container">
-            <span class="cs-next__kicker">Up next</span>
-            <a class="cs-next" href="teams.html">Microsoft →</a>
+            <span class="cs-next__kicker type-caption type-caption--accent">Up next</span>
+            <a class="cs-next type-display-sm" href="teams.html">Microsoft →</a>
           </div>
         </section>
 

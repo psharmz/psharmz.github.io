@@ -42,22 +42,10 @@
 
 .fs-eyebrow {
   margin: 0 0 18px;
-  font-family: var(--font-heading);
-  font-size: 12px;
-  font-weight: var(--weight-semibold);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--color-text-teal);
 }
 
 .fs-title {
   margin: 0 0 20px;
-  font-family: var(--font-heading);
-  font-size: clamp(34px, 6vw, 56px);
-  font-weight: var(--weight-semibold);
-  line-height: 1.1;
-  letter-spacing: var(--tracking-title);
-  color: #fff;
 }
 
 .fs-intro {
@@ -117,7 +105,7 @@ a.fs-project__media {
 a.fs-project__media:hover,
 a.fs-project__media:focus-visible {
   transform: translateY(-6px);
-  border-color: rgba(0, 191, 165, 0.55);
+  border-color: color-mix(in srgb, var(--terracotta-500) 55%, transparent);
 }
 
 .fs-project__num {
@@ -127,17 +115,11 @@ a.fs-project__media:focus-visible {
   font-weight: var(--weight-semibold);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-text-teal);
+  color: var(--color-text-accent);
 }
 
 .fs-project__title {
   margin: 0 0 18px;
-  font-family: var(--font-heading);
-  font-size: clamp(24px, 3vw, 34px);
-  font-weight: var(--weight-semibold);
-  line-height: 1.2;
-  letter-spacing: var(--tracking-title);
-  color: #fff;
 }
 
 .fs-project__sub {
@@ -156,21 +138,21 @@ a.fs-project__media:focus-visible {
   margin-top: 26px;
   margin-right: 12px;
   padding: 10px 22px;
-  border: 1.5px solid var(--color-text-teal);
+  border: 1.5px solid var(--terracotta-500);
   border-radius: 999px;
   font-family: var(--font-heading);
   font-size: 12px;
   font-weight: var(--weight-semibold);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-text-teal);
+  color: var(--color-text-accent);
   text-decoration: none;
   transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .fs-cta:hover,
 .fs-cta:focus-visible {
-  background: var(--color-text-teal);
+  background: var(--terracotta-500);
   color: #000;
   text-decoration: none;
   transform: translateY(-2px);
@@ -178,14 +160,14 @@ a.fs-project__media:focus-visible {
 
 /* Filled variant for the one action a page most wants you to take. */
 .fs-cta--solid {
-  background: var(--color-text-teal);
-  color: #000;
+  background: var(--terracotta-500);
+  color: var(--color-text-name); /* white on Terracotta 500 = 5.3:1; black was 3.95:1 */
 }
 
 .fs-cta--solid:hover,
 .fs-cta--solid:focus-visible {
   background: transparent;
-  color: var(--color-text-teal);
+  color: var(--color-text-accent);
 }
 
 /* ── Screenshot strip ─────────────────────────────────────── */
@@ -232,4 +214,13 @@ a.fs-project__media:focus-visible {
     grid-column: 1;
     grid-row: auto;
   }
+}
+
+/* ── Display serif (Instrument Serif) on page-level titles ─────────────────
+   Single regular weight, so weight is pinned to 400 and size carries the hierarchy. */
+.fs-title, .fs-project__title {
+  font-family: var(--font-display, 'Instrument Serif', Georgia, serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-synthesis: none;
 }

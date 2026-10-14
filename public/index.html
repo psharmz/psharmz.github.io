@@ -10,14 +10,16 @@
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-  <!-- Self-hosted Rubik + Karla. Linked here rather than @import-ed from
+  <!-- Self-hosted Instrument Serif + DM Sans. Linked here rather than @import-ed from
        src/index.css so the browser can start fetching them from the initial HTML
        instead of waiting for the bundled stylesheet to parse first. -->
   <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/pill-nav.css">
+  <link rel="stylesheet" href="/css/buttons.css">
   <!-- The two faces that render above the fold: fetch them in parallel with the
        CSS rather than after it. -->
-  <link rel="preload" href="/fonts/rubik-600-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/karla-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/instrument-serif-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <!-- Embossed label-maker face (Impact Label by Tension Type — freeware,
        web embedding permitted; license ships in /fonts/misc/). Declared here
        so the browser loads it from /fonts/ rather than the webpack bundle. -->
@@ -49,5 +51,6 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="/js/button-shimmer.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,92 @@
+/* BUTTONS — one pill button for the whole site.
+   Default: solid Terracotta (a hero hue) with white label; on hover it lightens
+   to Terracotta 300 and the label goes dark. A soft highlight follows the
+   pointer (js/button-shimmer.js sets --mx / --my), over faint film grain.
+   Pair with .type-button (css/fonts.css) for the label.
+   Modifiers: .btn--quiet (outlined, secondary).
+   A coloured section can retheme every button inside it by setting --btn-bg,
+   --btn-border, --btn-fg, --btn-hover-bg, --btn-hover-fg (see the .strength--* bands).
+   Reference: /style-guide.html */
+.btn {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  min-height: 44px;
+  padding: 0.7em 1.35em;
+  color: var(--btn-fg, #fff);
+  background: var(--btn-bg, var(--action-primary));
+  border: 1px solid var(--btn-border, var(--btn-bg, var(--action-primary)));
+  border-radius: 9999px;
+  overflow: hidden;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.25s var(--ease-out-soft), background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+/* grain — static, never animated */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--grain-tile);
+  background-size: 160px 160px;
+  mix-blend-mode: soft-light;
+  opacity: 0.3;
+  pointer-events: none;
+}
+/* pointer highlight — only visible while hovering, positioned by the script */
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.45), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.btn:hover,
+.btn:focus-visible {
+  color: var(--btn-hover-fg, var(--terracotta-900));
+  background: var(--btn-hover-bg, var(--action-primary-on-dark));
+  border-color: var(--btn-hover-bg, var(--action-primary-on-dark));
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+.btn:hover::after,
+.btn:focus-visible::after { opacity: 1; }
+.btn:focus-visible {
+  outline: 2px solid var(--action-secondary);
+  outline-offset: 3px;
+}
+.btn:active { transform: scale(0.98); }
+
+/* Secondary: outlined, same shape. */
+.btn--quiet {
+  color: var(--terracotta-100);
+  background: transparent;
+  border-color: var(--action-primary-on-dark);
+}
+.btn--quiet::before { opacity: 0.15; }
+.btn--quiet:hover,
+.btn--quiet:focus-visible {
+  color: var(--terracotta-900);
+  background: var(--action-primary-on-dark);
+  border-color: var(--action-primary-on-dark);
+}
+
+/* Gated links carry a flat padlock (an inline SVG in currentColor). */
+.btn .lock-icon {
+  width: 0.95em;
+  height: 0.95em;
+  flex: none;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+  .btn::after { display: none; }
+  .btn:hover, .btn:focus-visible, .btn:active { transform: none; }
+}

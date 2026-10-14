@@ -13,7 +13,7 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
+  <!-- Fonts that back the design tokens (DM Sans = headings + body, Instrument Serif = display) -->
   <link rel="stylesheet" href="css/fonts.css">
 
   <link rel="stylesheet" type="text/css" href="css/header.css">
@@ -70,12 +70,12 @@
     .pd-figure .pd-fallback { display: none; }
     .pd-bg { fill: #fff; }
 
-    .pd-t     { font: 600 17px/1 Karla, system-ui, sans-serif; fill: #525760; }
+    .pd-t     { font: 600 17px/1 'DM Sans', system-ui, sans-serif; fill: #525760; }
     .pd-t--muted { font-weight: 500; fill: #7c8089; }
     .pd-t--inv   { fill: #fff; }
-    .pd-t--head  { font: 700 20px/1 Rubik, system-ui, sans-serif; fill: #2b2f36; }
+    .pd-t--head  { font: 700 20px/1 'DM Sans', system-ui, sans-serif; fill: #2b2f36; }
     .pd-t--alert { font-weight: 700; fill: #c2410c; }
-    .pd-num      { font: 700 64px/1 Rubik, system-ui, sans-serif; fill: #2b2f36; }
+    .pd-num      { font: 700 64px/1 'DM Sans', system-ui, sans-serif; fill: #2b2f36; }
     .pd-num--sm  { font-size: 48px; }
 
     .pd-line {
@@ -198,25 +198,78 @@
       <!-- ════════════════════════════════════════════════════════
            HERO
            ════════════════════════════════════════════════════════ -->
-      <header class="cs-hero">
-        <div class="cs-container">
+      <header class="cs-hero cs-hero--visual">
+        <div class="cs-hero__wide">
+          <h1 class="cs-hero__title type-display-lg">Designing once, scaling across the whole suite</h1>
+          <div class="cs-hero__roleline">
+            <span class="type-statement">Product Designer</span>
+            <span class="type-statement">Microsoft Education</span>
+          </div>
+        </div>
+        <figure class="cs-hero__visual cs-scene cs-scene--copilot cs-copilot" role="img"
+                    aria-label="Copilot in Word: the prompt “Turn this study guide into a quiz” is typed over a study-guide document; Copilot replies “Sure thing, here’s your quiz!” and returns a five-question Unit 4 quiz.">
+              <div class="cs-copilot__window" aria-hidden="true">
+                <div class="cs-copilot__titlebar">
+                  <span class="cs-copilot__dots"><i></i><i></i><i></i></span>
+                  <span class="cs-copilot__filename">Unit 4 Study Guide.docx</span>
+                </div>
+                <div class="cs-copilot__ribbon">
+                  <span>Home</span><span>Insert</span><span>Layout</span><span>References</span><span>Review</span><span>View</span><span class="cs-copilot__ribbon-ai">Copilot</span>
+                </div>
+                <div class="cs-copilot__page">
+                  <h4>Unit 4 Study Guide: Photosynthesis</h4>
+                  <p>Photosynthesis is the process plants use to turn light energy into chemical energy stored as glucose. It happens mostly in the chloroplasts of leaf cells, where chlorophyll absorbs sunlight.</p>
+                  <h5>Key terms</h5>
+                  <ul>
+                    <li><b>Chlorophyll</b> — the green pigment that captures light</li>
+                    <li><b>Stomata</b> — tiny openings that let carbon dioxide in</li>
+                    <li><b>Glucose</b> — the sugar the plant makes and stores</li>
+                  </ul>
+                  <h5>The two stages</h5>
+                  <p>In the light-dependent reactions, water is split and oxygen is released. In the Calvin cycle, carbon dioxide is built into glucose using the energy captured earlier.</p>
+                  <p>Remember: light + water + carbon dioxide becomes glucose + oxygen.</p>
+                </div>
+              </div>
 
-          <img class="cs-hero__logo cs-hero__logo--wide" src="img/msoft/microsoft.png" alt="Microsoft logo">
+              <div class="cs-copilot__floats" aria-hidden="true">
+                <ul class="cs-copilot__suggestions">
+                  <li>Make flash cards from these notes</li>
+                  <li>Rewrite this at a 5th-grade reading level</li>
+                  <li>Create a rubric for this essay</li>
+                </ul>
+                <div class="cs-copilot__stack">
+                  <div class="cs-copilot__prompt">
+                    <span>Turn this study guide into a quiz</span>
+                    <span class="cs-copilot__send">&#8593;</span>
+                  </div>
+                  <ol class="cs-copilot__status">
+                    <li>Reading your study guide…</li>
+                    <li>Picking the key concepts…</li>
+                    <li>Writing questions…</li>
+                  </ol>
+                  <div class="cs-copilot__reply"><span class="cs-copilot__spark">&#10022;</span>Sure thing, here’s your quiz!</div>
+                  <div class="cs-copilot__result"><span class="cs-copilot__spark">&#10022;</span>Unit 4 Quiz · 5 questions</div>
+                </div>
+              </div>
+            </figure>
+      </header>
 
-          <p class="cs-eyebrow">Case Study · Microsoft Education</p>
 
-          <h1 class="cs-hero__title">Designing once, scaling across the whole suite</h1>
+      <!-- ════════════════════════════════════════════════════════
+           BODY
+           ════════════════════════════════════════════════════════ -->
+      <main class="cs-body">
 
-          <p class="cs-hero__summary">
-            Two frameworks that had to hold up beyond a single screen:
+        <!-- AT A GLANCE — the story in brief, directly under the visual hero. -->
+        <section class="cs-section cs-glance" aria-label="At a glance">
+          <div class="cs-container">
+            <p class="cs-glance__lead">Two frameworks that had to hold up beyond a single screen:
             <span class="accent">EDU Insights</span>, a progressive-disclosure pattern
             that shipped across every Learning Accelerator and lifted discoverability
             <span class="accent">40%</span>; and <span class="accent">EDU Copilot</span>,
             one AI experience framework carried consistently across Word, PowerPoint,
-            Excel, Outlook, and Teams.
-          </p>
-
-          <div class="cs-hero__meta">
+            Excel, Outlook, and Teams.</p>
+            <div class="cs-glance__meta">
             <div class="cs-meta">
               <span class="cs-meta__label">Role</span>
               <span class="cs-meta__value">Product Designer</span>
@@ -230,24 +283,31 @@
               <span class="cs-meta__value">Across all of M365</span>
             </div>
           </div>
-
-          <span class="cs-hero__cue" aria-hidden="true"></span>
-        </div>
-      </header>
-
-
-      <!-- ════════════════════════════════════════════════════════
-           BODY
-           ════════════════════════════════════════════════════════ -->
-      <main class="cs-body">
+            <ul class="cs-results" aria-label="Results">
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">40%</span>
+                <span class="cs-result__label type-caption">Lift in discoverability from the EDU Insights pattern</span>
+              </li>
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">5</span>
+                <span class="cs-result__label type-caption">Products carrying one EDU Copilot experience: Word, PowerPoint, Excel, Outlook, Teams</span>
+              </li>
+              <li class="cs-result">
+                <span class="cs-result__num type-display-sm">All</span>
+                <span class="cs-result__label type-caption">Learning Accelerators ship the Insights pattern</span>
+              </li>
+            </ul>
+            
+          </div>
+        </section>
 
         <!-- ── 1. EDU INSIGHTS — progressive disclosure ── -->
         <section class="cs-section cs-split" id="edu-insights">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">EDU Insights · The Systems Challenge</p>
-              <h2 class="cs-heading">EDU Insights: Progressive Disclosure at Scale</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">EDU Insights · The Systems Challenge</p>
+              <h2 class="cs-heading type-display-sm">EDU Insights: Progressive Disclosure at Scale</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Designed a progressive disclosure system that became the foundational pattern
@@ -264,10 +324,10 @@
 
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Research</p>
-              <h2 class="cs-heading">What Teachers Actually Need: Context, Not Just Grades</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">Research</p>
+              <h2 class="cs-heading type-display-sm">What Teachers Actually Need: Context, Not Just Grades</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Interviews with teachers revealed they care about outlier data—a student who
@@ -284,10 +344,10 @@
 
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">The Challenge</p>
-              <h2 class="cs-heading">One Pattern, Everywhere</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">The Challenge</p>
+              <h2 class="cs-heading type-display-sm">One Pattern, Everywhere</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Early ideas ranged from info-icons to card flips to color coding. But Microsoft
@@ -308,10 +368,10 @@
 
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">The Solution</p>
-              <h2 class="cs-heading">Progressive Disclosure (Card → Modal → Full Insights)</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">The Solution</p>
+              <h2 class="cs-heading type-display-sm">Progressive Disclosure (Card → Modal → Full Insights)</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Teachers usually land on a review screen mid-grading. A hard jump to a
@@ -470,8 +530,8 @@
 
         <section class="cs-section" id="insights-impact">
           <div class="cs-container">
-            <p class="cs-eyebrow">The Result</p>
-            <h2 class="cs-heading">Shipped Across Every Assignment Type</h2>
+            <p class="cs-eyebrow type-caption type-caption--accent">The Result</p>
+            <h2 class="cs-heading type-display-sm">Shipped Across Every Assignment Type</h2>
             <p class="cs-text">
               The framework increased card clicks and traffic to Insights by 40%.
             </p>
@@ -485,10 +545,10 @@
         <!-- ── 2. EDU COPILOT — AI across Microsoft 365 ── -->
         <section class="cs-section cs-split" id="edu-copilot">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">EDU Copilot · The Challenge</p>
-              <h2 class="cs-heading">EDU Copilot: Defining AI in Education at Scale</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">EDU Copilot · The Challenge</p>
+              <h2 class="cs-heading type-display-sm">EDU Copilot: Defining AI in Education at Scale</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 EDU Copilot had to work consistently across the entire M365 suite: Word, PowerPoint,
@@ -516,10 +576,10 @@
 
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">The Insight</p>
-              <h2 class="cs-heading">Trust, Not Capability</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">The Insight</p>
+              <h2 class="cs-heading type-display-sm">Trust, Not Capability</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Interviews with educators revealed the constraint wasn't technical. It was human.
@@ -532,10 +592,10 @@
 
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">The Framework</p>
-              <h2 class="cs-heading">Matching Capability to Confidence</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">The Framework</p>
+              <h2 class="cs-heading type-display-sm">Matching Capability to Confidence</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Built an experience framework for how and where Copilot appears across Education
@@ -560,8 +620,8 @@
         <!-- ── CLOSING / NEXT PROJECT ── -->
         <section class="cs-closing">
           <div class="cs-container">
-            <span class="cs-next__kicker">Next project</span>
-            <a class="cs-next" href="/#work">See more work →</a>
+            <span class="cs-next__kicker type-caption type-caption--accent">Next project</span>
+            <a class="cs-next type-display-sm" href="/#strengths">See more work →</a>
           </div>
         </section>
 

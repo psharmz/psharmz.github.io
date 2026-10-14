@@ -13,7 +13,7 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
+  <!-- Fonts that back the design tokens (DM Sans = headings + body, Instrument Serif = display) -->
   <link rel="stylesheet" href="css/fonts.css">
 
   <link rel="stylesheet" type="text/css" href="css/header.css">
@@ -70,7 +70,7 @@
     /* "overall look and feel" — same as .cs-caption. */
     .healthcare-page .cs-dotvote__desc {
       font-family: var(--font-body);
-      font-size: var(--type-caption);
+      font-size: var(--type-figure-caption);
       line-height: var(--leading-body);
       color: var(--color-text-secondary);
       margin: 0;
@@ -104,9 +104,9 @@
                src="img/headers/haley_logo.png"
                alt="Haley logo">
 
-          <p class="cs-eyebrow">Case Study · Accenture · 2019, Boston</p>
+          <p class="cs-eyebrow type-caption type-caption--accent">Case Study · Accenture · 2019, Boston</p>
 
-          <h1 class="cs-hero__title">Haley</h1>
+          <h1 class="cs-hero__title type-display-md">Haley</h1>
 
           <p class="cs-hero__summary">
             Haley is a mobile application that aims to bring
@@ -117,6 +117,8 @@
             collected from monitoring symptoms and moods is also relayed back
             to the patient’s doctor.
           </p>
+
+
 
           <!-- META ROW — Role / Team / Platform -->
           <div class="cs-hero__meta">
@@ -151,10 +153,10 @@
         <!-- ── 1 · BACKGROUND — sticky heading left, copy + image right ── -->
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Background</p>
-              <h2 class="cs-heading">A demo to bring Pega CRM into healthcare</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">Background</p>
+              <h2 class="cs-heading type-display-sm">A demo to bring Pega CRM into healthcare</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Haley was built as a demo app for Pega World. The overall
@@ -187,8 +189,8 @@
         <!-- ── 2 · THE PROBLEM — center-stacked breath ── -->
         <section class="cs-section cs-center">
           <div class="cs-container">
-            <p class="cs-eyebrow">The Problem</p>
-            <h2 class="cs-heading">Care shouldn’t stop at discharge</h2>
+            <p class="cs-eyebrow type-caption type-caption--accent">The Problem</p>
+            <h2 class="cs-heading type-display-sm">Care shouldn’t stop at discharge</h2>
             <p class="cs-text">
               <span class="accent">When patients leave the hospital, the
               day-to-day signal their doctors rely on disappears.</span> Haley
@@ -203,10 +205,10 @@
         <!-- ── 3 · PROCESS — sticky heading + ideation imagery ── -->
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Process</p>
-              <h2 class="cs-heading">Ideating directions with the team</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">Process</p>
+              <h2 class="cs-heading type-display-sm">Ideating directions with the team</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 For the ideation phase, I created different visual styles of
@@ -291,10 +293,10 @@
         <!-- ── 4 · KEY INSIGHTS — sticky heading + insight screens ── -->
         <section class="cs-section cs-split">
           <div class="cs-container">
-            <aside class="cs-split__aside">
-              <p class="cs-eyebrow">Key Insights</p>
-              <h2 class="cs-heading">Designing around what people responded to</h2>
-            </aside>
+            <div class="cs-split__aside">
+              <p class="cs-eyebrow type-caption type-caption--accent">Key Insights</p>
+              <h2 class="cs-heading type-display-sm">Designing around what people responded to</h2>
+            </div>
             <div class="cs-split__body">
               <p class="cs-text">
                 Recording of symptoms got the most feedback. People preferred
@@ -333,8 +335,8 @@
         <!-- ── 5 · FINAL OUTCOME — center-stacked breath ── -->
         <section class="cs-section cs-center">
           <div class="cs-container">
-            <p class="cs-eyebrow">Final Outcome</p>
-            <h2 class="cs-heading">Presented at Pega World</h2>
+            <p class="cs-eyebrow type-caption type-caption--accent">Final Outcome</p>
+            <h2 class="cs-heading type-display-sm">Presented at Pega World</h2>
             <p class="cs-text">
               A demo app was built and preloaded with sample patients, then
               presented at Pega World — and considered a success, measured in
@@ -362,8 +364,8 @@
         <!-- ── CLOSING / NEXT PROJECT ── -->
         <section class="cs-closing">
           <div class="cs-container">
-            <span class="cs-next__kicker">Next project</span>
-            <a class="cs-next" href="/#work">See more work →</a>
+            <span class="cs-next__kicker type-caption type-caption--accent">Next project</span>
+            <a class="cs-next type-display-sm" href="/#strengths">See more work →</a>
           </div>
         </section>
 

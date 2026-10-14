@@ -10,7 +10,6 @@
 
   <style>
     :root {
-      --teal: #00BFA5;
       --bg: #000;
     }
 
@@ -25,7 +24,7 @@
     body {
       background: var(--bg);
       color: #fff;
-      font-family: 'Karla', sans-serif;
+      font-family: var(--font-sans);
       -webkit-font-smoothing: antialiased;
     }
 
@@ -57,11 +56,11 @@
     }
 
     .brand__name {
-      font-family: 'Rubik', sans-serif;
+      font-family: var(--font-sans);
       font-size: 18px;
       font-weight: 500;
       letter-spacing: 0.02em;
-      color: var(--teal);
+      color: var(--terracotta-500);
       margin: 0;
     }
 
@@ -82,10 +81,10 @@
     .gate__input {
       width: 100%;
       background: transparent;
-      border: 1.5px solid var(--teal);
+      border: 1.5px solid var(--terracotta-500);
       border-radius: 2px;
       color: #fff;
-      font-family: 'Rubik', sans-serif;
+      font-family: var(--font-sans);
       font-size: 16px;
       letter-spacing: 0.12em;
       padding: 14px 16px;
@@ -101,7 +100,7 @@
     }
 
     .gate__input:focus {
-      box-shadow: 0 0 0 3px rgba(0, 191, 165, 0.25);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--terracotta-500) 25%, transparent);
     }
 
     /* Wrong password — border flips red and the field shakes once. */
@@ -133,23 +132,22 @@
       .brand__photo { width: 44px; height: 44px; }
       .brand__name { font-size: 16px; }
     }
+      .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
   </style>
+  <script src="/js/nav-component.js"></script>
 </head>
 <body>
 
-  <a class="brand" href="/" aria-label="Parul Sharma — back to homepage">
-    <img class="brand__photo" src="img/p.png" alt="">
-    <p class="brand__name">parul sharma</p>
-  </a>
 
   <main class="gate">
+    <h1 class="sr-only">Portfolio, password protected</h1>
     <form class="gate__form" id="gate-form" autocomplete="off">
-      <label class="sr-only" for="gate-input" hidden>Password</label>
       <input
         class="gate__input"
         id="gate-input"
         type="password"
         placeholder="Password"
+        aria-label="Password"
         aria-describedby="gate-error"
         autofocus>
       <p class="gate__error" id="gate-error" role="alert"></p>

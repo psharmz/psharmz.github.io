@@ -1,4 +1,4 @@
-/* Rubik and Karla are self-hosted and declared in public/css/fonts.css, linked
+/* Instrument Serif and DM Sans are self-hosted and declared in public/css/fonts.css, linked
    from public/index.html. An @import here was the worst place for them: the
    browser had to fetch this bundled stylesheet, parse it, then make two more
    sequential trips to Google before any styled text could paint. */
@@ -12,13 +12,13 @@
    ============================================================ */
 :root {
     /* --- Typography: Font Families --- */
-    --font-heading: 'Rubik', sans-serif;
-    --font-body:    'Karla', sans-serif;
+    --font-heading: var(--font-sans);
+    --font-body:    var(--font-sans);
     --font-label:   'Impact Label', var(--font-heading); /* embossed label-maker */
 
     /* --- Typography: Type Scale (MD3-aligned, px reference in comments) --- */
     --type-display:      2.25rem;   /* 36px — page-level headings [MD: Headline Large] */
-    --type-hero:         clamp(1rem, 2.5vw, 1.25rem); /* fluid — hero blurb */
+    --type-hero:      var(--type-statement); /* body copy follows the statement role (css/fonts.css) */
     --type-title-large:  1.5rem;    /* 24px — card titles        [MD: Title Large]   */
     --type-body-large:   clamp(0.9rem, 1.4vw, 1.25rem); /* fluid 14–20px — quote/testimonial */
     --type-body-small:   0.8125rem; /* 13px — card subtitles     [MD: Body Small]    */
@@ -40,8 +40,9 @@
     --tracking-label: 0.02em;
 
     /* --- Color: Accent --- */
-    --color-accent:     #00BFA5;
-    --color-text-teal:  #00BFA5; /* teal — accent text highlights */
+    /* Brand palette — sampled from public/img/parul-avatar.jpg */
+    /* Brand palette + --ease-out-soft now live in css/fonts.css (type & brand tokens). */
+
     --color-text-light: rgba(255, 255, 255, 0.8); /* body copy on dark/black backgrounds */
 
     /* --- Color: Text --- */
@@ -109,6 +110,7 @@ body {
 }
 
 html {
+    overflow-x: clip;
     scroll-behavior: smooth;
 }
 
@@ -128,12 +130,12 @@ body::after {
 }
 
 p {
-    font-family: 'Karla', sans-serif;
+    font-family: var(--font-sans);
     color: #7c8186;
 }
 
 h2 {
-	font-family: 'Rubik', sans-serif;
+	font-family: var(--font-sans);
 	color: black;
     font-size: 30px;
 }
@@ -155,13 +157,86 @@ h2 {
     align-items: center;
 }
 
+/* Grainy gradient hero background (see components/GrainGradient.js) */
+.grain-gradient {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+.grain-gradient__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(10px) saturate(1.35) contrast(1.08);
+    transform: scale(1.1);
+    animation: grain-develop 3.2s cubic-bezier(0.22, 0.6, 0.2, 1) backwards;
+}
+.grain-gradient__grain {
+    position: absolute;
+    inset: -20px;
+    background-size: 110px 110px;
+    mix-blend-mode: soft-light;
+    opacity: 0.35;
+}
+.grain-gradient__vignette {
+    position: absolute;
+    inset: 0;
+    /* darkens the text side for contrast + a warm film vignette at the edges */
+    background: linear-gradient(90deg, rgba(11,11,11,0) 58%, rgba(11,11,11,0.5) 92%);
+}
+.grain-gradient__wave {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: clamp(50px, 9vw, 120px);
+    display: block;
+}
+@keyframes hero-curtain-descend {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(0); }
+}
+@keyframes grain-develop {
+    0%   { opacity: 0; filter: blur(48px) saturate(0.35) brightness(0.5); }
+    100% { opacity: 1; filter: blur(10px) saturate(1.35) contrast(1.08); }
+}
+@keyframes intro-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes grain-jitter {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(-14px, 9px); }
+    50%  { transform: translate(11px, -13px); }
+    75%  { transform: translate(-7px, -6px); }
+    100% { transform: translate(0, 0); }
+}
+@keyframes intro-stagger-in {
+    0%   { opacity: 0; filter: blur(16px); transform: translateY(12px); }
+    60%  { filter: blur(2px); }
+    100% { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+.intro-stagger {
+    opacity: 0;
+    will-change: opacity, filter, transform;
+    animation: intro-stagger-in 1.1s var(--ease-out-soft) both;
+    animation-delay: calc(var(--stagger-delay, 0) * 1ms);
+}
+@media (prefers-reduced-motion: reduce) {
+    .grain-gradient, .grain-gradient__canvas, .grain-gradient__grain { animation: none; }
+    .intro-stagger { animation: intro-fade 0.2s linear both; filter: none; }
+}
+
 /* Hero Section */
 .hero-section {
-    min-height: unset;
+    min-height: 78vh;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     position: relative;
     overflow: visible;
+    /* The portrait bloom (.profile-image::before) is 150% wide and spills past the
+       viewport on phones; clip only the x-axis so the parallax can still bleed in y. */
+    overflow-x: clip;
     padding-top: 70px;
     pointer-events: none; /* parallax transform bleeds into card area */
 }
@@ -220,70 +295,16 @@ h2 {
 /* Hand-drawn rays around profile image */
 
 
-.about-content {
-    animation: fadeInUp 1s ease-out;
-}
 
-.text-content {
-    font-family: 'Karla', sans-serif;
-    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-    line-height: 1.5;
-    margin-bottom: 2rem;
-    width: 90%;
-    max-width: 90%;
-    font-weight: 400;
-}
 
-.hero-greeting {
-    font-family: var(--font-heading);
-    font-size: var(--type-display);
-    font-weight: var(--weight-semibold);
-    line-height: var(--leading-tight);
-    color: #fff;
-    margin: 0 0 0.5rem 0;
-}
 
-.hero-blurb {
-    font-family: var(--font-body);
-    font-size: var(--type-hero);
-    line-height: var(--leading-body);
-    color: var(--color-text-light);
-    font-weight: var(--weight-regular);
-    margin: 0;
-}
 
-.hero-blurb + .hero-blurb {
-    margin-top: 1rem;
-}
 
-.hero-blurb .accent {
-    font-weight: 700;
-    color: var(--color-text-teal);
-}
 
-/* Murals / email / resume buttons below the hero blurb.
-   The hero section sets pointer-events:none, so re-enable it here. */
-.hero-actions {
-    display: flex;
-    align-items: center;
-    gap: var(--space-lg);
-    margin-top: var(--space-lg);
-    pointer-events: auto;
-}
 
-.hero-actions .link img {
-    height: 26px;
-    width: auto;
-    display: block;
-}
 
 /* The murals icon is dark lettering on a transparent background, so it
    disappears on the dark hero — a white background lets it read. */
-.hero-actions .murals-link img {
-    background: #fff;
-    height: 28.6px; /* 1.10× the 26px base */
-    padding-top: 1px;
-}
 
 /* Clients Section */
 /* Everything after the hero has to sit ABOVE it. The hero parallax translates
@@ -292,169 +313,71 @@ h2 {
    of scroll. .hero-section is positioned, so a `static` section below it loses
    the paint order and the hero bleeds through. Positioned + z-index + an opaque
    background is what keeps these readable on scroll. */
-.clients-section {
-    background: var(--color-bg);
-    position: relative;
-    z-index: 1;
-    /* The pane of glass sliding over the hero. */
-    box-shadow: var(--glaze-shadow), var(--glaze-rim);
-    padding: var(--space-xl) var(--page-rail);
+/* ── SECTION HEADER + BAND EDGE (shared) ───────────────────────────────── */
+.section-header {
     display: flex;
     flex-direction: column;
-    /* Extra breathing room between the heading and the logos. */
-    gap: calc(var(--space-xl) + var(--space-md));
+    gap: var(--space-xs);
 }
 
-.clients-header {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-}
-
-/* Geometric markers — three primitives (bar, circle, square), always teal,
-   always the same optical weight. The bar wipes in as the entry signature for a
-   section; the others fade. Bauhaus discipline: no fourth shape. */
-.clients-dash {
-    display: block;
-    height: 2px;
-    background: var(--color-text-teal);
-    transform-origin: left;
-    animation: dashIn 0.7s var(--ease-glide) 1.2s both;
-    width: 2.5rem;
-}
-
-.clients-dash--circle,
-.clients-dash--square {
-    width: 10px;
-    height: 10px;
-    animation: markerIn 0.7s var(--ease-glide) 1.2s both;
-}
-
-.clients-dash--circle { border-radius: 50%; }
-.clients-dash--square { border-radius: 1px; }
-
-@keyframes markerIn {
-    from { opacity: 0; transform: scale(0.4); }
-    to   { opacity: 1; transform: scale(1); }
-}
-
-@keyframes dashIn {
-    from { transform: scaleX(0); opacity: 0; }
-    to   { transform: scaleX(1); opacity: 1; }
-}
-
-.clients-heading {
-    font-family: var(--font-heading);
-    font-size: var(--type-title-large);
-    font-weight: var(--weight-semibold);
-    color: var(--color-text-light);
-    margin: 0;
-    letter-spacing: var(--tracking-title);
-    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.4s both;
-}
-
-.clients-logos {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: var(--space-xl);
-    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.6s both;
-}
-
-.client-logo {
-    flex: 1;
-    max-width: 100%;
-    height: 48px;
-    object-fit: contain;
-    object-position: center;
-    filter: grayscale(1) brightness(0.55) invert(1) opacity(0.65);
-    transition: filter 0.4s ease;
-}
-
-
-@media (max-width: 600px) {
-    .clients-logos {
-        flex-direction: column;
-        align-items: center;
-        gap: var(--space-lg);
-    }
-
-    .client-logo {
-        height: 40px;
-        flex: unset;
-    }
+/* Soft wave as a band's top edge: a mask that cuts the section's top 64px to
+   the wave from fonts.css (--wave-top) and keeps the rest solid. The wave is
+   revealed against whatever is behind (the page's black), same language as
+   the hero's bottom edge. Needs 64px of top padding to clear. */
+.wave-divider,
+.now-section.wave-divider,
+.words-section.wave-divider {
+    padding-top: calc(var(--space-2xl) + 64px); /* >= the 64px wave */
+    -webkit-mask:
+        var(--wave-top) top left / 100% 64px no-repeat,
+        linear-gradient(#000 0 0) 0 63px / 100% calc(100% - 63px) no-repeat;
+    mask:
+        var(--wave-top) top left / 100% 64px no-repeat,
+        linear-gradient(#000 0 0) 0 63px / 100% calc(100% - 63px) no-repeat;
 }
 
 /* ── CURRENTLY WORKING ON ─────────────────────────────────────
-   Sits directly under "I've Worked With" and reuses its header trio
-   (.clients-header / .clients-dash / .clients-heading). No glaze shadow —
-   that belongs to the one section that slides over the hero. Same
-   positioned + opaque treatment so the parallax hero can't bleed through. */
+   Solid page background: the gradient and grain belong to the hero only.
+   Type is entirely from the roles in css/fonts.css; this block is surface
+   and layout. */
 .now-section {
-    background: var(--color-bg);
     position: relative;
-    z-index: 1;
+    isolation: isolate;
+    z-index: 1; /* above the parallax hero, same as every post-hero band */
     padding: var(--space-xl) var(--page-rail) calc(var(--space-xl) * 1.5);
     display: flex;
     flex-direction: column;
     gap: calc(var(--space-xl) + var(--space-md));
+    background: var(--color-bg);
 }
 
-/* Two cards, deliberately unequal: the client-work card carries a video of a
-   box folding itself, which needs the width to read, while the Study Hall card
-   is mostly prose. Sizing them 1fr / 1.4fr gives the motion the larger frame
-   and keeps the row from looking like a split-in-half placeholder. */
+/* Two cards, deliberately unequal: the client-work card carries a video that
+   needs the width to read, the Study Hall card is mostly prose. Equal heights
+   come from grid stretch. */
 .now-grid {
     display: grid;
     grid-template-columns: 1fr 1.4fr;
     gap: var(--space-xl);
+    align-items: stretch;
     animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.6s both;
 }
 
-/* Same surface, hairline and radius as .word-card, so the boxes belong to
-   the same family as the testimonials further down. */
 .now-card {
-    background: var(--color-surface-testimonial);
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 18px;
-    /* No padding on the box itself — the media runs edge to edge under the
-       rounded top corners, and .now-card__body carries the inset instead. */
-    overflow: hidden;
-    font-size: 1rem;          /* reset from body's inherited 225% */
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--rosewater-500) 12%, transparent);
+    border-radius: var(--space-md);
+    background: color-mix(in srgb, var(--rosewater-100) 6%, transparent);
 }
 
-/* These cards deliberately have no hover state — they sit still. Anchors
-   inherit none of the card's type, hence the explicit resets. */
-.now-card--link {
-    text-decoration: none;
-    color: inherit;
-}
-
-.now-card--link:hover {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* Keyboard focus still has to be visible even though hover isn't — dropping
-   this too would leave tab users with no idea where they are. */
-.now-card--link:focus-visible {
-    border-color: rgba(0, 191, 165, 0.55);
-    outline: 2px solid var(--color-text-teal);
-    outline-offset: 3px;
-}
-
-/* One fixed aspect for all three so the titles line up across the row,
-   whatever the source media's own proportions are. */
+/* One fixed aspect so titles line up across the row. */
 .now-card__media {
     margin: 0;
     aspect-ratio: 16 / 10;
-    background: rgba(255, 255, 255, 0.04);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    background: color-mix(in srgb, var(--pine-900) 60%, transparent);
     overflow: hidden;
 }
-
 .now-card__media img,
 .now-card__media video {
     display: block;
@@ -463,132 +386,53 @@ h2 {
     object-fit: cover;
 }
 
-/* Wordmarks read as artwork, not as a photograph — fit the whole mark inside
-   the box with breathing room instead of cropping it to fill. */
-.now-card__media--mark img {
-    object-fit: contain;
-    padding: var(--space-xl);
-}
+/* A screenshot has to read as a whole, so contain it on the page black. */
+.now-card__media--screenshot { background: var(--color-bg); }
+.now-card__media--screenshot img { object-fit: contain; }
 
-/* A screenshot has to be readable as a whole — a 16/10 crop of a 2:1 game
-   screen would cut the scenario text off. So contain it and fill the
-   letterbox with #0a0a0a, the game's own background, so the bands above and
-   below read as part of the screen rather than as empty gutters. */
-.now-card__media--screenshot {
-    background: #0a0a0a;
-}
-
-.now-card__media--screenshot img {
-    object-fit: contain;
-}
-
-/* Two pieces of client work sharing one slot. The still sits on top of the
-   video and fades in and out, so each client gets ~half the loop. */
-.now-card__media--duo {
-    position: relative;
-}
-
+/* Two pieces of client work sharing one slot: the still fades over the video. */
+.now-card__media--duo { position: relative; }
 .now-card__media--duo .now-card__duo-still {
     position: absolute;
     inset: 0;
     animation: duoFade 12s ease-in-out infinite;
 }
-
 @keyframes duoFade {
     0%, 42%   { opacity: 0; }
     50%, 92%  { opacity: 1; }
     100%      { opacity: 0; }
 }
-
 @media (prefers-reduced-motion: reduce) {
-    .now-card__media--duo .now-card__duo-still {
-        animation: none;
-        opacity: 1;
-    }
+    .now-card__media--duo .now-card__duo-still { animation: none; opacity: 1; }
 }
 
 .now-card__body {
-    padding: var(--space-2xl);
+    flex: 1;
+    padding: var(--space-xl);
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
 }
+.now-card__title { margin: 0; }
+.now-card__sub { margin: 0; }
 
-/* No card surface — the media and copy sit straight on the page. The media
-   keeps the card's radius so it still reads as a placed image, and the body
-   drops its side inset so the text lines up with the image edge. */
-.now-card--flat {
-    background: none;
-    border: none;
-    border-radius: 0;
-    overflow: visible;
-}
-
-.now-card--flat .now-card__media {
-    border-bottom: none;
-    border-radius: 18px;
-}
-
-.now-card--flat .now-card__body {
-    padding: var(--space-xl) 0 0;
-}
-
-/* The card is no longer one big anchor, so the title carries the link to the
-   write-up. It should read as the heading it already was — the underline only
-   appears on interaction. */
+/* The title links to the write-up: reads as the heading until interaction. */
 .now-card__title-link {
     color: inherit;
     text-decoration: none;
 }
-
 .now-card__title-link:hover,
 .now-card__title-link:focus-visible {
-    color: var(--color-text-teal);
+    color: var(--terracotta-300);
     text-decoration: underline;
     text-underline-offset: 0.18em;
 }
 
-/* Sits below the blurb rather than stretching to the card's width, and takes
-   the extra top margin the body's own gap doesn't give it. Appearance and
-   hover come from the shared outlined-button rule further down. */
+/* Sits under the copy at its own width; margin-top:auto pins it to the bottom
+   so buttons line up when card bodies differ in length. */
 .now-card__cta {
     align-self: flex-start;
-    margin-top: var(--space-sm);
-}
-
-/* Same treatment as .strength__eyebrow on the bands below, dialled down a
-   step: these cards are a third the width, and 14px at 0.28em tracking wraps
-   "Client Work" onto two lines. */
-.now-card__eyebrow {
-    margin: 0;
-    font-family: var(--font-heading);
-    font-size: var(--type-label-medium);
-    font-weight: var(--weight-semibold);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--color-text-teal);
-}
-
-.now-card__title {
-    margin: 0;
-    font-family: var(--font-heading);
-    font-size: var(--type-title-large);
-    font-weight: var(--weight-semibold);
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-title);
-    color: var(--color-text-light);
-}
-
-/* Body copy, not a caption. --type-body-small (13px) in --color-text-muted
-   (#888 — a ~5:1 grey) is the card-subtitle treatment from the mosaic, and it
-   reads as fine print here. This is the same pairing .hero-blurb and
-   .word-card__quote use, so every run of prose on the page matches. */
-.now-card__sub {
-    margin: 0;
-    font-family: var(--font-body);
-    font-size: var(--type-body-large);
-    line-height: var(--leading-body);
-    color: var(--color-text-light);
+    margin-top: auto;
 }
 
 @media (max-width: 900px) {
@@ -606,40 +450,6 @@ h2 {
     padding: 2rem 0;
     position: relative;
     z-index: 1;
-}
-
-.work-header {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-}
-
-.back-to-top {
-    background: white;
-    border: none;
-    border-radius: 50%;
-    padding: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.back-to-top:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
-
-.back-to-top img {
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    transition: all 0.3s ease;
-}
-
-.profile-logo {
-    animation: profileAppear 0.6s ease-out;
 }
 
 @keyframes profileAppear {
@@ -712,8 +522,7 @@ h2 {
 /* Type settling — the heading rises and its tracking contracts, so it reads as
    coming into focus rather than sliding in. */
 .scroll-reveal .card-title,
-.strength__title,
-.clients-heading {
+.strength__title {
     transition: letter-spacing var(--dur-reveal) var(--ease-glide);
 }
 
@@ -756,7 +565,7 @@ h2 {
     top: var(--space-md);
     left: var(--space-md);
     z-index: 2;
-    background: var(--color-text-teal);
+    background: var(--terracotta-500);
     color: #000;
     font-family: var(--font-body);
     font-weight: 700;
@@ -831,133 +640,175 @@ h2 {
 
 /* Mosaic testimonial cards */
 /* ── WORDS FROM OTHERS ────────────────────────────────────────
-   Testimonial cards. Shares .clients-header / .clients-dash /
-   .clients-heading with the "I've Worked With" band above so the two
-   sections read as a pair. */
+   Solid background, like every band below the hero. Grid, not columns: cards
+   sit top-aligned and the longest quote spans both. */
 .words-section {
-    background: var(--color-bg);
-    /* Same stacking reason as .clients-section above. */
     position: relative;
+    isolation: isolate;
     z-index: 1;
     padding: var(--space-xl) var(--page-rail) calc(var(--space-xl) * 2);
     display: flex;
     flex-direction: column;
     gap: calc(var(--space-xl) + var(--space-md));
+    background: var(--color-bg);
 }
 
-/* Masonry-ish columns: the quotes vary a lot in length, and a fixed grid
-   would leave tall gaps under the short ones. */
 .words-grid {
-    columns: 2;
-    column-gap: var(--space-xl);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-xl);
+    align-items: start;
+}
+.words-grid .word-card { margin: 0; }
+.word-card--feature { grid-column: 1 / -1; order: -1; } /* the long one leads, so no card is left beside a gap */
+@media (max-width: 859px) {
+    .words-grid { grid-template-columns: 1fr; }
+    .word-card--feature { grid-column: auto; }
 }
 
+/* ── Testimonial card (component: src/components/WordCard.js) ─────────────
+   One card, two variants. Type comes from the roles in css/fonts.css
+   (.type-statement / .type-caption), applied in the markup; this block is
+   surface, spacing and the attribution row.
+     .word-card--grid   full quote — "Words From Others"
+     .word-card--aside  quiet excerpt under a featured work                   */
 .word-card {
-    break-inside: avoid;
-    margin: 0 0 var(--space-xl);
-    padding: var(--space-2xl);
-    background: var(--color-surface-testimonial);
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 18px;
-    font-size: 1rem;          /* reset from body's inherited 225% */
+    position: relative;
+    isolation: isolate;
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
+    gap: var(--space-md);
+    margin: 0 0 var(--space-xl);
+    break-inside: avoid;
+    padding: var(--space-xl);
+    border: 1px solid color-mix(in srgb, var(--rosewater-500) 12%, transparent);
+    border-radius: var(--space-md);
+    background: color-mix(in srgb, var(--rosewater-100) 6%, transparent);
+    overflow: hidden;
 }
-
-/* Same grey treatment as .client-logo — a mark, not a link. */
-.word-card__logo {
-    height: 22px;
-    width: auto;
-    max-width: 150px;
-    object-fit: contain;
-    object-position: left center;
-    align-self: flex-start;
-    filter: grayscale(1) brightness(0.55) invert(1) opacity(0.65);
-}
-
-.word-card__quote {
+.word-card--aside {
     margin: 0;
-    font-family: var(--font-body);
-    font-size: var(--type-body-large);
-    line-height: var(--leading-body);
-    color: var(--color-text-light);
+    padding: var(--space-md);
+    gap: var(--space-sm);
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.07);
 }
 
-/* The Rasa mark is a speech bubble whose "RASA" glyphs are only ~60% of the
-   canvas height, so at the shared 22px it reads far smaller than the Google and
-   Microsoft wordmarks. 34px puts it at the same 70px width and ~20px glyph
-   height as the Google logo. */
-.word-card__logo--rasa {
-    height: 34px;
+.word-card__quote { margin: 0; }
+.word-card__quote p { margin: 0 0 var(--space-sm); font: inherit; color: inherit; }
+.word-card__quote p:last-child { margin-bottom: 0; }
+
+/* Highlight = a distinct brand hue (Terracotta 300 on dark) + weight; not a
+   background. Blush was too close to the white body text to read as emphasis. */
+.word-card__highlight {
+    background: none;
+    padding: 0; /* Bootstrap gives <mark> .2em of padding */
+    color: var(--color-text-highlight);
+    font-weight: 600;
 }
 
-/* Multi-paragraph quotes. Inherit rather than re-declare type, so a paragraph
-   break never changes how the quote reads. */
-.word-card__quote p {
-    margin: 0 0 var(--space-md);
-    font: inherit;
-    color: inherit;
+/* Aside: the full quote floats over the card on hover/focus. It's out of
+   flow (absolute, anchored to the card's bottom edge), so the band never
+   reflows and the page doesn't jump under the cursor. */
+.word-card--aside { overflow: visible; outline: none; }
+.word-card__peek {
+    position: absolute;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    z-index: 4;
+    display: grid;
+    padding: var(--space-md);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: var(--space-md);
+    background: transparent;
+    box-shadow: none;
+    visibility: hidden; /* also removes it from AT until it's shown */
+    transition:
+        background-color 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.45s ease,
+        visibility 0s linear 0.5s;
+}
+.word-card--aside:is(:hover, :focus-within) .word-card__peek {
+    visibility: visible;
+    background: var(--word-card-peek-bg, color-mix(in srgb, var(--brand-blush) 10%, #0b0b0b));
+    border-color: var(--word-card-peek-border, rgba(255, 255, 255, 0.2));
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5);
+    transition-delay: 0s;
 }
 
-.word-card__quote p:last-child {
-    margin-bottom: 0;
+/* Two collapsible rows: the excerpt gives way to the full quote. The inner
+   padding stands in for the gap above the attribution, so the overlay's resting
+   height equals the card's. */
+.word-card__row {
+    display: grid;
+    transition:
+        grid-template-rows 0.55s var(--ease-out-soft),
+        opacity 0.35s ease;
+}
+.word-card__row > div {
+    min-height: 0;
+    overflow: hidden;
+    padding-bottom: var(--space-sm);
+}
+.word-card__row--short { grid-template-rows: 1fr; opacity: 1; }
+.word-card__row--full  { grid-template-rows: 0fr; opacity: 0; }
+.word-card--aside:is(:hover, :focus-within) .word-card__row--short {
+    grid-template-rows: 0fr;
+    opacity: 0;
+}
+.word-card--aside:is(:hover, :focus-within) .word-card__row--full {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transition-delay: 0s, 0.12s; /* text fades in just after the panel starts growing */
+}
+@media (prefers-reduced-motion: reduce) {
+    .word-card__peek,
+    .word-card__row { transition: none; }
 }
 
-.word-card__quote .accent {
-    color: var(--color-text-teal);
-    font-weight: var(--weight-semibold);
-}
-
-/* Looks and behaves exactly like the Murals / View Portfolio / Resume buttons —
-   the shared appearance lives with .hero-actions .nav-label, and the lift is the
-   same one .link.portfolio-link and .resume use on hover. */
-/* Appearance and hover are shared with the hero buttons — see
-   `.hero-actions .nav-label, .word-card__cta` further down. Only the placement
-   inside the card belongs here. */
-.word-card__cta {
-    align-self: flex-start;
-}
-
-/* Hairline above the attribution, mirroring the reference layout. */
 .word-card__person {
     display: flex;
     align-items: center;
-    gap: var(--space-md);
-    padding-top: var(--space-lg);
+    gap: var(--space-sm);
+    padding-top: var(--space-md);
     border-top: 1px solid rgba(255, 255, 255, 0.09);
     margin-top: auto;
 }
+.word-card--aside .word-card__person { padding-top: var(--space-sm); }
 
+/* Quiet portrait: round, no ring or glow — just a hairline so it sits on the card. */
 .word-card__avatar {
     flex: 0 0 auto;
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
     object-fit: cover;
+    border: 1px solid color-mix(in srgb, var(--rosewater-500) 18%, transparent);
 }
-
 .word-card__meta {
     display: flex;
     flex-direction: column;
     gap: 2px;
     min-width: 0;
 }
+.word-card__name { font-weight: 600; color: var(--color-text-name); }
+.word-card__role { color: var(--color-text-caption); }
 
-.word-card__name {
-    font-family: var(--font-heading);
-    font-size: var(--type-body-small);
-    font-weight: var(--weight-semibold);
-    color: var(--color-text-light);
+/* Company mark, greyed like the client logos; sits at the end of the row. */
+.word-card__logo {
+    margin-left: auto;
+    flex: none;
+    height: 18px;
+    width: auto;
+    max-width: 96px;
+    object-fit: contain;
+    filter: grayscale(1) brightness(0.55) invert(1) opacity(0.55);
 }
+/* The Rasa mark's glyphs fill ~60% of its canvas; size it to match the wordmarks. */
+.word-card__logo--rasa { height: 28px; }
 
-.word-card__role {
-    font-family: var(--font-body);
-    font-size: var(--type-label-medium);
-    /* --color-text-secondary is a light-background token; on the dark card it
-       reads at ~2:1. --color-text-muted is the dark-background equivalent. */
-    color: var(--color-text-muted);
-}
 
 /* Experiences and Strengths
    ------------------------------------------------------------------
@@ -1004,14 +855,24 @@ h2 {
     }
 }
 
-/* Deep pine — picks up the teal accent. */
-.strength--zero-to-one { background: #0E1F1C; }
-/* Deep indigo — nods to Rasa's purple. */
-.strength--developers { background: #17142C; }
-/* Deep navy — nods to the dispatch app's own navy UI. */
-.strength--enterprise { background: #0F1A2B; }
-/* Deep plum — nods to Reading Coach's violet-magenta backdrop. */
-.strength--horizontal { background: #1E1426; }
+/* Featured-work bands: four deep, solid steps from the palette, one hue each.
+   Text uses the site's plain white (the global role defaults); only the eyebrow
+   and the button pick up the hero's pink so they are what pops. */
+.strength {
+    /* Eyebrows: the hero's pink (Rosewater 300, AA on every band). */
+    --color-text-accent: var(--rosewater-300);
+    /* Buttons: solid in the hero's pink glow (Rosewater 500) with a deep-green
+       label; hover lifts to Rosewater 300. */
+    --btn-bg: var(--rosewater-500);
+    --btn-border: var(--rosewater-500);
+    --btn-fg: var(--pine-900);
+    --btn-hover-bg: var(--rosewater-300);
+    --btn-hover-fg: var(--pine-900);
+}
+.strength--zero-to-one { --band-bg: var(--pine-700);       background: var(--band-bg); }
+.strength--horizontal  { --band-bg: var(--terracotta-700); background: var(--band-bg); }
+.strength--developers  { --band-bg: var(--brick-700);      background: var(--band-bg); }
+.strength--enterprise  { --band-bg: var(--rosewater-900);  background: var(--band-bg); }
 
 /* Tighter than the row's own gap, so the eyebrow reads as part of the header
    rather than a separate block. */
@@ -1025,12 +886,6 @@ h2 {
    shared because index.css doesn't load public/css/template.css. */
 .strength__eyebrow {
     margin: 0;
-    font-family: var(--font-heading);
-    font-size: 14px;
-    font-weight: var(--weight-semibold);
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--color-text-teal);
 }
 
 /* Same display type as .pf-project__title on portfolio-home.html ("Microsoft
@@ -1039,21 +894,25 @@ h2 {
    css/project.css rather than this bundle. */
 .strength__title {
     margin: 0;
-    font-family: var(--font-heading);
-    font-size: clamp(26px, 2.5vw, 40px);
-    font-weight: var(--weight-regular);
-    line-height: 1.18;
-    letter-spacing: 0.005em;
-    color: #fff;
 }
 
 /* Equal heights come from the grid's default `align-items: stretch`: the row is
    as tall as the taller item, and both children fill it. */
 .strength__row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* The work leads (~65%); the right column is summary + CTA + a quiet quote. */
+    grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
     gap: var(--space-xl);
 }
+.strength__aside {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    min-width: 0;
+}
+.strength__cta { align-self: flex-start; }
+/* Pushes the testimonial to the bottom of the column, away from the summary. */
+.strength__aside .word-card { margin-top: auto; }
 
 /* No panel — the media sits directly on the page. */
 .strength__media {
@@ -1181,29 +1040,45 @@ h2 {
     }
 
     /* The second of a fade pair stays layered over the first rather than
-       stacking below it. */
-    .strength__media--fade .strength__fade-b {
+       stacking below it. `img.` is needed to out-weigh the rule above, which
+       is `.strength__media img:not(.strength__backdrop)` — one class heavier
+       than a plain two-class selector. */
+    .strength__media--fade img.strength__fade-b {
         position: absolute;
         inset: 0;
+        width: 100%;
         height: 100%;
+        object-fit: contain;
     }
 
+    /* Stacked, the embed's box must span the full column. An aspect-ratio plus a
+       max-height used to derive the WIDTH from the capped height, leaving a
+       narrow white panel. Give it the full width and an explicit height, and
+       centre the (scaled) phone in it. */
     .strength__media--embed {
-        /* An iframe has no intrinsic ratio to fall back on once it stops
-           filling a stretched cell. */
-        aspect-ratio: 375 / 812;
-        max-height: 70vh;
+        /* Full-bleed: break out of the band's side padding so the white panel
+           (and the logo animation in it) spans the whole screen. */
+        width: calc(100% + 2 * var(--page-rail));
+        margin-inline: calc(-1 * var(--page-rail));
+        height: clamp(420px, 120vw, 640px);
+        aspect-ratio: auto;
+        max-height: none;
+        border-radius: 0;
+    }
+    .strength--enterprise .strength__media { border-radius: 0; }
+    .strength__media--embed iframe {
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%) scale(var(--embed-fit, 1));
+        transform-origin: bottom center;
     }
 }
 
-@media (max-width: 860px) {
-    .words-grid { columns: 1; }
-}
 
 
 .mosaic-testimonial {
     background: var(--color-surface-testimonial);
-    border: 1.5px solid var(--color-text-teal);
+    border: 1.5px solid var(--terracotta-500);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1241,7 +1116,7 @@ h2 {
 
 .quote-text strong {
     font-weight: 700 !important;
-    color: var(--color-text-teal) !important;
+    color: var(--color-text-accent) !important;
 }
 
 .quote-author {
@@ -1264,7 +1139,7 @@ h2 {
     font-size: 1.5rem;
     letter-spacing: 0.04em;
     line-height: 1;
-    color: var(--color-text-teal);
+    color: var(--color-text-accent);
     text-decoration: none;
 }
 
@@ -1306,65 +1181,7 @@ h2 {
     transform: translateY(-5px) rotate(3deg);
 }
 
-/* The hero buttons drop the Impact Label face. Its glyphs are solid blocks with
-   the letters knocked out, so "teal text on no background" is impossible in it —
-   colouring the type just colours the tape. Rubik, uppercase and tracked out,
-   keeps the label rhythm while letting the letters themselves carry the teal. */
-.hero-actions .nav-label,
-.word-card__cta,
-.now-card__cta {
-    display: inline-flex;
-    align-items: center;
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--color-text-teal);
-    border: 1.5px solid var(--color-text-teal);
-    border-radius: 2px;
-    /* Right padding is short by one tracking step — the letter-spacing leaves a
-       trailing gap after the last character that would otherwise read as slack. */
-    padding: 0.6em 0.95em 0.6em 1.1em;
-    transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
-}
-
-/* One hover for every outlined button: the colours invert and it tilts. */
-.hero-actions .nav-label:hover,
-.hero-actions .nav-label:focus-visible,
-.word-card__cta:hover,
-.word-card__cta:focus-visible,
-.now-card__cta:hover,
-.now-card__cta:focus-visible {
-    background: var(--color-text-teal);
-    color: var(--color-bg);
-    transform: rotate(-2deg);
-    /* Belt and braces: the global .link:hover a reset only applies ≥768px. */
-    text-decoration: none;
-}
-
-/* The tilt now lives on the button itself. These wrappers still carry the
-   icon-era lift/scale from .murals-link / .portfolio-link / .resume, which would
-   compound with it — cancel them inside the hero only, since the mobile footer
-   and nav still use those classes with icons. */
-.hero-actions .link:hover {
-    transform: none;
-}
-
-/* Gated portfolio button — the lock sits to the left of the label. */
-.nav-label--lock {
-    gap: 0.3em;
-    white-space: nowrap;
-}
-
-.nav-label--lock .lock-icon {
-    /* Emoji fonts first, so the label-maker face never swallows the glyph. */
-    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
-    font-size: 0.8em;
-    line-height: 1;
-    flex: none;
-}
+/* Buttons: see css/buttons.css (.btn / .btn--solid) and .type-button in css/fonts.css. */
 
 .resume:hover {
     transform: translateY(-5px) rotate(-2deg);
@@ -1509,7 +1326,7 @@ h2 {
 }
 
 .about {
-	font-family: 'Karla', sans-serif;
+	font-family: var(--font-sans);
 	font-size: 25px; 
 	padding-left: 10%;
 	padding-top: 5%;
@@ -1536,4 +1353,234 @@ h2 {
 	align-items: center;
 	display: flex;
 	padding: 1rem 0;
+}
+
+/* ── Hero layout ─────────────────────────────────────────────────────────
+   Layout only. Every piece of type here comes from the typography roles in
+   css/fonts.css (.type-display / .type-name / .type-statement / .type-caption);
+   see style-guide.html. Don't set font-* in this block. */
+.hero-section {
+    min-height: 100vh;
+    min-height: 100svh;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+    pointer-events: auto;
+}
+.hero-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+    gap: var(--space-xl) 4rem;
+    align-items: end;
+    width: 100%;
+    padding: 6rem clamp(1.5rem, 4.5vw, 4rem) clamp(5rem, 11vw, 9rem);
+}
+.hero-title {
+    margin: 0;
+    color: #fff;
+}
+.hero-title > span { display: block; }
+.hero-title > .type-name { margin-bottom: 0.6em; }
+.hero-copy { align-self: center; padding-bottom: 12vh; }
+.hero-copy > .type-caption { margin-top: var(--space-md); }
+@media (max-width: 860px) {
+    .hero-body { grid-template-columns: minmax(0, 1fr); align-items: start; align-content: start; padding-top: 7rem; }
+    .hero-copy { padding-bottom: 0; }
+}
+
+/* "I've worked with": label is .type-statement; this is just the logo row. */
+.hero-clients { margin-top: var(--space-xl); }
+.hero-clients > .type-statement { margin-bottom: var(--space-sm); }
+.hero-clients__logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm) var(--space-lg);
+}
+.hero-clients__logo {
+    height: 26px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(1) brightness(0.55) invert(1) opacity(0.8);
+}
+
+/* Intro stagger order (replaces per-element inline delays). */
+.intro-delay-1 { --stagger-delay: 700; }
+.intro-delay-2 { --stagger-delay: 1000; }
+.intro-delay-3 { --stagger-delay: 1150; }
+.intro-delay-4 { --stagger-delay: 1300; }
+.intro-delay-5 { --stagger-delay: 1600; }
+.intro-delay-6 { --stagger-delay: 1750; }
+.intro-delay-7 { --stagger-delay: 1900; }
+
+/* ── CV timeline (directly under the hero) ───────────────────────────────
+   Type comes from the roles in css/fonts.css; this block is layout + motion.
+   Full width. (Per-role preview images were removed for now; the role data
+   in App.js still carries media + cta if they come back.) */
+.cv-section {
+    --cv-date-w: 5rem;
+    --cv-gap: 2rem;
+    position: relative;
+    z-index: 2; /* above the parallax hero, same reason as the other bands */
+    background: var(--cv-bg, var(--color-bg));
+    padding: clamp(5rem, 7vw, 6rem) var(--page-rail) clamp(2rem, 4vw, 3rem);
+    /* Timeline furniture, re-themed per hovered row below. */
+    --cv-line: rgba(255, 255, 255, 0.14);
+    --cv-dot: rgba(255, 255, 255, 0.34);
+    --cv-dot-shadow: 0 0 10px color-mix(in srgb, var(--brand-pink) 70%, transparent);
+    transition: background-color 0.4s var(--ease-out-soft);
+}
+
+/* The hovered row's colour lives on .App as --cv-bg, so the CV section AND the
+   hero's wave (which sits just above it) read the same value and the colour
+   flows up into the wave with no straight seam. */
+.App--cv-0 { --cv-bg: var(--pine-500); }
+.App--cv-1 { --cv-bg: var(--rosewater-300); }
+.App--cv-2 { --cv-bg: var(--sage-300); }
+.App--cv-3 { --cv-bg: var(--brick-500); }
+.App--cv-4 { --cv-bg: var(--terracotta-500); }
+.grain-gradient__wave path {
+    fill: var(--cv-bg, var(--color-bg));
+    transition: fill 0.4s var(--ease-out-soft);
+}
+@media (prefers-reduced-motion: reduce) {
+    .grain-gradient__wave path { transition: none; }
+}
+
+/* The section takes a brand colour for the hovered row, and the text flips to
+   stay readable (light text on dark colours, dark text on light ones). The type
+   roles read these tokens, so nothing here sets a font. Colours: Pine, Rosewater,
+   Sage, Brick, Terracotta from the style guide. */
+.cv-section--0 {
+    --color-text-name: #fff;
+    --color-text-caption: color-mix(in srgb, #fff 82%, transparent);
+    --color-text-role: var(--rosewater-300);
+    --cv-line: rgba(255, 255, 255, 0.25);
+    --cv-dot: rgba(255, 255, 255, 0.45);
+}
+.cv-section--1 {
+    --color-text-name: var(--pine-900);
+    --color-text-caption: color-mix(in srgb, var(--pine-900) 82%, transparent);
+    --color-text-role: var(--terracotta-700);
+    --cv-line: color-mix(in srgb, var(--pine-900) 25%, transparent);
+    --cv-dot: color-mix(in srgb, var(--pine-900) 40%, transparent);
+    --cv-dot-shadow: none;
+}
+.cv-section--2 {
+    --color-text-name: var(--pine-900);
+    --color-text-caption: color-mix(in srgb, var(--pine-900) 85%, transparent);
+    --color-text-role: var(--terracotta-900);
+    --cv-line: color-mix(in srgb, var(--pine-900) 25%, transparent);
+    --cv-dot: color-mix(in srgb, var(--pine-900) 40%, transparent);
+    --cv-dot-shadow: none;
+}
+.cv-section--3 {
+    --color-text-name: #fff;
+    --color-text-caption: color-mix(in srgb, #fff 85%, transparent);
+    --color-text-role: var(--rosewater-100);
+    --cv-line: rgba(255, 255, 255, 0.28);
+    --cv-dot: rgba(255, 255, 255, 0.45);
+}
+.cv-section--4 {
+    --color-text-name: #fff;
+    --color-text-caption: color-mix(in srgb, #fff 88%, transparent);
+    --color-text-role: var(--rosewater-100);
+    --cv-line: rgba(255, 255, 255, 0.28);
+    --cv-dot: rgba(255, 255, 255, 0.5);
+}
+@media (prefers-reduced-motion: reduce) {
+    .cv-section { transition: none; }
+}
+.cv-layout { width: 100%; }
+.cv-list { list-style: none; margin: 0; padding: 0; position: relative; }
+.cv-list::before {
+    content: '';
+    position: absolute;
+    top: 0.4rem;
+    bottom: 0;
+    left: calc(var(--cv-date-w) + var(--cv-gap) / 2);
+    width: 1px;
+    background: var(--cv-line);
+}
+.cv-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--cv-date-w) 1fr;
+    column-gap: var(--cv-gap);
+    padding-bottom: var(--space-lg);
+    outline: none;
+}
+.cv-date {
+    text-align: right;
+    padding-top: 0.2rem;
+    white-space: nowrap;
+}
+.cv-item::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--cv-date-w) + var(--cv-gap) / 2 - 4px);
+    top: 0.7rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--cv-dot);
+    transition: background-color 0.25s ease, box-shadow 0.25s ease;
+}
+/* The pink dot marks the active row: the one last hovered/focused (state in
+   App.js). */
+.cv-item--active::before {
+    /* Same pink fill in every state; only the glow/ring changes so it still
+       reads on the light backgrounds. */
+    background: var(--brand-pink);
+    box-shadow: var(--cv-dot-shadow);
+}
+.cv-role { margin: 0 0 var(--space-xs); }
+/* Company and role share one line; they wrap together only on narrow screens. */
+.cv-role {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 var(--space-sm);
+}
+.cv-desc { max-width: none; }
+
+@media (max-width: 640px) {
+    .cv-section { --cv-gap: 1rem; }
+    .cv-list::before { left: 4px; }
+    .cv-item { grid-template-columns: 1fr; padding-left: 1.6rem; padding-bottom: var(--space-md); }
+    .cv-item::before { left: 0; top: 0.55rem; }
+    .cv-date { text-align: left; margin-bottom: var(--space-xs); }
+}
+
+/* ── Accessibility helpers ─────────────────────────────────────────────── */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+.skip-link {
+    position: fixed;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    z-index: 2000;
+    padding: var(--space-xs) var(--space-md);
+    border-radius: 9999px;
+    background: var(--terracotta-500);
+    color: #fff;
+    font-family: var(--font-sans);
+    transform: translateY(-200%);
+}
+.skip-link:focus-visible { transform: none; }
+/* CV rows are focusable (they drive the colour change); show where focus is. */
+.cv-item:focus-visible {
+    outline: 2px solid var(--color-text-name);
+    outline-offset: 6px;
+    border-radius: var(--space-xs);
 }

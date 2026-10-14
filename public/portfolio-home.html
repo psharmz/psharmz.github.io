@@ -12,7 +12,7 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <!-- Fonts that back the design tokens (Rubik = headings, Karla = body) -->
+  <!-- Fonts that back the design tokens (DM Sans = headings + body, Instrument Serif = display) -->
   <link rel="stylesheet" href="css/fonts.css">
 
   <link rel="stylesheet" type="text/css" href="css/header.css">
@@ -167,7 +167,7 @@
       font-size: 13px;
       font-weight: var(--weight-regular);
       letter-spacing: 0.22em;
-      color: var(--color-text-teal);
+      color: var(--color-text-accent);
       margin: 0 0 14px;
     }
 
@@ -182,12 +182,6 @@
     }
 
     .pf-project__title {
-      font-family: var(--font-heading);
-      font-size: clamp(26px, 2.5vw, 40px);
-      font-weight: var(--weight-regular);
-      line-height: 1.18;
-      letter-spacing: 0.005em;
-      color: #fff;
       margin: 0;
     }
 
@@ -217,8 +211,8 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
       text-decoration: none;
-      color: var(--color-text-teal);
-      border: 1.5px solid var(--color-text-teal);
+      color: var(--color-text-accent);
+      border: 1.5px solid var(--terracotta-500);
       border-radius: 2px;
       /* Right padding is short by one tracking step — the letter-spacing leaves a
          trailing gap after the last character that would otherwise read as slack. */
@@ -229,7 +223,7 @@
     /* Colours invert and the button tilts, same as the homepage. */
     .pf-project__cta:hover,
     .pf-project__cta:focus-visible {
-      background: var(--color-text-teal);
+      background: var(--terracotta-500);
       color: #000;
       transform: rotate(-2deg);
       text-decoration: none;
@@ -319,7 +313,8 @@
 
     <!-- Nav + brand mark are injected by js/nav-component.js -->
 
-    <div class="page-content">
+    <main class="page-content" id="main">
+      <h1 class="sr-only">Selected work</h1>
 
       <!-- ════════════════════════════════════════════════════════
            WORK INDEX
@@ -336,7 +331,7 @@
           </a>
           <div class="pf-project__body">
             <p class="pf-project__num">01&mdash;04</p>
-            <h2 class="pf-project__title">Rasa</h2>
+            <h2 class="pf-project__title type-display-sm">Rasa</h2>
             <p class="pf-project__sub">
               Reducing training time for chatbots by 40 percent. Creating a seamless
               way to share and hand off training models.
@@ -357,7 +352,7 @@
           </a>
           <div class="pf-project__body">
             <p class="pf-project__num">02&mdash;04</p>
-            <h2 class="pf-project__title">Career Coach</h2>
+            <h2 class="pf-project__title type-display-sm">Career Coach</h2>
             <p class="pf-project__sub">
               Increased usage of LinkedIn&rsquo;s Economic Graph by 32%. Increased faculty
               active sessions by 20%. Signed on 3 universities before GA launch.
@@ -378,7 +373,7 @@
           </a>
           <div class="pf-project__body">
             <p class="pf-project__num">03&mdash;04</p>
-            <h2 class="pf-project__title">Google</h2>
+            <h2 class="pf-project__title type-display-sm">Google</h2>
             <p class="pf-project__sub">
               30 percent productivity gain by designing an enterprise app for automating
               10 workstreams across 4 timezones and 3 user groups.
@@ -397,7 +392,7 @@
           </a>
           <div class="pf-project__body">
             <p class="pf-project__num">04&mdash;04</p>
-            <h2 class="pf-project__title">Microsoft Education &amp; Copilot</h2>
+            <h2 class="pf-project__title type-display-sm">Microsoft Education &amp; Copilot</h2>
             <p class="pf-project__sub">
               Created frameworks for AI in education and progressive disclosure for
               Insights. Increased discoverability by 40 percent. Lowered teacher
@@ -409,7 +404,7 @@
 
       </div><!-- /.pf-index -->
 
-    </div><!-- /.page-content -->
+    </main><!-- /.page-content -->
 
     <!-- Shared nav hamburger + back-to-top -->
     <script src="js/project.js"></script>
