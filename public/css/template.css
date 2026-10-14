@@ -978,3 +978,83 @@
   .cs-hero__roleline { flex-direction: column; gap: var(--space-xs); }
   .cs-hero__wide { min-height: 60vh; }
 }
+
+/* ── Other projects: grid at the foot of every case study ─────────────────
+   Greyscale thumbnails; on hover/focus the image zooms a little and takes its
+   colour. Type uses the roles in fonts.css. */
+.cs-other { padding: clamp(3rem, 7vw, 6rem) var(--page-rail, 40px) var(--space-xl); }
+.cs-other__wrap { max-width: 1280px; margin: 0 auto; }
+.cs-other__grid {
+  list-style: none;
+  margin: var(--space-2xl) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-xl);
+}
+.cs-other__item { height: auto; float: none; margin: 0; padding: 0; } /* header.css li reset */
+.cs-other__link { display: block; text-decoration: none; color: inherit; }
+.cs-other__media {
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--space-md);
+  background: #f3f4f6;
+}
+.cs-other__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* the whole screenshot fits the frame, no cropping */
+  filter: grayscale(1);
+  transform: scale(1);
+  transition: transform 0.5s var(--ease-out-soft), filter 0.5s ease;
+}
+.cs-other__link:hover .cs-other__media img,
+.cs-other__link:focus-visible .cs-other__media img { filter: grayscale(0); transform: scale(1.06); }
+.cs-other__link:focus-visible { outline: 2px solid var(--action-secondary); outline-offset: 6px; border-radius: var(--space-md); }
+.cs-other__title { display: block; margin: var(--space-sm) 0 0; color: var(--color-text-primary); }
+.cs-other__sig { margin: calc(var(--space-2xl) + 2.8em) 0 0; } /* two extra lines of space above */
+@media (prefers-reduced-motion: reduce) {
+  .cs-other__media img { transition: none; }
+  .cs-other__link:hover .cs-other__media img,
+  .cs-other__link:focus-visible .cs-other__media img { transform: none; }
+}
+
+/* Enterprise (Google NetOps): the accent is Sage, the light green from the hero
+   palette, for its circles, bold text, eyebrows and chat bubbles. Sage 500 is
+   about 5:1 on the white panel; bubble labels flip to white. */
+.enterprise-page .cs-body {
+  --color-text-accent: var(--sage-500);
+  --color-accent-fill: var(--sage-500);
+}
+.enterprise-page .cs-chat__msg--me .cs-chat__bubble { color: #fff; }
+
+/* Display type is set at line-height 0.92, which clips descenders (the "j" in
+   "projects") when anything overflows or crops. Give this heading room. */
+.cs-other .type-display-md { line-height: 1.15; padding-bottom: 0.08em; overflow: visible; }
+
+/* A screenshot that already has its own app chrome (e.g. the Teams shell) goes
+   in bare: no fake browser bar around it, just rounded corners and a shadow. */
+.cs-window--bare { border-radius: 10px; background: transparent; }
+.cs-window--bare .cs-window__shot { border-radius: 10px; }
+
+/* "Other projects": no underline on the tile link or its title, ever. */
+.cs-other__link,
+.cs-other__link:hover,
+.cs-other__link:focus-visible,
+.cs-other__link:hover .cs-other__title,
+.cs-other__link:focus-visible .cs-other__title { text-decoration: none; }
+
+/* Rounded media, matching the header mockup (--space-md): the figure frame AND
+   the image / video / embed inside it, so pages whose figures are flat or
+   overflow-visible still show rounded edges. Full-bleed stays square. */
+.cs-figure:not(.cs-fullbleed),
+.cs-figure:not(.cs-fullbleed) img,
+.cs-figure:not(.cs-fullbleed) video,
+.cs-figure:not(.cs-fullbleed) iframe,
+.cs-figure:not(.cs-fullbleed) .cs-embed__fit {
+  border-radius: var(--space-md);
+}
+.cs-figure:not(.cs-fullbleed) img,
+.cs-figure:not(.cs-fullbleed) video { overflow: hidden; }

@@ -91,6 +91,12 @@
   --terracotta-300: color-mix(in srgb, var(--terracotta-500) 60%, white);
   --terracotta-700: color-mix(in srgb, var(--terracotta-500) 70%, black);
   --terracotta-900: color-mix(in srgb, var(--terracotta-500) 40%, black);
+  /* Gold: the warm yellow in the hero's glow, alongside Terracotta's brown. */
+  --gold-500: #B8892B;
+  --gold-100: color-mix(in srgb, var(--gold-500) 22%, white);
+  --gold-300: color-mix(in srgb, var(--gold-500) 60%, white);
+  --gold-700: color-mix(in srgb, var(--gold-500) 70%, black);
+  --gold-900: color-mix(in srgb, var(--gold-500) 40%, black);
   --pine-500: #174832;
   --pine-100: color-mix(in srgb, var(--pine-500) 22%, white);
   --pine-300: color-mix(in srgb, var(--pine-500) 60%, white);
@@ -255,4 +261,16 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* Hint: quiet helper text under a field or control ("where do I find this?").
+   Smaller and dimmer than a caption; still 4.5:1+ on black. */
+.type-hint {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.66);
 }

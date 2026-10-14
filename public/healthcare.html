@@ -419,5 +419,34 @@
         updateParallax();
       }
     </script>
-  </body>
+  
+    <script>
+      // Safety net for the scroll reveals. ScrollReveal measures element positions
+      // once; images and embeds that load afterwards move everything below them, so
+      // later items (the 5-whys bubbles, the impact circles) could never count as
+      // "in view" and stayed invisible. Re-measure after load, and if an item is on
+      // screen but still hidden a moment later, show it.
+      (function () {
+        if (!('IntersectionObserver' in window)) return;
+        function remeasure() { window.dispatchEvent(new Event('resize')); }
+        window.addEventListener('load', function () { setTimeout(remeasure, 300); setTimeout(remeasure, 1500); });
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            var el = e.target;
+            io.unobserve(el);
+            setTimeout(function () {
+              if (parseFloat(getComputedStyle(el).opacity) < 0.05) {
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+                el.style.visibility = 'visible';
+              }
+            }, 1800);
+          });
+        }, { threshold: 0.2 });
+        document.querySelectorAll('.cs-metric, .cs-chat__msg').forEach(function (el) { io.observe(el); });
+      })();
+    </script>
+</body>
 </html>

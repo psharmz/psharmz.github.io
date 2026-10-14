@@ -789,7 +789,9 @@ p .accent {
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-lg);
-  margin-top: var(--space-xl);
+  /* Buffer between the closing line ("…the world we want to live in.") and the
+     portraits below it. */
+  margin-top: clamp(3rem, 8vw, 5.5rem);
 }
 
 .murals-portrait {
@@ -875,6 +877,7 @@ p .accent {
     gap: 0;
     flex-wrap: nowrap;
     margin-top: auto;
+    padding-top: clamp(3rem, 8vw, 5.5rem); /* keeps the buffer when pinned to the bottom */
   }
 
   .murals-portrait--lead { transform: translateY(calc(-1 * var(--space-md))); z-index: 3; }

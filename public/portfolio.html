@@ -119,6 +119,8 @@
       .gate__input.is-error { animation: none; }
     }
 
+    .gate__hint { margin-top: 12px; padding-left: 2px; }
+
     .gate__error {
       font-size: 13px;
       letter-spacing: 0.04em;
@@ -148,8 +150,9 @@
         type="password"
         placeholder="Password"
         aria-label="Password"
-        aria-describedby="gate-error"
+        aria-describedby="gate-hint gate-error"
         autofocus>
+      <p class="type-hint gate__hint" id="gate-hint">Have my resume? The password is in the header.</p>
       <p class="gate__error" id="gate-error" role="alert"></p>
     </form>
   </main>

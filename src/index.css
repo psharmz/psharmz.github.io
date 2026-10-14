@@ -870,7 +870,8 @@ h2 {
     --btn-hover-fg: var(--pine-900);
 }
 .strength--zero-to-one { --band-bg: var(--pine-700);       background: var(--band-bg); }
-.strength--horizontal  { --band-bg: var(--terracotta-700); background: var(--band-bg); }
+.strength--horizontal  { --band-bg: var(--gold-700); background: var(--band-bg); }
+.strength--horizontal  { --color-text-accent: var(--rosewater-100); --btn-bg: var(--rosewater-300); --btn-border: var(--rosewater-300); --btn-hover-bg: var(--rosewater-100); } /* Gold needs lighter pinks than the others */
 .strength--developers  { --band-bg: var(--brick-700);      background: var(--band-bg); }
 .strength--enterprise  { --band-bg: var(--rosewater-900);  background: var(--band-bg); }
 

@@ -270,10 +270,36 @@
 
 
         <!-- ── CLOSING / NEXT PROJECT ── -->
-        <section class="cs-closing">
-          <div class="cs-container">
-            <span class="cs-next__kicker type-caption type-caption--accent">Next project</span>
-            <a class="cs-next type-display-sm" href="/#strengths">See more work →</a>
+        <section class="cs-other" aria-labelledby="cs-other-heading">
+          <div class="cs-other__wrap">
+            <h2 id="cs-other-heading" class="type-display-md">Other projects</h2>
+            <ul class="cs-other__grid">
+            <li class="cs-other__item">
+              <a class="cs-other__link" href="teams.html">
+                <span class="cs-other__media"><img src="img/careercoach/insights_interests.jpg" alt="" loading="lazy"></span>
+                <span class="cs-other__title type-caption type-caption--strong">Building Career Coach, 0 → 1</span>
+              </a>
+            </li>
+            <li class="cs-other__item">
+              <a class="cs-other__link" href="horizontal-design.html">
+                <span class="cs-other__media"><img src="img/msoft/insights_final_framework-crop.jpg" alt="" loading="lazy"></span>
+                <span class="cs-other__title type-caption type-caption--strong">Frameworks for Microsoft Education</span>
+              </a>
+            </li>
+            <li class="cs-other__item">
+              <a class="cs-other__link" href="rasa.html">
+                <span class="cs-other__media"><img src="img/rasa/rasa_platform3.png" alt="" loading="lazy"></span>
+                <span class="cs-other__title type-caption type-caption--strong">Letting non-engineers train chatbots</span>
+              </a>
+            </li>
+            <li class="cs-other__item">
+              <a class="cs-other__link" href="enterprise.html">
+                <span class="cs-other__media"><img src="img/enterprise/case_visualization.png" alt="" loading="lazy"></span>
+                <span class="cs-other__title type-caption type-caption--strong">Simplifying enterprise workflows</span>
+              </a>
+            </li>
+            </ul>
+            <p class="cs-other__sig type-caption">&copy; Parul Sharma 2026</p>
           </div>
         </section>
 
@@ -302,5 +328,34 @@
         sr.reveal('.cs-metric', { origin: 'bottom', interval: 100 });
       }
     </script>
-  </body>
+  
+    <script>
+      // Safety net for the scroll reveals. ScrollReveal measures element positions
+      // once; images and embeds that load afterwards move everything below them, so
+      // later items (the 5-whys bubbles, the impact circles) could never count as
+      // "in view" and stayed invisible. Re-measure after load, and if an item is on
+      // screen but still hidden a moment later, show it.
+      (function () {
+        if (!('IntersectionObserver' in window)) return;
+        function remeasure() { window.dispatchEvent(new Event('resize')); }
+        window.addEventListener('load', function () { setTimeout(remeasure, 300); setTimeout(remeasure, 1500); });
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            var el = e.target;
+            io.unobserve(el);
+            setTimeout(function () {
+              if (parseFloat(getComputedStyle(el).opacity) < 0.05) {
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+                el.style.visibility = 'visible';
+              }
+            }, 1800);
+          });
+        }, { threshold: 0.2 });
+        document.querySelectorAll('.cs-metric, .cs-chat__msg').forEach(function (el) { io.observe(el); });
+      })();
+    </script>
+</body>
 </html>

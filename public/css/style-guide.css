@@ -81,6 +81,11 @@ body.sg {
 .sg-swatch__chip--action-primary { background: var(--action-primary); }
 .sg-swatch__chip--action-primary-on-dark { background: var(--action-primary-on-dark); }
 .sg-swatch__chip--action-secondary { background: var(--action-secondary); }
+.sg-swatch__chip--gold-100 { background: var(--gold-100); }
+.sg-swatch__chip--gold-300 { background: var(--gold-300); }
+.sg-swatch__chip--gold-500 { background: var(--gold-500); }
+.sg-swatch__chip--gold-700 { background: var(--gold-700); }
+.sg-swatch__chip--gold-900 { background: var(--gold-900); }
 .sg-swatch__label { padding: 12px; }
 .sg-swatch__label strong { display: block; color: #fff; }
 @media (max-width: 720px) {

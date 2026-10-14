@@ -77,3 +77,17 @@
 }
 /* Pages used to clear a 52px fixed bar; the pill sits a little lower. */
 body.has-pill-nav { --murals-nav-h: 76px; }
+
+/* No blue flash/box when you click or tap the avatar or any nav link. Keyboard
+   focus still shows the ring (:focus-visible above). */
+.pill-nav a,
+.pill-nav__home,
+.pill-nav__avatar {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+.pill-nav a:focus-visible {
+    outline: 2px solid var(--action-secondary);
+    outline-offset: 4px;
+}
+.pill-nav__avatar { -webkit-user-drag: none; user-select: none; }
