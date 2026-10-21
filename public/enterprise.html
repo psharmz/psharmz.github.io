@@ -450,14 +450,11 @@
                 the right at full height. The underlying platform had no slide-out
                 pane component, so I partnered with engineering to build a custom one.
               </p>
-              <!-- Same treatment as the clip above: cropped to the laptop
-                   (x 78-1063 of the 1530px frame) so it fills the text column. -->
-              <figure class="cs-figure cs-video cs-flat cs-video--trim cs-video--crop-x"
-                      style="--vid-w: 1530; --vid-x0: 78; --vid-x1: 1063">
-                <video class="cs-video__el" muted loop playsinline preload="none"
-                       aria-label="The slide-out work log in use — a custom component built with engineering" poster="img/posters/cover_vid.jpg">
-                  <source src="img/cover_vid.mp4" type="video/mp4">
-                </video>
+              <!-- Live HTML/CSS walkthrough (replaces the blurry 1530px video). -->
+              <figure class="cs-figure cs-embed">
+                <div class="cs-embed__fit" data-w="1200" data-h="700">
+                  <iframe src="embeds/worklog_demo.html" title="The slide-out work log in use: a custom component built with engineering (live HTML/CSS prototype)" loading="lazy" scrolling="no"></iframe>
+                </div>
               </figure>
               <p class="cs-text">
                 Result: <span class="accent">three clicks to one</span>, no more

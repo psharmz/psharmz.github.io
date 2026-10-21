@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 // Wraps the highlight phrases in <mark>. Phrases that aren't in `text` (e.g. when
 // showing the short excerpt) are simply skipped.
@@ -52,6 +52,8 @@ function Attribution({ q, logoClass }) {
 export default function WordCard({ quote: q, variant = 'grid' }) {
   const aside = variant === 'aside' && Boolean(q.short);
   const logoClass = `word-card__logo word-card__logo--${q.company.name.toLowerCase()}`;
+  const cardRef = useRef(null);
+  const wasOpen = useRef(false);
 
   if (!aside) {
     return (
@@ -65,7 +67,20 @@ export default function WordCard({ quote: q, variant = 'grid' }) {
   }
 
   return (
-    <figure className="word-card word-card--aside scroll-reveal" tabIndex={0}>
+    <figure
+      ref={cardRef}
+      className="word-card word-card--aside scroll-reveal"
+      tabIndex={0}
+      // Touch has no hover, so the card opens via focus. A tap on an already
+      // open card blurs it, which collapses it again.
+      onPointerDown={(e) => {
+        wasOpen.current = e.pointerType !== 'mouse' && cardRef.current.contains(document.activeElement);
+      }}
+      onClick={() => {
+        if (wasOpen.current) cardRef.current.blur();
+        wasOpen.current = false;
+      }}
+    >
       {/* Resting state: the excerpt. It's aria-hidden because the overlay
           below carries the complete quote. */}
       <blockquote className="word-card__quote type-caption" aria-hidden="true">

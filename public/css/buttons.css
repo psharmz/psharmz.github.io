@@ -90,3 +90,22 @@
   .btn::after { display: none; }
   .btn:hover, .btn:focus-visible, .btn:active { transform: none; }
 }
+
+/* Analytics consent banner (js/analytics.js): small, bottom-left, non-blocking. */
+.consent {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 3000;
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(18, 18, 18, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.consent p { margin: 0 0 12px; color: rgba(255, 255, 255, 0.85); }
+.consent__actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.consent .btn { min-height: 36px; padding: 0.5em 1em; }

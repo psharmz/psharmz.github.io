@@ -171,17 +171,20 @@
       ? next
       : 'portfolio-home.html';
 
+    if (window.track) window.track('gate_view', { destination: DESTINATION });
     var form  = document.getElementById('gate-form');
     var input = document.getElementById('gate-input');
     var error = document.getElementById('gate-error');
 
     function attempt() {
       if (input.value === PASSWORD) {
+        if (window.track) window.track('gate_success', { destination: DESTINATION });
         sessionStorage.setItem('portfolioUnlocked', 'true');
         window.location.href = DESTINATION;
         return;
       }
 
+      if (window.track) window.track('gate_fail', { destination: DESTINATION });
       error.textContent = 'Incorrect password';
       input.classList.remove('is-error');
       void input.offsetWidth; // restart the shake

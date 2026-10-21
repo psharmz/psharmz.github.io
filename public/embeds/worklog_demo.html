@@ -1,0 +1,63 @@
+<!doctype html><meta charset=utf-8><title>Work log walkthrough</title>
+<style>
+@font-face{font-family:'Material Icons';src:url('../fonts/material-icons-400.woff2') format('woff2')}
+@font-face{font-family:'Roboto';font-weight:100 900;src:url('../fonts/roboto-400.woff2') format('woff2')}
+*{box-sizing:border-box}
+html,body{margin:0;width:1200px;height:700px;overflow:hidden;font-family:Roboto,sans-serif;background:#fff;color:#1c2340}
+.mi{font-family:'Material Icons';font-style:normal;font-size:22px;line-height:1;display:inline-block;-webkit-font-feature-settings:'liga';font-feature-settings:'liga';text-transform:none;letter-spacing:normal}
+.app{position:relative;width:1200px;height:700px;overflow:hidden;background:#f6f7fb}
+.top{height:64px;background:#0f1b4d;display:flex;align-items:center;justify-content:space-between;padding:0 24px 0 0;color:#fff}
+.brand{width:92px;height:64px;background:#0f1b4d;display:flex;align-items:center;justify-content:center}
+.brand img{height:44px;mix-blend-mode:lighten}
+.search{margin-left:16px;width:360px;height:34px;border-radius:6px;background:rgba(255,255,255,.2);display:flex;align-items:center;padding:0 10px;color:rgba(255,255,255,.8)}
+.who{display:flex;align-items:center;gap:10px;font-weight:500}
+.who .a{width:36px;height:36px;border-radius:50%;background:#fff url('../img/parul-avatar.jpg') center/cover;border:2px solid #fff}
+.rail{position:absolute;left:0;top:64px;bottom:0;width:92px;background:#26357a;color:#fff;font-size:11px;text-align:center}
+.create{margin:14px 12px;height:34px;border-radius:4px;background:#00a6a6;display:flex;align-items:center;justify-content:center;font-weight:500;gap:4px;font-size:12px}
+.create .mi{font-size:18px}
+.rn{padding:11px 0} .rn .mi{display:block;font-size:26px;margin-bottom:3px} .rn.sel{background:#0f1b4d}
+.main{margin-left:92px;padding:16px 28px}
+.ph{font-size:16px;font-weight:500;display:inline-block;padding-bottom:6px;border-bottom:2px solid #0f1b4d}
+.tabs{display:flex;gap:6px;margin-top:12px;background:#0f1b4d;color:#fff;font-size:15px;border-radius:3px 3px 0 0}
+.tabs div{padding:12px 22px;display:flex;gap:8px;align-items:center} .tabs .on{border-bottom:3px solid #ff3d7f;font-weight:500}
+h4{margin:20px 0 10px;font-size:16px;font-weight:500;display:flex;align-items:center;gap:10px;color:#3b4160}
+table{width:100%;border-collapse:collapse;background:#fff;box-shadow:0 1px 3px rgba(20,30,80,.2);font-size:13px}
+th{text-align:left;font-weight:500;color:#7a809a;padding:12px 10px;font-size:12px}
+td{padding:12px 10px;border-top:1px solid #eceef6}
+tr.od td{background:#fde8ea} .sla{color:#555c78} tr.od .sla,tr.od .pr{color:#d32f2f;font-weight:500}
+/* slide-out */
+.dim{position:absolute;inset:64px 0 0 92px;background:rgba(15,27,77,.22);opacity:0;animation:dim 14s infinite}
+.panel{position:absolute;top:64px;right:0;bottom:0;width:380px;background:#fff;box-shadow:-8px 0 24px rgba(20,30,80,.25);transform:translateX(100%);animation:slide 14s cubic-bezier(.2,.8,.2,1) infinite}
+.ph2{display:flex;align-items:center;gap:12px;padding:16px 18px;background:#e6e8f6;font-weight:500;font-size:15px}
+.log{padding:14px 18px;height:420px;overflow:hidden}
+.msg{display:flex;gap:12px;margin-bottom:16px;opacity:0;transform:translateY(8px)}
+.av{flex:none;width:38px;height:38px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px}
+.msg b{font-size:13px} .msg small{display:block;color:#8d93ad;font-size:11px} .msg p{margin:4px 0 0;font-size:13px}
+.m0{animation:m0 14s infinite} .m1{animation:m1 14s infinite} .m2{animation:m2 14s infinite} .m3{animation:m3 14s infinite}
+.compose{position:absolute;left:0;right:0;bottom:0;padding:14px 18px;background:#eef0f7}
+.box{background:#fff;border-radius:4px;height:70px;padding:10px 12px;font-size:13px;color:#8d93ad;display:flex;gap:8px;border:1px solid #dfe2ef}
+.typed{color:#1c2340;white-space:nowrap;overflow:hidden;width:0;animation:type 14s steps(30) infinite}
+.post{margin:10px 0 0 auto;width:74px;height:34px;border-radius:4px;background:#0f1b4d;color:#fff;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center}
+@keyframes slide{0%,8%{transform:translateX(100%)}16%,88%{transform:translateX(0)}96%,100%{transform:translateX(100%)}}
+@keyframes dim{0%,8%{opacity:0}16%,88%{opacity:1}96%,100%{opacity:0}}
+@keyframes m0{0%,18%{opacity:0;transform:translateY(8px)}22%,100%{opacity:1;transform:none}}
+@keyframes m1{0%,28%{opacity:0;transform:translateY(8px)}32%,100%{opacity:1;transform:none}}
+@keyframes m2{0%,38%{opacity:0;transform:translateY(8px)}42%,100%{opacity:1;transform:none}}
+@keyframes m3{0%,70%{opacity:0;transform:translateY(8px)}74%,100%{opacity:1;transform:none}}
+@keyframes type{0%,48%{width:0}62%,100%{width:280px}}
+@media (prefers-reduced-motion:reduce){.panel,.dim,.msg,.typed{animation:none}.panel{transform:none}.dim{opacity:1}.msg{opacity:1;transform:none}.typed{width:280px}}
+</style>
+<div class=app>
+<div class=top><div style="display:flex;align-items:center"><div class=brand><img src="../img/enterprise/moose-logo.png" alt=""></div><div class=search><i class=mi>search</i></div></div><div class=who>Field Worker<div class=a></div></div></div>
+<div class=rail><div class=create><i class=mi>add</i>Create</div>
+<div class="rn sel"><i class=mi>assignment_ind</i>My Tickets</div><div class=rn><i class=mi>event</i>App and<br>Adhoc</div><div class=rn><i class=mi>assignment</i>Directed<br>Work</div><div class=rn><i class=mi>apartment</i>Metro<br>Tickets</div><div class=rn><i class=mi>account_circle</i>Profile</div></div>
+<div class=main><span class=ph>My Tickets</span>
+<div class=tabs><div class=on><i class=mi>today</i>Today</div><div><i class=mi>view_week</i>This Week</div><div><i class=mi>list</i>Upcoming</div><div><i class=mi>check_box</i>Resolved</div><div><i class=mi>person</i>Opened by me</div></div>
+<h4><i class=mi>event_note</i>Appointments and Adhoc</h4>
+<table><tr><th></th><th>Title</th><th>Duration</th><th>Pop Code</th><th>SLA Due Date</th><th>Priority</th></tr><tr class="od"><td></td><td>RMA Request</td><td>2 hours</td><td>AFK01</td><td class="sla">due 5 days ago</td><td class="pr">P0</td></tr><tr class="od"><td></td><td>Logistical Support</td><td>3 hours</td><td>AAT01</td><td class="sla">due 3 days ago</td><td class="pr">P1</td></tr><tr class=""><td></td><td>Portal Access</td><td>1 hour</td><td>LAX04</td><td class="sla">08 Apr 2019</td><td class="pr">P3</td></tr><tr class=""><td></td><td>RMA Request</td><td>4 hours</td><td>AFK01</td><td class="sla">01 Apr 2019</td><td class="pr">P2</td></tr></table>
+<h4><i class=mi>assignment</i>Directed Work</h4>
+<table><tr><th></th><th>Title</th><th>Duration</th><th>Pop Code</th><th>SLA Due Date</th><th>Priority</th></tr><tr class="od"><td></td><td>RMA Request</td><td></td><td>AFK01</td><td class="sla">due 5 days ago</td><td class="pr">P0</td></tr><tr class="od"><td></td><td>Logistical Support</td><td></td><td>AAT01</td><td class="sla">due 4 days ago</td><td class="pr">P1</td></tr><tr class="od"><td></td><td>Portal Access</td><td></td><td>LAX04</td><td class="sla">due 7 days ago</td><td class="pr">P3</td></tr></table></div>
+<div class=dim></div>
+<div class=panel><div class=ph2><i class=mi>close</i>TD-123 WORKLOG</div><div class=log><div class="msg m0"><span class="av" style="background:#e53935">TS</span><div><b>Test Smith</b><small>11-Oct-2018 01:31:26 PM EDT</small><p>Is this done?</p></div></div><div class="msg m1"><span class="av" style="background:#fb8c00">GK</span><div><b>Gazal Khot</b><small>11-Oct-2018 01:31:26 PM EDT</small><p>Looks complete on my end, parts arrived.</p></div></div><div class="msg m2"><span class="av" style="background:#43a047">EF</span><div><b>Ethan Foley</b><small>11-Oct-2018 01:41:26 PM EDT</small><p>What's the status on this?</p></div></div><div class="msg m3"><span class="av" style="background:#0f1b4d">SS</span><div><b>Sahar Salari</b><small>11-Oct-2018 01:41:26 PM EDT</small><p>Closing out once the site photos are in.</p></div></div></div>
+<div class=compose><div class=box><i class=mi style="font-size:18px">chat_bubble_outline</i><span class=typed>Say something</span></div><div class=post>POST</div></div></div>
+</div>

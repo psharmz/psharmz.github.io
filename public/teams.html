@@ -280,7 +280,7 @@
               <!-- Silent, loops when in view. Cropped past the baked-in
                    letterboxing; see .cc-video. -->
               <figure class="cc-video">
-                <video class="cc-video__el" muted loop playsinline preload="none"
+                <video class="cc-video__el" muted loop playsinline webkit-playsinline preload="metadata"
                        aria-label="Screen recording walking through the early Insights wireframes">
                   <source src="img/careercoach/cc_wireframes.mp4" type="video/mp4">
                 </video>
@@ -470,8 +470,18 @@
               if (vid.preload !== 'auto') vid.preload = 'auto';
               // play() rejects when the tab is backgrounded or autoplay is
               // blocked; the catch keeps that out of the console.
-              var p = vid.play();
-              if (p && p.catch) p.catch(function () {});
+              // iOS ignores play() on a video with no data yet, so also retry
+              // once enough has loaded, and on the first touch as a last resort
+              // (Low Power Mode blocks autoplay until a gesture).
+              var tryPlay = function () {
+                var p = vid.play();
+                if (p && p.catch) p.catch(function () {});
+              };
+              tryPlay();
+              vid.addEventListener('canplay', tryPlay, { once: true });
+              document.addEventListener('touchstart', function () {
+                if (vid.paused && vid.getBoundingClientRect().top < window.innerHeight) tryPlay();
+              }, { once: true, passive: true });
             } else if (!vid.paused) {
               vid.pause();
             }

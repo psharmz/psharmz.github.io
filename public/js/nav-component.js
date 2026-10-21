@@ -34,6 +34,10 @@ function injectNavigation() {
         css.href = '/css/pill-nav.css';
         document.head.appendChild(css);
     }
+    var an = document.createElement('script');
+    an.src = '/js/analytics.js';
+    an.async = true;
+    document.head.appendChild(an);
     document.body.classList.add('has-pill-nav');
     document.body.insertAdjacentHTML('afterbegin', createNavigation());
 }
