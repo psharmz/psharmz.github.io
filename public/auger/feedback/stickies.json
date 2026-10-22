@@ -1,0 +1,92 @@
+{
+ "screen-a": [
+  {
+   "file": "screen-a-0-yellow.png",
+   "w": 588,
+   "h": 407,
+   "color": "yellow"
+  }
+ ],
+ "not": [
+  {
+   "file": "not-0-salmon.png",
+   "w": 473,
+   "h": 473,
+   "color": "salmon"
+  },
+  {
+   "file": "not-1-green.png",
+   "w": 282,
+   "h": 282,
+   "color": "green"
+  },
+  {
+   "file": "not-2-green.png",
+   "w": 250,
+   "h": 250,
+   "color": "green"
+  }
+ ],
+ "partial": [
+  {
+   "file": "partial-0-green.png",
+   "w": 178,
+   "h": 178,
+   "color": "green"
+  },
+  {
+   "file": "partial-1-green.png",
+   "w": 299,
+   "h": 299,
+   "color": "green"
+  }
+ ],
+ "full": [
+  {
+   "file": "full-0-green.png",
+   "w": 261,
+   "h": 262,
+   "color": "green"
+  },
+  {
+   "file": "full-1-green.png",
+   "w": 626,
+   "h": 505,
+   "color": "green"
+  }
+ ],
+ "feat": [
+  {
+   "file": "feat-0-yellow.png",
+   "w": 380,
+   "h": 381,
+   "color": "yellow"
+  },
+  {
+   "file": "feat-1-green.png",
+   "w": 200,
+   "h": 201,
+   "color": "green"
+  },
+  {
+   "file": "feat-2-yellow.png",
+   "w": 380,
+   "h": 313,
+   "color": "yellow"
+  },
+  {
+   "file": "feat-3-yellow.png",
+   "w": 381,
+   "h": 262,
+   "color": "yellow"
+  }
+ ],
+ "screen-b": [
+  {
+   "file": "screen-b-0-yellow.png",
+   "w": 445,
+   "h": 282,
+   "color": "yellow"
+  }
+ ]
+}
