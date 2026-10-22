@@ -1,0 +1,49 @@
+/* StudyHall design system -- illustrations.css
+   Animation hooks for the inline-SVG illustrations in illustrations/*.svg.
+   Inline an SVG into your page (not <img>), add the wrapper class, and these
+   rules bring it to life. Requires animations.css for the keyframes.
+   The .svg files themselves are static and work as plain <img>. */
+
+.sh-illus { display: inline-block; line-height: 0; }
+.sh-illus svg { display: block; width: 100%; height: auto; image-rendering: pixelated; }
+.sh-illus--sm { width: 72px; }
+.sh-illus--md { width: 140px; }
+.sh-illus--lg { width: 220px; }
+
+/* Wheel hamster: wheel turns in 16 steps, hamster jogs 1.5px. */
+.wheel-spin  { transform-origin: 29px 29px; animation: wheelSpin 2.6s steps(16) infinite; }
+.hamster-run { transform-origin: 30px 36px; animation: hamsterRun 0.4s steps(2) infinite; }
+.is-still .wheel-spin  { animation: none; }
+.is-still .hamster-run { display: none; }
+
+/* Mini hamster: ear and nose twitch on the same 3.2s beat. */
+.is-twitching .hamster-ear--1 { animation: earTwitch 3.2s steps(1, end) infinite; }
+.is-twitching .hamster-nose   { animation: noseTwitch 3.2s steps(1, end) infinite; }
+
+/* Sipping hamster's cup drains over 11s. */
+.drink-mask { animation: drinkDrain 11s steps(18, end) infinite; }
+
+/* Thought bubble: balloon + puffs pulse, flowers grow back on a 3.6s loop. */
+.thought-balloon, .thought-puff {
+  transform-box: fill-box; transform-origin: center;
+  animation: bubblePulse 1.8s steps(1, end) infinite;
+}
+.thought-puff   { animation-delay: 0.18s; }
+.thought-puff--2 { animation-delay: 0.36s; }
+.bloom-stem, .bloom-core, .bloom-petal {
+  animation-duration: 3.6s; animation-timing-function: steps(1, end);
+  animation-iteration-count: infinite; animation-delay: var(--bloom-delay, 0s);
+}
+.bloom-stem  { animation-name: bloomStem; }
+.bloom-core  { animation-name: bloomCore; }
+.bloom-petal { animation-name: bloomPetals; }
+
+/* Card sprite fills (used by cards-guide.svg when inlined). */
+.pixel-card-halo { fill: #FFFFFF; }
+.pixel-card-fill { fill: var(--black); }
+
+@media (prefers-reduced-motion: reduce) {
+  .wheel-spin, .hamster-run, .hamster-ear, .hamster-nose, .drink-mask,
+  .thought-balloon, .thought-puff, .bloom-stem, .bloom-core, .bloom-petal { animation: none; }
+  .bloom-stem, .bloom-core, .bloom-petal { opacity: 1; }
+}

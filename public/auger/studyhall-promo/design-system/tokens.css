@@ -1,0 +1,133 @@
+/* StudyHall design system -- tokens.css
+   Colour, type, spacing, radius, shadow and motion tokens, extracted from
+   StudyHall's src/styles.css. Import this first, then components.css. */
+
+/* bundled locally so the deck works offline */
+@font-face{font-family:'Press Start 2P';src:url('fonts/ps2p.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('fonts/jbm-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('fonts/jbm-500.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('fonts/jbm-700.woff2') format('woff2');font-weight:700 900;font-display:swap}
+
+:root {
+  /* ---- Brand ---- */
+  --green: #7CFA6B;            /* phosphor green: primary accent, text on dark, borders, CTAs */
+  --black: #0A0A0A;            /* card / terminal surface */
+  --chrome-gray: #4B4B4B;      /* window title bars */
+  --terminal-border: #8A8A8A;  /* dividers, inactive control borders */
+  --page-bg: #F2F2F0;          /* warm off-white page / print background */
+
+  /* ---- Status ---- */
+  --red: #E5484D;              /* alarm, critical timer, "gauge high" */
+  --blue: #4DA8DA;
+  --amber: #F2C94C;            /* warning timer, "partial" chip */
+  --ok: #3F9142;              /* "full" chip */
+  --bad: #E0453F;             /* "non" chip */
+  --simulation: #8B5AD6;       /* "simulation" chip */
+
+  /* ---- Greys (on dark) ---- */
+  --grey-100: #E8E8E8;
+  --grey-200: #C9C9C9;         /* secondary text, prompts, idle buttons */
+  --grey-300: #9A9A9A;         /* muted text, captions, license notice */
+  --grey-400: #6A6A6A;
+  --grey-500: #4A4A4A;         /* disabled border + text */
+  --grey-900: #141414;         /* active tab */
+
+  /* ---- Green tints (hover / selected backgrounds on black) ---- */
+  --green-hover: rgba(124, 250, 107, 0.08);
+  --green-wash: rgba(124, 250, 107, 0.14);
+  --green-border-soft: #3E7F39;   /* quiet border for secondary tiles */
+  --green-text-soft: #8FD98A;
+
+  /* ---- CRT backdrop ---- */
+  --backdrop-base: #060A08;
+  --backdrop-glow: rgba(124, 250, 107, 0.10);
+  --grid-line: rgba(124, 250, 107, 0.20);
+  --scan-opacity: 0.5;
+
+  /* ---- Purple window family (info pop-ups, word cloud) ---- */
+  --cloud-bg: #1B1130;
+  --cloud-edge: #6B48B8;
+  --win-bg: #150E28;
+  --win-edge: #6B48B8;
+  --win-chrome-top: #3D2C68;
+  --win-chrome-bottom: #2A1D48;
+  --win-text: #E9E2FF;
+
+  /* ---- Teal scene panel (ending illustration) ---- */
+  --scene-bg: #0C1720;
+  --scene-edge: #2E5A6B;
+
+  /* ---- Glitch / decode ---- */
+  --glitch-shift: 3px;
+  --glitch-magenta: #FF3EA5;
+  --glitch-cyan: #3EF0FF;
+  --decode-dim: #6F8F6A;
+
+  /* ---- Type ---- */
+  --font-mono: 'JetBrains Mono', monospace;                       /* all body + UI text */
+  --font-pixel: 'Press Start 2P', 'JetBrains Mono', monospace;    /* headings, scores */
+
+  --fs-2xs: 8px;   /* tiny labels, compact corner buttons */
+  --fs-xs: 9px;    /* button labels, chips, captions */
+  --fs-sm: 10px;   /* gauge titles, bubbles */
+  --fs-md: 11px;   /* title bar, nav, tabs, option text base */
+  --fs-body: 12.5px;
+  --fs-lg: 15px;   /* big button, chart titles (pixel) */
+  --fs-h2: 22px;
+  --fs-h1: 26px;   /* card headings (pixel) */
+  --fs-h1-lg: 34px;
+  --fs-display: 52px;  /* "TIME'S UP" */
+
+  --lh-tight: 1.25;
+  --lh-body: 1.6;
+  --lh-loose: 1.7;
+
+  --ls-label: 0.06em;    /* small uppercase buttons */
+  --ls-nav: 0.1em;       /* nav + tabs */
+  --ls-cta: 0.12em;
+
+  /* ---- Radius ---- */
+  --radius-0: 0;         /* default: hard pixel corners */
+  --radius-sm: 3px;
+  --radius-md: 6px;      /* windows, speech bubbles */
+  --radius-pill: 999px;  /* chips */
+  --radius-round: 50%;
+
+  /* ---- Borders ---- */
+  --bw: 1.5px;           /* standard control border */
+  --bw-thick: 2.5px;
+
+  /* ---- Elevation ---- */
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --shadow-header: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-glow-green: 0 0 18px rgba(124, 250, 107, 0.18);
+  --shadow-glow-red: 0 0 28px 10px rgba(229, 72, 77, 0.85);
+
+  /* ---- Spacing (observed rhythm) ---- */
+  --sp-1: 4px;
+  --sp-2: 6px;
+  --sp-3: 10px;
+  --sp-4: 14px;   /* card padding */
+  --sp-5: 18px;
+  --sp-6: 24px;
+  --sp-7: 32px;
+
+  /* ---- Motion ---- */
+  --t-fast: 0.15s ease;      /* hover color swaps */
+  --t-base: 0.2s ease;
+  --ease-settle: cubic-bezier(0.22, 0.9, 0.34, 1);
+  --ease-bloom: cubic-bezier(0.22, 0.75, 0.3, 1);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--backdrop-base);
+  color: var(--green);
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+  line-height: var(--lh-body);
+}
+
+.pixel { font-family: var(--font-pixel); }

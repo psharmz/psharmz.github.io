@@ -1,0 +1,280 @@
+/* StudyHall design system -- animations.css
+   Every @keyframes in the game, copied verbatim from src/styles.css, followed
+   by opt-in utility classes (.anim-*) so you can use any of them with one
+   class. Timing/easing on the utilities matches how the game uses them.
+   All animation is disabled under prefers-reduced-motion at the bottom. */
+
+@keyframes alarmGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(229, 72, 77, 0.55);
+  }
+  50% {
+    box-shadow: 0 0 28px 10px rgba(229, 72, 77, 0.85);
+  }
+}
+
+@keyframes alarmGlowHeader {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12), 0 0 0 0 rgba(229, 72, 77, 0.55);
+  }
+  50% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12), 0 0 22px 8px rgba(229, 72, 77, 0.85);
+  }
+}
+
+@keyframes haloBloom {
+  0% {
+    opacity: 0;
+    -webkit-mask-size: 10% 10%;
+    mask-size: 10% 10%;
+  }
+  18% { opacity: 0.9; }
+  60% {
+    opacity: 0.9;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+  /* Stays under ~138%: past that the mask's transparent edge falls outside
+     the box and the dot grid's square boundary shows. */
+  100% {
+    opacity: 0;
+    -webkit-mask-size: 132% 132%;
+    mask-size: 132% 132%;
+  }
+}
+
+@keyframes haloCore {
+  0% {
+    opacity: 0;
+    -webkit-mask-size: 4% 4%;
+    mask-size: 4% 4%;
+  }
+  30% { opacity: 1; }
+  65% {
+    opacity: 0.75;
+    -webkit-mask-size: 62% 62%;
+    mask-size: 62% 62%;
+  }
+  100% {
+    opacity: 0;
+    -webkit-mask-size: 120% 120%;
+    mask-size: 120% 120%;
+  }
+}
+
+@keyframes drinkDrain {
+  0%, 6% { transform: translateY(0); }
+  94%, 100% { transform: translateY(36px); }
+}
+
+@keyframes earTwitch {
+  0%, 60%, 100% { transform: translate(0, 0); }
+  70%, 82% { transform: translate(2px, 2px); }
+}
+
+@keyframes noseTwitch {
+  0%, 60%, 100% { transform: translate(0, 0); }
+  70%, 82% { transform: translate(0, -2px); }
+}
+
+@keyframes bubblePulse {
+  0%, 49.99% { transform: scale(1); }
+  50%, 100% { transform: scale(1.09); }
+}
+
+@keyframes bloomStem {
+  0%, 9.99% { opacity: 0; }
+  10%, 91.99% { opacity: 1; }
+  92%, 100% { opacity: 0; }
+}
+
+@keyframes bloomCore {
+  0%, 29.99% { opacity: 0; }
+  30%, 91.99% { opacity: 1; }
+  92%, 100% { opacity: 0; }
+}
+
+@keyframes bloomPetals {
+  0%, 54.99% { opacity: 0; }
+  55%, 91.99% { opacity: 1; }
+  92%, 100% { opacity: 0; }
+}
+
+@keyframes hamsterHop {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+
+@keyframes hamsterBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes radar-dot-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.4); opacity: 1; }
+}
+
+@keyframes radar-aura-breathe {
+  0%, 100% { transform: scale(0.55); opacity: 0.16; }
+  50% { transform: scale(1.15); opacity: 0.34; }
+}
+
+@keyframes wheelSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes hamsterRun {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(0, -1.5px); }
+}
+
+@keyframes caretBlink {
+  50% { opacity: 0; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(4px); }
+}
+
+@keyframes phoneRing {
+  0%, 100% { transform: rotate(0); }
+  20% { transform: rotate(-12deg); }
+  40% { transform: rotate(10deg); }
+  60% { transform: rotate(-8deg); }
+  80% { transform: rotate(6deg); }
+}
+
+@keyframes greenSettle {
+  from { transform: translateX(356px); }
+  to { transform: translateX(0); }
+}
+
+@keyframes blackSlideOut {
+  from { transform: translateX(-264px); opacity: 0; }
+  30% { opacity: 1; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeInSoft {
+  from { opacity: 0; }
+}
+
+@keyframes optionFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+}
+
+@keyframes timesUpFlash {
+  50% { opacity: 0.15; }
+}
+
+@keyframes feedbackOpen {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sentIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ringRipple {
+  from { transform: scale(0.7); opacity: 1; }
+  to { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes panelFadeOut {
+  to { opacity: 0; }
+}
+
+@keyframes crtRoll {
+  from { transform: translate3d(0, 100vh, 0); }
+  to { transform: translate3d(0, -40vh, 0); }
+}
+
+@keyframes crtFlicker {
+  0%, 100% { opacity: 1; }
+  72% { opacity: 0.88; }
+  74% { opacity: 1; }
+  88% { opacity: 0.93; }
+  90% { opacity: 1; }
+}
+
+@keyframes headingBoot {
+  0% {
+    opacity: 0;
+    letter-spacing: 0.35em;
+    transform: translateX(calc(var(--glitch-shift) * -1));
+    text-shadow: var(--glitch-shift) 0 0 #FF3EA5, calc(var(--glitch-shift) * -1) 0 0 #3EF0FF;
+  }
+  45% {
+    opacity: 1;
+    letter-spacing: 0.12em;
+    transform: translateX(var(--glitch-shift));
+    text-shadow: calc(var(--glitch-shift) * -1) 0 0 #FF3EA5, var(--glitch-shift) 0 0 #3EF0FF;
+  }
+  75% {
+    letter-spacing: 0.02em;
+    transform: translateX(-1px);
+    text-shadow: 1px 0 0 #FF3EA5, -1px 0 0 #3EF0FF;
+  }
+  100% {
+    opacity: 1;
+    letter-spacing: normal;
+    transform: translateX(0);
+    text-shadow: none;
+  }
+}
+
+@keyframes lineArrive {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes decodeWipe {
+  from { transform: translateY(-44px); }
+  to { transform: translateY(calc(100% + 44px)); }
+}
+
+/* ---- Utility classes ------------------------------------------------- */
+:root { --glitch-shift: 3px; }
+
+/* Entrances */
+.anim-fade-up        { animation: fadeUp 0.2s ease both; }
+.anim-fade-in        { animation: fadeInSoft 0.3s ease both; }
+.anim-option-in      { animation: optionFadeIn 0.4s ease both; }   /* stagger with animation-delay */
+.anim-line-arrive    { animation: lineArrive 0.22s ease-out both; }
+.anim-feedback-open  { animation: feedbackOpen 0.28s ease both; }
+.anim-sent-in        { animation: sentIn 0.25s ease both; }
+.anim-heading-boot   { animation: headingBoot 0.46s steps(6, end) both; } /* chromatic split + tracking collapse */
+.anim-fade-out       { animation: panelFadeOut 0.4s ease both; }
+
+/* Slides (card swap) */
+.anim-green-settle   { animation: greenSettle 0.55s cubic-bezier(0.22, 0.9, 0.34, 1) both; }
+.anim-black-slide    { animation: blackSlideOut 0.55s cubic-bezier(0.22, 0.9, 0.34, 1) both; }
+
+/* Alerts / attention */
+.anim-alarm-glow     { animation: alarmGlow 1s ease-in-out infinite; }
+.anim-alarm-header   { animation: alarmGlowHeader 1s ease-in-out infinite; }
+.anim-times-up       { animation: timesUpFlash 0.45s steps(1) infinite; }
+.anim-phone-ring     { animation: phoneRing 0.5s ease-in-out 2; }
+.anim-ring-ripple    { animation: ringRipple 0.6s ease-out 2; }
+
+/* Ambient loops */
+.anim-caret          { animation: caretBlink 0.8s steps(1) infinite; }
+.anim-bubble-pulse   { animation: bubblePulse 1.8s steps(1, end) infinite; }
+.anim-breathe-dot    { animation: radar-dot-breathe 2.8s ease-in-out infinite; }
+.anim-breathe-aura   { animation: radar-aura-breathe 2.8s ease-in-out infinite; }
+.anim-wheel-spin     { animation: wheelSpin 2.6s steps(16) infinite; }
+.anim-hamster-run    { animation: hamsterRun 0.4s steps(2) infinite; }
+.anim-hamster-hop    { animation: hamsterHop 0.8s ease-in-out infinite; }
+.anim-hamster-bob    { animation: hamsterBob 0.8s ease-in-out infinite; }
+.anim-ear-twitch     { animation: earTwitch 3.2s steps(1, end) infinite; }
+.anim-nose-twitch    { animation: noseTwitch 3.2s steps(1, end) infinite; }
+.anim-drink-drain    { animation: drinkDrain 11s steps(18, end) infinite; }
+.anim-crt-flicker    { animation: crtFlicker 5.5s steps(1, end) infinite; }
+.anim-crt-roll       { animation: crtRoll 9s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="anim-"] { animation: none !important; }
+}

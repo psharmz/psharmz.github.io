@@ -1,0 +1,179 @@
+/* StudyHall design system -- components.css
+   Standalone component classes, distilled from src/styles.css. Requires
+   tokens.css (and animations.css for the motion classes). Class names are
+   prefixed `sh-` so they will not collide with another project. */
+
+/* ---------------------------------------------------------------- Card */
+.sh-card {
+  background: var(--black);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.sh-card--light { background: var(--green); color: var(--black); }   /* the bright "prompt" card */
+.sh-card-body { padding: var(--sp-5); }
+.sh-card h1 { margin: 0 0 var(--sp-5); font-family: var(--font-pixel); font-size: var(--fs-h1); line-height: var(--lh-tight); color: var(--green); }
+.sh-card--light h1 { color: var(--black); }
+
+/* ------------------------------------------------------------ Title bar */
+.sh-titlebar {
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: 10px var(--sp-4);
+  background: var(--chrome-gray); color: #E5E5E5;
+  font-size: var(--fs-md); font-weight: 700; letter-spacing: 0.08em;
+}
+.sh-titlebar .icons { display: flex; gap: var(--sp-2); }
+.sh-titlebar .icons span {
+  width: 16px; height: 16px; border: var(--bw) solid #E5E5E5;
+  display: flex; align-items: center; justify-content: center; font-size: 10px; line-height: 1;
+}
+.sh-titlebar .label { flex: 1; text-align: center; }
+
+/* -------------------------------------------------------------- Buttons */
+.sh-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: transparent; color: var(--green);
+  border: var(--bw) solid var(--green);
+  font-family: var(--font-mono); font-weight: 700; text-transform: uppercase;
+  font-size: var(--fs-xs); letter-spacing: var(--ls-label);
+  padding: 5px 9px; cursor: pointer;
+  transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
+}
+.sh-btn:hover:not(:disabled) { background: var(--green); color: var(--black); }
+.sh-btn:disabled { border-color: var(--grey-500); color: var(--grey-500); cursor: not-allowed; }
+
+.sh-btn--lg { padding: 16px 32px; font-size: var(--fs-lg); letter-spacing: 0.1em; }          /* primary CTA (Start) */
+.sh-btn--glow { padding: 15px 28px; font-size: 13px; letter-spacing: var(--ls-cta); border-radius: var(--radius-sm); box-shadow: var(--shadow-glow-green); }
+
+/* Choice button: setup menu options. Neutral until hovered, filled when selected. */
+.sh-btn-choice {
+  height: 44px; padding: 0 14px;
+  background: transparent; color: var(--grey-200);
+  border: var(--bw) solid var(--terminal-border);
+  font-family: var(--font-mono); font-size: var(--fs-md); font-weight: 700; letter-spacing: 0.03em;
+  cursor: pointer; transition: all var(--t-fast);
+}
+.sh-btn-choice:hover { border-color: var(--green); color: var(--green); }
+.sh-btn-choice.selected { background: var(--green); border-color: var(--green); color: var(--black); }
+
+/* Nav button: borderless, back / next footer. */
+.sh-btn-nav {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 8px;
+  background: transparent; border: none; color: var(--green);
+  font-family: var(--font-mono); font-size: var(--fs-md); font-weight: 700;
+  letter-spacing: var(--ls-nav); text-transform: uppercase; cursor: pointer;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+.sh-btn-nav:hover:not(:disabled) { background: var(--green); color: var(--black); }
+.sh-btn-nav:disabled { color: var(--grey-500); cursor: not-allowed; }
+
+/* Inverted: black button on the green card. */
+.sh-btn-inverse {
+  padding: 12px 18px; background: var(--black); color: var(--green);
+  border: var(--bw) solid var(--black);
+  font-family: var(--font-mono); font-size: var(--fs-md); font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+.sh-btn-inverse:hover { background: transparent; color: var(--black); }
+
+/* Corner tile: square icon + label. */
+.sh-btn-tile {
+  width: 82px; height: 82px; padding: 8px 4px; gap: 6px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: transparent; border: var(--bw) solid var(--green-border-soft); color: var(--green-text-soft);
+  font-family: var(--font-mono); font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.1em; line-height: 1.3;
+  cursor: pointer; transition: all var(--t-fast);
+}
+.sh-btn-tile:hover { border-color: var(--green); color: var(--green); background: rgba(124, 250, 107, 0.1); }
+
+/* Round call button (advisor phone). */
+.sh-btn-round {
+  width: 36px; height: 36px; padding: 0; border-radius: var(--radius-round);
+  display: flex; align-items: center; justify-content: center;
+  background: transparent; border: var(--bw-thick) solid var(--black); color: var(--black);
+  cursor: pointer; transition: background var(--t-fast), color var(--t-fast);
+}
+.sh-btn-round:hover { background: var(--black); color: var(--green); }
+
+/* ----------------------------------------------------------------- Tabs */
+.sh-tabs { display: flex; }
+.sh-tab {
+  flex: 1; padding: 12px; border: none;
+  background: var(--chrome-gray); color: var(--grey-200);
+  font-family: var(--font-mono); font-size: var(--fs-md); font-weight: 700;
+  letter-spacing: var(--ls-nav); text-transform: uppercase; cursor: pointer;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+.sh-tab + .sh-tab { border-left: 1px solid rgba(0, 0, 0, 0.3); }
+.sh-tab:hover:not(.active) { background: #5A5A5A; }
+.sh-tab.active { background: var(--grey-900); color: var(--green); }
+
+/* -------------------------------------------------------- Option list */
+.sh-option {
+  padding: 14px; font-size: 11.5px; line-height: var(--lh-body);
+  border-bottom: 1px solid var(--terminal-border);
+  border-left: 3px solid transparent;
+  color: var(--green); cursor: pointer;
+  transition: background var(--t-base), border-color var(--t-base);
+}
+.sh-option:last-child { border-bottom: none; }
+.sh-option .prompt { color: var(--grey-200); }       /* the "C:/ user_A$" prefix */
+.sh-option:hover { background: var(--green-hover); }
+.sh-option.selected { border-left-color: var(--green); background: var(--green-hover); }
+
+/* --------------------------------------------------------------- Timer */
+.sh-timer {
+  display: inline-block; padding: 4px 8px;
+  font-size: var(--fs-md); font-weight: 700; letter-spacing: var(--ls-label);
+  color: var(--green); border: var(--bw) solid var(--green);
+  transition: color var(--t-base), border-color var(--t-base);
+}
+.sh-timer.warn { color: var(--amber); border-color: var(--amber); }
+.sh-timer.critical { color: var(--red); border-color: var(--red); }
+
+/* --------------------------------------------------------------- Chips */
+.sh-chip {
+  display: inline-block; padding: 4px 10px; border-radius: var(--radius-pill);
+  font-size: var(--fs-xs); font-weight: 700; color: #fff;
+}
+.sh-chip[data-tone="full"]    { background: var(--ok); }
+.sh-chip[data-tone="partial"] { background: var(--amber); color: #1A1A1A; }
+.sh-chip[data-tone="non"]     { background: var(--bad); }
+.sh-chip[data-tone="sim"]     { background: var(--simulation); }
+
+/* ------------------------------------------------- Speech bubble (advisor) */
+.sh-bubble {
+  background: var(--black); color: var(--green);
+  border: var(--bw) solid var(--green); border-radius: var(--radius-md);
+  padding: 12px 14px; font-size: var(--fs-sm); line-height: 1.5;
+}
+
+/* ---------------------------------------- Purple pop-up window (info) */
+.sh-window { background: var(--win-bg); border: var(--bw) solid var(--win-edge); color: var(--green); }
+.sh-window-bar {
+  display: flex; align-items: center; gap: 8px; padding: 5px 8px;
+  background: linear-gradient(180deg, var(--win-chrome-top), var(--win-chrome-bottom));
+  border-bottom: var(--bw) solid var(--win-edge);
+  color: var(--win-text); font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.08em;
+}
+.sh-window-body { padding: 12px 14px; font-size: var(--fs-body); }
+
+/* ----------------------------------------------------- Text + captions */
+.sh-text-muted { color: var(--grey-300); font-size: var(--fs-sm); letter-spacing: 0.02em; }
+.sh-link { color: var(--green); text-decoration: underline; }
+.sh-link:hover { background: var(--green); color: var(--black); }
+.sh-caret::after { content: '\2588'; margin-left: 2px; animation: caretBlink 0.8s steps(1) infinite; }
+.sh-times-up { font-family: var(--font-pixel); font-size: var(--fs-display); color: var(--red); text-shadow: 0 0 24px rgba(229, 72, 77, 0.8); }
+
+/* ---------------------------------------------------- CRT backdrop (fixed) */
+.sh-crt { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 38%, var(--backdrop-glow), transparent 70%),
+    radial-gradient(ellipse 120% 90% at 50% 50%, transparent 45%, rgba(0, 0, 0, 0.75) 100%),
+    var(--backdrop-base); }
+.sh-crt::before { content: ''; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(to bottom, rgba(0, 0, 0, var(--scan-opacity)) 0 1px, transparent 1px 3px);
+  animation: crtFlicker 5.5s steps(1, end) infinite; }
+@media (prefers-reduced-motion: reduce) { .sh-crt::before { animation: none; } }
